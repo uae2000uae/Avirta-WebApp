@@ -30,5 +30,6 @@ contents/admin_controls/model_param_settings.json
 # IDE files (may contain cached secrets)
 .idea
 !.aiassistant
-!/Direct deploy.bat
 !.claude
+.claude/settings.local.json
+.pytest_cache/

@@ -4,21 +4,25 @@ This directory contains a Flask web application that provides a web interface fo
 
 ## Setup and Running
 
-1. Make sure you have Flask installed:
+1. Install the dependencies (in a virtual environment):
    ```
-   pip install flask
+   pip install -r requirements.txt -r requirements-dev.txt
    ```
 
-2. Navigate to the project root directory and run the Flask application:
+2. From the project root, run the Flask application:
    ```
-   cd path/to/Avirta
    python app.py
    ```
 
 3. Open a web browser and go to:
    ```
-   http://localhost:5000
+   http://localhost:8080
    ```
+
+4. Run the tests with `pytest`.
+
+Deployment is automatic: pushing to the `Avirta-1` branch deploys to Google
+Cloud Run through Cloud Build. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## Features
 

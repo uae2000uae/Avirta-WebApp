@@ -1,227 +1,66 @@
-# Avirta Deployment Guide
+# Deploying Avirta
 
-This guide provides instructions for deploying the Avirta web application using Nginx and Gunicorn on a Linux server.
+Avirta runs on **Google Cloud Run** (service `avirta`, region `us-central1`) and
+is deployed only through **Cloud Build**: a push to the `Avirta-1` branch on
+GitHub starts the Cloud Build trigger, which runs [`cloudbuild.yaml`](../cloudbuild.yaml).
+There are no manual deploy scripts; edit `cloudbuild.yaml` to change how the
+service is deployed.
 
-## Prerequisites
+What gets uploaded is controlled by [`.gcloudignore`](../.gcloudignore) (tests,
+docs, IDE folders and CI config are excluded; runtime data is kept).
 
-- Python 3.8 or higher
-- Nginx
-- Gunicorn
-- Systemd (for service management)
+## Secrets
 
-## Installation Steps
+Cloud Run reads these from **Secret Manager** (mapped in `cloudbuild.yaml`
+`--set-secrets`):
 
-### 1. Clone the Repository
+| Secret | Used for |
+|--------|----------|
+| `OPENAI_API_KEY` | AI question generator / validator |
+| `ANTHROPIC_API_KEY` | AI question generator |
+| `GITHUB_TOKEN` | Pushing question, report and usage data back to GitHub |
 
-```bash
-git clone <repository-url>
-cd Avirta
+To sign session cookies with a stable key, add a `SECRET_KEY` secret and append
+`SECRET_KEY=SECRET_KEY:latest` to `--set-secrets`.
+
+## A deploy resets live games
+
+`cloudbuild.yaml` pins the service to one instance (`--min-instances=1
+--max-instances=1`, plus `--session-affinity`) because game rooms live in the
+instance's memory and local disk. Every deploy creates a new revision (a fresh
+container), so **any game in progress ends when a deploy goes live**. Push code
+changes when no one is playing.
+
+## Data pushes must not trigger deploys
+
+The running app commits data to GitHub on its own (commit messages ending in
+`[skip ci]`): question edits (`contents/questions/`), reports
+(`questionmanagement/reported_questions/`) and usage counts (`datastore/usage/`).
+Cloud Build skips commits marked `[skip ci]`, so those pushes don't redeploy and
+end games. As a backup, the trigger can also ignore these paths. In the console:
+**Cloud Build → Triggers → edit the trigger → Ignored files filter**, add:
+
+```
+contents/questions/**
+questionmanagement/reported_questions/**
+datastore/usage/**
 ```
 
-### 2. Set Up Python Virtual Environment
+Because the app commits to `Avirta-1` too, run `git pull` before working locally.
+
+## Public access
+
+`--allow-unauthenticated` on the deploy already grants public access; no separate
+IAM step is needed (an extra `add-iam-policy-binding` step used to race and fail
+with an ETag `ABORTED` error). If access ever has to be granted again:
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-pip install gunicorn
+gcloud run services add-iam-policy-binding avirta --region=us-central1 --member=allUsers --role=roles/run.invoker
 ```
 
-### 3. Configure Gunicorn
-
-The Gunicorn configuration file is located at `gunicorn_config.py`. Review and update the configuration as needed:
-
-- Update the `bind` parameter if you want to use a different socket path or a TCP port
-- Adjust the number of `workers` based on your server's resources
-- Update the log paths in `accesslog` and `errorlog`
-
-### 4. Configure Nginx
-
-1. Copy the Nginx configuration file to the Nginx sites directory:
-
-```bash
-sudo cp nginx_avirta.conf /etc/nginx/sites-available/avirta
-```
-
-2. Update the configuration file:
-   - Replace the `server_name` with your domain name
-   - Update the `alias` path in the `/static` location to point to your actual static files directory
-
-3. Enable the site:
-
-```bash
-sudo ln -s /etc/nginx/sites-available/avirta /etc/nginx/sites-enabled/
-sudo nginx -t  # Test the configuration
-sudo systemctl reload nginx
-```
-
-### 5. Set Up Systemd Service
-
-1. Copy the service file to the systemd directory:
-
-```bash
-sudo cp avirta.service /etc/systemd/system/
-```
-
-2. Update the service file:
-   - Replace `/path/to/Avirta` with the actual path to your Avirta installation
-   - Update the user and group if needed
-
-3. Enable and start the service:
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable avirta
-sudo systemctl start avirta
-```
-
-### 6. Create Log Directories
-
-```bash
-sudo mkdir -p /var/log/avirta
-sudo chown www-data:www-data /var/log/avirta
-```
-
-### 7. Check Service Status
-
-```bash
-sudo systemctl status avirta
-```
-
-## Troubleshooting
-
-### Deployment Test Script
-
-A test script is provided to help diagnose deployment issues. Run it from the project root directory:
-
-```bash
-cd /var/www/Avirta
-source venv/bin/activate
-python test_deployment.py
-```
-
-The script will check various aspects of your deployment and provide a summary of any issues found.
-
-### 502 Bad Gateway Error
-
-If you encounter a 502 Bad Gateway error, check the following:
-
-1. Verify that the Gunicorn service is running:
-
-```bash
-sudo systemctl status avirta
-```
-
-2. Check the Gunicorn error logs:
-
-```bash
-sudo tail -f /var/log/avirta/error.log
-```
-
-3. Check the Nginx error logs:
-
-```bash
-sudo tail -f /var/log/nginx/avirta_error.log
-```
-
-4. Verify socket permissions:
-
-```bash
-ls -la /tmp/avirta.sock
-```
-
-The socket should be owned by the same user that runs the Gunicorn process (www-data in the default configuration).
-
-5. Ensure the wsgi.py file is in the correct location:
-
-```bash
-ls -la /var/www/Avirta/wsgi.py
-```
-
-6. Test Gunicorn directly to see if it can run the application:
-
-```bash
-cd /var/www/Avirta
-source venv/bin/activate
-gunicorn --bind 127.0.0.1:8000 wsgi:app
-```
-
-If Gunicorn starts successfully, try accessing the application at http://127.0.0.1:8000 to verify it works.
-
-7. Check for import errors by running the wsgi.py file directly:
-
-```bash
-cd /var/www/Avirta
-source venv/bin/activate
-python wsgi.py
-```
-
-8. Ensure log directories exist and have proper permissions:
-
-```bash
-sudo mkdir -p /var/log/avirta
-sudo chown www-data:www-data /var/log/avirta
-```
-
-9. Restart the services:
-
-```bash
-sudo systemctl restart avirta
-sudo systemctl restart nginx
-```
-
-### Common Issues
-
-1. **Socket permission issues**: Ensure that the user running Nginx has permission to access the socket.
-
-2. **Application errors**: Check the Gunicorn error logs for application-specific errors.
-
-3. **Timeout issues**: If your application takes a long time to process requests, you may need to increase the timeout values in both the Nginx and Gunicorn configurations.
-
-4. **Path issues**: Ensure that all paths in the configuration files are correct and accessible.
-
-## Updating the Application
-
-To update the application:
-
-1. Pull the latest changes:
-
-```bash
-cd /var/www/Avirta
-git pull
-```
-
-2. Activate the virtual environment and update dependencies:
-
-```bash
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-3. Check if the wsgi.py file needs to be updated:
-
-```bash
-# If you've made changes to the application structure or imports
-# you might need to update the wsgi.py file
-nano wsgi.py
-```
-
-4. Restart the service:
-
-```bash
-sudo systemctl restart avirta
-sudo systemctl status avirta  # Verify the service started successfully
-```
-
-5. Check the logs for any errors:
-
-```bash
-sudo tail -f /var/log/avirta/error.log
-```
-
-6. Test the application to ensure it's working correctly:
-
-```bash
-curl http://localhost
-```
-
+## Future: deploys without dropping games
+
+Move game rooms to Firestore (see `datastore/firestore_backend.py`, and
+[STATE_MIGRATION_SCOPE.md](STATE_MIGRATION_SCOPE.md)) or Redis, and make the
+client retry on a transient "room not found". Then the single-instance pin in
+`cloudbuild.yaml` can be removed.
