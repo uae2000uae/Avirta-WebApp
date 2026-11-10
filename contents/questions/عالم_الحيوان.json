@@ -781,8 +781,9 @@
     "points": 200,
     "question": "ما هو الحيوان الذي يطلق صوتًا يُعرف بـ 'العرار' عند التزاوج؟",
     "type": "text",
-    "updated_at": "2025-11-19T00:24:03.029139",
-    "use_count": 0
+    "updated_at": "2026-11-10T13:37:52.291473",
+    "use_count": 0,
+    "reported": true
   },
   {
     "active": true,
