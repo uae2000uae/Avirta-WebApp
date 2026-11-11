@@ -2,7 +2,7 @@
   "default_time_limit": 30,
   "max_players_per_room": 8,
   "max_categories_per_room": 7,
-  "questions_per_category": 10,
+  "questions_per_category": 5,
   "ai_config": {
     "active": "anthropic",
     "options": {

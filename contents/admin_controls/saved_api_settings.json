@@ -1,16 +1,4 @@
 {
-    "gpt-4o": {
-        "option": "openai",
-        "model": "gpt-4o",
-        "quality": "accurate",
-        "advanced": {
-            "temperature": null,
-            "reasoning_effort": null,
-            "max_output_tokens": 12000,
-            "timeout": 120
-        },
-        "note": "Converted from an old preset: penalties removed; writing and fact-checking now use separate settings."
-    },
     "gpt-4o-mini": {
         "option": "openai",
         "model": "gpt-4o-mini",
