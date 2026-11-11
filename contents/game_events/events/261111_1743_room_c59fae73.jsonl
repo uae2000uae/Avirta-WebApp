@@ -1,0 +1,4 @@
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "P2", "message": "Turn switched from P1 to P2"}, "timestamp": "2026-11-11T17:43:19.502224"}
+{"type": "tool_used", "data": {"player_name": "P1", "tool_name": "double_points", "target_player": "P2", "message": "P1 activated Double Points for P2"}, "timestamp": "2026-11-11T17:43:24.314141"}
+{"type": "question_selected", "data": {"player_name": "P2", "category": "أعلام_الدول", "points": 600, "message": "P2 selected a 600-point question from أعلام_الدول"}, "timestamp": "2026-11-11T17:43:28.152983"}
+{"type": "answer_evaluated", "data": {"player_name": "P2", "evaluator": "P1", "category": "أعلام_الدول", "points": 600, "is_correct": true, "message": "The Host evaluated P2's answer as correct and earned 600 points"}, "timestamp": "2026-11-11T17:43:45.227300"}
