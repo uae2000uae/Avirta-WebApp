@@ -6,14 +6,23 @@ managing user permissions, and monitoring game activity.
 """
 import os
 import json
-import glob
 from datetime import datetime
-from contents.admin_controls.openai_models import (
-    get_model_defaults,
-    is_known_model,
-    DEFAULT_MODEL,
-)
-from contents.admin_controls import anthropic_models
+from questionmanagement.ai_engine import config as ai_engine_config
+
+# Flat settings from the old AI settings page, migrated into 'ai_config'.
+_LEGACY_AI_PREFIXES = ('openai_', 'anthropic_')
+_LEGACY_AI_KEYS = {'ai_provider'}
+# Old "Look and Feel" colour/spacing settings from the removed theme system.
+# The site now has a single design (light + dark mode, chosen per visitor),
+# so these keys are ignored when old settings files are loaded.
+_LEGACY_LOOK_PREFIXES = ('primary_color', 'secondary_color', 'bg_color', 'text_color',
+                         'success_', 'error_', 'info_', 'border_', 'spacing_', 'font_')
+_LEGACY_LOOK_KEYS = {'box_shadow', 'line_height', 'selected_theme'}
+
+
+def is_legacy_look_setting(key):
+    """True for settings that belonged to the removed colour-theme system."""
+    return key in _LEGACY_LOOK_KEYS or key.startswith(_LEGACY_LOOK_PREFIXES)
 
 class AdminSetup:
     """
@@ -64,10 +73,6 @@ class AdminSetup:
         """
         self.admins = {}
         self.saved_api_settings = {}
-        # Per-model AI parameter memory: {model_id: {openai_temperature: ..., ...}}.
-        # Populated with each model's registry defaults until the admin saves
-        # model-specific overrides via the "AI Model" dropdown/form.
-        self.model_param_settings = {}
         # Initialize with default settings
         self.game_settings = {
             # Game settings
@@ -76,100 +81,11 @@ class AdminSetup:
             'max_categories_per_room': 7,  # Maximum number of categories per game room (3-7)
             'questions_per_category': 10,  # Number of questions per category (5-10)
 
-            # Active AI provider for question generation: 'openai' or 'anthropic'
-            'ai_provider': 'openai',
+            # AI question generator / validator configuration (see
+            # questionmanagement/ai_engine/config.py). API keys are NOT stored
+            # here - they live in Secret Manager (see ai_engine/keys.py).
+            'ai_config': ai_engine_config.default_ai_config(),
 
-            # Anthropic (Claude) settings - used when ai_provider == 'anthropic'.
-            # The API key is normally supplied via the ANTHROPIC_API_KEY secret;
-            # leave 'anthropic_api_key' as a placeholder to use the runtime secret.
-            'anthropic_api_key': 'SET_IN_ENV',
-            'anthropic_model': 'claude-opus-4-8',
-            'anthropic_temperature': 0.7,
-            'anthropic_top_p': 1.0,
-            'anthropic_max_tokens': 8192,
-            'anthropic_request_timeout': 60,
-
-            # OpenAI settings
-            'openai_api_key': '',
-            'openai_model': 'gpt-4o-mini',
-            'openai_temperature': 0.55,
-            'openai_top_p': 1.0,
-            'openai_frequency_penalty': 0.3,
-            'openai_presence_penalty': 0.2,
-            'openai_max_tokens': 16384,
-            'openai_seed': 0,
-            # Reasoning-model-only settings (e.g. GPT-5.x); ignored by standard chat models
-            'openai_reasoning_effort': 'medium',
-            'openai_verbosity': 'medium',
-            # Modern OpenAI settings (future-proof)
-            'openai_response_format': 'json_object',
-            'openai_stop': '',
-            'openai_request_timeout': 60,
-            'openai_base_url': 'https://api.openai.com/v1',
-            'openai_organization': '',
-            'openai_user': '',
-
-
-            # Look and Feel settings - Primary Colors
-            'primary_color': '#1e595e',
-            'primary_color_light': '#2d828a',
-            'primary_color_dark': '#113639',
-
-            # Secondary Colors
-            'secondary_color': '#6c757d',
-            'secondary_color_hover': '#5a6268',
-
-            # Background Colors
-            'bg_color': '#ffffff',
-            'bg_color_light': '#f8f8f8',
-            'bg_color_lighter': '#f1f1f1',
-            'bg_color_dark': '#c3d9dc',
-            'bg_color_darker': '#9ab8bc',
-            'bg_color_darkest': '#6d8c8f',
-
-            # Text Colors
-            'text_color': '#333',
-            'text_color_light': '#666',
-            'text_color_white': '#ffffff',
-
-            # Status Colors
-            'success_color': '#28a745',
-            'success_color_light': '#d4edda',
-            'success_color_dark': '#155724',
-            'success_bg': '#e8f5e9',
-            'success_text': '#1b5e20',
-
-            'error_color': '#dc3545',
-            'error_color_light': '#f8d7da',
-            'error_color_dark': '#721c24',
-            'error_bg': '#ffebee',
-            'error_text': '#b71c1c',
-
-            'info_color': '#000000',
-            'info_color_light': '#e0f7fa',
-            'info_color_dark': '#006064',
-
-            # Border Colors
-            'border_color': '#ddd',
-            'border_color_light': '#eee',
-
-            # Common Styling
-            'border_radius_small': '3px',
-            'border_radius': '4px',
-            'border_radius_large': '5px',
-            'box_shadow': '0 2px 5px rgba(0, 0, 0, 0.1)',
-
-            # Spacing
-            'spacing_xs': '5px',
-            'spacing_sm': '10px',
-            'spacing_md': '15px',
-            'spacing_lg': '20px',
-            'spacing_xl': '30px',
-
-            # Typography
-            'font_family': 'Cairo, sans-serif',
-            'font_size_base': '16px',
-            'line_height': '1.6'
         }
         self.active_sessions = []
         self.logs = []
@@ -185,7 +101,6 @@ class AdminSetup:
         # Load saved settings from file (if available)
         self.load_game_settings()
         self.load_saved_api_settings_from_file()
-        self.load_model_param_settings_from_file()
         self.selected_categories = []
 
     def add_admin(self, username, permission_level='MODERATOR'):
@@ -316,17 +231,30 @@ class AdminSetup:
             return None
 
     def _apply_loaded_settings(self, loaded_settings):
-        """Merge loaded settings into game_settings, applying legacy migrations."""
+        """Merge loaded settings into game_settings, migrating old AI settings."""
         for key, value in loaded_settings.items():
+            if key in _LEGACY_AI_KEYS or key.startswith(_LEGACY_AI_PREFIXES):
+                continue
+            if is_legacy_look_setting(key):
+                continue
             self.game_settings[key] = value
-        # Migration: the old "JSON Response Mode" checkbox was removed and
-        # folded into the Response Format Override field. Preserve prior
-        # forced-JSON behavior for installs that had the checkbox on with
-        # no explicit override already set.
-        if 'openai_json_mode' in loaded_settings:
-            if loaded_settings.get('openai_json_mode') and not str(self.game_settings.get('openai_response_format') or '').strip():
-                self.game_settings['openai_response_format'] = 'json_object'
-            self.game_settings.pop('openai_json_mode', None)
+        if isinstance(loaded_settings.get('ai_config'), dict):
+            self.game_settings['ai_config'] = ai_engine_config.normalize_ai_config(loaded_settings['ai_config'])
+        elif any(k in _LEGACY_AI_KEYS or k.startswith(_LEGACY_AI_PREFIXES) for k in loaded_settings):
+            # One-time migration from the old flat openai_*/anthropic_* settings.
+            self.game_settings['ai_config'] = ai_engine_config.migrate_legacy_settings(loaded_settings)
+
+    def get_ai_config(self):
+        """The normalized AI configuration (never contains API keys)."""
+        return ai_engine_config.normalize_ai_config(self.game_settings.get('ai_config'))
+
+    def set_ai_config(self, cfg):
+        """Validate, store and persist the AI configuration."""
+        self.game_settings['ai_config'] = ai_engine_config.normalize_ai_config(cfg)
+        self.save_game_settings()
+        self.record_stat('settings_changed')
+        self.log_event("Updated AI settings", category='AI')
+        return self.game_settings['ai_config']
 
     def save_game_settings(self):
         """
@@ -716,122 +644,6 @@ class AdminSetup:
         """
         return self.selected_categories
 
-    def generate_custom_css(self):
-        """
-        Generate custom CSS based on the current game settings.
-
-        This method creates a CSS string with variables set to the values in game_settings.
-
-        Returns:
-            str: CSS content with custom variables
-        """
-        css = "/* Avirta Game - Custom Stylesheet */\n\n"
-        css += "/* Generated on: " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " */\n\n"
-
-        css += ":root {\n"
-
-        # Primary Colors
-        css += "    /* Primary Colors */\n"
-        css += f"    --primary-color: {self.game_settings['primary_color']};\n"
-        css += f"    --primary-color-light: {self.game_settings['primary_color_light']};\n"
-        css += f"    --primary-color-dark: {self.game_settings['primary_color_dark']};\n\n"
-
-        # Secondary Colors
-        css += "    /* Secondary Colors */\n"
-        css += f"    --secondary-color: {self.game_settings['secondary_color']};\n"
-        css += f"    --secondary-color-hover: {self.game_settings['secondary_color_hover']};\n\n"
-
-        # Background Colors
-        css += "    /* Background Colors */\n"
-        css += f"    --bg-color: {self.game_settings['bg_color']};\n"
-        css += f"    --bg-color-light: {self.game_settings['bg_color_light']};\n"
-        css += f"    --bg-color-lighter: {self.game_settings['bg_color_lighter']};\n"
-        css += f"    --bg-color-dark: {self.game_settings['bg_color_dark']};\n"
-        css += f"    --bg-color-darker: {self.game_settings['bg_color_darker']};\n"
-        css += f"    --bg-color-darkest: {self.game_settings['bg_color_darkest']};\n\n"
-
-        # Text Colors
-        css += "    /* Text Colors */\n"
-        css += f"    --text-color: {self.game_settings['text_color']};\n"
-        css += f"    --text-color-light: {self.game_settings['text_color_light']};\n"
-        css += f"    --text-color-white: {self.game_settings['text_color_white']};\n\n"
-
-        # Status Colors
-        css += "    /* Status Colors */\n"
-        css += f"    --success-color: {self.game_settings['success_color']};\n"
-        css += f"    --success-color-light: {self.game_settings['success_color_light']};\n"
-        css += f"    --success-color-dark: {self.game_settings['success_color_dark']};\n"
-        css += f"    --success-bg: {self.game_settings['success_bg']};\n"
-        css += f"    --success-text: {self.game_settings['success_text']};\n\n"
-
-        css += f"    --error-color: {self.game_settings['error_color']};\n"
-        css += f"    --error-color-light: {self.game_settings['error_color_light']};\n"
-        css += f"    --error-color-dark: {self.game_settings['error_color_dark']};\n"
-        css += f"    --error-bg: {self.game_settings['error_bg']};\n"
-        css += f"    --error-text: {self.game_settings['error_text']};\n\n"
-
-        css += f"    --info-color: {self.game_settings['info_color']};\n"
-        css += f"    --info-color-light: {self.game_settings['info_color_light']};\n"
-        css += f"    --info-color-dark: {self.game_settings['info_color_dark']};\n\n"
-
-        # Border Colors
-        css += "    /* Border Colors */\n"
-        css += f"    --border-color: {self.game_settings['border_color']};\n"
-        css += f"    --border-color-light: {self.game_settings['border_color_light']};\n\n"
-
-        # Common Styling
-        css += "    /* Common Styling */\n"
-        css += f"    --border-radius-small: {self.game_settings['border_radius_small']};\n"
-        css += f"    --border-radius: {self.game_settings['border_radius']};\n"
-        css += f"    --border-radius-large: {self.game_settings['border_radius_large']};\n\n"
-
-        css += f"    --box-shadow: {self.game_settings['box_shadow']};\n\n"
-
-        # Spacing
-        css += "    /* Spacing */\n"
-        css += f"    --spacing-xs: {self.game_settings['spacing_xs']};\n"
-        css += f"    --spacing-sm: {self.game_settings['spacing_sm']};\n"
-        css += f"    --spacing-md: {self.game_settings['spacing_md']};\n"
-        css += f"    --spacing-lg: {self.game_settings['spacing_lg']};\n"
-        css += f"    --spacing-xl: {self.game_settings['spacing_xl']};\n"
-        css += "}\n\n"
-
-        # Typography
-        css += "/* Base Typography */\n"
-        css += "body {\n"
-        css += f"    font-family: {self.game_settings['font_family']};\n"
-        css += f"    font-size: {self.game_settings['font_size_base']};\n"
-        css += f"    line-height: {self.game_settings['line_height']};\n"
-        css += "}\n"
-
-        return css
-
-    def save_custom_css(self):
-        """
-        Save the custom CSS to a file.
-
-        This method generates the custom CSS and saves it to a file in the static directory.
-
-        Returns:
-            tuple: (success, message)
-        """
-        try:
-            css_content = self.generate_custom_css()
-
-            # Path to the custom CSS file
-            css_file_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 
-                                        'web', 'static', 'css', 'custom.css')
-
-            # Save the CSS content to the file
-            with open(css_file_path, 'w') as f:
-                f.write(css_content)
-
-            self.log_event("Custom CSS file generated and saved")
-            return True, "Custom CSS file generated and saved successfully"
-        except Exception as e:
-            self.log_event(f"Error saving custom CSS: {str(e)}", level='ERROR')
-            return False, f"Error saving custom CSS: {str(e)}"
-
     def save_api_settings_to_file(self):
         """
         Save the saved API settings to a JSON file for persistence.
@@ -872,8 +684,13 @@ class AdminSetup:
                 return False, "Saved API settings file not found, using empty dictionary"
 
             # Load the settings from the file
-            with open(settings_file_path, 'r') as f:
-                self.saved_api_settings = json.load(f)
+            with open(settings_file_path, 'r', encoding='utf-8') as f:
+                loaded = json.load(f)
+            migrated = {name: ai_engine_config.normalize_preset(value)
+                        for name, value in (loaded or {}).items() if isinstance(value, dict)}
+            self.saved_api_settings = migrated
+            if migrated != loaded:
+                self.save_api_settings_to_file()  # rewrite once in the new format
 
             self.log_event("Saved API settings loaded from file")
             return True, "Saved API settings loaded successfully"
@@ -881,48 +698,21 @@ class AdminSetup:
             self.log_event(f"Error loading saved API settings: {str(e)}", level='ERROR')
             return False, f"Error loading saved API settings: {str(e)}"
 
-    def save_api_settings(self, name, values=None):
-        """
-        Save API settings under a name, creating the preset if it doesn't
-        exist yet or overwriting it if it does.
+    def save_api_settings(self, name, values):
+        """Save (or overwrite) a named AI preset.
 
-        Args:
-            name (str): Name to identify the saved settings
-            values (dict, optional): openai_* values to snapshot (e.g. the
-                admin's unsaved on-screen edits). If omitted, falls back to
-                snapshotting the live game_settings.
-
-        Returns:
-            tuple: (success, message)
+        A preset is {"option", "model", "quality", "advanced", ["api_format", "base_url"], "note"}.
+        Presets never contain API keys.
         """
         if not name or not name.strip():
-            return False, "Settings name cannot be empty"
-
-        if values is not None:
-            api_settings = dict(values)
-        else:
-            # Snapshot every current OpenAI setting (model, per-model params,
-            # and advanced/global fields) so loading this preset later
-            # restores everything, not just a hardcoded subset.
-            api_settings = {
-                key: value for key, value in self.game_settings.items()
-                if key.startswith('openai_')
-            }
-
-        # Saved presets never store the real API key - only the runtime
-        # OPENAI_API_KEY (env/Secret Manager) is used to actually call OpenAI.
-        api_settings['openai_api_key'] = ''
-
-        # Save the settings with the given name
-        self.saved_api_settings[name.strip()] = api_settings
-
-        # Save to file to make changes permanent
+            return False, "Preset name cannot be empty"
+        preset = ai_engine_config.normalize_preset(values)
+        self.saved_api_settings[name.strip()] = preset
         success, message = self.save_api_settings_to_file()
         if not success:
-            return False, f"Failed to save settings permanently: {message}"
-
-        self.log_event(f"API settings saved as '{name}'")
-        return True, f"API settings saved as '{name}'"
+            return False, f"Failed to save the preset: {message}"
+        self.log_event(f"AI preset saved as '{name.strip()}'", category='AI')
+        return True, f"Preset '{name.strip()}' saved"
 
     def get_saved_api_settings(self):
         """
@@ -957,223 +747,3 @@ class AdminSetup:
         self.log_event(f"Deleted API settings '{name}'")
         return True, f"Deleted API settings '{name}'"
 
-    def save_model_param_settings_to_file(self):
-        """
-        Save the per-model AI parameter memory to a JSON file for persistence.
-
-        Returns:
-            tuple: (success, message)
-        """
-        try:
-            settings_file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),
-                                             'admin_controls', 'model_param_settings.json')
-
-            with open(settings_file_path, 'w', encoding="utf-8") as f:
-                json.dump(self.model_param_settings, f, indent=4, ensure_ascii=False)
-
-            self.log_event("Model parameter settings saved to file")
-            return True, "Model parameter settings saved successfully"
-        except Exception as e:
-            self.log_event(f"Error saving model parameter settings: {str(e)}")
-            return False, f"Error saving model parameter settings: {str(e)}"
-
-    def load_model_param_settings_from_file(self):
-        """
-        Load the per-model AI parameter memory from a JSON file.
-
-        Returns:
-            tuple: (success, message)
-        """
-        try:
-            settings_file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),
-                                             'admin_controls', 'model_param_settings.json')
-
-            if not os.path.exists(settings_file_path):
-                self.log_event("Model parameter settings file not found, using defaults")
-                return False, "Model parameter settings file not found, using defaults"
-
-            with open(settings_file_path, 'r') as f:
-                self.model_param_settings = json.load(f)
-
-            self.log_event("Model parameter settings loaded from file")
-            return True, "Model parameter settings loaded successfully"
-        except Exception as e:
-            self.log_event(f"Error loading model parameter settings: {str(e)}")
-            return False, f"Error loading model parameter settings: {str(e)}"
-
-    def get_model_settings(self, model_id):
-        """
-        Get the effective parameter values for a model: registry defaults
-        overridden by anything previously saved for that model.
-
-        Args:
-            model_id (str): The OpenAI model id (e.g. 'gpt-4o-mini')
-
-        Returns:
-            dict: Effective openai_* parameter values for the model
-        """
-        if not is_known_model(model_id):
-            model_id = DEFAULT_MODEL
-
-        values = get_model_defaults(model_id)
-        values.update(self.model_param_settings.get(model_id, {}))
-        return values
-
-    def set_model_settings(self, model_id, values):
-        """
-        Save parameter overrides for a model, make it the active model, and
-        mirror the values into the live game_settings used at generation time.
-
-        Args:
-            model_id (str): The OpenAI model id (e.g. 'gpt-4o-mini')
-            values (dict): openai_* parameter values to store for this model
-
-        Returns:
-            tuple: (success, message)
-        """
-        if not is_known_model(model_id):
-            return False, f"Unknown model '{model_id}'"
-
-        self.model_param_settings[model_id] = dict(values)
-        success, message = self.save_model_param_settings_to_file()
-        if not success:
-            return False, f"Failed to save model settings permanently: {message}"
-
-        # Make this the active model and apply its values immediately.
-        self.game_settings['openai_model'] = model_id
-        for key, value in values.items():
-            self.game_settings[key] = value
-        self.save_game_settings()
-
-        self.log_event(f"Saved AI parameter settings for model '{model_id}'")
-        return True, f"Settings for '{model_id}' saved successfully"
-
-    # ------------------------------------------------------------------ #
-    # Anthropic (Claude) model settings
-    # ------------------------------------------------------------------ #
-    def get_anthropic_model_settings(self, model_id):
-        """Return effective Claude parameter values: registry defaults merged
-        with whatever is currently active in game_settings for that model."""
-        if not anthropic_models.is_known_model(model_id):
-            model_id = anthropic_models.DEFAULT_MODEL
-        values = anthropic_models.get_model_defaults(model_id)
-        # If this is the active Claude model, prefer the live saved values.
-        if self.game_settings.get('anthropic_model') == model_id:
-            for key in list(values.keys()):
-                if key in self.game_settings:
-                    values[key] = self.game_settings[key]
-        return values
-
-    def set_anthropic_model_settings(self, model_id, values):
-        """Make ``model_id`` the active Claude model and persist its params.
-
-        Anthropic params live directly in game_settings (single active model),
-        keeping the flow simple - no separate per-model memory file.
-        """
-        if not anthropic_models.is_known_model(model_id):
-            return False, f"Unknown Claude model '{model_id}'"
-        self.game_settings['anthropic_model'] = model_id
-        for key, value in (values or {}).items():
-            self.game_settings[key] = value
-        self.save_game_settings()
-        self.log_event(f"Saved Anthropic parameter settings for model '{model_id}'")
-        return True, f"Settings for '{model_id}' saved successfully"
-
-    def get_available_themes(self):
-        """
-        Get a list of available CSS themes from the themes directory.
-
-        Returns:
-            list: List of theme dictionaries with name and path
-        """
-        themes = []
-
-        # Path to the themes directory
-        themes_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 
-                                'static', 'css', 'themes')
-
-        # Check if the directory exists
-        if not os.path.exists(themes_dir):
-            # Try to create the directory if it doesn't exist
-            try:
-                os.makedirs(themes_dir)
-                self.log_event(f"Created themes directory at {themes_dir}")
-            except Exception as e:
-                self.log_event(f"Error creating themes directory: {str(e)}")
-            return themes
-
-        # Get all CSS files in the themes directory
-        theme_files = glob.glob(os.path.join(themes_dir, '*.css'))
-
-        for theme_file in theme_files:
-            # Get the theme name from the filename (without extension)
-            theme_name = os.path.splitext(os.path.basename(theme_file))[0]
-
-            # Format the theme name for display (replace underscores with spaces and capitalize)
-            display_name = theme_name.replace('_', ' ').title()
-
-            themes.append({
-                'name': theme_name,
-                'display_name': display_name,
-                'path': theme_file
-            })
-
-        # If no themes were found, log a warning
-        if not themes:
-            self.log_event("No theme files found in the themes directory")
-
-        return themes
-
-    def apply_theme(self, theme_name):
-        """
-        Apply a CSS theme immediately.
-
-        Args:
-            theme_name (str): Name of the theme to apply
-
-        Returns:
-            tuple: (success, message)
-        """
-        # Log the current directory and theme name for debugging
-        current_dir = os.getcwd()
-        self.log_event(f"Current directory: {current_dir}")
-        self.log_event(f"Applying theme: {theme_name}")
-
-        # Path to the themes directory
-        themes_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 
-                                'static', 'css', 'themes')
-        self.log_event(f"Themes directory: {themes_dir}")
-
-        # Path to the theme file
-        theme_file = os.path.join(themes_dir, f"{theme_name}.css")
-        self.log_event(f"Theme file path: {theme_file}")
-
-        # Check if the theme file exists
-        if not os.path.exists(theme_file):
-            self.log_event(f"Theme file not found: {theme_file}")
-            return False, f"Theme '{theme_name}' not found"
-
-        try:
-            # Read the theme file
-            with open(theme_file, 'r') as f:
-                theme_content = f.read()
-            self.log_event(f"Successfully read theme file: {len(theme_content)} bytes")
-
-            # Path to the custom CSS file
-            custom_css_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 
-                                        'static', 'css', 'custom.css')
-            self.log_event(f"Custom CSS path: {custom_css_path}")
-
-            # Save the theme content to the custom CSS file
-            with open(custom_css_path, 'w') as f:
-                f.write(theme_content)
-            self.log_event(f"Successfully wrote to custom CSS file")
-
-            # Store the selected theme in game_settings (for session only)
-            self.game_settings['selected_theme'] = theme_name
-
-            self.log_event(f"Applied theme '{theme_name}'")
-            return True, f"Theme '{theme_name}' applied successfully"
-        except Exception as e:
-            self.log_event(f"Error applying theme '{theme_name}': {str(e)}")
-            return False, f"Error applying theme '{theme_name}': {str(e)}"

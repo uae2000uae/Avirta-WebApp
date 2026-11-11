@@ -10,7 +10,7 @@ What is enabled in GitHub
 What we added in this repository
 - CI secret scanning (Gitleaks): A GitHub Actions workflow scans every push and pull request for secrets and fails the check if any are detected.
 - Allowlist for placeholders: Common placeholders (e.g., SET_IN_ENV, redacted samples) are allowed to reduce false positives. See .gitleaks.toml.
-- Secrets at runtime only: The application reads the OpenAI key from environment variables or Google Secret Manager on Cloud Run. Secrets are not stored in version control.
+- Secrets at runtime only: AI keys (OPENAI_API_KEY, ANTHROPIC_API_KEY, CUSTOM_AI_API_KEY) are read from environment variables or Google Secret Manager. The ChatGPT and Claude keys are managed only in Secret Manager; the one key that can be entered on the admin page (CUSTOM_AI_API_KEY) is written to Secret Manager (or, locally, to the git-ignored contents/admin_controls/.local_ai_keys.json); they are never stored in settings files or version control.
 
 How to report a vulnerability
 - Please open a private security advisory or email the repository owner. Do not open a public issue for sensitive reports.
@@ -30,7 +30,8 @@ Local scanning (optional)
   - Or install gitleaks and run: gitleaks detect --source . --no-banner --redact --config .gitleaks.toml
 
 Cloud Run/Google Cloud notes
-- Provide ANTHROPIC_API_KEY (and optionally OPENAI_API_KEY) via Google Secret Manager and map them to environment variables during deployment.
+- Provide OPENAI_API_KEY / ANTHROPIC_API_KEY via Google Secret Manager (mapped in cloudbuild.yaml); CUSTOM_AI_API_KEY is read from Secret Manager directly.
+- To save the custom AI key from the admin page, grant the service account Secret Manager Secret Version Adder on CUSTOM_AI_API_KEY (see docs/DEPLOYMENT.md).
 - Ensure the Cloud Run service account has roles/secretmanager.secretAccessor.
 
 Questions

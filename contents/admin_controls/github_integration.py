@@ -40,7 +40,7 @@ Public surface (can be called from anywhere in the app):
 Configuration (all optional, resolved via env vars / Google Secret Manager):
 
     GITHUB_TOKEN   - personal access token with `repo` (or contents:write) scope. Required.
-    GITHUB_REPO    - "owner/repo". Defaults to parsing .git/config, else "uae2000uae/Avirta-1".
+    GITHUB_REPO    - "owner/repo". Defaults to parsing .git/config, else "uae2000uae/Avirta-WebApp".
     GITHUB_BRANCH  - target branch. Defaults to reading .git/HEAD, else "Avirta-1".
     GITHUB_API_URL - API base (for GitHub Enterprise). Defaults to "https://api.github.com".
 """
@@ -66,7 +66,7 @@ except Exception:  # pragma: no cover - fallback if module layout differs
 
 
 # --- Defaults ----------------------------------------------------------------
-_DEFAULT_REPO = "uae2000uae/Avirta-1"
+_DEFAULT_REPO = "uae2000uae/Avirta-WebApp"  # renamed from Avirta-1
 _DEFAULT_BRANCH = "Avirta-1"
 _DEFAULT_API = "https://api.github.com"
 _COMMIT_AUTHOR_NAME = "Copilot"
@@ -98,11 +98,9 @@ _progress_status: Dict[str, object] = {
 
 
 def get_push_progress() -> dict:
-    """Return a copy of the current push progress status (thread-safe)."""
-    with _progress_lock:
-        status = dict(_progress_status)
-        status["errors"] = list(_progress_status["errors"])  # copy list
-        return status
+    """Progress of the shared GitHub sync (see github_sync.py)."""
+    from contents.admin_controls.github_sync import get_status
+    return get_status()
 
 
 def _update_progress(status: Optional[str] = None, message: Optional[str] = None,
@@ -352,83 +350,40 @@ def _run_push(rel_paths: List[str], commit_message: Optional[str],
     return ok, msg
 
 
+# All app pushes go through the single sync in github_sync.py: it sends every
+# changed data file in one commit, queues requests instead of dropping them,
+# retries, and reports failures to the in-game / admin pop-up. These wrappers
+# keep the old function names working for existing call sites.
+def _sync(reason: str) -> Tuple[bool, str]:
+    from contents.admin_controls.github_sync import request_sync
+    return request_sync(reason)
+
+
 def push_files_async(rel_paths: List[str], commit_message: Optional[str] = None,
                      detach: bool = True) -> Tuple[bool, str]:
-    """Push an explicit list of repo-relative files to GitHub via the API.
-
-    detach=True  -> run in a background daemon thread, returns immediately.
-    detach=False -> run synchronously, returns (success, message).
-    """
-    with _progress_lock:
-        if _progress_status["status"] == "running":
-            return False, "A push is already in progress."
-
-    if detach:
-        threading.Thread(
-            target=_run_push, args=(list(rel_paths), commit_message), daemon=True
-        ).start()
-        return True, "push_started"
-    return _run_push(list(rel_paths), commit_message)
+    return _sync(commit_message or "files updated")
 
 
 def push_all_amended_questions_async(commit_message: Optional[str] = None,
                                      detach: bool = True,
                                      repo_root: Optional[str] = None) -> Tuple[bool, str]:
-    """Push all question JSON files (contents/questions/*.json) to GitHub.
-
-    This is the function referenced throughout app.py's auto-push hooks. It is
-    safe to call fire-and-forget (detach=True): the GitHub API dedupes unchanged
-    files, so only genuinely amended questions produce a commit.
-    """
-    files = _list_question_files(repo_root)
-    if not files:
-        return True, "No question files found to push."
-    return push_files_async(files, commit_message=commit_message, detach=detach)
+    return _sync(commit_message or "questions updated")
 
 
 def push_reports_async(commit_message: Optional[str] = None, detach: bool = True,
                        repo_root: Optional[str] = None,
                        include_questions: bool = True) -> Tuple[bool, str]:
-    """Push reported-question records to GitHub.
+    return _sync(commit_message or "question reported")
 
-    Sends every `questionmanagement/reported_questions/*.json` file and, by
-    default (``include_questions=True``), the question files too so the
-    `reported` flag set on the original question is captured in the same commit.
-    Safe to call fire-and-forget; unchanged files produce no commit.
-    """
-    files = _list_report_files(repo_root)
-    if include_questions:
-        files = files + _list_question_files(repo_root)
-    if not files:
-        return True, "No report files found to push."
-    return push_files_async(files, commit_message=commit_message or "Update reported questions",
-                            detach=detach)
 
 def push_usage_ledger_async(commit_message: Optional[str] = None,
                             detach: bool = True) -> Tuple[bool, str]:
-    """Push ONLY this instance's usage-count ledger to GitHub.
+    return _sync(commit_message or "usage counts")
 
-    Each running instance owns a distinct ledger file
-    (``datastore/usage/usage_<INSTANCE_ID>.json``), so pushing just this
-    instance's file is conflict-free — no other session ever writes it, and no
-    increment can be lost. Wired to end-game / reset-game, since use counts are
-    the only thing that changes during play. Question files are NOT pushed here.
-    """
-    try:
-        from questionmanagement.usage_ledger import this_ledger_relpath, this_ledger_path
-    except Exception as e:  # pragma: no cover
-        return False, f"usage_ledger unavailable: {e}"
-    if not os.path.isfile(this_ledger_path()):
-        return True, "No usage ledger to push yet."
-    return push_files_async([this_ledger_relpath()],
-                            commit_message=commit_message or "Update usage counts",
-                            detach=detach)
 
-# Convenient alias so it can be triggered from anywhere with an obvious name.
 def push_to_github(commit_message: Optional[str] = None,
                    detach: bool = False) -> Tuple[bool, str]:
-    """One-call helper: push all amended question files. Returns (ok, message)."""
-    return push_all_amended_questions_async(commit_message=commit_message, detach=detach)
+    return _sync(commit_message or "manual sync")
 
 
 # =============================================================================

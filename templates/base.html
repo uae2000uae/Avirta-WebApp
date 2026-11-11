@@ -12,47 +12,53 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    {% include "_theme_boot.html" %}
     <title>{% block title %}Avirta{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/favicon.png') }}">
 <meta name="csrf-token" content="{{ csrf_token }}">
     <script src="{{ url_for('static', filename='js/csrf.js') }}"></script>
+    {% if show_sync_alerts %}<script src="{{ url_for('static', filename='js/sync_alert.js') }}" defer></script>{% endif %}
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sfx.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/ui.js') }}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet" type="text/css">
 </head>
-<body>
-    <header style="padding: 5px">
-		<img src="/static/images/logovtext.png" width="71.5" height="83.8" alt=""/>
-<div class="timestamp-info" id="commit-timestamp-info">Last commit: Loading...</div>
-        <div class="admin-login-container" style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+<body class="site">
+    <header class="site-header">
+        <a class="brand" href="{{ url_for('index') }}" aria-label="Avirta home"><img class="logo-on-dark" src="/static/images/logovtext.png" width="71.5" height="83.8" alt="Avirta"/><img class="logo-on-light" src="/static/images/logovtext-light.png" width="71.5" height="83.8" alt="Avirta"/></a>
+        <div class="timestamp-info" id="commit-timestamp-info">Last commit: Loading...</div>
+        <div class="header-tools">
+            {% include "_header_tools.html" %}
+            <div class="zoom-controls" role="group" aria-label="Zoom">
+                <span class="zoom-label">Zoom</span>
+                <button id="zoomOutControl" type="button" class="icon-btn" title="Zoom out 10%" aria-label="Zoom out">&minus;</button>
+                <button id="zoomInControl" type="button" class="icon-btn" title="Zoom in 10%" aria-label="Zoom in">+</button>
+            </div>
+            <div class="admin-login-container">
             {% if session.get('admin_authenticated') %}
-                <a href="{{ url_for('admin_controls') }}" class="button" style="background: var(--success-color); border-color: var(--success-color-dark); color: #fff;">Admin Controls</a>
+                <a href="{{ url_for('admin_controls') }}" class="button">Admin Controls</a>
             {% else %}
-                <button id="adminLoginBtn" class="admin-login-btn">Admin Login</button>
+                <button id="adminLoginBtn" type="button" class="admin-login-btn" aria-expanded="false" aria-controls="adminLoginForm">Admin Login</button>
                 <div id="adminLoginForm" class="admin-login-dropdown">
                     <form method="POST" action="{{ url_for('admin_controls') }}">
                         <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" name="username" required>
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required autocomplete="username">
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" required>
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required autocomplete="current-password">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="button">Login</button>
+                            <button type="submit" class="button primary">Login</button>
                         </div>
                     </form>
                 </div>
             {% endif %}
-            <!-- Zoom controls beside Admin Login: (-) and (+) -->
-            <div class="zoom-controls" style="display:flex; align-items:center; gap:6px; margin-top: 4px;">
-                <span style="font-size: 0.9rem; opacity: 0.8;">Zoom:</span>
-                <button id="zoomOutControl" type="button" title="Zoom out 10%" aria-label="Zoom out" style="padding:2px 6px; line-height:1;">-</button>
-                <button id="zoomInControl" type="button" title="Zoom in 10%" aria-label="Zoom in" style="padding:2px 6px; line-height:1;">+</button>
             </div>
         </div>
     </header>
@@ -100,6 +106,7 @@
             adminLoginBtn.addEventListener('click', function() {
                 // Toggle the 'show' class on the login form
                 adminLoginForm.classList.toggle('show');
+                adminLoginBtn.setAttribute('aria-expanded', adminLoginForm.classList.contains('show'));
             });
 
             // Close the dropdown when clicking outside of it
@@ -258,4 +265,3 @@
 
 </body>
 </html>
-                                                                            

@@ -22,3 +22,5 @@ pytest.ini
 requirements-dev.txt
 .flake8
 README.md
+.local_ai_keys.json
+contents/question_validations/

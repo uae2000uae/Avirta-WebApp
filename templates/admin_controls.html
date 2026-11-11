@@ -1,94 +1,8 @@
-<link href="/static/css/style.css" rel="stylesheet" type="text/css">
 {% extends "base.html" %}
 
 {% block title %}Admin Controls - Avirta{% endblock %}
 
 {% block content %}
-<style>
-.info-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    margin-left: 6px;
-    border-radius: 50%;
-    background: var(--secondary-color, #6c757d);
-    color: #fff;
-    font-size: 11px;
-    font-weight: bold;
-    line-height: 1;
-    cursor: help;
-    position: relative;
-    vertical-align: middle;
-}
-.info-icon:hover::after,
-.info-icon:focus::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 50%;
-    bottom: 130%;
-    transform: translateX(-50%);
-    width: 240px;
-    background: var(--text-color, #333);
-    color: #fff;
-    padding: 8px 10px;
-    border-radius: var(--border-radius, 4px);
-    font-size: 12px;
-    font-weight: normal;
-    line-height: 1.4;
-    white-space: normal;
-    z-index: 20;
-    box-shadow: var(--box-shadow, 0 2px 5px rgba(0,0,0,0.1));
-}
-.info-icon:hover::before,
-.info-icon:focus::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 115%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-top-color: var(--text-color, #333);
-    z-index: 20;
-}
-.field-hint {
-    margin: 4px 0 0;
-    font-size: 12px;
-    color: var(--text-color-light, #666);
-}
-.advanced-settings summary {
-    cursor: pointer;
-    font-weight: 600;
-    margin: var(--spacing-sm, 10px) 0;
-}
-.provider-switch {
-    display: flex;
-    gap: var(--spacing-md, 15px);
-    flex-wrap: wrap;
-    margin: var(--spacing-sm, 10px) 0;
-}
-.provider-option {
-    flex: 1 1 240px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: var(--spacing-md, 15px);
-    border: 2px solid var(--border-color, #ddd);
-    border-radius: var(--border-radius, 4px);
-    cursor: pointer;
-    transition: border-color .15s, background .15s;
-}
-.provider-option:hover { border-color: var(--primary-color-light, #2d828a); }
-.provider-option.active {
-    border-color: var(--primary-color, #1e595e);
-    background: var(--bg-color-light, #f8f8f8);
-}
-.provider-option input[type="radio"] { margin-right: 6px; }
-.provider-option .provider-title { font-weight: 700; }
-.provider-option .provider-desc { color: var(--text-color-light, #666); font-size: .9em; }
-.active-provider-badge { margin-left: var(--spacing-md, 15px); color: var(--text-color-light, #666); }
-</style>
 <div class="back-navigation">
     <a href="{{ url_for('index') }}" class="button"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
 </div>
@@ -138,7 +52,7 @@
                         <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
                         <input type="hidden" name="action" value="update_settings">
                         {% for setting_name, setting_value in admin_setup.game_settings.items() %}
-                            {% if not setting_name.startswith('openai_') and not setting_name.startswith('github_') and not setting_name.startswith('primary_color') and not setting_name.startswith('secondary_color') and not setting_name.startswith('bg_color') and not setting_name.startswith('text_color') and not setting_name.startswith('success_') and not setting_name.startswith('error_') and not setting_name.startswith('info_') and not setting_name.startswith('border_') and not setting_name.startswith('spacing_') and not setting_name.startswith('font_') and not setting_name == 'line_height' and not setting_name == 'box_shadow' and not setting_name == 'selected_theme' %}
+                            {% if setting_name not in ('ai_config', 'ai_provider') and not setting_name.startswith(('openai_', 'anthropic_', 'github_')) %}
                       <div class="form-group-equal-md">
                               <label for="{{ setting_name }}">{{ setting_name|replace('_', ' ')|title }}:</label>
                               {% if setting_value is sameas true or setting_value is sameas false %}
@@ -182,214 +96,146 @@
 
             <!-- API Settings Tab -->
             <div id="api-settings" class="tab-pane">
-                <div class="inner-section">
-                    <h2>API Settings</h2>
-                    <p>These settings are used for various API integrations. You need to provide your own API keys to use these features.</p>
-
-                    <!-- AI Provider Switch -->
-                    <div class="section">
-                        <h3>AI Question Generator Engine</h3>
-                        <p class="field-hint">Choose which AI service generates questions. The active engine is used by the AI Question Generator page. Settings for each engine are configured in the panels below.</p>
-                        <form action="{{ url_for('admin_controls') }}" method="POST">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-                            <input type="hidden" name="action" value="update_ai_provider">
-                            <div class="provider-switch">
-                                <label class="provider-option {% if active_ai_provider == 'openai' %}active{% endif %}">
-                                    <input type="radio" name="ai_provider" value="openai" {% if active_ai_provider == 'openai' %}checked{% endif %}>
-                                    <span class="provider-title">OpenAI (ChatGPT)</span>
-                                    <span class="provider-desc">GPT-4o / GPT-4.1 / GPT-5.x models</span>
-                                </label>
-                                <label class="provider-option {% if active_ai_provider == 'anthropic' %}active{% endif %}">
-                                    <input type="radio" name="ai_provider" value="anthropic" {% if active_ai_provider == 'anthropic' %}checked{% endif %}>
-                                    <span class="provider-title">Anthropic (Claude)</span>
-                                    <span class="provider-desc">Claude Opus 4.8 / Sonnet 5 / Haiku 4.5</span>
-                                </label>
-                            </div>
-                            <div class="form-actions">
-                                <button type="submit" class="button">Set Active Engine</button>
-                                <span class="active-provider-badge">Active: <strong>{{ 'Anthropic (Claude)' if active_ai_provider == 'anthropic' else 'OpenAI (ChatGPT)' }}</strong></span>
-                            </div>
-                        </form>
-                    </div>
-                    <br>
-
-                    <!-- Saved Settings Dropdown -->
-                    <!-- These controls submit into #ai-settings-form (defined below) via the
-                         HTML `form` attribute, so Update/Save Current always capture whatever
-                         is currently on screen - including unsaved edits - not stale server state. -->
-				<div class="section">
-					<h3>Saved API Settings</h3>
-                    	<div class="form-group-grid1">
-                        <div class="form-group equal-md">
-                          <div class="fill-stack">
-                            <label for="saved_settings" class="fill">Saved Settings:</label>
-                            <select id="saved_settings" name="saved_settings" form="ai-settings-form">
-                              <option value="">-- Select Settings --</option>
-                              {% for name, settings in admin_setup.get_saved_api_settings().items() %}
-                              <option value="{{ name }}">{{ name }}</option>
-                              {% endfor %}
-                            </select>
-                          </div>
-                          <div class="form-actions">
-                            <button type="submit" class="button" id="update-saved-settings-btn" form="ai-settings-form" disabled
-                                            onclick="this.form.querySelector('[name=action]').value='update_saved_preset'; return true;">Update</button>
-                            <button type="submit" class="button delete-button" id="delete-saved-settings-btn" form="ai-settings-form" disabled
-                                            onclick="this.form.querySelector('[name=action]').value='delete_api_settings'; return confirm('Are you sure you want to delete these settings?');"> Delete </button>
-                          </div>
+                <div class="inner-section ai-page" id="ai-settings">
+                    <div class="ai-hero">
+                        <div class="ai-hero-glow" aria-hidden="true"></div>
+                        <div class="ai-hero-top">
+                            <span class="ai-eyebrow">Control room · Studio AI</span>
+                            <div class="ai-onair" id="ai-active-summary" aria-live="polite"></div>
                         </div>
-                        <div class="form-group equal-md">
-                          <div class="fill-stack">
-                            <label for="settings_name" class="fill">Save Current:</label>
-                            <input type="text" id="settings_name" name="settings_name" form="ai-settings-form" placeholder="Enter a name for these settings">
-                          </div>
-                          <div class="form-actions">
-                            <button type="submit" class="button" form="ai-settings-form"
-                                            onclick="const n=document.getElementById('settings_name').value.trim(); if(!n){alert('Please enter a name for these settings.'); return false;} this.form.querySelector('[name=action]').value='save_api_settings'; return true;">Save Current Settings</button>
-                          </div>
-					</div>
-					</div>
-					</div>
-					<br>
-                    <!-- Current API Settings Form -->
-                    <div class="section">
-                        <h3>API Settings</h3>
-                        <script type="application/json" id="openai-model-registry-data">{{ openai_model_registry|tojson }}</script>
-                        <script type="application/json" id="current-model-settings-data">{{ current_model_settings|tojson }}</script>
-						<div class="form-group-grid1">
-                        <form action="{{ url_for('admin_controls') }}" method="POST" class="form-group equal-md" id="ai-settings-form">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-                            <input type="hidden" name="action" value="update_api_settings">
-
-                            <h4 class="fill">OpenAI API Settings</h4>
+                        <div class="ai-hero-body">
+                            <img class="ai-hero-logo" src="{{ url_for('static', filename='images/favicon.png') }}" alt="" width="72" height="72">
                             <div>
-                                <label for="openai_api_key">OpenAI API Key
-                                    <span class="info-icon" tabindex="0" data-tooltip="Your OpenAI secret key. Leave blank to keep using the OPENAI_API_KEY value from environment/Secret Manager. Paste a new key here to verify and store it locally.">?</span>
-                                </label>
-                                <input type="text" id="openai_api_key" name="openai_api_key" value="" placeholder="Set via OPENAI_API_KEY in Secret Manager/env, or paste a key to verify and save locally">
+                                <h2>AI Settings</h2>
+                                <p>Pick the AI that writes and fact-checks your questions. Avirta tunes the request settings for each task automatically.</p>
                             </div>
-                            <div>
-                                <label for="openai_model">AI Model
-                                    <span class="info-icon" tabindex="0" data-tooltip="Choose which ChatGPT model to use for question generation. The fields below switch to that model's recommended defaults, or your previously saved values for it.">?</span>
-                                </label>
-                                <select id="openai_model" name="openai_model">
-                                    {% for model_id, cfg in openai_model_registry.models.items() %}
-                                    <option value="{{ model_id }}" {% if model_id == current_openai_model %}selected{% endif %}>{{ cfg.display_name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <p class="field-hint" id="model-description">{{ openai_model_registry.models[current_openai_model].description }}</p>
+                        </div>
+                    </div>
+
+                    <section class="ai-card" aria-labelledby="ai-choose-title">
+                        <h3 id="ai-choose-title"><span class="ai-step">1</span> Choose your contestant</h3>
+                        <div class="ai-podiums" id="ai-option-cards" role="radiogroup" aria-label="AI option"></div>
+                    </section>
+
+                    <section class="ai-card" id="ai-option-detail" aria-labelledby="ai-detail-title">
+                        <div class="ai-card-head">
+                            <h3><span class="ai-step">2</span> <span id="ai-detail-title">Configure</span></h3>
+                            <span id="ai-detail-badge"></span>
+                        </div>
+
+                        <div class="ai-section">
+                            <span class="ai-section-title">Connection</span>
+                            <div id="ai-custom-fields" class="ai-hidden ai-stack">
+                                <div class="ai-grid-2">
+                                    <div class="ai-field">
+                                        <label for="ai-endpoint-preset">Service</label>
+                                        <select id="ai-endpoint-preset"><option value="">Choose a service to fill in the details…</option></select>
+                                    </div>
+                                    <div class="ai-field">
+                                        <span class="ai-label" id="ai-format-label">API format</span>
+                                        <div class="ai-seg" role="radiogroup" aria-labelledby="ai-format-label">
+                                            <input type="radio" name="ai-format" id="ai-format-openai" value="openai"><label for="ai-format-openai">OpenAI-compatible</label>
+                                            <input type="radio" name="ai-format" id="ai-format-anthropic" value="anthropic"><label for="ai-format-anthropic">Anthropic</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ai-field">
+                                    <label for="ai-base-url">Base URL</label>
+                                    <input type="url" id="ai-base-url" placeholder="https://…/v1" spellcheck="false" dir="ltr">
+                                    <span class="ai-hint">The address before <code>/chat/completions</code> (OpenAI format) or <code>/messages</code> (Anthropic format).</span>
+                                </div>
                             </div>
 
-                            <div id="model-params-fields" class="form-group-grid1 fill"></div>
+                            <div class="ai-field ai-hidden" id="ai-key-field">
+                                <label for="ai-key">API key</label>
+                                <div class="ai-inline">
+                                    <input type="password" id="ai-key" autocomplete="off" spellcheck="false" placeholder="Paste a new key to replace the current one" dir="ltr">
+                                    <button type="button" class="ai-btn secondary" id="ai-key-save"><i class="fas fa-key"></i> Save key</button>
+                                </div>
+                                <span class="ai-hint" id="ai-key-hint"></span>
+                            </div>
+                            <!-- ChatGPT and Claude keys are managed in Google Cloud Secret Manager -->
+                            <div class="ai-keyrow ai-hidden" id="ai-key-managed" role="status"></div>
+                        </div>
 
-                            <details class="advanced-settings fill">
-                                <summary>Advanced Settings (apply to all models)</summary>
-                                <div class="form-group-equal-md">
-                                    <div>
-                                        <label for="openai_base_url">Base URL
-                                            <span class="info-icon" tabindex="0" data-tooltip="API endpoint to call. Only change this if using a proxy or an OpenAI-compatible gateway. Default: https://api.openai.com/v1">?</span>
-                                        </label>
-                                        <input type="text" id="openai_base_url" name="openai_base_url" value="{{ admin_setup.game_settings.get('openai_base_url','https://api.openai.com/v1') }}" placeholder="https://api.openai.com/v1">
-                                    </div>
-                                    <div>
-                                        <label for="openai_request_timeout">Request Timeout (sec)
-                                            <span class="info-icon" tabindex="0" data-tooltip="How long to wait for a response before giving up. Recommended maximum: 120 seconds.">?</span>
-                                        </label>
-                                        <input type="number" id="openai_request_timeout" name="openai_request_timeout" value="{{ admin_setup.game_settings.get('openai_request_timeout',60) }}" step="1" min="1" max="120">
-                                    </div>
-                                    <div>
-                                        <label for="openai_response_format">Response Format Override
-                                            <span class="info-icon" tabindex="0" data-tooltip="Controls whether the model must reply with a valid JSON object. 'json_object' is required by the automated question-generation pipeline - only choose 'None' for manual experimentation with free-form text.">?</span>
-                                        </label>
-                                        <select id="openai_response_format" name="openai_response_format">
-                                            {% set rf = admin_setup.game_settings.get('openai_response_format','json_object') %}
-                                            <option value="" {% if not rf %}selected{% endif %}>None (plain text)</option>
-                                            <option value="json_object" {% if rf=='json_object' %}selected{% endif %}>json_object (JSON mode)</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="openai_seed">Seed
-                                            <span class="info-icon" tabindex="0" data-tooltip="Optional integer for more reproducible output across runs. 0 disables it. Maximum: 2147483647.">?</span>
-                                        </label>
-                                        <input type="number" id="openai_seed" name="openai_seed" value="{{ admin_setup.game_settings.get('openai_seed',0) }}" min="0" max="2147483647">
-                                    </div>
-                                    <div>
-                                        <label for="openai_organization">Organization (optional)
-                                            <span class="info-icon" tabindex="0" data-tooltip="OpenAI organization ID to bill/scope requests to, if your account belongs to more than one.">?</span>
-                                        </label>
-                                        <input type="text" id="openai_organization" name="openai_organization" value="{{ admin_setup.game_settings.get('openai_organization','') }}">
-                                    </div>
-                                    <div>
-                                        <label for="openai_user">User (optional)
-                                            <span class="info-icon" tabindex="0" data-tooltip="Opaque identifier passed to OpenAI to help detect/prevent abuse. Not shown to end users.">?</span>
-                                        </label>
-                                        <input type="text" id="openai_user" name="openai_user" value="{{ admin_setup.game_settings.get('openai_user','') }}">
-                                    </div>
-                                    <div>
-                                        <label for="openai_stop">Stop Sequences
-                                            <span class="info-icon" tabindex="0" data-tooltip="Comma-separated strings that stop generation early if produced. Maximum: 4 sequences.">?</span>
-                                        </label>
-                                        <input type="text" id="openai_stop" name="openai_stop" value="{{ admin_setup.game_settings.get('openai_stop','') }}" placeholder="e.g. ###, END">
+                        <div class="ai-section">
+                            <span class="ai-section-title">Model</span>
+                            <div class="ai-field">
+                                <label for="ai-model">Model name</label>
+                                <div class="ai-inline">
+                                    <input type="text" id="ai-model" list="ai-model-list" spellcheck="false" placeholder="Model name" dir="ltr">
+                                    <button type="button" class="ai-btn secondary" id="ai-load-models"><i class="fas fa-list"></i> Load available models</button>
+                                </div>
+                                <datalist id="ai-model-list"></datalist>
+                                <span class="ai-hint" id="ai-model-note"></span>
+                            </div>
+                        </div>
+
+                        <div class="ai-section">
+                            <span class="ai-section-title" id="ai-quality-label">Quality</span>
+                            <div class="ai-dials" id="ai-quality" role="radiogroup" aria-labelledby="ai-quality-label"></div>
+
+                            <details class="ai-advanced">
+                                <summary>Advanced drawer <span class="ai-muted">(optional overrides)</span></summary>
+                                <div class="ai-advanced-body">
+                                    <div class="ai-grid-4">
+                                        <div class="ai-field">
+                                            <label for="ai-adv-temperature">Writing temperature</label>
+                                            <input type="number" id="ai-adv-temperature" min="0" max="1" step="0.05" placeholder="Automatic">
+                                            <span class="ai-hint">0-1. Fact-checking always uses 0.</span>
+                                        </div>
+                                        <div class="ai-field">
+                                            <label for="ai-adv-effort">Reasoning effort</label>
+                                            <select id="ai-adv-effort"><option value="">Automatic</option></select>
+                                            <span class="ai-hint">Reasoning models only.</span>
+                                        </div>
+                                        <div class="ai-field">
+                                            <label for="ai-adv-tokens">Max output tokens</label>
+                                            <input type="number" id="ai-adv-tokens" min="1000" max="64000" step="500">
+                                            <span class="ai-hint">Lowered automatically if the model allows less.</span>
+                                        </div>
+                                        <div class="ai-field">
+                                            <label for="ai-adv-timeout">Timeout (seconds)</label>
+                                            <input type="number" id="ai-adv-timeout" min="15" max="600" step="5">
+                                        </div>
                                     </div>
                                 </div>
                             </details>
-
-                            <div class="form-actions">
-                                <button type="submit" class="button">Update API Settings</button>
-                            </div>
-                        </form>
-                    </div>
-					</div>
-
-                    <!-- Anthropic (Claude) API Settings -->
-                    <div class="section">
-                        <h3>Anthropic (Claude) API Settings</h3>
-                        <script type="application/json" id="anthropic-model-registry-data">{{ anthropic_model_registry|tojson }}</script>
-                        <script type="application/json" id="current-anthropic-settings-data">{{ current_anthropic_settings|tojson }}</script>
-                        <div class="form-group-grid1">
-                        <form action="{{ url_for('admin_controls') }}" method="POST" class="form-group equal-md" id="anthropic-settings-form">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-                            <input type="hidden" name="action" value="update_anthropic_settings">
-
-                            <h4 class="fill">Claude Question Generator</h4>
-                            <div>
-                                <label for="anthropic_api_key">Anthropic API Key
-                                    <span class="info-icon" tabindex="0" data-tooltip="Your Anthropic secret key. Leave blank to keep using the ANTHROPIC_API_KEY value from Secret Manager/env. Paste a new key here to verify and store it locally.">?</span>
-                                </label>
-                                <input type="text" id="anthropic_api_key" name="anthropic_api_key" value="" placeholder="Set via ANTHROPIC_API_KEY in Secret Manager/env, or paste a key to verify and save locally">
-                            </div>
-                            <div>
-                                <label for="anthropic_model">Claude Model
-                                    <span class="info-icon" tabindex="0" data-tooltip="Choose which Claude model to use for question generation. Opus 4.8 is the most capable; Sonnet 5 balances cost/quality; Haiku 4.5 is fastest/cheapest. The fields below switch to each model's recommended defaults.">?</span>
-                                </label>
-                                <select id="anthropic_model" name="anthropic_model">
-                                    {% for model_id, cfg in anthropic_model_registry.models.items() %}
-                                    <option value="{{ model_id }}" {% if model_id == current_anthropic_model %}selected{% endif %}>{{ cfg.display_name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <p class="field-hint" id="anthropic-model-description">{{ anthropic_model_registry.models[current_anthropic_model].description }}</p>
-                            </div>
-
-                            <div id="anthropic-model-params-fields" class="form-group-grid1 fill"></div>
-
-                            <details class="advanced-settings fill">
-                                <summary>Advanced Settings</summary>
-                                <div class="form-group-equal-md">
-                                    <div>
-                                        <label for="anthropic_request_timeout">Request Timeout (sec)
-                                            <span class="info-icon" tabindex="0" data-tooltip="How long to wait for a response before giving up. Recommended maximum: 300 seconds.">?</span>
-                                        </label>
-                                        <input type="number" id="anthropic_request_timeout" name="anthropic_request_timeout" value="{{ admin_setup.game_settings.get('anthropic_request_timeout',60) }}" step="1" min="1" max="300">
-                                    </div>
-                                </div>
-                            </details>
-
-                            <div class="form-actions">
-                                <button type="submit" class="button">Update Claude Settings</button>
-                            </div>
-                        </form>
                         </div>
-                    </div>
-                    </div></div>
+
+                        <div class="ai-card-foot">
+                            <button type="button" class="ai-btn big" id="ai-save-activate"><i class="fas fa-tower-broadcast"></i> Save and put on air</button>
+                            <button type="button" class="ai-btn secondary" id="ai-save"><i class="fas fa-floppy-disk"></i> Save</button>
+                            <button type="button" class="ai-btn secondary" id="ai-test"><i class="fas fa-plug"></i> Test connection</button>
+                        </div>
+                        <div id="ai-detail-status" class="ai-status ai-hidden" role="status"></div>
+                    </section>
+
+                    <section class="ai-card" aria-labelledby="ai-sources-title">
+                        <h3 id="ai-sources-title"><i class="fas fa-book-open" aria-hidden="true"></i> Question sources</h3>
+                        <label class="ai-toggle">
+                            <input type="checkbox" id="ai-use-sources">
+                            <span><strong>Use Wikipedia reference notes</strong>
+                            <span class="ai-muted">Fetches short encyclopedia notes for the topic so the AI can prefer confirmed facts. Can be changed per run on the generator page.</span></span>
+                        </label>
+                    </section>
+
+                    <section class="ai-card" aria-labelledby="ai-presets-title">
+                        <div class="ai-card-head">
+                            <div>
+                                <h3 id="ai-presets-title"><i class="fas fa-bookmark" aria-hidden="true"></i> Saved presets</h3>
+                                <p class="ai-muted">Save the option you are editing to switch back to it quickly later.</p>
+                            </div>
+                        </div>
+                        <div class="ai-inline">
+                            <input type="text" id="ai-preset-name" placeholder="Preset name" aria-label="Preset name" dir="auto">
+                            <button type="button" class="ai-btn secondary" id="ai-preset-save"><i class="fas fa-plus"></i> Save current option as preset</button>
+                        </div>
+                        <table class="ai-table"><tbody id="ai-presets"></tbody></table>
+                    </section>
+                </div>
+                <script src="{{ url_for('static', filename='js/ai_settings.js') }}" defer></script>
+            </div>
 
             <!-- Question Management Tab -->
             <div id="question-management" class="tab-pane">
@@ -404,37 +250,31 @@
                         <a href="{{ url_for('reported_questions') }}" class="button">Reported Questions</a>
                         <a href="{{ url_for('question_bank_page') }}" class="button">Question Bank</a>
                         <br><br><!-- GitHub sync buttons (two distinct actions) -->
-                        <div class="github-actions" style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start;">
-                            <!-- 1) Question sync via GitHub REST API (works on Cloud Run, no git binary) -->
-                            <form id="git-push-questions-form" action="{{ url_for('admin_git_push') }}" method="POST" class="form-group clear" style="margin:0;" data-status-url="/admin/git_push_status" data-title="question sync">
+                        <div class="github-actions">
+                            <!-- One sync for all app data (also runs automatically when a game ends) -->
+                            <form id="git-push-questions-form" action="{{ url_for('admin_git_push') }}" method="POST" class="form-group clear" data-status-url="/admin/git_push_status" data-title="GitHub sync">
                                 <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-                                <button type="submit" class="success-button" title="Push question bank JSON files to GitHub via the REST API. Works on Cloud Run." style="background-color: #20c997;">Sync Questions to GitHub</button>
-                                <div style="font-size:11px; color: var(--text-color-light); margin-top:4px; max-width:230px; text-align:left;">Question files only &middot; GitHub API &middot; works on Cloud Run</div>
-                            </form>
-                            <!-- 2) Full source push via native git (local/dev with git credentials) -->
-                            <form id="git-push-all-form" action="{{ url_for('admin_git_push_all') }}" method="POST" class="form-group clear" style="margin:0;" data-status-url="/admin/git_push_all_status" data-title="full source push">
-                                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-                                <button type="submit" class="success-button" title="Commit and push ALL amended source files using native git. Requires git + credentials." style="background-color: #3b7dd8;">Push All Source Files</button>
-                                <div style="font-size:11px; color: var(--text-color-light); margin-top:4px; max-width:230px; text-align:left;">All changed files &middot; native git &middot; local/dev with git creds</div>
+                                <button type="submit" class="success-button" title="Send every changed data file (questions, reports, usage counts, game logs, AI batches, settings) to GitHub in one commit."><i class="fas fa-rotate"></i> Sync to GitHub</button>
+                                <div class="field-hint">Sends all changed app data in one commit. Also runs automatically whenever a game ends or questions change.</div>
                             </form>
                         </div>
 
                         <!-- Git Push Progress Modal -->
-                        <div id="git-push-modal" class="modal-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); display: none; align-items: center; justify-content: center; z-index: 10000;">
-                            <div class="modal-container" style="background-color: var(--bg-color, #ffffff); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 500px; max-width: 90%; padding: 20px; display: flex; flex-direction: column; color: var(--text-color, #333);">
-                                <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-color-light); padding-bottom: 10px;">
-                                    <h3 style="margin: 0; font-size: 18px; font-weight: bold; color: var(--primary-color);">Git Push Progress</h3>
-                                    <button type="button" id="close-push-modal-btn" class="modal-close-btn" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-color-light, #666); display: none;">&times;</button>
+                        <div id="git-push-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="git-push-title">
+                            <div class="modal-container">
+                                <div class="modal-header">
+                                    <h3 id="git-push-title">GitHub Sync</h3>
+                                    <button type="button" id="close-push-modal-btn" class="modal-close-btn" aria-label="Close">&times;</button>
                                 </div>
-                                <div class="modal-body" style="padding: 10px 0;">
-                                    <p id="push-status-text" style="font-weight: bold; margin-bottom: 10px; text-align: left;">Initialising push...</p>
-                                    <div class="progress-bar-container" style="width: 100%; background-color: var(--border-color-light, #eee); border-radius: 10px; height: 16px; overflow: hidden; margin-top: 10px; border: 1px solid var(--border-color, #ddd);">
-                                        <div id="push-progress-bar" class="progress-bar" style="background-color: #20c997; height: 100%; transition: width 0.3s ease; width: 0%;"></div>
+                                <div class="modal-body">
+                                    <p id="push-status-text">Initialising push...</p>
+                                    <div class="progress-bar-container">
+                                        <div id="push-progress-bar" class="progress-bar"></div>
                                     </div>
-                                    <p id="push-message-text" style="font-style: italic; margin-top: 10px; font-size: 13px; color: var(--text-color-light); word-break: break-all; min-height: 18px; text-align: left;"></p>
-                                    <p id="push-branch-text" style="margin-top: 8px; font-size: 12px; color: var(--text-color); text-align: left;"></p>
+                                    <p id="push-message-text"></p>
+                                    <p id="push-branch-text"></p>
                                 </div>
-                                <div class="modal-footer" id="push-modal-footer" style="display: none; justify-content: flex-end; margin-top: 15px;">
+                                <div class="modal-footer" id="push-modal-footer">
                                     <button type="button" id="ok-push-modal-btn" class="button">Close</button>
                                 </div>
                             </div>
@@ -447,262 +287,26 @@
             <!-- Look and Feel Tab -->
             <div id="look-and-feel" class="tab-pane">
                 <div class="inner-section">
-                    <h2>Look and Feel Settings</h2>
-                    <p>Select a theme to customize the appearance of the Avirta web app. Changes will be applied immediately and saved for the current session.</p>
-
-                    <div class="theme-selection">
-                        <form id="theme-form" action="{{ url_for('admin_controls') }}" method="POST">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-                            <input type="hidden" name="action" value="apply_theme">
-
-                            <!-- Dark Themes Section -->
-                            <h3>Dark Themes</h3>
-							<br>
-                            <div class="theme-options">
-                                {% for theme in admin_setup.get_available_themes() %}
-                                    {% if theme.name.startswith('dark_') %}
-                                    <div class="theme-option">
-                                        <input type="radio" id="theme-{{ theme.name }}" name="theme_name" value="{{ theme.name }}">
-                                        <label for="theme-{{ theme.name }}">
-                                            <div class="theme-preview {{ theme.name }}"></div>
-                                            <span>{{ theme.display_name }}</span>
-                                        </label>
-                                    </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-
-                            <!-- Light Themes Section -->
-                            <h3>Light Themes</h3>
-							<br>
-                            <div class="theme-options">
-                                {% for theme in admin_setup.get_available_themes() %}
-                                    {% if theme.name.startswith('light_') %}
-                                    <div class="theme-option">
-                                        <input type="radio" id="theme-{{ theme.name }}" name="theme_name" value="{{ theme.name }}">
-                                        <label for="theme-{{ theme.name }}">
-                                            <div class="theme-preview {{ theme.name }}"></div>
-                                            <span>{{ theme.display_name }}</span>
-                                        </label>
-                                    </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-
-                            <div class="form-actions theme-apply-button">
-                                <button type="submit" class="button">Apply Selected Theme</button>
-                            </div>
-                        </form>
+                    <h2>Look and Feel</h2>
+                    <p>Avirta has one design with a light mode and a dark mode. Each visitor's device decides by default; anyone can switch with the <i class="fas fa-moon" aria-hidden="true"></i> button in the header, and the choice is remembered on that device. Sound effects can be muted with the <i class="fas fa-volume-high" aria-hidden="true"></i> button next to it.</p>
+                    <div class="appearance-modes">
+                        <button type="button" class="mode-card" data-action="set-theme" data-mode="light">
+                            <span class="mode-swatch" aria-hidden="true"><span class="sw-light-bg"></span><span class="sw-light-surface"></span><span class="sw-light-raised"></span><span class="acc sw-light-accent"></span></span>
+                            <h3>Light mode</h3>
+                            <p>Warm ivory surfaces with brass accents.</p>
+                        </button>
+                        <button type="button" class="mode-card" data-action="set-theme" data-mode="dark">
+                            <span class="mode-swatch" aria-hidden="true"><span class="sw-dark-bg"></span><span class="sw-dark-surface"></span><span class="sw-dark-raised"></span><span class="acc sw-dark-accent"></span></span>
+                            <h3>Dark mode</h3>
+                            <p>Midnight navy layers with brass accents.</p>
+                        </button>
                     </div>
+                    <div class="form-actions">
+                        <button type="button" class="button" data-action="follow-device"><i class="fas fa-display" aria-hidden="true"></i> Follow this device's setting</button>
+                    </div>
+                    <p class="field-hint">These buttons change the mode on this browser only. There are no site-wide colour themes any more.</p>
                 </div>
             </div>
-            <style>
-            /* Section styling */
-            .section h4 {
-                margin-top: 20px;
-                margin-bottom: 10px;
-                color: var(--text-color-white);
-                border-bottom: 1px solid var(--text-color-white);
-                padding-bottom: 5px;
-            }
-
-            .theme-selection {
-                margin-top: 20px;
-            }
-
-            .theme-options {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-                margin-top: 15px;
-                justify-content: center;
-                width: 100%;
-            }
-
-            .theme-option {
-                position: relative;
-                width: 150px;
-            }
-
-            .theme-option input[type="radio"] {
-                position: absolute;
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
-
-            .theme-option label {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                cursor: pointer;
-                padding: 10px;
-                border-radius: var(--border-radius);
-                border: 2px solid transparent;
-                transition: all 0.3s ease;
-            }
-
-            .theme-option input[type="radio"]:checked + label {
-                border-color: var(--primary-color);
-                background-color: rgba(0, 0, 0, 0.1);
-            }
-
-            .theme-preview {
-                width: 120px;
-                height: 80px;
-                border-radius: var(--border-radius-small);
-                margin-bottom: 10px;
-                box-shadow: var(--box-shadow);
-                overflow: hidden;
-            }
-
-            /* Theme preview backgrounds */
-            /* Dark Blue Theme */
-            .theme-preview.dark_blue_theme {
-                background: linear-gradient(to bottom right, #0f202d, #346176);
-                border: 1px solid #e0c494;
-                position: relative;
-            }
-
-            .theme-preview.dark_blue_theme::after {
-                content: "Aa";
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: #e0c494;
-                font-weight: bold;
-                font-size: 24px;
-            }
-
-            /* Dark Purple Theme */
-            .theme-preview.dark_purple_theme {
-                background: linear-gradient(to bottom right, #1a0d24, #4a2d6a);
-                border: 1px solid #e0c4f4;
-                position: relative;
-            }
-
-            .theme-preview.dark_purple_theme::after {
-                content: "Aa";
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: #e0c4f4;
-                font-weight: bold;
-                font-size: 24px;
-            }
-
-            /* Dark Green Theme */
-            .theme-preview.dark_green_theme {
-                background: linear-gradient(to bottom right, #0d1f0e, #2e7d32);
-                border: 1px solid #c4e0c6;
-                position: relative;
-            }
-
-            .theme-preview.dark_green_theme::after {
-                content: "Aa";
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: #c4e0c6;
-                font-weight: bold;
-                font-size: 24px;
-            }
-
-            /* Light Blue Theme */
-            .theme-preview.light_blue_theme {
-                background: linear-gradient(to bottom right, #ffffff, #c3d9dc);
-                border: 1px solid #346075;
-                position: relative;
-            }
-
-            .theme-preview.light_blue_theme::after {
-                content: "Aa";
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: #1e595e;
-                font-weight: bold;
-                font-size: 24px;
-            }
-
-            /* Light Purple Theme */
-            .theme-preview.light_purple_theme {
-                background: linear-gradient(to bottom right, #ffffff, #e1d5f5);
-                border: 1px solid #673ab7;
-                position: relative;
-            }
-
-            .theme-preview.light_purple_theme::after {
-                content: "Aa";
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: #4a148c;
-                font-weight: bold;
-                font-size: 24px;
-            }
-
-            /* Light Green Theme */
-            .theme-preview.light_green_theme {
-                background: linear-gradient(to bottom right, #ffffff, #e8f5e9);
-                border: 1px solid #2e7d32;
-                position: relative;
-            }
-
-            .theme-preview.light_green_theme::after {
-                content: "Aa";
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: #1b5e20;
-                font-weight: bold;
-                font-size: 24px;
-            }
-
-            .theme-option span {
-                font-weight: 500;
-                margin-top: 5px;
-            }
-
-            .theme-apply-button {
-                margin-top: 20px;
-                text-align: center;
-            }
-
-            .theme-apply-button .button {
-                padding: 10px 20px;
-                font-size: 16px;
-                background-color: var(--primary-color);
-                color: var(--text-color-white);
-                border: none;
-                border-radius: var(--border-radius);
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-
-            .theme-apply-button .button:hover {
-                background-color: var(--primary-color-light);
-            }
-
-            </style>
-
-            <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Set the initial checked state based on the selected theme
-                var selectedTheme = "{{ admin_setup.game_settings.get('selected_theme', '') }}";
-                if (selectedTheme) {
-                    document.getElementById('theme-' + selectedTheme).checked = true;
-                }
-
-                // No event listeners for radio buttons - we're using the submit button now
-            });
-            </script>
 
             <!-- System Information Tab -->
             <div id="system-info" class="tab-pane">
@@ -768,10 +372,9 @@
                     <!-- GitHub -->
                     <h3 class="stats-group-title">GitHub Activity</h3>
                     <div class="stats-grid">
-                        <div class="stat-card"><h3>Question Pushes</h3><p class="stat-value">{{ stats.github.question_pushes }}</p></div>
-                        <div class="stat-card"><h3>Full Source Pushes</h3><p class="stat-value">{{ stats.github.full_source_pushes }}</p></div>
-                        <div class="stat-card"><h3>Auto Pushes</h3><p class="stat-value">{{ stats.github.auto_pushes }}</p></div>
-                        <div class="stat-card {% if stats.github.push_failures %}stat-error{% endif %}"><h3>Push Failures</h3><p class="stat-value">{{ stats.github.push_failures }}</p></div>
+                        <div class="stat-card"><h3>Manual Syncs</h3><p class="stat-value">{{ stats.github.question_pushes }}</p></div>
+                                                <div class="stat-card"><h3>Successful Syncs</h3><p class="stat-value">{{ stats.github.auto_pushes }}</p></div>
+                        <div class="stat-card {% if stats.github.push_failures %}stat-error{% endif %}"><h3>Sync Failures</h3><p class="stat-value">{{ stats.github.push_failures }}</p></div>
                     </div>
                 </div>
 
@@ -842,258 +445,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ---- AI Model settings (dynamic per-model fields + saved presets) ----
-    function showFlashMessage(text, type) {
-        let flashContainer = document.querySelector('.flash-messages');
-        if (!flashContainer) {
-            const container = document.querySelector('.container') || document.body;
-            flashContainer = document.createElement('div');
-            flashContainer.className = 'flash-messages';
-            container.insertBefore(flashContainer, container.firstChild);
-        }
-        const flashMessage = document.createElement('div');
-        flashMessage.className = `flash-message ${type || 'success'}`;
-        flashMessage.textContent = text;
-        flashContainer.appendChild(flashMessage);
-        setTimeout(() => flashMessage.remove(), 5000);
-    }
-
-    const modelSelect = document.getElementById('openai_model');
-    const modelParamsContainer = document.getElementById('model-params-fields');
-    const modelDescriptionEl = document.getElementById('model-description');
-    const registryDataEl = document.getElementById('openai-model-registry-data');
-    const currentSettingsDataEl = document.getElementById('current-model-settings-data');
-
-    let MODEL_REGISTRY = null;
-    if (registryDataEl) {
-        try { MODEL_REGISTRY = JSON.parse(registryDataEl.textContent); } catch (e) { MODEL_REGISTRY = null; }
-    }
-
-    // Build the dynamic per-model parameter fields (temperature, top_p, etc.)
-    // for the given model, pre-filled with `values` (falling back to that
-    // model's registry defaults for anything missing).
-    function renderModelParams(modelId, values) {
-        if (!MODEL_REGISTRY || !modelParamsContainer) return;
-        const modelCfg = MODEL_REGISTRY.models[modelId];
-        if (!modelCfg) return;
-        values = values || {};
-        modelParamsContainer.innerHTML = '';
-
-        modelCfg.params.forEach(function(param) {
-            const wrapper = document.createElement('div');
-
-            const label = document.createElement('label');
-            label.setAttribute('for', param.key);
-            label.appendChild(document.createTextNode(param.label + ' '));
-
-            const info = document.createElement('span');
-            info.className = 'info-icon';
-            info.tabIndex = 0;
-            info.textContent = '?';
-            let tooltip = param.help;
-            if (param.key === 'openai_max_tokens') {
-                tooltip += ` Maximum for ${modelCfg.display_name}: ${param.max.toLocaleString()} tokens.`;
-            }
-            info.setAttribute('data-tooltip', tooltip);
-            label.appendChild(info);
-            wrapper.appendChild(label);
-
-            const rawValue = (values[param.key] !== undefined) ? values[param.key] : param.default;
-
-            if (param.type === 'checkbox') {
-                const input = document.createElement('input');
-                input.type = 'checkbox';
-                input.id = param.key;
-                input.name = param.key;
-                input.checked = !!rawValue;
-                wrapper.appendChild(document.createElement('br'));
-                wrapper.appendChild(input);
-            } else if (param.type === 'select') {
-                const select = document.createElement('select');
-                select.id = param.key;
-                select.name = param.key;
-                (param.options || []).forEach(function(opt) {
-                    const option = document.createElement('option');
-                    option.value = opt;
-                    option.textContent = opt;
-                    if (opt === rawValue) option.selected = true;
-                    select.appendChild(option);
-                });
-                wrapper.appendChild(select);
-            } else {
-                const input = document.createElement('input');
-                input.type = 'number';
-                input.id = param.key;
-                input.name = param.key;
-                input.step = param.step;
-                if (param.min !== null && param.min !== undefined) input.min = param.min;
-                if (param.max !== null && param.max !== undefined) input.max = param.max;
-                input.value = rawValue;
-                wrapper.appendChild(input);
-            }
-            modelParamsContainer.appendChild(wrapper);
-        });
-
-        if (modelDescriptionEl) {
-            modelDescriptionEl.textContent = modelCfg.description;
-        }
-    }
-
-    if (modelSelect && MODEL_REGISTRY) {
-        // Initial render uses the values the server already resolved
-        // (saved overrides merged with defaults) - no extra fetch needed.
-        let initialValues = {};
-        if (currentSettingsDataEl) {
-            try { initialValues = JSON.parse(currentSettingsDataEl.textContent); } catch (e) { initialValues = {}; }
-        }
-        renderModelParams(modelSelect.value, initialValues);
-
-        modelSelect.addEventListener('change', function() {
-            const modelId = this.value;
-            fetch(`/get_model_settings/${modelId}`)
-                .then(response => {
-                    if (!response.ok) throw new Error('Failed to load model settings');
-                    return response.json();
-                })
-                .then(values => {
-                    renderModelParams(modelId, values);
-                })
-                .catch(error => {
-                    console.error('Error loading model settings:', error);
-                    const fallback = MODEL_REGISTRY.models[modelId] ? MODEL_REGISTRY.models[modelId].defaults : {};
-                    renderModelParams(modelId, fallback);
-                    showFlashMessage('Could not load saved settings for this model, showing defaults.', 'error');
-                });
-        });
-    }
-
-    // Apply a full settings object (from a saved named preset) to the whole
-    // form, including re-rendering the per-model dynamic fields.
-    function applySettingsToForm(settings) {
-        const apiKeyInput = document.getElementById('openai_api_key');
-        if (apiKeyInput && settings.openai_api_key !== undefined) {
-            apiKeyInput.value = settings.openai_api_key;
-        }
-
-        const targetModel = settings.openai_model || (modelSelect ? modelSelect.value : null);
-        if (modelSelect && targetModel) {
-            modelSelect.value = targetModel;
-        }
-        if (targetModel) {
-            renderModelParams(targetModel, settings);
-        }
-
-        const advancedFieldIds = [
-            'openai_base_url', 'openai_request_timeout', 'openai_response_format',
-            'openai_organization', 'openai_user', 'openai_stop', 'openai_seed'
-        ];
-        advancedFieldIds.forEach(function(id) {
-            const el = document.getElementById(id);
-            if (el && settings[id] !== undefined) {
-                el.value = settings[id];
-            }
-        });
-    }
-
-    // Add event listener for saved settings dropdown
-    const savedSettingsDropdown = document.getElementById('saved_settings');
-    const updateSavedSettingsBtn = document.getElementById('update-saved-settings-btn');
-    const deleteSavedSettingsBtn = document.getElementById('delete-saved-settings-btn');
-
-    function refreshSavedSettingsButtons() {
-        const hasSelection = !!(savedSettingsDropdown && savedSettingsDropdown.value);
-        if (updateSavedSettingsBtn) updateSavedSettingsBtn.disabled = !hasSelection;
-        if (deleteSavedSettingsBtn) deleteSavedSettingsBtn.disabled = !hasSelection;
-    }
-    refreshSavedSettingsButtons();
-
-    if (savedSettingsDropdown) {
-        savedSettingsDropdown.addEventListener('change', function() {
-            const selectedSetting = this.value;
-            refreshSavedSettingsButtons();
-            if (!selectedSetting) return;
-
-            fetch(`/get_api_settings/${selectedSetting}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to load settings');
-                    }
-                    return response.json();
-                })
-                .then(settings => {
-                    applySettingsToForm(settings);
-                    showFlashMessage(`Settings "${selectedSetting}" loaded successfully`, 'success');
-                })
-                .catch(error => {
-                    console.error('Error loading settings:', error);
-                    showFlashMessage(`Failed to load settings "${selectedSetting}". Please try again.`, 'error');
-                });
-        });
-    }
-
-    // ---- Anthropic (Claude) per-model dynamic fields ----
-    // Self-contained: renders temperature/top_p/max_tokens for the selected
-    // Claude model from the embedded registry. No server fetch needed - a model
-    // change just loads that model's registry defaults.
-    (function () {
-        const modelSelect = document.getElementById('anthropic_model');
-        const paramsContainer = document.getElementById('anthropic-model-params-fields');
-        const descEl = document.getElementById('anthropic-model-description');
-        const registryEl = document.getElementById('anthropic-model-registry-data');
-        const currentEl = document.getElementById('current-anthropic-settings-data');
-        if (!modelSelect || !paramsContainer || !registryEl) return;
-
-        let REGISTRY = null;
-        try { REGISTRY = JSON.parse(registryEl.textContent); } catch (e) { return; }
-
-        function renderParams(modelId, values) {
-            const cfg = REGISTRY.models[modelId];
-            if (!cfg) return;
-            values = values || {};
-            paramsContainer.innerHTML = '';
-            cfg.params.forEach(function (param) {
-                const wrapper = document.createElement('div');
-                const label = document.createElement('label');
-                label.setAttribute('for', param.key);
-                label.appendChild(document.createTextNode(param.label + ' '));
-                const info = document.createElement('span');
-                info.className = 'info-icon';
-                info.tabIndex = 0;
-                info.textContent = '?';
-                let tooltip = param.help;
-                if (param.key === 'anthropic_max_tokens') {
-                    tooltip += ` Maximum for ${cfg.display_name}: ${param.max.toLocaleString()} tokens.`;
-                }
-                info.setAttribute('data-tooltip', tooltip);
-                label.appendChild(info);
-                wrapper.appendChild(label);
-
-                const rawValue = (values[param.key] !== undefined) ? values[param.key] : param.default;
-                const input = document.createElement('input');
-                input.type = 'number';
-                input.id = param.key;
-                input.name = param.key;
-                input.step = param.step;
-                if (param.min !== null && param.min !== undefined) input.min = param.min;
-                if (param.max !== null && param.max !== undefined) input.max = param.max;
-                input.value = rawValue;
-                wrapper.appendChild(input);
-                paramsContainer.appendChild(wrapper);
-            });
-            if (descEl) descEl.textContent = cfg.description;
-        }
-
-        let initialValues = {};
-        if (currentEl) { try { initialValues = JSON.parse(currentEl.textContent); } catch (e) {} }
-        renderParams(modelSelect.value, initialValues);
-
-        modelSelect.addEventListener('change', function () {
-            const cfg = REGISTRY.models[this.value];
-            renderParams(this.value, cfg ? cfg.defaults : {});
-        });
-    })();
-
-
     // Add click event listeners to tab buttons
     tabButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -1128,7 +479,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const title = form.getAttribute('data-title') || 'git push';
 
         gitPushProgressBar.style.width = '0%';
-        gitPushProgressBar.style.backgroundColor = '#20c997';
+        gitPushProgressBar.classList.remove('is-error');
         gitPushStatusText.textContent = 'Initialising ' + title + '...';
         gitPushMessageText.textContent = '';
         gitPushBranchText.textContent = '';
@@ -1153,20 +504,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     gitPushBranchText.textContent = 'Branch: ' + branch;
                     if (state === 'running') {
                         gitPushProgressBar.style.width = '50%';
-                        gitPushProgressBar.style.backgroundColor = '#20c997';
                     } else if (state === 'success') {
                         clearInterval(pollInterval);
                         gitPushProgressBar.style.width = '100%';
-                        gitPushProgressBar.style.backgroundColor = '#20c997';
-                        gitPushStatusText.textContent = 'Push completed successfully!';
+                        gitPushStatusText.textContent = 'Sync completed.';
                         gitPushMessageText.textContent = msg;
                         closePushModalBtn.style.display = 'block';
                         pushModalFooter.style.display = 'flex';
                     } else if (state === 'failed') {
                         clearInterval(pollInterval);
                         gitPushProgressBar.style.width = '100%';
-                        gitPushProgressBar.style.backgroundColor = 'var(--error-color, #dc3545)';
-                        gitPushStatusText.textContent = 'Push failed.';
+                        gitPushProgressBar.classList.add('is-error');
+                        gitPushStatusText.textContent = 'Sync failed. It will also be retried on the next sync.';
                         gitPushMessageText.textContent = msg;
                         closePushModalBtn.style.display = 'block';
                         pushModalFooter.style.display = 'flex';
@@ -1183,13 +532,13 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                gitPushStatusText.textContent = 'Push thread started on server.';
+                gitPushStatusText.textContent = data.message || 'Sync started.';
                 gitPushProgressBar.style.width = '25%';
                 pollPushStatus();
             } else {
                 gitPushStatusText.textContent = 'Failed: ' + data.message;
                 gitPushProgressBar.style.width = '100%';
-                gitPushProgressBar.style.backgroundColor = 'var(--error-color, #dc3545)';
+                gitPushProgressBar.classList.add('is-error');
                 closePushModalBtn.style.display = 'block';
                 pushModalFooter.style.display = 'flex';
             }
@@ -1197,13 +546,13 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(err => {
             gitPushStatusText.textContent = 'Connection error: ' + err;
             gitPushProgressBar.style.width = '100%';
-            gitPushProgressBar.style.backgroundColor = 'var(--error-color, #dc3545)';
+            gitPushProgressBar.classList.add('is-error');
             closePushModalBtn.style.display = 'block';
             pushModalFooter.style.display = 'flex';
         });
     }
 
-    ['git-push-questions-form', 'git-push-all-form'].forEach(function(fid) {
+    ['git-push-questions-form'].forEach(function(fid) {
         const f = document.getElementById(fid);
         if (f) {
             f.addEventListener('submit', function(e) { e.preventDefault(); runGitPush(f); });
@@ -1222,21 +571,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Modal close buttons
-    if (closeSyncModalBtn) {
-        closeSyncModalBtn.addEventListener('click', () => {
-            syncModal.style.display = 'none';
-        });
-    }
-    if (okSyncModalBtn) {
-        okSyncModalBtn.addEventListener('click', () => {
-            syncModal.style.display = 'none';
-        });
-    }
-
-    // Look and Feel Tab JavaScript
-
-    // Individual style variable settings have been removed, only theme selection is available
 });
 
 // System logs: filter rows by severity level
@@ -1258,106 +592,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
-<!-- Tab Styles -->
-<style>
-/* Back Navigation */
-.back-navigation {
-    margin-bottom: 15px;
-}
-
-.back-navigation .button {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-/* API Settings Styles */
-.saved-settings-section,
-.current-settings-section,
-.save-settings-section {
-    margin-bottom: 30px;
-    padding: 20px;
-    background-color: var(--bg-color-lighter);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
-.saved-settings-section h3,
-.current-settings-section h3,
-.save-settings-section h3 {
-    margin-top: 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color-light);
-}
-
-.settings-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.load-settings-form {
-    display: flex;
-	width: auto;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Tab Navigation */
-.admin-tabs {
-    margin-bottom: 20px;
-}
-
-.tab-nav {
-    display: flex;
-	justify-content: center;
-    margin-bottom: 0;
-}
-
-.tab-button {
-	background-color: var(--primary-color);
-    padding: 0px 5px;
-    border-bottom: none;
-    border-radius: 5px 5px 0 0;
-    margin-right: 3px;
-    cursor: pointer;
-    font-weight: normal;
-    transition: background-color 0.3s;
-}
-
-.tab-button:hover {
-    background-color: var(--primary-color-light);
-}
-
-.tab-button.active {
-	background-color: var(--primary-color-light);
-    margin-bottom: -1px;
-}
-
-/* Tab Content */
-.tab-pane {
-    display: none;
-    padding: 20px;
-	margin-top: 0;
-    border-top: none;
-    border-radius: 0 0 5px 5px;
-}
-
-.tab-pane.active {
-    display: block;
-	margin-top: 0;
-}
-
-/* Logout section */
-.logout-section {
-    margin-top: 0;
-	padding: 0;
-    text-align: right;
-}
-
-/* Look and Feel Tab Styles */
-/* Individual style variable settings have been removed, only theme selection is available */
-</style>
 
 {% endif %}
 {% endblock %}

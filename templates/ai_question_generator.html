@@ -1,320 +1,257 @@
-<link href="/static/css/style.css" rel="stylesheet" type="text/css">
 {% extends "base.html" %}
 
 {% block title %}AI Question Generator - Avirta{% endblock %}
 
 {% block content %}
-<div class="back-navigation">
-    <a href="{{ url_for('admin_controls') }}" class="button"><i class="fas fa-arrow-left"></i> Back to Admin Controls</a>
-</div>
-<h1>AI Question Generator</h1>
-
-<div class="page-section">
-    {% if not admin_setup.game_settings.get('openai_api_key') %}
-    <div class="warning-message">
-        <p> No OpenAI API key is configured. An API key is required to generate questions.</p>
-        <p>Please <a href="{{ url_for('admin_controls') }}">configure your OpenAI API key</a> in the Admin Controls before using this feature.</p>
+{% set s = ai.active_summary %}
+{% set key = ai['keys'][s.option] %}
+{% set total_bank = categories.values()|sum(attribute='question_count') %}
+<div class="ai-page" id="ai-generator">
+    <div class="ai-hero">
+        <div class="ai-hero-glow" aria-hidden="true"></div>
+        <div class="ai-hero-top">
+            <div class="ai-topnav" role="navigation" aria-label="AI tools">
+                <a href="{{ url_for('admin_controls') }}" class="ai-btn secondary small"><i class="fas fa-arrow-left"></i> Admin</a>
+                <a href="{{ url_for('ai_question_history') }}" class="ai-btn secondary small"><i class="fas fa-clock-rotate-left"></i> History</a>
+                <a href="{{ url_for('aivalidator') }}" class="ai-btn secondary small"><i class="fas fa-gavel"></i> Validator</a>
+            </div>
+            <div class="ai-onair {{ 'is-live' if key.configured else 'is-idle' }}" role="status">
+                <span class="ai-onair-label"><span class="ai-dot" aria-hidden="true"></span>{{ 'On air' if key.configured else ('Key missing' if key.managed else 'No key') }}</span>
+                <span><strong>{{ s.label }}</strong> <span class="ai-sep">·</span> {{ s.model or 'no model' }} <span class="ai-sep">·</span> {{ ai.catalog.quality_profiles[s.quality].label }}</span>
+                <a class="ai-link" href="{{ url_for('admin_controls') }}#api-settings" onclick="localStorage.setItem('adminActiveTab','api-settings')">Change</a>
+            </div>
+        </div>
+        <div class="ai-hero-body">
+            <img class="ai-hero-logo" src="{{ url_for('static', filename='images/favicon.png') }}" alt="" width="72" height="72">
+            <div>
+                <span class="ai-eyebrow">Control room · Writers' desk</span>
+                <h1>AI Question Generator</h1>
+                <p>Pitch a topic and the AI writes, fact-checks and de-duplicates a fresh round of questions. Nothing reaches the bank until you approve it.</p>
+            </div>
+        </div>
     </div>
+
+    {% if not key.configured %}
+    {% if key.managed %}
+    <div class="ai-status warn" role="status"><i class="fas fa-lock"></i> <code>{{ key.secret_name or "The API key" }}</code> for {{ s.label }} was not found in Google Cloud Secret Manager. Add it in the Cloud Console (Security → Secret Manager).</div>
+    {% else %}
+    <div class="ai-status warn" role="status"><i class="fas fa-triangle-exclamation"></i> No API key is set for {{ s.label }}. <a href="{{ url_for('admin_controls') }}" onclick="localStorage.setItem('adminActiveTab','api-settings')">Add one in API Settings</a> before generating.</div>
     {% endif %}
-	<div class="section">
-    <h2>AI Generator</h2>
-    <p>Enter a prompt and customize options to generate questions using AI.</p>
-		<form id="generatorForm" action="{{ url_for('ai_question_generator') }}" method="POST" class="form">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-        <div class="form-group-inline">
-            <h3 for="topic">Topic:</h3>
-            <input type="text" id="topic" name="topic" required placeholder="The subject, e.g. Cars, Ancient Egypt, World Cup football">
-            <small class="field-hint">The actual subject. Used to keep every question on-topic (and to fetch reference sources).</small>
+    {% endif %}
+
+    {% if not generated_questions %}
+    <form class="ai-card" id="gen-form" autocomplete="off">
+        <div class="ai-section">
+            <h3><span class="ai-step">1</span> Tonight's topic</h3>
+            <div class="ai-field">
+                <label for="gen-topic">Topic</label>
+                <input type="text" id="gen-topic" class="ai-headline" required maxlength="200" dir="auto" placeholder="e.g. History of the UAE, Ancient Egypt, World Cup">
             </div>
-        <div class="form-group-inline">
-            <h3 for="prompt">Focus / Instructions <small>(optional)</small>:</h3>
-            <textarea id="prompt" name="prompt" rows="2" placeholder="Optional angle or style, e.g. the engineering, mechanisms, and history of the industry"></textarea>
+            <div class="ai-grid-2">
+                <div class="ai-field">
+                    <label for="gen-category">Category in the bank <span class="ai-muted">(optional)</span></label>
+                    <select id="gen-category" dir="auto" aria-describedby="gen-category-hint">
+                        <option value="">None / decide when saving</option>
+                        {% for cid, c in categories.items()|sort(attribute='1.name') %}
+                        <option value="{{ cid }}">{{ c.name }} ({{ c.question_count }})</option>
+                        {% endfor %}
+                    </select>
+                    <span class="ai-hint" id="gen-category-hint">Steers the AI away from that category's existing questions.</span>
+                </div>
+                <div class="ai-field">
+                    <label for="gen-focus">Focus or style <span class="ai-muted">(optional)</span></label>
+                    <textarea id="gen-focus" rows="2" maxlength="500" dir="auto" placeholder="e.g. focus on the founding years and the seven emirates; avoid sports"></textarea>
+                </div>
             </div>
-		<div class="fill-stack"><h3>Generation Options:</h3>
-        <div class="form-group equal-md">
-                <label>Types:</label>
-                <div class="form-group-equal-sm">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="type_multiple_choice" name="question_types" value="multiple_choice" checked>
-                        <label for="type_multiple_choice">Multiple Choice</label>
+        </div>
+
+        <div class="ai-section">
+            <h3><span class="ai-step">2</span> Build the round</h3>
+            <div class="ai-format-row">
+                <div class="ai-field">
+                    <span class="ai-label" id="count-label">How many questions</span>
+                    <div class="ai-seg big" role="radiogroup" aria-labelledby="count-label">
+                        {% for n in [5, 10, 15, 20, 30] %}
+                        <input type="radio" name="count" id="count-{{ n }}" value="{{ n }}" {% if n == 10 %}checked{% endif %}><label for="count-{{ n }}">{{ n }}</label>
+                        {% endfor %}
                     </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="type_true_false" name="question_types" value="true_false" checked>
-                        <label for="type_true_false">True/False</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="type_text" name="question_types" value="text" checked>
-                        <label for="type_text">Text Answer</label>
+                </div>
+                <div class="ai-field">
+                    <span class="ai-label" id="lang-label">Language</span>
+                    <div class="ai-seg" role="radiogroup" aria-labelledby="lang-label">
+                        <input type="radio" name="language" id="lang-ar" value="arabic" checked><label for="lang-ar" lang="ar">العربية</label>
+                        <input type="radio" name="language" id="lang-en" value="english"><label for="lang-en">English</label>
                     </div>
                 </div>
             </div>
-        <div class="form-group equal-md">
-                <label for="difficulty">Difficulty:</label>
-                <select id="difficulty" name="difficulty">
-                  <option value="mixed">All Difficulties</option>
-                    <option value="easiest">Easiest (100)</option>
-                    <option value="easy">Easy (200)</option>
-                    <option value="medium">Medium (300)</option>
-                    <option value="hard">Hard (400)</option>
-                    <option value="hardest">Hardest (500)</option>
-                </select>
-        </div>
-        <div class="form-group equal-sm">
-                <label for="language">Language:</label>
-                <select id="language" name="language">
-                    <option value="english">English</option>
-                    <option value="arabic" selected>Arabic</option>
-                </select>
-        </div>
-        <div class="form-group equal-sm">
-                <label for="num_questions">Count:</label>
-                <select id="num_questions" name="num_questions">
-                    <option value="3">3</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="25" selected>25</option>
-					<option value="50">50</option>
-                </select>
-        </div>
-        <div class="form-group equal-sm">
-                <label for="start_index">Offset</label>
-                <input type="number" id="start_index" name="start_index" value="0" min="0" step="1" />
-        </div>
-        <div class="form-group">
-                <label>Select categories if you want AI to avoid repeating questions already in them:</label>
-                <div id="categories-container" class="categories-inline-container">
-                    {% for category_id, category in categories.items() %}
-                    <div class="category-item" data-category-id="{{ category_id }}">{{ category.name }} ({{ category.question_count }})</div>
+            <div class="ai-field">
+                <span class="ai-label" id="types-label">Question types</span>
+                <div class="ai-seg" role="group" aria-labelledby="types-label">
+                    <input type="checkbox" name="types" id="type-mc" value="multiple_choice" checked><label for="type-mc">Multiple choice</label>
+                    <input type="checkbox" name="types" id="type-tf" value="true_false" checked><label for="type-tf">True / False</label>
+                    <input type="checkbox" name="types" id="type-text" value="text" checked><label for="type-text">Short answer</label>
+                </div>
+            </div>
+            <div class="ai-field">
+                <span class="ai-label" id="diff-label">Difficulty <span class="ai-muted">(board value)</span></span>
+                <div class="ai-board" role="radiogroup" aria-labelledby="diff-label">
+                    <input type="radio" name="difficulty" id="diff-mixed" value="mixed" checked><label for="diff-mixed" class="hmix"><b>MIX</b><small>100-500</small></label>
+                    {% for v, p, lbl, h in [('easiest',100,'Very easy','h1'),('easy',200,'Easy','h2'),('medium',300,'Medium','h3'),('hard',400,'Hard','h4'),('hardest',500,'Very hard','h5')] %}
+                    <input type="radio" name="difficulty" id="diff-{{ v }}" value="{{ v }}"><label for="diff-{{ v }}" class="{{ h }}"><b>{{ p }}</b><small>{{ lbl }}</small></label>
                     {% endfor %}
                 </div>
-                <div id="selected-categories-container" class="selected-categories-container">
-                    <p>Selected categories: <span id="selected-categories-text">None</span></p>
-                </div>
-                <div id="hidden-inputs-container"></div>
+            </div>
         </div>
-			<div class="form-group-grid">
-          		<input type="checkbox" id="include_explanations" name="include_explanations" checked>
-                <label for="include_explanations">Include explanations for correct answers</label>
-            </div></div>
-		<div class="form-actions clear">
-		    <div class="form-actions">
-              <button type="submit" class="button" id="generateButton">Generate Questions</button>
-			</div>
+
+        <div class="ai-section">
+            <h3><span class="ai-step">3</span> Quality checks</h3>
+            <div class="ai-grid-3">
+                <label class="ai-toggle"><input type="checkbox" id="gen-verify" checked>
+                    <span><strong>Fact-check every question</strong><span class="ai-muted">An independent blind answer, then a review of any disagreement. Recommended.</span></span></label>
+                <label class="ai-toggle"><input type="checkbox" id="gen-sources" {% if ai.config.use_sources %}checked{% endif %}>
+                    <span><strong>Use Wikipedia notes</strong><span class="ai-muted">Prefer facts confirmed by encyclopedia notes on the topic.</span></span></label>
+                <label class="ai-toggle"><input type="checkbox" id="gen-explanations" checked>
+                    <span><strong>Include explanations</strong><span class="ai-muted">One sentence on why the answer is right.</span></span></label>
+            </div>
+            <p class="ai-hint"><i class="fas fa-shield-halved"></i> Repeats are blocked automatically: every new question is compared with all {{ total_bank }} questions in the bank and recent AI batches, including reworded versions of the same fact.</p>
         </div>
-    <!-- Progress indicator (hidden by default) -->
-		<div class="form-group centered">
-		<div id="progressContainer" class="progress-container" style="display: none;">
-				<h3>Generating Questions...</h3>
-				 <div class="progress-bar-container">
-					<div id="progressBar" class="progress-bar"></div>
-				 </div>
-			 <div id="progressStatus" class="progress-status">Initializing...</div>
-		</div></div>
-	</form>
-</div>
 
-{% if generated_questions %}
-<br>
-<div class="section">
-    <h2>Preview Generated Questions</h2>
-    <p>Review the generated questions before adding them to your question bank.</p>
+        <div class="ai-card-foot">
+            <button type="submit" class="ai-btn big" id="gen-submit" {% if not key.configured %}disabled{% endif %}><i class="fas fa-wand-magic-sparkles"></i> Generate questions</button>
+            <span class="ai-error" id="gen-form-error" role="alert"></span>
+        </div>
+    </form>
 
-    <form action="{{ url_for('save_ai_questions') }}" method="POST" class="form-group-grid1">
+    <section class="ai-card ai-hidden" id="gen-progress" aria-live="polite">
+        <div class="ai-stage-main">
+            <div class="ai-ring" id="gen-ring" aria-hidden="true"><span class="ai-ring-num" id="gen-ring-num">0%</span></div>
+            <div class="ai-stage-text">
+                <span class="ai-eyebrow">Live from the writers' room</span>
+                <h3 id="gen-progress-title" dir="auto">Generating…</h3>
+                <p id="gen-progress-stage" class="ai-muted"></p>
+                <span class="ai-muted" id="gen-progress-count"></span>
+            </div>
+        </div>
+        <div class="ai-progress" role="presentation"><div id="gen-progress-bar"></div></div>
+        <div class="ai-steps" id="gen-steps">
+            <span data-step="bank">Check the bank</span><span data-step="write">Write</span><span data-step="check">Fact-check</span><span data-step="done">Ready to review</span>
+        </div>
+        <div id="gen-progress-msg" class="ai-status ai-hidden"></div>
+    </section>
+    {% else %}
+    {% set st = metadata.stats if metadata and metadata.stats else {} %}
+    {% set type_labels = {'multiple_choice':'Multiple choice','true_false':'True / False','text':'Short answer'} %}
+    <section class="ai-card">
+        <div class="ai-card-head">
+            <div>
+                <span class="ai-eyebrow">Rehearsal</span>
+                <h3>Review {{ generated_questions|length }} new question{{ '' if generated_questions|length == 1 else 's' }}</h3>
+                <p class="ai-muted" dir="auto">{{ (metadata.topic or metadata.prompt) if metadata else '' }}{% if metadata and metadata.model %} · {{ metadata.model }}{% endif %}{% if metadata and metadata.language %} · {{ metadata.language|capitalize }}{% endif %}</p>
+            </div>
+            <a class="ai-btn secondary small" href="{{ url_for('ai_question_generator') }}"><i class="fas fa-plus"></i> New batch</a>
+        </div>
+        {% if st %}
+        <div class="ai-actions">
+            <span class="ai-stamp ok"><i class="fas fa-circle-check"></i> {{ st.verified or 0 }} verified</span>
+            {% if st.corrected %}<span class="ai-stamp info"><i class="fas fa-pen"></i> {{ st.corrected }} corrected</span>{% endif %}
+            {% if st.unverified %}<span class="ai-stamp warn"><i class="fas fa-circle-question"></i> {{ st.unverified }} not fact-checked</span>{% endif %}
+        </div>
+        {% endif %}
+        {% if metadata and metadata.dropped %}
+        <details class="ai-advanced">
+            <summary>{{ metadata.dropped|length }} question{{ '' if metadata.dropped|length == 1 else 's' }} cut automatically <span class="ai-muted">(duplicates, structure problems or failed fact-checks)</span></summary>
+            <div class="ai-advanced-body">
+                <table class="ai-table">
+                    {% for d in metadata.dropped %}
+                    <tr><td dir="auto">{{ d.question }}<div class="ai-muted" dir="auto">→ {{ d.answer }}</div></td><td class="ai-muted">{{ d.reason }}</td></tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </details>
+        {% endif %}
+        {% if metadata and metadata.sources %}
+        <p class="ai-hint"><i class="fas fa-book-open"></i> Reference notes: {% for src in metadata.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{{ ', ' if not loop.last }}{% endfor %}</p>
+        {% endif %}
+    </section>
+
+    <form method="POST" action="{{ url_for('save_ai_questions') }}" class="ai-stack" id="save-form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
         <input type="hidden" name="batch_id" value="{{ batch_id }}">
 
-
-        {% for i, question in enumerate(generated_questions) %}
-        <div class="colored-box blue equal-md">
-            <h3>Question {{ i+1 }}</h3>
-
-
-            <div class="text-clear">
-                <p><strong class="status-message">Question:</strong> {{ question.question }}</p>
-
-                {% if question.type == 'multiple_choice' %}
-                <p><strong>Type:</strong> Multiple Choice</p>
-                <p><strong class="status-message">Options:</strong></p>
-                <ul>
-                    {% for option in question.options %}
-                    <li>{{ option }}{% if option == question.correct_answer %} (Correct){% endif %}</li>
-                    {% endfor %}
-                </ul>
-                {% elif question.type == 'true_false' %}
-                <p><strong>Type:</strong> True/False</p>
-                <p><strong class="status-message">Correct Answer:</strong> {{ question.correct_answer }}</p>
-                {% elif question.type == 'text' %}
-                <p><strong>Type:</strong> Text Answer</p>
-                <p><strong class="status-message">Correct Answer:</strong> {{ question.correct_answer }}</p>
-                {% endif %}
-
-                {% if question.explanation %}
-                <p><strong>Explanation:</strong> {{ question.explanation }}</p>
-                {% endif %}
+        {% for q in generated_questions %}
+        {% set i = loop.index0 %}
+        <article class="ai-q" data-index="{{ i }}" aria-labelledby="qnum_{{ i }}">
+            <div class="ai-q-head">
+                <label class="ai-q-pick" title="Include this question when saving">
+                    <input type="checkbox" name="include_{{ i }}" class="include-box" checked aria-label="Include question {{ i + 1 }}">
+                    <span class="ai-q-num" id="qnum_{{ i }}">Q{{ i + 1 }}</span>
+                </label>
+                <span class="ai-badge info">{{ type_labels.get(q.type, q.type) }}</span>
+                {% if q.verification == 'verified' %}<span class="ai-stamp ok" title="Independent answer matched, or the fact-check confirmed it"><i class="fas fa-circle-check"></i> Verified</span>
+                {% elif q.verification == 'corrected' %}<span class="ai-stamp info" title="{{ q.review_note }}"><i class="fas fa-pen"></i> Corrected</span>
+                {% else %}<span class="ai-stamp warn"><i class="fas fa-circle-question"></i> Not fact-checked</span>{% endif %}
+                <div class="ai-q-points">
+                    <label for="points_{{ i }}">Value</label>
+                    <select name="points_{{ i }}" id="points_{{ i }}">
+                        {% for p in [100, 200, 300, 400, 500] %}<option value="{{ p }}" {% if q.points == p %}selected{% endif %}>{{ p }}</option>{% endfor %}
+                    </select>
+                </div>
             </div>
-
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="include_{{ i }}" name="include_{{ i }}" checked>
-                <label for="include_{{ i }}">Include this question</label>
+            <div class="ai-field ai-q-question">
+                <label for="question_{{ i }}" class="ai-hidden">Question</label>
+                <textarea name="question_{{ i }}" id="question_{{ i }}" rows="2" dir="auto" aria-label="Question {{ i + 1 }}">{{ q.question }}</textarea>
             </div>
-
-            <!-- Category is now set at the form level with the custom category name -->
-
-            <div class="form-group">
-                <label for="points_{{ i }}">Points:</label>
-                <select id="points_{{ i }}" name="points_{{ i }}">
-                    <option value="100" {% if question.points == 100 %}selected{% endif %}>100 points</option>
-                    <option value="200" {% if question.points == 200 %}selected{% endif %}>200 points</option>
-                    <option value="300" {% if question.points == 300 or not question.points %}selected{% endif %}>300 points</option>
-                    <option value="400" {% if question.points == 400 %}selected{% endif %}>400 points</option>
-                    <option value="500" {% if question.points == 500 %}selected{% endif %}>500 points</option>
-                </select>
+            {% if q.type == 'multiple_choice' %}
+            <div class="ai-q-options" role="group" aria-label="Options for question {{ i + 1 }}">
+                {% for o in q.options %}
+                <div class="ai-q-opt"><span class="ai-q-opt-key" aria-hidden="true">{{ 'ABCDEFGH'[loop.index0] }}</span><input type="text" name="option_{{ i }}_{{ loop.index0 }}" value="{{ o }}" dir="auto"
+                    aria-label="Option {{ loop.index }}" class="{{ 'is-correct' if o == q.correct_answer else '' }}" data-option-for="{{ i }}"></div>
+                {% endfor %}
             </div>
-        </div>
+            {% endif %}
+            <div class="ai-q-answer">
+                <div class="ai-field">
+                    <label for="answer_{{ i }}">Correct answer</label>
+                    {% if q.type == 'true_false' %}
+                    <select name="answer_{{ i }}" id="answer_{{ i }}">
+                        <option value="True" {% if q.correct_answer == 'True' %}selected{% endif %}>True</option>
+                        <option value="False" {% if q.correct_answer == 'False' %}selected{% endif %}>False</option>
+                    </select>
+                    {% else %}
+                    <input type="text" name="answer_{{ i }}" id="answer_{{ i }}" value="{{ q.correct_answer }}" dir="auto">
+                    {% if q.type == 'multiple_choice' %}<span class="ai-hint">Must match one of the options exactly.</span>{% endif %}
+                    {% if q.acceptable_answers %}<span class="ai-hint" dir="auto">Also accept: {{ q.acceptable_answers|join(', ') }}</span>{% endif %}
+                    {% endif %}
+                </div>
+                <div class="ai-field">
+                    <label for="explanation_{{ i }}">Explanation</label>
+                    <input type="text" name="explanation_{{ i }}" id="explanation_{{ i }}" value="{{ q.explanation }}" dir="auto">
+                </div>
+            </div>
+            {% if q.fact %}<div class="ai-q-fact" dir="auto"><i class="fas fa-book-open"></i> {{ q.fact }}</div>{% endif %}
+            {% if q.review_note %}<div class="ai-q-fact" dir="auto"><i class="fas fa-pen"></i> Fact-check: {{ q.review_note }}</div>{% endif %}
+        </article>
         {% endfor %}
-        <div class="form-group-inline">
-            <label for="custom_category">Category Name:</label>
-            <input type="text" id="custom_category" name="custom_category" required>
-            <small>Enter a category name these questions</small>
-        </div>
 
-        <div class="form-group form-actions">
-            <button type="submit" class="button">Add Selected Questions to Question Bank</button>
-            <button class="button secondary"><a class="text-clear" href="{{ url_for('ai_question_generator') }}">Cancel</a></button>
+        <div class="ai-sticky-bar">
+            <div class="ai-actions">
+                <span id="selected-count" aria-live="polite"></span>
+                <button type="button" class="ai-link" id="select-all">Select all</button>
+                <button type="button" class="ai-link" id="select-none">Select none</button>
+            </div>
+            <div class="ai-save-target">
+                <select name="existing_category" id="existing_category" aria-label="Save to category" dir="auto">
+                    <option value="__new__">+ New category…</option>
+                    {% for cid, c in categories.items()|sort(attribute='1.name') %}
+                    <option value="{{ cid }}" {% if metadata and metadata.category == cid %}selected{% endif %}>{{ c.name }} ({{ c.question_count }})</option>
+                    {% endfor %}
+                </select>
+                <span id="new-category-wrap" class="ai-save-target"><input type="text" name="new_category" id="new_category" placeholder="New category name" aria-label="New category name" dir="auto" value="{{ metadata.topic if metadata and not metadata.category else '' }}"></span>
+                <button type="submit" class="ai-btn"><i class="fas fa-floppy-disk"></i> Add selected to the bank</button>
+            </div>
         </div>
-
     </form>
+    {% endif %}
 </div>
-{% endif %}
-
-<div class="generator-instructions">
-    <h3>Instructions</h3>
-    <ol>
-        <li>Enter a prompt describing the questions you want to generate</li>
-        <li>Customize the generation options (question type, difficulty, etc.)</li>
-        <li>Click "Generate Questions" to create AI-generated questions</li>
-        <li>Review the generated questions</li>
-        <li>Select which questions to include in your question bank</li>
-        <li>Assign categories and point values to each question</li>
-        <li>Click "Add Selected Questions to Question Bank" to save them</li>
-    </ol>
-
-    <h3>Tips for Better Results</h3>
-    <ul>
-        <li>Be specific in your prompt about the subject matter and difficulty level</li>
-        <li>Include any specific requirements or constraints in your prompt</li>
-        <li>For multiple-choice questions, specify how many options you want</li>
-        <li>Request explanations if you want the AI to provide reasoning for correct answers</li>
-        <li>Select the appropriate language (English or Arabic) for your questions</li>
-        <li>If you're not satisfied with the results, try refining your prompt and generating again</li>
-    </ul>
-</div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('generatorForm');
-        const generateButton = document.getElementById('generateButton');
-        const progressContainer = document.getElementById('progressContainer');
-        const progressBar = document.getElementById('progressBar');
-        const progressStatus = document.getElementById('progressStatus');
-
-        // Reference categories selection
-        const categoryItems = document.querySelectorAll('.category-item');
-        const hiddenInputsContainer = document.getElementById('hidden-inputs-container');
-        const selectedCategoriesText = document.getElementById('selected-categories-text');
-        const selectedCategories = new Set();
-
-        // Add click event listener to each category item
-        categoryItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const categoryId = this.getAttribute('data-category-id');
-
-                // Toggle selection
-                if (selectedCategories.has(categoryId)) {
-                    // Remove from selected categories
-                    selectedCategories.delete(categoryId);
-                    this.classList.remove('selected');
-
-                    // Remove hidden input
-                    const inputToRemove = document.getElementById(`category-input-${categoryId}`);
-                    if (inputToRemove) {
-                        hiddenInputsContainer.removeChild(inputToRemove);
-                    }
-                } else {
-                    // Add to selected categories
-                    selectedCategories.add(categoryId);
-                    this.classList.add('selected');
-
-                    // Create hidden input
-                    const hiddenInput = document.createElement('input');
-                    hiddenInput.type = 'hidden';
-                    hiddenInput.name = 'reference_categories[]';
-                    hiddenInput.value = categoryId;
-                    hiddenInput.id = `category-input-${categoryId}`;
-                    hiddenInputsContainer.appendChild(hiddenInput);
-                }
-
-                // Update selected categories text
-                if (selectedCategories.size === 0) {
-                    selectedCategoriesText.textContent = 'None';
-                } else {
-                    const selectedNames = Array.from(selectedCategories).map(id => {
-                        const item = document.querySelector(`.category-item[data-category-id="${id}"]`);
-                        return item ? item.textContent : id;
-                    });
-                    selectedCategoriesText.textContent = selectedNames.join(', ');
-                }
-            });
-        });
-
-        // Function to update progress bar and status
-        function updateProgress(percent, message) {
-            progressBar.style.width = percent + '%';
-            progressStatus.textContent = message;
-            progressStatus.className = 'progress-status active';
-        }
-
-        form.addEventListener('submit', function(event) {
-            // Drive the bar from real backend progress instead of a fixed timer.
-            event.preventDefault();
-
-            // Show loading state on button and reveal the progress UI
-            generateButton.textContent = 'Generating...';
-            generateButton.disabled = true;
-            progressContainer.style.display = 'block';
-            updateProgress(0, 'Starting…');
-
-            // Kick off generation in the background.
-            const formData = new FormData(form);
-            formData.set('ajax', '1');
-            fetch(form.action, { method: 'POST', body: formData })
-                .catch(() => { /* generation runs server-side; polling reports status */ });
-
-            // Poll the backend for actual generation progress.
-            const progressInterval = setInterval(function() {
-                fetch('/api/ai/generation_progress', { cache: 'no-store' })
-                    .then(r => r.ok ? r.json() : Promise.reject(r.status))
-                    .then(data => {
-                        if (data.status === 'success') {
-                            clearInterval(progressInterval);
-                            updateProgress(100, data.message || 'Complete! Loading questions...');
-                            window.location = '/ai_question_generator?batch_id=' + encodeURIComponent(data.batch_id);
-                        } else if (data.status === 'failed') {
-                            clearInterval(progressInterval);
-                            progressBar.style.width = '0%';
-                            progressStatus.textContent = data.error || data.message || 'Generation failed.';
-                            progressStatus.className = 'progress-status error';
-                            generateButton.textContent = 'Generate Questions';
-                            generateButton.disabled = false;
-                        } else {
-                            // running / starting
-                            updateProgress(data.percent || 0, data.message || 'Generating…');
-                        }
-                    })
-                    .catch(() => { /* transient poll error; keep current state and retry */ });
-            }, 700);
-        });
-    });
-</script>
+<script src="{{ url_for('static', filename='js/ai_generator.js') }}" defer></script>
 {% endblock %}

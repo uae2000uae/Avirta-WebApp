@@ -1,0 +1,13 @@
+{# Runs before the stylesheet so the right mode is painted first (no flash).
+   Mode: the visitor's saved choice, otherwise the device setting. #}
+<script>
+(function () {
+  var d = document.documentElement, t = null;
+  try { t = localStorage.getItem('avirta-theme'); } catch (e) {}
+  if (t !== 'light' && t !== 'dark') {
+    t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  d.setAttribute('data-theme', t);
+  try { if (localStorage.getItem('avirta-sound') === 'off') d.setAttribute('data-sound', 'off'); } catch (e) {}
+})();
+</script>

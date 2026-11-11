@@ -33,3 +33,7 @@ contents/admin_controls/model_param_settings.json
 !.claude
 .claude/settings.local.json
 .pytest_cache/
+
+# Local-only AI keys (development); production keys live in Secret Manager
+contents/admin_controls/.local_ai_keys.json
+contents/question_validations/

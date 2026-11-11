@@ -4,7 +4,7 @@
 {% block title %}Avirta - Leaderboard{% endblock %}
 
 {% block content %}
-<div class="leaderboard-section">
+<div class="leaderboard-section" data-final="{{ 'true' if room.is_board_completed() else 'false' }}">
     <div class="leaderboard-header">
         <h2>Leaderboard | النتـــــائـــــج</h2>
     </div>

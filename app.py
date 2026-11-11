@@ -12,6 +12,7 @@ import tempfile
 import uuid
 import random
 import json
+import time
 import secrets
 from datetime import datetime
 
@@ -33,38 +34,8 @@ from contents.thehive.thehive import register_hive_routes
 from contents.fastest.fastest import register_fastest_routes
 from questionmanagement.question_bank import QuestionBank, increment_use_count, set_question_bank_instance
 from questionmanagement.question_import_export import export_template
-from questionmanagement.ai_question_generator import generate_questions, get_batch, get_batch_metadata, get_all_batches, start_generation_async, get_generation_progress
-from contents.admin_controls.ai_settings import (
-    load_ai_settings,
-    load_anthropic_settings,
-    get_active_provider,
-)
-from contents.admin_controls.openai_models import (
-    get_model_params,
-    is_known_model,
-    DEFAULT_MODEL,
-    get_registry_for_frontend,
-)
-from contents.admin_controls import anthropic_models
-from questionmanagement import anthropic_question_generator
-
-# --- Global progress tracking for AI validation (server-side, not session-based) ---
-from threading import Lock
-PROCESSING_PROGRESS_LOCK = Lock()
-PROCESSING_PROGRESS = {
-    'processing': False,
-    'overall_percentage': 0,
-    'total_batches': 0,
-    'completed_batches': 0,
-    'current_file': '',
-    'message': 'Idle',
-    'stage': '',
-    'total_files': 0,
-}
-
-# In-memory storage for processed results of the last job
-PROCESSED_RESULTS_LOCK = Lock()
-PROCESSED_RESULTS = None
+from questionmanagement.ai_engine.batches import get_batch, get_batch_metadata, get_all_batches
+from contents.admin_controls.ai_routes import register_ai_routes
 
 # Create Flask application
 app = Flask(__name__, static_url_path='/static', template_folder="templates")
@@ -215,6 +186,33 @@ app.jinja_env.globals.update(enumerate=enumerate)
 
 # Initialize game components
 admin_setup = AdminSetup()
+
+
+def _record_sync_event(level, message, detail):
+    """Record GitHub sync results in the admin log and stats."""
+    if level == 'ERROR':
+        admin_setup.record_stat('github_push_failures')
+        admin_setup.log_event(message, level='ERROR', category='GITHUB', reasons=detail)
+    elif level == 'SUCCESS':
+        admin_setup.record_stat('github_auto_pushes')
+        admin_setup.log_event(message, level='SUCCESS', category='GITHUB', reasons=detail)
+
+
+from contents.admin_controls import github_sync as _github_sync  # noqa: E402
+_github_sync.set_event_hook(_record_sync_event)
+
+
+def _request_github_sync(reason):
+    """Queue a GitHub sync of all changed app data and watch it from this browser."""
+    try:
+        session['sync_watch'] = time.time()
+    except RuntimeError:
+        pass  # outside a request
+    try:
+        return _github_sync.request_sync(reason)
+    except Exception as exc:  # never break the calling request
+        admin_setup.log_event(f"Could not start GitHub sync: {exc}", level='ERROR', category='GITHUB')
+        return False, f"Could not start GitHub sync: {exc}"
 category_manager = CategoryManager()
 questions_dir = os.path.join(os.path.dirname(__file__), "contents", "questions")
 question_uploader = QuestionUploader(questions_dir)
@@ -228,14 +226,6 @@ reported_question_manager = ReportedQuestionManager(reported_questions_dir)
 # ANSI escape codes for red text (assuming '.error' means red styling)
 ERROR_STYLE = "\033[91m"  # Red color
 RESET_STYLE = "\033[0m"   # Reset to default
-
-# Ensure custom CSS file exists
-custom_css_path = os.path.join(os.path.dirname(__file__), 'static', 'css', 'custom.css')
-if not os.path.exists(custom_css_path):
-    # Generate initial custom CSS file
-    success, message = admin_setup.save_custom_css()
-    if not success:
-        print(f"{ERROR_STYLE}Warning: Failed to create custom CSS file: {message}{RESET_STYLE}")
 
 # Categories are now dynamically derived from questions in the database
 # as per PRJ-003 rule, so we don't add default categories here
@@ -667,18 +657,10 @@ def end_game(room_id):
         'message': f'The game has been ended by the host ({player_name})'
     })
 
-    # Best-effort: push this instance's usage-count ledger to GitHub. Use counts
-    # are the only thing that changes during play; question content is pushed only
-    # by the admin edit routes.
-    try:
-        from contents.admin_controls.github_integration import push_usage_ledger_async
-        # Fire-and-forget; do not block the request lifecycle
-        push_usage_ledger_async(detach=True)
-    except Exception as e:
-        try:
-            current_app.logger.warning(f"GitHub usage-ledger push skipped: {e}")
-        except Exception:
-            pass
+    # Sync all changed app data (usage counts, game logs, questions...) to GitHub.
+    # Must run before cleanup_room_data(): the request captures this game's log
+    # files, which are deleted just below.
+    _request_github_sync(f"game ended ({room_id})")
 
     # Clean up room data (remove room and event files)
     game_status_manager.cleanup_room_data(room_id)
@@ -1524,17 +1506,8 @@ def reset_game():
             'message': f'The game has been ended by the host ({player_name}) to start a new game'
         })
 
-        # Best-effort: push this instance's usage-count ledger to GitHub (use
-        # counts are the only thing that changes during play).
-        try:
-            from contents.admin_controls.github_integration import push_usage_ledger_async
-            # Fire-and-forget; do not block the request lifecycle
-            push_usage_ledger_async(detach=True)
-        except Exception as e:
-            try:
-                current_app.logger.warning(f"GitHub usage-ledger push in reset_game skipped: {e}")
-            except Exception:
-                pass
+        # Sync all changed app data to GitHub (see end_game).
+        _request_github_sync(f"game reset ({room_id})")
 
     # Redirect to the create-room page
     flash('Starting a new game...')
@@ -2140,148 +2113,6 @@ def export_questions(category_id, format='csv'):
         flash(f'Error exporting questions: {str(e)}', 'error')
         return redirect(url_for('admin_controls'))
 
-@app.route('/ai_question_generator', methods=['GET', 'POST'])
-def ai_question_generator():
-    """Generate questions using AI."""
-    # Check if user is authenticated as admin
-    if not session.get('admin_authenticated', False):
-        flash('You must be logged in as an admin to access this page.', 'error')
-        return redirect(url_for('admin_controls'))
-    # Get categories for the form
-    categories = get_categories_with_questions()
-
-    # Initialize variables for template
-    generated_questions = None
-    batch_id = None
-
-    # After an async generation completes the client redirects here with the
-    # resulting batch id so the preview can be rendered server-side.
-    if request.method == 'GET':
-        batch_id = request.args.get('batch_id')
-        if batch_id:
-            generated_questions = get_batch(batch_id)
-
-    if request.method == 'POST':
-        # Get form data. `topic` is the subject used for on-topic framing and
-        # source retrieval; `prompt` now holds optional focus/style instructions.
-        prompt = request.form.get('prompt') or ''
-        topic = (request.form.get('topic') or '').strip()
-        # Question types come from checkboxes (multiple_choice, true_false, text).
-        # All/none selected => 'mixed'; otherwise pass the selected subset as a
-        # comma-separated string the generator understands.
-        selected_question_types = request.form.getlist('question_types')
-        all_question_types = {'multiple_choice', 'true_false', 'text'}
-        if not selected_question_types or set(selected_question_types) >= all_question_types:
-            question_type = 'mixed'
-        else:
-            question_type = ','.join(selected_question_types)
-        difficulty = request.form.get('difficulty', 'mixed')
-        num_questions = request.form.get('num_questions', '20')
-        include_explanations = 'include_explanations' in request.form
-
-        # Get language selection
-        language = request.form.get('language', 'arabic')
-
-        # Get selected reference categories
-        reference_categories = request.form.getlist('reference_categories[]')
-
-        # Offset / Start Index for skipping earlier results
-        start_index_raw = request.form.get('start_index', '0')
-        try:
-            start_index = max(0, int(start_index_raw))
-        except ValueError:
-            start_index = 0
-
-        # Which provider is active? This picks both the settings source and the
-        # generator implementation (OpenAI/ChatGPT vs Anthropic/Claude).
-        provider = get_active_provider(admin_setup)
-
-        if provider == 'anthropic':
-            ai_opts = load_anthropic_settings(admin_setup)
-            options = {
-                'topic': topic,
-                'question_type': question_type,
-                'difficulty': difficulty,
-                'num_questions': num_questions,
-                'include_explanations': include_explanations,
-                'language': language,
-                'reference_categories': reference_categories,
-                'api_key': ai_opts.get('api_key'),
-                'model': ai_opts.get('model'),
-                'temperature': ai_opts.get('temperature'),
-                'top_p': ai_opts.get('top_p'),
-                'max_output_tokens': ai_opts.get('max_output_tokens'),
-                'request_timeout': ai_opts.get('request_timeout'),
-                'start_index': start_index,
-                'use_source_grounding': ai_opts.get('use_source_grounding', True),
-                'use_validation': ai_opts.get('use_validation', True),
-            }
-            gen_start_async = anthropic_question_generator.start_generation_async
-            gen_generate = anthropic_question_generator.generate_questions
-        else:
-            # Load centralized AI settings (env overrides file values)
-            ai_opts = load_ai_settings(admin_setup)
-            options = {
-                'topic': topic,
-                'question_type': question_type,
-                'difficulty': difficulty,
-                'num_questions': num_questions,
-                'include_explanations': include_explanations,
-                'language': language,
-                'reference_categories': reference_categories,
-                # Centralized AI options
-                'api_key': ai_opts.get('api_key'),
-                'model': ai_opts.get('model'),
-                'temperature': ai_opts.get('temperature'),
-                'max_output_tokens': ai_opts.get('max_output_tokens'),
-                'top_p': ai_opts.get('top_p'),
-                'frequency_penalty': ai_opts.get('frequency_penalty'),
-                'presence_penalty': ai_opts.get('presence_penalty'),
-                'reasoning_effort': ai_opts.get('reasoning_effort'),
-                'verbosity': ai_opts.get('verbosity'),
-                'stop': ai_opts.get('stop'),
-                'response_format': ai_opts.get('response_format'),
-                'request_timeout': ai_opts.get('request_timeout'),
-                'base_url': ai_opts.get('base_url'),
-                'organization': ai_opts.get('organization'),
-                'user': ai_opts.get('user'),
-                'seed': ai_opts.get('seed'),
-                'start_index': start_index,
-                # Enhanced flow toggles (RAG grounding + AI validation pass)
-                'use_source_grounding': ai_opts.get('use_source_grounding', True),
-                'use_validation': ai_opts.get('use_validation', True),
-            }
-            gen_start_async = start_generation_async
-            gen_generate = generate_questions
-
-        # AJAX submissions kick off generation in the background and let the
-        # client poll /api/ai/generation_progress to drive the progress bar.
-        if request.form.get('ajax') == '1':
-            started = gen_start_async(prompt, options)
-            return jsonify({"started": started})
-
-        try:
-            batch_id, generated_questions = gen_generate(prompt, options)
-            flash(f'Successfully generated {len(generated_questions)} questions.')
-        except Exception as e:
-            flash(f'Error generating questions: {str(e)}', 'error')
-            return render_template('ai_question_generator.html', categories=categories, admin_setup=admin_setup)
-
-    return render_template(
-        'ai_question_generator.html',
-        categories=categories,
-        generated_questions=generated_questions,
-        batch_id=batch_id,
-        admin_setup=admin_setup
-    )
-
-@app.route('/api/ai/generation_progress')
-def ai_generation_progress():
-    """Return the current AI question-generation progress for the UI to poll."""
-    if not session.get('admin_authenticated', False):
-        return jsonify({"error": "unauthorized"}), 403
-    return jsonify(get_generation_progress())
-
 @app.route('/ai_question_history')
 def ai_question_history():
     """View history of AI-generated questions."""
@@ -2343,104 +2174,6 @@ def ai_question_history_detail(batch_id):
         total_batches=len(all_batches),
         admin_setup=admin_setup
     )
-
-@app.route('/save_ai_questions', methods=['POST'])
-def save_ai_questions():
-    """Save AI-generated questions to the question bank."""
-    # Check if user is authenticated as admin
-    if not session.get('admin_authenticated', False):
-        flash('You must be logged in as an admin to access this page.', 'error')
-        return redirect(url_for('admin_controls'))
-    batch_id = request.form.get('batch_id')
-    if not batch_id:
-        flash('No batch ID provided.', 'error')
-        return redirect(url_for('ai_question_generator'))
-
-    # Get the batch of questions
-    questions = get_batch(batch_id)
-    if not questions:
-        flash('Questions not found for this batch. The data may have been corrupted or deleted.', 'error')
-        return redirect(url_for('ai_question_generator'))
-
-    # Get the custom category name
-    custom_category_name = request.form.get('custom_category', '').strip()
-    if not custom_category_name:
-        flash('Custom category name is required.', 'error')
-        return redirect(url_for('ai_question_generator'))
-
-    # Create a category ID from the name (lowercase, replace spaces with underscores)
-    custom_category_id = custom_category_name.lower().replace(' ', '_')
-
-    # Check if the category already exists
-    if not category_manager.get_category(custom_category_id):
-        # Create the new category
-        category_manager.add_category(custom_category_id, custom_category_name)
-        flash(f'Created new category: {custom_category_name}')
-
-    # Count how many questions were saved
-    saved_count = 0
-
-    # Process each question
-    for i, question in enumerate(questions):
-        # Check if this question should be included
-        include_key = f'include_{i}'
-        if include_key not in request.form:
-            continue
-
-        # Get points (category is now from the custom category)
-        points = int(request.form.get(f'points_{i}', 300))
-
-        # Update the question data
-        question_data = question.copy()
-
-        # Add the question to the question bank using the custom category
-        success, _ = question_bank.add_question(question_data, custom_category_id, points)
-
-        if success:
-            saved_count += 1
-
-            # Also add the question to the question uploader to ensure consistency
-            question_uploader.add_question(question_data, custom_category_id)
-
-    # Remove any duplicate questions that might have been created
-    question_uploader.remove_duplicate_questions()
-
-    # Reload question_bank to get the updated questions
-    question_bank.load_questions()
-
-    if saved_count > 0:
-        admin_setup.record_stat('questions_saved', saved_count)
-        admin_setup.record_stat('ai_generations')
-        admin_setup.log_event(f"Saved {saved_count} AI-generated question(s) to the bank",
-                              level='SUCCESS', category='AI')
-
-    # After saving, trigger a background GitHub sync of amended question files
-    try:
-        from contents.admin_controls.github_integration import (
-            push_all_amended_questions_async,
-            GitHubIntegration,
-        )
-        # Only attempt if at least one question was saved
-        if saved_count > 0:
-            gh = GitHubIntegration()
-            if getattr(gh, 'token', None):
-                push_all_amended_questions_async(detach=True)
-                admin_setup.record_stat('github_auto_pushes')
-                flash('Successfully added {} questions. Upload to GitHub started in the background.'.format(saved_count))
-            else:
-                # Proceed without blocking; inform admin token is missing
-                flash('Successfully added {} questions. GitHub upload not started: missing GITHUB_TOKEN.'.format(saved_count), 'warning')
-        else:
-            flash('No questions were selected to add.', 'warning')
-    except Exception as e:
-        try:
-            current_app.logger.warning(f"GitHub auto-push after AI save skipped: {e}")
-        except Exception:
-            pass
-        # Still inform about saved_count
-        flash(f'Successfully added {saved_count} questions to the question bank. (GitHub sync skipped)')
-
-    return redirect(url_for('admin_controls'))
 
 @app.route('/export_questions_xlsx/<category_id>')
 def export_questions_xlsx(category_id):
@@ -2531,97 +2264,6 @@ def download_exported_file():
 
     return send_file(file_path, as_attachment=True, download_name=file_name)
 
-ADVANCED_OPENAI_FIELDS = [
-    'openai_base_url', 'openai_request_timeout', 'openai_response_format',
-    'openai_organization', 'openai_user', 'openai_stop', 'openai_seed'
-]
-
-
-def _resolve_model_id(form):
-    """Resolve the submitted AI model id, falling back to the default if unknown/blank."""
-    model_id = (form.get('openai_model') or '').strip() or DEFAULT_MODEL
-    if not is_known_model(model_id):
-        model_id = DEFAULT_MODEL
-    return model_id
-
-
-def _collect_model_values(form, model_id):
-    """Parse+clamp the per-model parameter fields (temperature, top_p, etc.) for model_id."""
-    values = {}
-    for param in get_model_params(model_id):
-        key = param['key']
-        if param['type'] == 'checkbox':
-            values[key] = key in form
-            continue
-        if param['type'] == 'select':
-            raw = form.get(key)
-            options = param.get('options') or []
-            values[key] = raw if raw in options else param['default']
-            continue
-        raw = form.get(key)
-        if raw is None or str(raw).strip() == '':
-            values[key] = param['default']
-            continue
-        try:
-            value = int(raw) if key == 'openai_max_tokens' else float(raw)
-        except (TypeError, ValueError):
-            value = param['default']
-        if param.get('min') is not None:
-            value = max(param['min'], value)
-        if param.get('max') is not None:
-            value = min(param['max'], value)
-        values[key] = value
-    return values
-
-
-def _collect_advanced_values(form):
-    """Parse the advanced/global OpenAI fields that apply uniformly across models."""
-    values = {}
-    for fld in ADVANCED_OPENAI_FIELDS:
-        if fld not in form:
-            continue
-        raw = form.get(fld)
-        if fld == 'openai_request_timeout':
-            try:
-                values[fld] = float(raw)
-            except Exception:
-                values[fld] = 60.0
-        elif fld == 'openai_seed':
-            try:
-                values[fld] = int(raw)
-            except Exception:
-                values[fld] = 0
-        else:
-            values[fld] = raw.strip() if isinstance(raw, str) else raw
-    return values
-
-
-@app.route('/get_api_settings/<name>', methods=['GET'])
-def get_api_settings(name):
-    """Get saved API settings by name as JSON."""
-    # Check if user is authenticated as admin
-    if not session.get('admin_authenticated', False):
-        return {'error': 'Not authenticated'}, 401
-
-    # Get the saved settings
-    saved_settings = admin_setup.get_saved_api_settings()
-    if name not in saved_settings:
-        return {'error': f'No saved settings found with name {name}'}, 404
-
-    # Return the settings as JSON
-    return saved_settings[name]
-
-@app.route('/get_model_settings/<model_id>', methods=['GET'])
-def get_model_settings(model_id):
-    """Get the effective (saved-or-default) parameter values for an AI model as JSON."""
-    if not session.get('admin_authenticated', False):
-        return {'error': 'Not authenticated'}, 401
-
-    if not is_known_model(model_id):
-        return {'error': f'Unknown model {model_id}'}, 404
-
-    return admin_setup.get_model_settings(model_id)
-
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_controls():
     """Admin controls page with authentication."""
@@ -2658,167 +2300,7 @@ def admin_controls():
 
                     admin_setup.update_game_setting(setting_name, value)
 
-            # Individual style variable settings have been removed, only theme selection is available
             flash('Game settings updated successfully.')
-
-        # Handle API settings update
-        elif action == 'update_api_settings' and is_authenticated:
-            model_id = _resolve_model_id(request.form)
-
-            # The API key is global (not per-model); verify it if a real key was provided
-            api_key_value = request.form.get('openai_api_key')
-            if not api_key_value or not str(api_key_value).strip() or str(api_key_value).strip() == 'SET_IN_ENV':
-                admin_setup.update_game_setting('openai_api_key', 'SET_IN_ENV')
-                flash('Using OPENAI_API_KEY from environment/Secret Manager. Leave this field blank to continue using runtime secret.', 'info')
-            else:
-                from questionmanagement.ai_question_generator import verify_api_connection
-                cleaned = str(api_key_value).strip()
-                success, message = verify_api_connection(cleaned)
-                if success:
-                    flash(f'OpenAI API connection successful: {message}')
-                    admin_setup.update_game_setting('openai_api_key', cleaned)
-                else:
-                    flash(f'OpenAI API connection failed: {message}', 'error')
-
-            model_values = _collect_model_values(request.form, model_id)
-            success, message = admin_setup.set_model_settings(model_id, model_values)
-            if success:
-                flash(message)
-            else:
-                flash(message, 'error')
-
-            advanced_values = _collect_advanced_values(request.form)
-            for fld, val in advanced_values.items():
-                admin_setup.update_game_setting(fld, val)
-
-        # Handle switching the active AI provider (OpenAI <-> Anthropic/Claude)
-        elif action == 'update_ai_provider' and is_authenticated:
-            provider = (request.form.get('ai_provider') or 'openai').strip().lower()
-            if provider not in ('openai', 'anthropic'):
-                provider = 'openai'
-            admin_setup.update_game_setting('ai_provider', provider)
-            label = 'Anthropic (Claude)' if provider == 'anthropic' else 'OpenAI (ChatGPT)'
-            flash(f'Active AI provider set to {label}.')
-            return redirect(url_for('admin_controls'))
-
-        # Handle Anthropic (Claude) API settings update
-        elif action == 'update_anthropic_settings' and is_authenticated:
-            model_id = (request.form.get('anthropic_model') or '').strip()
-            if not anthropic_models.is_known_model(model_id):
-                model_id = anthropic_models.DEFAULT_MODEL
-
-            # API key is global; verify only if a real key was pasted.
-            api_key_value = request.form.get('anthropic_api_key')
-            if not api_key_value or not str(api_key_value).strip() or str(api_key_value).strip() == 'SET_IN_ENV':
-                admin_setup.update_game_setting('anthropic_api_key', 'SET_IN_ENV')
-                flash('Using ANTHROPIC_API_KEY from environment/Secret Manager. Leave this field blank to keep using the runtime secret.', 'info')
-            else:
-                cleaned = str(api_key_value).strip()
-                success, message = anthropic_question_generator.verify_api_connection(cleaned, model_id)
-                if success:
-                    flash(f'Anthropic API connection successful: {message}')
-                    admin_setup.update_game_setting('anthropic_api_key', cleaned)
-                else:
-                    flash(f'Anthropic API connection failed: {message}', 'error')
-
-            # Parse + clamp the per-model params.
-            cap = anthropic_models.get_max_output_tokens(model_id)
-            defaults = anthropic_models.get_model_defaults(model_id)
-
-            def _num(field, fallback, lo, hi, as_int=False):
-                raw = request.form.get(field)
-                if raw is None or str(raw).strip() == '':
-                    return fallback
-                try:
-                    val = int(float(raw)) if as_int else float(raw)
-                except (TypeError, ValueError):
-                    return fallback
-                return max(lo, min(val, hi))
-
-            values = {
-                'anthropic_max_tokens': _num('anthropic_max_tokens', defaults.get('anthropic_max_tokens', 8192), 1, cap, as_int=True),
-            }
-            # Only persist sampling params for models that still accept them
-            # (Opus 4.7+ deprecates temperature/top_p and hides these fields).
-            if not anthropic_models.sampling_is_deprecated(model_id):
-                values['anthropic_temperature'] = _num('anthropic_temperature', defaults.get('anthropic_temperature', 0.7), 0.0, 1.0)
-                values['anthropic_top_p'] = _num('anthropic_top_p', defaults.get('anthropic_top_p', 1.0), 0.0, 1.0)
-            success, message = admin_setup.set_anthropic_model_settings(model_id, values)
-            flash(message if success else message, 'success' if success else 'error')
-
-            timeout_val = _num('anthropic_request_timeout', 60, 1, 300, as_int=True)
-            admin_setup.update_game_setting('anthropic_request_timeout', timeout_val)
-            return redirect(url_for('admin_controls'))
-
-        # Handle "Save Current Settings" (save the on-screen values as a new named preset)
-        elif action == 'save_api_settings' and is_authenticated:
-            settings_name = (request.form.get('settings_name') or '').strip()
-            if settings_name:
-                model_id = _resolve_model_id(request.form)
-                values = {'openai_model': model_id}
-                values.update(_collect_model_values(request.form, model_id))
-                values.update(_collect_advanced_values(request.form))
-                success, message = admin_setup.save_api_settings(settings_name, values=values)
-                if success:
-                    flash(message)
-                else:
-                    flash(message, 'error')
-            else:
-                flash('Please enter a name for the settings', 'error')
-
-            return redirect(url_for('admin_controls'))
-
-        # Handle "Update" on a selected saved preset (re-save the on-screen values onto it)
-        elif action == 'update_saved_preset' and is_authenticated:
-            settings_name = (request.form.get('saved_settings') or '').strip()
-            if settings_name:
-                model_id = _resolve_model_id(request.form)
-                values = {'openai_model': model_id}
-                values.update(_collect_model_values(request.form, model_id))
-                values.update(_collect_advanced_values(request.form))
-                success, message = admin_setup.save_api_settings(settings_name, values=values)
-                if success:
-                    flash(message)
-                else:
-                    flash(message, 'error')
-            else:
-                flash('Please select a saved setting to update', 'error')
-
-            return redirect(url_for('admin_controls'))
-
-        # Handle delete API settings
-        elif action == 'delete_api_settings' and is_authenticated:
-            settings_name = request.form.get('saved_settings')
-            if settings_name:
-                success, message = admin_setup.delete_api_settings(settings_name)
-                if success:
-                    flash(message)
-                else:
-                    flash(message, 'error')
-            else:
-                flash('Please select a saved setting to delete', 'error')
-
-            return redirect(url_for('admin_controls'))
-
-        # Handle apply theme
-        elif action == 'apply_theme' and is_authenticated:
-            theme_name = request.form.get('theme_name')
-            if theme_name:
-                success, message = admin_setup.apply_theme(theme_name)
-                if success:
-                    flash(message)
-                else:
-                    flash(message, 'error')
-            else:
-                flash('Please select a theme to apply', 'error')
-                success = False
-                message = 'Please select a theme to apply'
-
-            # For AJAX requests, return a JSON response
-            if request.headers.get('X-Requested-With') == 'XMLHttpRequest' or request.headers.get('Accept') == 'application/json':
-                return jsonify({'success': success, 'message': message})
-
-            return redirect(url_for('admin_controls'))
 
         # Handle login
         else:
@@ -2839,26 +2321,11 @@ def admin_controls():
                 admin_setup.log_event(f"Failed admin login attempt for username '{username}'",
                                       level='WARNING', category='AUTH')
 
-    current_model = admin_setup.game_settings.get('openai_model', DEFAULT_MODEL)
-    if not is_known_model(current_model):
-        current_model = DEFAULT_MODEL
-
-    current_anthropic_model = admin_setup.game_settings.get('anthropic_model', anthropic_models.DEFAULT_MODEL)
-    if not anthropic_models.is_known_model(current_anthropic_model):
-        current_anthropic_model = anthropic_models.DEFAULT_MODEL
-
     return render_template(
         'admin_controls.html',
         is_authenticated=is_authenticated,
         login_error=login_error,
         admin_setup=admin_setup,
-        openai_model_registry=get_registry_for_frontend(),
-        current_openai_model=current_model,
-        current_model_settings=admin_setup.get_model_settings(current_model),
-        active_ai_provider=get_active_provider(admin_setup),
-        anthropic_model_registry=anthropic_models.get_registry_for_frontend(),
-        current_anthropic_model=current_anthropic_model,
-        current_anthropic_settings=admin_setup.get_anthropic_model_settings(current_anthropic_model),
         system_stats=admin_setup.get_stats(),
     )
 
@@ -2867,58 +2334,18 @@ def admin_controls():
 
 @app.route('/admin/git_push', methods=['POST'])
 def admin_git_push():
-    """Trigger background push of all amended files to GitHub.
-    
-    Admin-only. Starts a non-blocking background job to commit and push all
-    question files via the GitHub REST API (token-based, independent of the git binary).
-    """
+    """Admin "Sync to GitHub": send every changed data file in one commit."""
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest' or request.args.get('ajax') == '1' or request.is_json
-    
-    # Authentication check
     if not session.get('admin_authenticated', False):
         if is_ajax:
             return jsonify({"success": False, "message": "You must be logged in as an admin."}), 403
         flash('You must be logged in as an admin to perform this action.', 'error')
         return redirect(url_for('admin_controls'))
-    
-    try:
-        # Use the token-based GitHub REST API integration. This is fully
-        # independent of the local git binary/credentials, so it works on
-        # Cloud Run and can be triggered from anywhere in the app.
-        from contents.admin_controls.github_integration import (
-            push_all_amended_questions_async,
-        )
-        
-        commit_msg = request.form.get('commit_message', '').strip() or "Update amended files"
-        
-        # Fire-and-forget push
-        ok, msg = push_all_amended_questions_async(commit_message=commit_msg, detach=True)
-        if not ok:
-            admin_setup.record_stat('github_push_failures')
-            admin_setup.log_event(f"Question push to GitHub failed to start: {msg}",
-                                  level='WARNING', category='GITHUB')
-            if is_ajax:
-                return jsonify({"success": False, "message": msg}), 400
-            flash(msg, 'error')
-            return redirect(url_for('admin_controls'))
-
-        admin_setup.record_stat('github_question_pushes')
-        admin_setup.log_event("Question sync push to GitHub started",
-                              level='SUCCESS', category='GITHUB')
-        if is_ajax:
-            return jsonify({"success": True, "message": "Push to GitHub started in the background."})
-        flash('Push to GitHub started in the background. Changes will appear in the repository shortly.')
-    except Exception as e:
-        admin_setup.record_stat('github_push_failures')
-        admin_setup.log_event(f"Failed to start git push: {e}", level='ERROR', category='GITHUB')
-        try:
-            current_app.logger.warning(f"Failed to start git push: {e}")
-        except Exception:
-            pass
-        if is_ajax:
-            return jsonify({"success": False, "message": f"Failed to start git push: {e}"}), 500
-        flash(f'Failed to start git push: {e}', 'error')
-    
+    ok, msg = _request_github_sync("manual sync")
+    admin_setup.record_stat('github_question_pushes')
+    if is_ajax:
+        return jsonify({"success": ok, "message": msg})
+    flash(msg)
     return redirect(url_for('admin_controls'))
 
 
@@ -2935,348 +2362,61 @@ def admin_git_push_status():
     return jsonify(get_push_progress())
 
 
-@app.route('/admin/git_push_all', methods=['POST'])
-def admin_git_push_all():
-    """Push ALL amended source files to GitHub using native git commands.
-
-    Admin-only. This is the full-source push (source code, config, everything),
-    separate from the question-sync API push in /admin/git_push. Best used in
-    local/dev environments where git is installed and credentialed.
-    """
-    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest' or request.args.get('ajax') == '1' or request.is_json
-
-    if not session.get('admin_authenticated', False):
-        if is_ajax:
-            return jsonify({"success": False, "message": "You must be logged in as an admin."}), 403
-        flash('You must be logged in as an admin to perform this action.', 'error')
-        return redirect(url_for('admin_controls'))
-
-    try:
-        from contents.admin_controls.git_push_helper import push_all_amended_files_async
-
-        commit_msg = request.form.get("commit_message", "").strip() or "Update amended files"
-        ok, msg = push_all_amended_files_async(commit_message=commit_msg, detach=True)
-        if not ok:
-            admin_setup.record_stat('github_push_failures')
-            admin_setup.log_event(f"Full source push to GitHub failed to start: {msg}",
-                                  level='WARNING', category='GITHUB')
-            if is_ajax:
-                return jsonify({"success": False, "message": msg}), 400
-            flash(msg, 'error')
-            return redirect(url_for('admin_controls'))
-
-        admin_setup.record_stat('github_full_pushes')
-        admin_setup.log_event("Full source push to GitHub started",
-                              level='SUCCESS', category='GITHUB')
-        if is_ajax:
-            return jsonify({"success": True, "message": "Full source push to GitHub started in the background."})
-        flash('Full source push to GitHub started in the background (native git).')
-    except Exception as e:
-        admin_setup.record_stat('github_push_failures')
-        admin_setup.log_event(f"Failed to start full git push: {e}", level='ERROR', category='GITHUB')
-        try:
-            current_app.logger.warning(f"Failed to start full git push: {e}")
-        except Exception:
-            pass
-        if is_ajax:
-            return jsonify({"success": False, "message": f"Failed to start full git push: {e}"}), 500
-        flash(f'Failed to start full git push: {e}', 'error')
-
-    return redirect(url_for('admin_controls'))
+# --- GitHub sync failure pop-up (admins, and hosts who just ended a game) -----
+_SYNC_WATCH_SECONDS = 15 * 60
 
 
-@app.route('/admin/git_push_all_status', methods=['GET'])
-def admin_git_push_all_status():
-    """Progress for the native-git full-source push (separate from question sync)."""
-    if not session.get('admin_authenticated', False):
-        return jsonify({"error": "Unauthorized"}), 403
-    from contents.admin_controls.git_push_helper import get_push_progress
-    return jsonify(get_push_progress())
+def _sync_alert_audience():
+    """True when this browser should be told about sync failures."""
+    if session.get('admin_authenticated', False):
+        return True
+    watch = session.get('sync_watch')
+    return bool(watch) and (time.time() - float(watch)) < _SYNC_WATCH_SECONDS
 
 
-@app.route('/aivalidator', methods=['GET'])
-def aivalidator():
-    """AI Question Validator page with authentication."""
-    # Check if user is authenticated as admin
-    if not session.get('admin_authenticated', False):
-        flash('Please login as admin to access AI Question Validator.')
-        return redirect(url_for('admin_controls'))
-    
-    return render_template('aivalidator.html')
+@app.context_processor
+def _inject_sync_alert_flag():
+    return {'show_sync_alerts': _sync_alert_audience()}
 
-@app.route('/process_question_files', methods=['POST'])
-def process_question_files():
-    """Process uploaded question files with AI validation and improvement."""
-    # Check if user is authenticated as admin
-    if not session.get('admin_authenticated', False):
-        return jsonify({'error': 'Not authenticated'}), 401
-    
-    try:
-        # Get uploaded files
-        uploaded_files = request.files.getlist('files')
-        
-        if not uploaded_files:
-            return jsonify({'error': 'No files uploaded'}), 400
-        
-        # Initialize global progress tracking immediately for frontend polling
-        with PROCESSING_PROGRESS_LOCK:
-            PROCESSING_PROGRESS.update({
-                'processing': True,
-                'total_batches': 0,
-                'completed_batches': 0,
-                'current_file': '',
-                'current_batch': 0,
-                'total_files': 0,
-                'overall_percentage': 0,
-                'message': 'Preparing files for processing...',
-                'stage': 'Analyzing uploaded files...'
-            })
-        
-        processed_files = {}
-        
-        from questionmanagement.ai_question_validator import AIQuestionValidator
-        
-        # Initialize validator with admin setup for centralized API settings
-        validator = AIQuestionValidator(admin_setup=admin_setup)
-        
-        # Calculate total batches across all files for accurate progress tracking
-        total_questions = 0
-        file_question_counts = {}
-        
-        # Update progress while counting questions
-        with PROCESSING_PROGRESS_LOCK:
-            PROCESSING_PROGRESS['message'] = 'Counting questions in uploaded files...'
-            PROCESSING_PROGRESS['stage'] = 'Analyzing file contents...'
-        
-        # First pass: count questions in each file
-        for file in uploaded_files:
-            if not file.filename.endswith('.json'):
-                continue
-                
-            try:
-                file_content = file.read().decode('utf-8')
-                original_data = json.loads(file_content)
-                
-                if isinstance(original_data, list):
-                    file_question_counts[file.filename] = len(original_data)
-                    total_questions += len(original_data)
-                    
-                # Reset file pointer for second pass
-                file.seek(0)
-                
-            except Exception as e:
-                print(f"Error reading {file.filename} for counting: {str(e)}")
-                continue
-        
-        batch_size = 5  # Must match the batch size in AI validator
-        total_batches = (total_questions + batch_size - 1) // batch_size
-        
-        # Progress tracking variables - use the global dict so updates are visible to GET endpoint
-        with PROCESSING_PROGRESS_LOCK:
-            PROCESSING_PROGRESS.update({
-                'total_batches': total_batches,
-                'completed_batches': 0,
-                'current_file': '',
-                'current_batch': 0,
-                'total_files': len(file_question_counts),
-                'overall_percentage': 0,
-                'message': 'Starting AI processing...',
-                'stage': f'Ready to process {total_questions} questions in {total_batches} batches'
-            })
-        
-        for file in uploaded_files:
-            if not file.filename.endswith('.json'):
-                continue
-                
-            try:
-                # Read and parse JSON file
-                file_content = file.read().decode('utf-8')
-                original_data = json.loads(file_content)
-                
-                # Validate the file structure
-                if not isinstance(original_data, list):
-                    continue
-                
-                # Update progress for current file
-                with PROCESSING_PROGRESS_LOCK:
-                    PROCESSING_PROGRESS['current_file'] = file.filename
-                
-                # Use AI validator to improve all questions in the file at once
-                # Pass the global dict as the tracker so the GET endpoint can read live changes
-                try:
-                    improved_data = validator._improve_questions_with_openai(
-                        questions=original_data,
-                        category_id=file.filename.replace('.json', ''),
-                        options={},
-                        progress_tracker=PROCESSING_PROGRESS
-                    )
-                except Exception as e:
-                    print(f"Error processing file {file.filename}: {str(e)}")
-                    # If AI processing fails, just copy original data
-                    improved_data = original_data
-                
-                processed_files[file.filename] = {
-                    'original': original_data,
-                    'updated': improved_data,
-                    'filename': file.filename
-                }
-                
-            except Exception as e:
-                print(f"Error processing file {file.filename}: {str(e)}")
-                continue
-        
-        if not processed_files:
-            with PROCESSING_PROGRESS_LOCK:
-                PROCESSING_PROGRESS['processing'] = False
-            return jsonify({'error': 'No valid JSON files were processed'}), 400
-        
-        # Store processed files in session for later use
-        session['processed_files'] = processed_files
-        
-        # Mark processing done
-        with PROCESSING_PROGRESS_LOCK:
-            PROCESSING_PROGRESS['processing'] = False
-        
-        return jsonify({
-            'success': True,
-            'processed_files': processed_files,
-            'message': f'Successfully processed {len(processed_files)} files'
-        })
-        
-    except Exception as e:
-        print(f"Error processing question files: {str(e)}")
-        with PROCESSING_PROGRESS_LOCK:
-            PROCESSING_PROGRESS['processing'] = False
-            PROCESSING_PROGRESS['message'] = f'Error: {str(e)}'
-        return jsonify({'error': f'Processing failed: {str(e)}'}), 500
 
-@app.route('/get_processing_progress', methods=['GET'])
-def get_processing_progress():
-    """Get current processing progress for AI question validation."""
-    # Check if user is authenticated as admin
-    if not session.get('admin_authenticated', False):
-        return jsonify({'error': 'Not authenticated'}), 401
-    
-    with PROCESSING_PROGRESS_LOCK:
-        progress_snapshot = dict(PROCESSING_PROGRESS)
-    
-    # If nothing in progress and no useful message
-    if not progress_snapshot.get('processing') and progress_snapshot.get('overall_percentage', 0) == 0 and not progress_snapshot.get('message'):
-        return jsonify({
-            'processing': False,
-            'message': 'No processing in progress'
-        })
-    
+@app.route('/api/sync/alerts', methods=['GET'])
+def sync_alerts():
+    """Current GitHub sync state for the pop-up poller."""
+    if not _sync_alert_audience():
+        session.pop('sync_watch', None)
+        return jsonify({"watch": False})
+    from contents.admin_controls.github_sync import current_failure, get_status
+    st = get_status()
+    failure = current_failure()
+    if failure and failure.get('id') == session.get('sync_ack'):
+        failure = None
+    busy = st['status'] == 'running' or bool(st['pending'])
+    if not busy and not failure and not session.get('admin_authenticated') and st.get('last_success'):
+        # A host's sync finished fine: stop watching.
+        session.pop('sync_watch', None)
     return jsonify({
-        'processing': progress_snapshot.get('processing', False),
-        'overall_percentage': progress_snapshot.get('overall_percentage', 0),
-        'total_batches': progress_snapshot.get('total_batches', 0),
-        'completed_batches': progress_snapshot.get('completed_batches', 0),
-        'current_file': progress_snapshot.get('current_file', ''),
-        'message': progress_snapshot.get('message', 'Processing...'),
-        'stage': progress_snapshot.get('stage', ''),
-        'total_files': progress_snapshot.get('total_files', 0)
+        "watch": True,
+        "busy": busy,
+        "failure": failure,
+        "is_admin": bool(session.get('admin_authenticated')),
+        "last_success": st.get('last_success'),
     })
 
-@app.route('/download_processed_files', methods=['POST'])
-def download_processed_files():
-    """Download processed files as a ZIP archive."""
-    # Check if user is authenticated as admin
-    if not session.get('admin_authenticated', False):
-        return jsonify({'error': 'Not authenticated'}), 401
-    
-    try:
-        data = request.get_json()
-        processed_files = data.get('processed_files', {})
-        
-        if not processed_files:
-            return jsonify({'error': 'No processed files to download'}), 400
-        
-        import zipfile
-        from io import BytesIO
-        
-        # Create ZIP file in memory
-        zip_buffer = BytesIO()
-        
-        with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-            for filename, file_data in processed_files.items():
-                # Add improved version to ZIP
-                improved_content = json.dumps(file_data['updated'], ensure_ascii=False, indent=2)
-                zip_file.writestr(f"improved_{filename}", improved_content)
-        
-        zip_buffer.seek(0)
-        
-        return send_file(
-            BytesIO(zip_buffer.read()),
-            mimetype='application/zip',
-            as_attachment=True,
-            download_name='ai_improved_questions.zip'
-        )
-        
-    except Exception as e:
-        print(f"Error creating download: {str(e)}")
-        return jsonify({'error': f'Download failed: {str(e)}'}), 500
 
-@app.route('/save_processed_files_to_database', methods=['POST'])
-def save_processed_files_to_database():
-    """Save processed files back to the original database files."""
-    # Check if user is authenticated as admin
+@app.route('/api/sync/ack', methods=['POST'])
+def sync_ack():
+    data = request.get_json(silent=True) or {}
+    session['sync_ack'] = str(data.get('id') or '')[:20]
+    return jsonify({"ok": True})
+
+
+@app.route('/api/sync/retry', methods=['POST'])
+def sync_retry():
     if not session.get('admin_authenticated', False):
-        return jsonify({'error': 'Not authenticated'}), 401
-    
-    try:
-        data = request.get_json()
-        processed_files = data.get('processed_files', {})
-        
-        if not processed_files:
-            return jsonify({'error': 'No processed files to save'}), 400
-        
-        updated_count = 0
-        
-        # Get questions directory path
-        questions_dir = os.path.join(os.path.dirname(__file__), "contents", "questions")
-        
-        for filename, file_data in processed_files.items():
-            try:
-                # Construct full path to original file
-                file_path = os.path.join(questions_dir, filename)
-                
-                if os.path.exists(file_path):
-                    # Create backup of original file
-                    backup_path = f"{file_path}.backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-                    import shutil
-                    shutil.copy2(file_path, backup_path)
-                    
-                    # Write improved data to original file
-                    with open(file_path, 'w', encoding='utf-8') as f:
-                        json.dump(file_data['updated'], f, ensure_ascii=False, indent=2)
-                    
-                    updated_count += 1
-                    print(f"Updated {filename} (backup saved as {os.path.basename(backup_path)})")
-                
-            except Exception as e:
-                print(f"Error saving {filename}: {str(e)}")
-                continue
-        
-        # Reload question bank to reflect changes
-        question_bank.load_questions()
-        
-        # Best-effort auto-push
-        try:
-            from contents.admin_controls.github_integration import push_all_amended_questions_async
-            push_all_amended_questions_async(detach=True)
-        except Exception:
-            pass
-        
-        return jsonify({
-            'success': True,
-            'updated_count': updated_count,
-            'message': f'Successfully updated {updated_count} files in the database'
-        })
-        
-    except Exception as e:
-        print(f"Error saving files to database: {str(e)}")
-        return jsonify({'error': f'Save failed: {str(e)}'}), 500
+        return jsonify({"ok": False, "message": "Admins only."}), 403
+    ok, msg = _request_github_sync("retry after failure")
+    return jsonify({"ok": ok, "message": msg})
+
 
 @app.route('/get_game_state/<room_id>')
 def get_game_state(room_id):
@@ -3317,6 +2457,15 @@ def get_json():
         current_app.logger.error(f"Unexpected error: {e}")
         return jsonify({"error": "Internal server error"}), 500
 
+
+register_ai_routes(
+    app,
+    admin_setup=admin_setup,
+    question_bank=question_bank,
+    category_manager=category_manager,
+    question_uploader=question_uploader,
+    get_categories=get_categories_with_questions,
+)
 
 if __name__ == '__main__':
     import os

@@ -1,36 +1,74 @@
 {
-  "gpt-4o": {
-    "openai_api_key": "SET_IN_ENV",
-    "openai_model": "gpt-4o",
-    "openai_temperature": 0.55,
-    "openai_top_p": 1.0,
-    "openai_frequency_penalty": 0.3,
-    "openai_presence_penalty": 0.2,
-    "openai_seed": 0,
-    "openai_max_tokens": 16384,
-    "openai_base_url": "https://api.openai.com/v1",
-    "openai_request_timeout": 60,
-    "openai_response_format": "",
-    "openai_json_mode": true,
-    "openai_organization": "",
-    "openai_user": "",
-    "openai_stop": ""
-  },
-  "gpt-4o-mini": {
-    "openai_api_key": "SET_IN_ENV",
-    "openai_model": "gpt-4o-mini",
-    "openai_temperature": 0.55,
-    "openai_top_p": 1.0,
-    "openai_frequency_penalty": 0.3,
-    "openai_presence_penalty": 0.2,
-    "openai_seed": 0,
-    "openai_max_tokens": 16384,
-    "openai_base_url": "https://api.openai.com/v1",
-    "openai_request_timeout": 60,
-    "openai_response_format": "",
-    "openai_json_mode": true,
-    "openai_organization": "",
-    "openai_user": "",
-    "openai_stop": ""
-  }
+    "gpt-4o": {
+        "option": "openai",
+        "model": "gpt-4o",
+        "quality": "accurate",
+        "advanced": {
+            "temperature": null,
+            "reasoning_effort": null,
+            "max_output_tokens": 12000,
+            "timeout": 120
+        },
+        "note": "Converted from an old preset: penalties removed; writing and fact-checking now use separate settings."
+    },
+    "gpt-4o-mini": {
+        "option": "openai",
+        "model": "gpt-4o-mini",
+        "quality": "accurate",
+        "advanced": {
+            "temperature": null,
+            "reasoning_effort": null,
+            "max_output_tokens": 12000,
+            "timeout": 120
+        },
+        "note": "Converted from an old preset: penalties removed; writing and fact-checking now use separate settings."
+    },
+    "Recommended: GPT-5.5": {
+        "option": "openai",
+        "model": "gpt-5.5",
+        "quality": "accurate",
+        "advanced": {
+            "temperature": null,
+            "reasoning_effort": null,
+            "max_output_tokens": 12000,
+            "timeout": 120
+        },
+        "note": "Most accurate OpenAI model. Writing uses medium reasoning effort, fact-checking high."
+    },
+    "Recommended: Claude Opus 5.5": {
+        "option": "anthropic",
+        "model": "claude-opus-5-5",
+        "quality": "accurate",
+        "advanced": {
+            "temperature": null,
+            "reasoning_effort": null,
+            "max_output_tokens": 12000,
+            "timeout": 120
+        },
+        "note": "Most accurate Claude model; strong in Arabic."
+    },
+    "Budget: GPT-5.4 mini": {
+        "option": "openai",
+        "model": "gpt-5.4-mini",
+        "quality": "balanced",
+        "advanced": {
+            "temperature": null,
+            "reasoning_effort": null,
+            "max_output_tokens": 12000,
+            "timeout": 120
+        },
+        "note": "Much cheaper reasoning model; still far better than GPT-4o mini at fact-checking."
+    },
+    "Budget: Claude Sonnet 5.5": {
+        "option": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "quality": "accurate",
+        "advanced": {
+            "temperature": null,
+            "reasoning_effort": null,
+            "max_output_tokens": 12000,
+            "timeout": 120
+        },
+        "note": "Half the cost of Opus with excellent accuracy."
+    }
 }

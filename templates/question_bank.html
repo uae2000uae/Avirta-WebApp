@@ -1,74 +1,8 @@
-<link href="../static/css/style.css" rel="stylesheet" type="text/css">
 {% extends "base.html" %}
 
 {% block title %}Question Bank - Avirta{% endblock %}
 
 {% block content %}
-<style>
-    .admin-actions {
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .primary-button {
-        background-color: var(--primary-color, #4a6fa5);
-        color: white;
-        font-weight: bold;
-        padding: 8px 16px;
-        border-radius: var(--border-radius, 4px);
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .primary-button:hover {
-        background-color: var(--primary-color-dark, #3a5985);
-    }
-
-    .primary-button:disabled {
-        background-color: #cccccc;
-        cursor: not-allowed;
-    }
-
-    /* Dropdown styles */
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-toggle {
-        cursor: pointer;
-    }
-
-    .dropdown-menu {
-        display: none;
-        position: absolute;
-        background-color: var(--bg-color, #ffffff);
-        min-width: 120px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        border-radius: var(--border-radius, 4px);
-        overflow: hidden;
-    }
-
-    .dropdown-menu a {
-        color: var(--text-color, #333333);
-        padding: 8px 12px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
-    }
-
-    .dropdown-menu a:hover {
-        background-color: var(--bg-color-lighter, #f1f1f1);
-    }
-
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
-
-</style>
 
 <div class="back-navigation">
     <a href="{{ url_for('admin_controls') }}" class="button"><i class="fas fa-arrow-left"></i> Back to Admin Controls</a>

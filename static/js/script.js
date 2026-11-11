@@ -21,8 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setup flash messages
     setupFlashMessages();
 
-    // Setup scroll position saving
-    setupScrollPositionSaving();
+    // Setup scroll position saving (defined by the game pages that need it)
+    if (typeof setupScrollPositionSaving === 'function') {
+        setupScrollPositionSaving();
+    }
 });
 
 /**
