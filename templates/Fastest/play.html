@@ -8,83 +8,63 @@
 {% endblock %}
 
 {% block content %}
-<div class="page-section" data-room-id="{{ room.room_id }}" data-player-name="{{ player_name }}" data-is-host="{{ is_host|default('false')|lower }}">
-    <h1 class="text-center text-nomargin">{{ room.name }}</h1>
-    <p class="text-center"><strong>Host: </strong>{{ room.host }} | <strong>Room ID: </strong><span>{{ room.room_id }}</span></p>
-
-    <!-- Game Board Info Section -->
-    <div class="section">
-    <div class="form-group">
-        <div class="form-group-inline-grid">
-		<div class="stat-card">
-                <strong>Total Questions:</strong> {{ stats.total_questions }}
-            </div>
-		<div class="stat-card">
-                <strong>Selected Categories:</strong> {{ room.categories|length }}
-            </div>
-		<div class="stat-card">
-                <strong>Point Values:</strong> {{ room.point_values|join(', ') }}
-            </div>
-        </div>
+<div class="page-section fastest-page" data-room-id="{{ room.room_id }}" data-player-name="{{ player_name }}" data-is-host="{{ is_host|default('false')|lower }}">
+    <!-- Room header and game info, in one compact strip -->
+    <div class="fastest-head">
+        <h1 class="text-nomargin">{{ room.name }}</h1>
+        <p class="fastest-meta"><strong>Host:</strong> {{ room.host }} · <strong>Room ID:</strong> <span>{{ room.room_id }}</span></p>
     </div>
-</div>
-  <br>
-    <!-- Question Display Section -->
-    <div class="section">
-    <!-- Current Question Info Section -->
-        <div class="form-group-inline-grid">
-            <div class="text-center">
-                <strong>Question:</strong> {{ stats.current_question_number }} of {{ stats.total_questions }}
-            </div>
-            <div class="text-center">
-                <strong>Category:</strong> {{ current_question.category_id|replace('_', ' ')|title if current_question else 'N/A' }}
-            </div>
-            <div class="text-center">
-                <strong>Points:</strong> {{ current_question.points if current_question else 'N/A' }}
-            </div>
-        </div>
-      <div class="question-display" id="question-container">
-            {% if current_question and stats.question_revealed %}
-                <div class="question-text" dir="{% if current_question.question|is_arabic %}rtl{% else %}ltr{% endif %}">{{ current_question.question }}</div>
-                {% if current_question.options %}
-                    <div class="form-options">
-                        {% for option in current_question.options %}
-                            <div class="button-no-hover">{{ option }}</div>
-                        {% endfor %}
-                    </div>
-                {% elif current_question.type == 'true_false' %}
-                    <div class="form-options">
-                        <div class="button-no-hover">True or False? | صــح أم خطــأ؟</div>
-                    </div>
-                {% endif %}
-            {% else %}
-                {% if is_host %}
-                    <form action="{{ url_for('fastest_reveal_question') }}" method="post" class="form-actions">
-                        <input type="hidden" name="room_id" value="{{ room.room_id }}">
-                        <button type="submit" class="button">Reveal Question | أظهـــر الســــؤال</button>
-                    </form>
-                {% endif %}
+    <div class="fastest-info">
+        <span class="fastest-chip"><strong>Question:</strong> {{ stats.current_question_number }} / {{ stats.total_questions }}</span>
+        <span class="fastest-chip"><strong>Category:</strong> {{ current_question.category_id|replace('_', ' ')|title if current_question else 'N/A' }}</span>
+        <span class="fastest-chip"><strong>Points:</strong> {{ current_question.points if current_question else 'N/A' }}</span>
+        <span class="fastest-chip"><strong>Categories:</strong> {{ room.categories|length }}</span>
+        <span class="fastest-chip"><strong>Point values:</strong> {{ room.point_values|join(', ') }}</span>
+    </div>
+
+    <!-- Question -->
+    <div class="question-display" id="question-container">
+        {% if current_question and stats.question_revealed %}
+            <div class="question-text" dir="{% if current_question.question|is_arabic %}rtl{% else %}ltr{% endif %}">{{ current_question.question }}</div>
+            {% if current_question.options %}
+                <div class="form-options">
+                    {% for option in current_question.options %}
+                        <div class="button-no-hover">{{ option }}</div>
+                    {% endfor %}
+                </div>
+            {% elif current_question.type == 'true_false' %}
+                <div class="form-options">
+                    <div class="button-no-hover">True or False? | صــح أم خطــأ؟</div>
+                </div>
             {% endif %}
-    <!-- Answer Display Section -->
+        {% else %}
+            {% if is_host %}
+                <form action="{{ url_for('fastest_reveal_question') }}" method="post" class="form-actions">
+                    <input type="hidden" name="room_id" value="{{ room.room_id }}">
+                    <button type="submit" class="button">Reveal Question | أظهـــر الســــؤال</button>
+                </form>
+            {% endif %}
+        {% endif %}
+        <!-- Answer -->
         <div id="answer-container">
             {% if current_question and stats.answer_revealed %}
-                <div dir="{% if current_question.correct_answer|is_arabic %}rtl{% else %}ltr{% endif %}"><h2 class="text-center">{{ current_question.correct_answer }}</h2></div>
-                <!-- Report Question Icon under the answer -->
-                <div class="text-center" style="margin-top: 8px;">
+                <div class="fastest-answer" dir="{% if current_question.correct_answer|is_arabic %}rtl{% else %}ltr{% endif %}">
+                    <h2 class="text-center">{{ current_question.correct_answer }}</h2>
                     <button id="report-btn" class="report-button" title="Report question | الإبلاغ عن السؤال"><i class="fas fa-flag"></i></button>
                 </div>
             {% else %}
                 {% if is_host and stats.question_revealed and not stats.answer_revealed %}
-                    <div class="timer-container"><p>Time remaining:</p><h4><span id="timer">15</span></h4><p dir=rtl>الوقت المتبقي :</p></div>
-                    <form action="{{ url_for('fastest_reveal_answer') }}" method="post" class="form-actions">
-                        <input type="hidden" name="room_id" value="{{ room.room_id }}">
-                        <button type="submit" class="button">Reveal Answer | أظهــر الجـــواب</button>
-                    </form>
+                    <div class="fastest-timer-row">
+                        <div class="timer-container"><p>Time remaining:</p><h4><span id="timer">15</span></h4><p dir=rtl>الوقت المتبقي :</p></div>
+                        <form action="{{ url_for('fastest_reveal_answer') }}" method="post" class="form-actions">
+                            <input type="hidden" name="room_id" value="{{ room.room_id }}">
+                            <button type="submit" class="button">Reveal Answer | أظهــر الجـــواب</button>
+                        </form>
+                    </div>
                 {% endif %}
             {% endif %}
         </div>
     </div>
-</div>
 
 {% if current_question %}
 <!-- Report Modal for Fastest -->
@@ -104,47 +84,32 @@
 </div>
 {% endif %}
 
-    <!-- Player Scoring Section -->
-	{% if current_question and stats.answer_revealed %}
-<br>
-    <div class="section">
+    <!-- Who answered first -->
+    {% if current_question and stats.answer_revealed %}
+    <div class="section fastest-players">
         <h4 class="text-center">Who answered correctly first? | مــــن أول مــن جـــاوب صــــح ؟</h4>
-        <div class="content-section">
-			<div class="form-group-inline-grid">
+        <div class="form-group-inline-grid">
             {% for player in room.players %}
                 <form action="{{ url_for('fastest_award_points') }}" method="post" class="form-group">
                     <input type="hidden" name="room_id" value="{{ room.room_id }}">
                     <input type="hidden" name="player_name" value="{{ player }}">
-                    <button type="submit" class="player-button" {% if not is_host or not stats.answer_revealed %}disabled{% endif %}>
+                    <button type="submit" class="player-button" data-sfx="correct" {% if not is_host or not stats.answer_revealed %}disabled{% endif %}>
                         {{ player }}
                     </button>
                 </form>
             {% endfor %}
-			</div>
-            <!-- No one answered button -->
-            <form action="{{ url_for('fastest_next_question') }}" method="post" class="form-actions clear">
-                <input type="hidden" name="room_id" value="{{ room.room_id }}">
-                <button type="submit" class="delete-button" {% if not is_host or not stats.answer_revealed %}disabled{% endif %}>No one | لا أحــد</button>
-            </form>
         </div>
+        <form action="{{ url_for('fastest_next_question') }}" method="post" class="form-actions clear">
+            <input type="hidden" name="room_id" value="{{ room.room_id }}">
+            <button type="submit" class="delete-button" data-sfx="noAnswer" {% if not is_host or not stats.answer_revealed %}disabled{% endif %}>No one | لا أحــد</button>
+        </form>
     </div>
-	{% endif %}
+    {% endif %}
 
-<br>
-    <!-- Navigation Buttons -->
-    <div class="form-actions"> 
+    <!-- Navigation -->
+    <div class="form-actions fastest-nav">
         <a href="{{ url_for('fastest_leaderboard', room_id=room.room_id) }}" class="button">Leaderboard | عرض النتائج</a>
         <a href="{{ url_for('end_game', room_id=room.room_id) }}" class="button red-button">End Game | إنهاء اللعبة</a>
-    </div>
-<br>
-    <!-- Live Game Status Section -->
-    <div class="section">
-        <p><em>Game Status...</em></p>
-        <div class="status-container">
-            <div id="status-updates" class="status-updates">
-                <p class="status-message">Waiting for game updates...</p>
-            </div>
-        </div>
     </div>
 </div>
 {% endblock %}

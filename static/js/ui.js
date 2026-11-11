@@ -67,7 +67,32 @@
     }
     // A very soft tick for ordinary controls (answer buttons have their own chimes).
     var ctl = e.target.closest && e.target.closest('button, .button, .cell, .tab-button, .ai-seg > label, .ai-board > label, .ai-dials > label');
-    if (ctl && !ctl.disabled && !ctl.matches('.answer-option')) sfx('tick');
+    if (ctl && !ctl.disabled && !ctl.matches('.answer-option, [data-sfx]')) sfx('tick');
+  }, true);
+
+  /* Who is the fastest: the host's "who answered first" choice reloads the
+   * page at once, which would cut any sound off. Play the result sound first,
+   * then submit a moment later. */
+  var SUBMIT_SOUNDS = [
+    { action: /\/fastest\/award_points/, sound: 'correct' },
+    { action: /\/fastest\/next_question/, sound: 'noAnswer', submitter: '[data-sfx="noAnswer"]' }
+  ];
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (!form || form.dataset.sfxSent) return;
+    var rule = SUBMIT_SOUNDS.find(function (r) {
+      return r.action.test(form.action) && (!r.submitter || (e.submitter && e.submitter.matches(r.submitter)));
+    });
+    if (!rule || !window.AvirtaSFX || window.AvirtaSFX.isMuted()) return;
+    e.preventDefault();
+    form.dataset.sfxSent = '1';
+    sfx(rule.sound);
+    if (e.submitter && e.submitter.name) {       // keep the clicked button's value
+      var hidden = document.createElement('input');
+      hidden.type = 'hidden'; hidden.name = e.submitter.name; hidden.value = e.submitter.value;
+      form.appendChild(hidden);
+    }
+    setTimeout(function () { HTMLFormElement.prototype.submit.call(form); }, 420);
   }, true);
 
   /* -------------------------------------------------------------- motion */
@@ -167,7 +192,8 @@
       if (isNaN(n) || n === last) return;
       last = n;
       if (n === 0) sfx('timerEnd');
-      else if (n <= 5) sfx('timerTick');
+      else if (n <= 5) sfx('timerTick');   // high tone for the final seconds
+      else sfx('timerLow');                // low tone every second before that
     }).observe(el, { childList: true, characterData: true, subtree: true });
   }
 
@@ -293,6 +319,8 @@
       cascade(rows);
       setTimeout(function () { sweep(rows[0]); }, 200);
       lb.querySelectorAll('tbody tr td:last-child').forEach(countUp);
+      var winnerPoints = document.querySelector('.winner-banner .winner-points');
+      if (winnerPoints) setTimeout(function () { countUp(winnerPoints); }, 300);
       var section = document.querySelector('[data-final="true"]');
       if (section && store.once('avirta-win:' + path)) {
         setTimeout(function () { sfx('win'); confetti(); }, 250);

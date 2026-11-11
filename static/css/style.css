@@ -1602,6 +1602,32 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 .player-button:hover, .player-button:active { color: var(--on-accent); background: var(--veil-2), var(--accent); outline-color: var(--text); }
 .player-button:disabled { opacity: .45; cursor: not-allowed; }
 
+/* Who is the fastest: compact play page. Font sizes are unchanged; only gaps,
+   padding and arrangement are tighter. */
+.fastest-page { display: flex; flex-direction: column; gap: var(--s-2); }
+.fastest-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; column-gap: var(--s-3); row-gap: 0; }
+.fastest-head h1 { margin: 0; }
+.fastest-meta { margin: 0; color: var(--muted); }
+.fastest-info { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-1) var(--s-2); }
+.fastest-chip {
+    padding: 2px var(--s-2); border-radius: var(--r-pill); white-space: nowrap;
+    background: var(--raised); outline: 1px solid var(--line); outline-offset: -1px;
+}
+.fastest-chip strong { color: var(--muted); font-weight: normal; }
+.fastest-page .question-display { margin: 0; padding: var(--s-2); }
+.fastest-page .question-text { margin-bottom: var(--s-2); padding: var(--s-2) var(--s-3); }
+.fastest-page .form-actions { margin-top: var(--s-1); }
+.fastest-answer { display: flex; align-items: center; justify-content: center; gap: var(--s-2); }
+.fastest-answer h2 { margin: var(--s-1) 0; }
+.fastest-timer-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; column-gap: var(--s-4); margin-top: var(--s-1); }
+.fastest-timer-row .timer-container { height: auto; gap: var(--s-2); }
+.fastest-timer-row .timer-container p, .fastest-timer-row .timer-container h4 { margin: 0; }
+.fastest-timer-row .form-actions { flex-basis: auto; margin: 0; padding: 0; background: none; outline: none; }
+.fastest-players { margin: 0; padding: var(--s-2); }
+.fastest-players h4 { margin: 0 0 var(--s-2); }
+.fastest-players .form-group-inline-grid { gap: var(--s-2); }
+.fastest-nav { margin-top: 0; }
+
 /* Timer */
 .timer-container { display: flex; align-items: center; justify-content: center; height: 4em; overflow: visible; color: var(--muted); }
 #timer {
@@ -1823,6 +1849,37 @@ html.fit-stage body.game > .container {
     background-size: 250% 100%;
     animation: sweep 1100ms var(--ease) 1 backwards;
 }
+/* Winner spotlight on the final results (templates/_winner_banner.html). */
+.winner-banner {
+    position: relative; overflow: hidden; isolation: isolate;
+    max-width: 560px; margin: 0 auto var(--s-5); padding: var(--s-5) var(--s-4) var(--s-4);
+    text-align: center; border: 1px solid transparent; border-radius: var(--r-6);
+    background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--accent) border-box;
+    animation: winner-in 480ms var(--ease) backwards;
+}
+.winner-banner::before {           /* soft two-colour glow behind the name */
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: radial-gradient(120% 90% at 50% 0%, var(--tint-2), transparent 70%);
+}
+.winner-trophy {
+    font-size: var(--fs-7); line-height: 1;
+    background: var(--accent); -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: trophy-in 640ms var(--ease) 120ms backwards;
+}
+.winner-label { margin-top: var(--s-2); font-size: var(--fs-2); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.winner-name {
+    margin-top: var(--s-1); font-size: var(--fs-7); font-weight: bold; line-height: 1.25; overflow-wrap: anywhere;
+    background: linear-gradient(100deg, var(--text) 40%, var(--accent-1) 50%, var(--text) 60%) 0 0 / 250% 100% no-repeat;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: name-shimmer 1600ms var(--ease) 520ms 1 backwards;
+}
+.winner-score { margin-top: var(--s-1); font-size: var(--fs-5); color: var(--accent-ink); }
+.winner-points { display: inline-block; min-width: 2ch; font-weight: bold; }
+.winner-unit { font-size: var(--fs-3); color: var(--muted); }
+@keyframes winner-in { from { opacity: .35; transform: translateY(8px) scale(.97); } }
+@keyframes trophy-in { from { opacity: .35; transform: translateY(10px) rotate(-8deg); } }
+@keyframes name-shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
+
 .count-up { position: relative; color: transparent !important; }
 .count-up > .count-up-value { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--accent-ink); font-weight: bold; }
 .confetti-layer { position: fixed; inset: 0; z-index: 3000; width: 100vw; height: 100vh; pointer-events: none; }

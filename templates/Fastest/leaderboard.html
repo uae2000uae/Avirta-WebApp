@@ -11,6 +11,7 @@
     </div>
 
     <div class="leaderboard-display">
+        {% if leaderboard and room.is_board_completed() %}{% include '_winner_banner.html' %}{% endif %}
         {% if leaderboard %}
             <table class="leaderboard-table">
                 <thead>

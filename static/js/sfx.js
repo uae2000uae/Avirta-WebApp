@@ -2,8 +2,8 @@
  * Audio API (no audio files). On by default, quiet, and remembered when
  * muted (localStorage "avirta-sound" = "off").
  *
- *   AvirtaSFX.play('tick' | 'timerTick' | 'timerEnd' | 'start' | 'correct' |
- *                  'wrong' | 'complete' | 'win')
+ *   AvirtaSFX.play('tick' | 'timerLow' | 'timerTick' | 'timerEnd' | 'start' |
+ *                  'correct' | 'wrong' | 'noAnswer' | 'complete' | 'win')
  *   AvirtaSFX.setMuted(bool) / AvirtaSFX.isMuted()
  *
  * Browsers only allow audio after a user gesture, so the context is created
@@ -60,7 +60,9 @@
 
   var SOUNDS = {
     tick:      function () { note(1760, 0, 0.035, 0.18, 'sine'); },
-    timerTick: function () { note(1320, 0, 0.06, 0.32, 'triangle'); },
+    timerLow:  function () { note(440, 0, 0.07, 0.26, 'triangle'); },          // each second while time remains
+    timerTick: function () { note(1320, 0, 0.06, 0.32, 'triangle'); },        // last 5 seconds
+    noAnswer:  function () { note(392, 0, 0.16, 0.26, 'sine'); note(349.23, 0.13, 0.32, 0.24, 'sine'); },
     timerEnd:  function () { note(A5, 0, 0.22, 0.4, 'sine', true); note(E5, 0.16, 0.42, 0.4, 'sine', true); },
     start:     function () { note(C5, 0, 0.18, 0.32, 'sine', true); note(E5, 0.08, 0.18, 0.32, 'sine', true); note(G5, 0.16, 0.32, 0.34, 'sine', true); },
     correct:   function () { note(E5, 0, 0.16, 0.36, 'sine', true); note(B5, 0.09, 0.42, 0.36, 'sine', true); },
