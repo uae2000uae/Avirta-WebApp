@@ -44,26 +44,22 @@
                 {{ category_id|replace('_', ' ')|title }}
               </div>
               <div class="question-list">
-                {% for points, question_info in points_dict.items() %}
-                  <div class="question-item" data-points="{{ points }}">
+                {% for points, infos in points_dict.items() %}
+                  {# Several questions can share a score: one button per question, side by side. #}
+                  <div class="question-item{% if infos|length > 1 %} question-split{% endif %}" data-points="{{ points }}" style="--split: {{ infos|length }}">
+                    {% for question_info in infos %}
                     <form action="{{ url_for('select_question') }}" method="post" class="question-box">
                       <input type="hidden" name="category_id" value="{{ category_id }}">
                       <input type="hidden" name="points" value="{{ points }}">
+                      <input type="hidden" name="question_id" value="{{ question_info.id }}">
                       <input type="hidden" name="acting_player" class="acting-player-input" value="">
-                      <button type="submit" class="question-button {% if question_info.doubled %}doubled{% endif %}" 
-							{% if question_info.answered %}
-							disabled="disabled" 
-                          style="opacity: 0.5; cursor: not-allowed;"
-                          {% if not question_info.answered %}
-                            title="It's {{ current_player }}'s turn"
-                          {% endif %}
-                        {% endif %}
-                        {% if question_info.doubled %}
-                          title="Double Points Active!"
-                        {% endif %}>
+                      <button type="submit" class="question-button {% if question_info.doubled %}doubled{% endif %}" data-question-id="{{ question_info.id }}"
+                        {% if question_info.answered %}disabled="disabled"{% endif %}
+                        {% if question_info.doubled %}title="Double Points Active!"{% endif %}>
                         <strong>{{ question_info.points }}{% if question_info.doubled %}!{% endif %}</strong>
                       </button>
                     </form>
+                    {% endfor %}
                   </div>
                 {% endfor %}
               </div>

@@ -10,10 +10,13 @@
  * Update player tools based on game state
  * This function is called from livestatus.js
  */
-function updatePlayerTools(data) {
-    // Use the updatePlayerTools function from gametools.js if it exists
-    if (typeof window.updatePlayerTools === 'function') {
-        window.updatePlayerTools(data);
+// Not a global named "updatePlayerTools": this file is loaded after gametools.js,
+// and a global function declaration with that name would replace gametools.js's
+// window.updatePlayerTools with this wrapper, which then calls itself forever.
+function updatePlayerToolsUtil(data) {
+    var impl = window.avirtaUpdatePlayerTools || window.updatePlayerTools;
+    if (typeof impl === 'function' && impl !== updatePlayerToolsUtil) {
+        impl(data);
     }
 }
 
@@ -43,5 +46,5 @@ function addStatusUpdate(message, type = 'default') {
 }
 
 // Export functions to window object for global access
-window.updatePlayerToolsUtil = updatePlayerTools;
+window.updatePlayerToolsUtil = updatePlayerToolsUtil;
 window.addStatusUpdate = addStatusUpdate;

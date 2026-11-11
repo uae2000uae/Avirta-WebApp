@@ -31,7 +31,7 @@ function initializeGameTools() {
  * Update player tools based on game state
  * This function is called from livestatus.js
  */
-window.updatePlayerTools = function(data) {
+window.avirtaUpdatePlayerTools = window.updatePlayerTools = function(data) {
     // Update Double Points button
     const doublePointsButton = document.querySelector('.dp');
     if (doublePointsButton && data.player_tools && data.player_tools.double_points !== undefined) {

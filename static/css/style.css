@@ -1488,6 +1488,9 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 }
 .question-list { padding: var(--s-1); flex-direction: column; column-fill: auto; }
 .question-item { margin-bottom: var(--s-1); }
+/* Several questions at the same score share the row: equal side-by-side buttons. */
+.question-item.question-split { display: flex; }
+.question-item.question-split > .question-box { flex: 1 1 0; min-width: 0; }
 .question-box { padding: var(--s-1); background: transparent; outline: none; }
 .question-button {
     width: 100%;
@@ -1857,7 +1860,7 @@ html.fit-stage body.game > .container {
 @keyframes soft-blink { 50% { opacity: .35; } }
 @keyframes turn-pulse { 50% { opacity: .72; } }
 @keyframes timer-pulse { 50% { opacity: .55; } }
-@keyframes doubled-pulse { 50% { outline-color: var(--on-accent); } }
+@keyframes doubled-pulse { 50% { outline-color: var(--on-accent); filter: brightness(1.22); } }
 
 .enter { animation: enter var(--t-3) var(--ease) backwards; animation-delay: calc(var(--i, 0) * 24ms); }
 .site main { animation: page-in var(--t-2) var(--ease) backwards; }

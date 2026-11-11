@@ -128,7 +128,7 @@ class GameRoom:
 
         return bool(self.board), enough_questions, error_details
 
-    def select_question(self, category_id, points, player_name, acting_player=None):
+    def select_question(self, category_id, points, player_name, acting_player=None, question_id=None):
         """
         Select a question from the board based on category and point value.
 
@@ -160,7 +160,7 @@ class GameRoom:
                 return None
 
         # Use the imported select_board_question function to get the question
-        question = select_board_question(self.board, self.answered_questions, category_id, points)
+        question = select_board_question(self.board, self.answered_questions, category_id, points, question_id)
 
         # If no question is available, return None
         if not question:

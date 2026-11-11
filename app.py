@@ -834,7 +834,8 @@ def select_question():
         session['acting_player'] = acting_player
 
     # Select the question
-    question = game_room.select_question(category_id, points, player_name, acting_player)
+    question_id = (request.form.get('question_id') or '').strip() or None
+    question = game_room.select_question(category_id, points, player_name, acting_player, question_id)
 
     if not question:
         flash('Question not available.', 'error')
@@ -1512,6 +1513,16 @@ def reset_game():
     # Redirect to the create-room page
     flash('Starting a new game...')
     return redirect(url_for('create_room'))
+
+@app.route('/notify_game_room', methods=['GET', 'POST'])
+def notify_game_room():
+    """Endpoint the game pages poll every second (and ping after using a tool).
+
+    Board changes reach the pages through /api/game_updates, so no forced
+    reload is ever needed; answering here stops the per-second 404s.
+    """
+    return jsonify({'refresh': False})
+
 
 @app.route('/use_tool', methods=['POST'])
 def use_tool():

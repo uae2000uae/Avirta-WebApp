@@ -354,7 +354,7 @@ def organize_board(selected_questions):
 
     return board_category
 
-def select_question(board, answered_questions, category_id, points):
+def select_question(board, answered_questions, category_id, points, question_id=None):
     """
     Select a question from the board based on category and point value.
 
@@ -378,7 +378,16 @@ def select_question(board, answered_questions, category_id, points):
     # Get the list of questions for this point value
     questions_list = board[category_id][points]
 
-    # Find an unanswered question
+    # A specific question was clicked (several questions can share a score).
+    if question_id:
+        for question in questions_list:
+            if str(question['id']) == str(question_id):
+                if question['id'] in answered_questions:
+                    return None
+                answered_questions.add(question['id'])
+                return question.copy()
+
+    # Otherwise take the first unanswered question at this score
     for question in questions_list:
         if question['id'] not in answered_questions:
             # Mark question as answered
@@ -401,8 +410,9 @@ def get_available_questions(board, answered_questions, current_player=None, play
         use_custom_points (bool, optional): Whether to use custom point values. Defaults to False.
 
     Returns:
-        dict: Dictionary of questions organized by category and point value,
-             with answered questions marked as {"points": points, "answered": True}
+        dict: {category_id: {points: [question_info, ...]}}. Each score keeps a
+             list because several questions can share the same score; each
+             question_info is {"id", "points", "answered", "doubled"}.
     """
     available = {}
 
@@ -445,9 +455,9 @@ def get_available_questions(board, answered_questions, current_player=None, play
         # Sort by actual points in descending order (most difficult to least difficult)
         all_questions.sort(key=lambda item: item[1]["points"], reverse=True)
 
-        # Add questions to the available dictionary
+        # Add questions to the available dictionary (all questions per score)
         for points, question_info in all_questions:
-            available[category_id][points] = question_info
+            available[category_id].setdefault(points, []).append(question_info)
 
     return available
 

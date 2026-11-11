@@ -187,7 +187,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 // Update player tools based on game state
-                window.updatePlayerToolsUtil(data);
+                // gametoolsutil.js loads asynchronously; skip until it is ready.
+                if (typeof window.updatePlayerToolsUtil === 'function') window.updatePlayerToolsUtil(data);
 
                 // Check if the board needs to be refreshed (e.g., after a question is answered)
                 if (data.current_question && data.current_question.id) {
@@ -327,74 +328,65 @@ function updateGameBoard() {
                         // Get all available questions for this category
                         const categoryQuestions = data.available_questions[categoryId];
 
-                        // Process each question in the category
+                        // Process each score in the category. Several questions can share a
+                        // score; they are shown as equal side-by-side buttons in one row.
                         for (const points in categoryQuestions) {
-                            const questionInfo = categoryQuestions[points];
+                            let infos = categoryQuestions[points];
+                            if (!Array.isArray(infos)) infos = [infos];
 
-                            // Check if this question item already exists
+                            // Check if this score row already exists
                             let questionItem = questionList.querySelector(`.question-item[data-points="${points}"]`);
-
                             if (!questionItem) {
-                                // Create new question item if it doesn't exist
                                 questionItem = document.createElement('div');
                                 questionItem.className = 'question-item';
                                 questionItem.dataset.points = points;
-
-                                // Create form for the question
-                                const form = document.createElement('form');
-                                form.action = '/select_question';
-                                form.method = 'post';
-                                form.className = 'question-box';
-
-                                // Create hidden inputs
-                                const categoryInput = document.createElement('input');
-                                categoryInput.type = 'hidden';
-                                categoryInput.name = 'category_id';
-                                categoryInput.value = categoryId;
-
-                                const pointsInput = document.createElement('input');
-                                pointsInput.type = 'hidden';
-                                pointsInput.name = 'points';
-                                pointsInput.value = points;
-
-                                const actingPlayerInput = document.createElement('input');
-                                actingPlayerInput.type = 'hidden';
-                                actingPlayerInput.name = 'acting_player';
-                                actingPlayerInput.className = 'acting-player-input';
-                                actingPlayerInput.value = document.querySelector('.red-badge')?.textContent || '';
-
-                                // Create button
-                                const button = document.createElement('button');
-                                button.type = 'submit';
-                                button.className = 'question-button';
-                                if (questionInfo.doubled) {
-                                    button.classList.add('doubled');
-                                }
-
-                                // Add elements to form
-                                form.appendChild(categoryInput);
-                                form.appendChild(pointsInput);
-                                form.appendChild(actingPlayerInput);
-                                form.appendChild(button);
-
-                                // Add form to question item
-                                questionItem.appendChild(form);
-
-                                // Add question item to question list
                                 questionList.appendChild(questionItem);
                             }
+                            questionItem.classList.toggle('question-split', infos.length > 1);
+                            questionItem.style.setProperty('--split', infos.length);
 
-                            // Update the button (whether it's new or existing)
-                            const button = questionItem.querySelector('.question-button');
-                            if (button) {
-                                // Update the button content with the points value
-                                button.innerHTML = `<strong>${questionInfo.points}${questionInfo.doubled ? '!' : ''}</strong>`;
-                                button.disabled = questionInfo.answered;
-                                button.style.opacity = questionInfo.answered ? '0.5' : '1';
-                                button.style.cursor = questionInfo.answered ? 'not-allowed' : 'pointer';
-                                button.classList.toggle('doubled', questionInfo.doubled);
-                                button.title = questionInfo.doubled ? 'Double Points Active!' : '';
+                            // Rebuild the buttons if the number of questions changed
+                            if (questionItem.querySelectorAll('.question-button').length !== infos.length) {
+                                questionItem.innerHTML = '';
+                                infos.forEach((info) => {
+                                    const form = document.createElement('form');
+                                    form.action = '/select_question';
+                                    form.method = 'post';
+                                    form.className = 'question-box';
+                                    const fields = { category_id: categoryId, points: points, question_id: info.id };
+                                    Object.keys(fields).forEach((name) => {
+                                        const input = document.createElement('input');
+                                        input.type = 'hidden';
+                                        input.name = name;
+                                        input.value = fields[name];
+                                        form.appendChild(input);
+                                    });
+                                    const actingPlayerInput = document.createElement('input');
+                                    actingPlayerInput.type = 'hidden';
+                                    actingPlayerInput.name = 'acting_player';
+                                    actingPlayerInput.className = 'acting-player-input';
+                                    actingPlayerInput.value = document.querySelector('.red-badge')?.textContent || '';
+                                    form.appendChild(actingPlayerInput);
+                                    const button = document.createElement('button');
+                                    button.type = 'submit';
+                                    button.className = 'question-button';
+                                    button.dataset.questionId = info.id;
+                                    form.appendChild(button);
+                                    questionItem.appendChild(form);
+                                });
                             }
+
+                            // Update each button (whether new or existing)
+                            const buttons = questionItem.querySelectorAll('.question-button');
+                            infos.forEach((info, i) => {
+                                const button = buttons[i];
+                                if (!button) return;
+                                button.innerHTML = `<strong>${info.points}${info.doubled ? '!' : ''}</strong>`;
+                                button.disabled = info.answered;
+                                button.style.cursor = info.answered ? 'not-allowed' : 'pointer';
+                                button.classList.toggle('doubled', info.doubled);
+                                button.title = info.doubled ? 'Double Points Active!' : '';
+                            });
                         }
                     }
                 }
