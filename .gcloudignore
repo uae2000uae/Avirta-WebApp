@@ -1,6 +1,6 @@
 # Files NOT uploaded to Cloud Run by `gcloud run deploy --source .` (Cloud Build).
 # Same syntax as .gitignore. Keep runtime data (contents/, datastore/,
-# questionmanagement/) — the app reads and writes it.
+# questionmanagement/) - the app reads and writes it.
 .gcloudignore
 .git
 .gitignore
