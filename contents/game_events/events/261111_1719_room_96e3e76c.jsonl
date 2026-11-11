@@ -1,0 +1,4 @@
+{"type": "question_selected", "data": {"player_name": "P2", "category": "رياضيات", "points": 200, "message": "P2 selected a 200-point question from رياضيات"}, "timestamp": "2026-11-11T17:19:04.921619"}
+{"type": "answer_evaluated", "data": {"player_name": "P2", "evaluator": "P1", "category": "رياضيات", "points": 200, "is_correct": true, "message": "The Host evaluated P2's answer as correct and earned 200 points"}, "timestamp": "2026-11-11T17:19:11.858518"}
+{"type": "turn_switch", "data": {"previous_player": "P2", "new_player": "P1", "message": "Turn switched from P2 to P1"}, "timestamp": "2026-11-11T17:19:15.729577"}
+{"type": "game_ended", "data": {"player_name": "P1", "message": "The game has been ended by the host (P1)"}, "timestamp": "2026-11-11T17:19:20.863080"}

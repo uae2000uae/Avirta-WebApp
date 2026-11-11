@@ -1,0 +1,6 @@
+{"type": "game_started", "data": {"player_name": "P1", "message": "Game started by P1", "categories": ["النحو", "جسم_الإنسان", "رياضيات"], "question_types": ["text", "multiple_choice", "true_false"], "players": ["P1", "P2"]}, "timestamp": "2026-11-11T17:18:16.096774"}
+{"type": "tool_used", "data": {"player_name": "P1", "tool_name": "double_points", "target_player": "P1", "message": "P1 activated Double Points"}, "timestamp": "2026-11-11T17:18:21.485083"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "جسم_الإنسان", "points": 800, "message": "P1 selected a 800-point question from جسم_الإنسان"}, "timestamp": "2026-11-11T17:18:30.249613"}
+{"type": "answer_submitted", "data": {"player_name": "P1", "category": "جسم_الإنسان", "points": 800, "is_correct": true, "message": "P1 answered correct and earned 800 points"}, "timestamp": "2026-11-11T17:18:44.744937"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "P2", "message": "Turn switched from P1 to P2"}, "timestamp": "2026-11-11T17:18:50.931594"}
+{"type": "tool_used", "data": {"player_name": "P1", "tool_name": "double_points", "target_player": "P2", "message": "P1 activated Double Points for P2"}, "timestamp": "2026-11-11T17:18:59.071538"}
