@@ -1,0 +1,1 @@
+{"type": "game_started", "data": {"player_name": "P1", "message": "Who is the fastest game started by P1", "categories": ["معلومات_عامة"], "point_values": [200, 100], "question_types": ["text", "multiple_choice"], "players": ["P1", "P2"]}, "timestamp": "2026-11-11T17:30:18.820315"}
