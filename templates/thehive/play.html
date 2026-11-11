@@ -153,9 +153,71 @@
       }
       cell.textContent = c.points;
     }
+
+    if (state.winner) showWinner(state.winner);
+  }
+
+  /* ---- Winner: a team linked its two edges ---------------------------- */
+  let winnerShown = false;
+  function showWinner(w) {
+    const root = document.getElementById('hex_root');
+    const cells = document.querySelectorAll('#board .cell');
+    root.classList.add('hive-won');
+    (w.path || []).forEach((idx, n) => {
+      const cell = cells[idx];
+      if (cell) { cell.classList.add('win-path'); cell.style.setProperty('--i', n); }
+    });
+    const winSection = w.team === root.dataset.teamA ? 'team-a-section' : 'team-b-section';
+    document.getElementById(winSection)?.classList.add('team-won');
+    document.getElementById('turn').textContent = w.team;
+    document.getElementById('turn').previousSibling.textContent = 'Winner: ';
+    if (winnerShown) return;
+    winnerShown = true;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'hive-win';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'hive-win-name');
+    overlay.innerHTML =
+      '<div class="winner-banner">' +
+        '<div class="winner-trophy" aria-hidden="true"><i class="fas fa-trophy"></i></div>' +
+        '<div class="winner-label">Winner | الفائز</div>' +
+        '<div class="winner-name" id="hive-win-name" dir="auto"></div>' +
+        '<div class="winner-score"><span class="hive-win-swatch" aria-hidden="true"></span>' +
+          '<span class="winner-unit"></span></div>' +
+        '<div class="form-actions">' +
+          '<button type="button" class="button" data-act="board">See the board | عرض اللوحة</button>' +
+          '<button type="button" class="button red-button" data-act="end">End Game | إنهاء اللعبة</button>' +
+        '</div>' +
+      '</div>';
+    overlay.querySelector('.winner-name').textContent = w.team;
+    overlay.querySelector('.hive-win-swatch').style.background = w.color || '';
+    overlay.querySelector('.winner-unit').textContent =
+      (w.edges === 'top-bottom' ? 'Connected top to bottom' : 'Connected left to right') +
+      ' in ' + (w.path || []).length + ' cells | ربط الحافتين';
+    overlay.addEventListener('click', (e) => {
+      const act = e.target.closest('[data-act]')?.dataset.act;
+      if (act === 'board' || e.target === overlay) overlay.remove();
+      if (act === 'end') handleEndGameClick();
+    });
+    document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', esc); } });
+    document.body.appendChild(overlay);
+    overlay.querySelector('[data-act="board"]').focus();
+
+    // Sound and confetti once per room, even across reloads.
+    let first = true;
+    try { first = !sessionStorage.getItem('avirta-hive-won:' + roomId); sessionStorage.setItem('avirta-hive-won:' + roomId, '1'); } catch (e) {}
+    if (first) {
+      setTimeout(() => {
+        if (window.AvirtaSFX) AvirtaSFX.play('win');
+        if (window.AvirtaUI) AvirtaUI.confetti();
+      }, 250);
+    }
   }
 
   function selectCell(e) {
+    if (document.getElementById('hex_root').classList.contains('hive-won')) return;
     const idx = parseInt(e.target.dataset.index);
     if (isNaN(idx)) return;
 
@@ -166,6 +228,7 @@
     }).then(r => r.json()).then(data => {
       if (!data.success) {
         document.getElementById('feedback').textContent = data.message || 'Failed';
+        if (data.winner) showWinner(data.winner);
         return;
       }
 
@@ -226,6 +289,13 @@
       }
 
       document.getElementById('next_container').style.display = 'block';
+
+      if (data.correct && data.winner) {
+        setTimeout(() => {
+          fetch(`{{ url_for('hex_game_updates', room_id='__RID__') }}`.replace('__RID__', roomId))
+            .then(r => r.json()).then(state => refreshBoard(state));
+        }, 700);
+      }
     });
   }
 

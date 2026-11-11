@@ -1720,6 +1720,24 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
     cursor: pointer;
     transition: background-color var(--t-2) var(--ease);
 }
+/* The Hive: a team linked its edges. Brightness and opacity only, so no cell
+   moves or changes shape. */
+#hex_root.hive-won .cell { cursor: default; }
+#hex_root.hive-won .cell:not(.win-path) { opacity: .4; transition: opacity var(--t-3) var(--ease); }
+#hex_root .cell.win-path { animation: hive-path 700ms var(--ease) calc(var(--i, 0) * 110ms) 4 alternate both; }
+@keyframes hive-path { to { filter: brightness(1.5) saturate(1.15); } }
+#hex_root .team-section.team-won { outline: 2px solid var(--accent-1); outline-offset: 2px; }
+.hive-win {
+    position: fixed; inset: 0; z-index: 2500;
+    display: flex; align-items: center; justify-content: center; padding: var(--s-4);
+    background: color-mix(in srgb, var(--bg) 72%, transparent);
+    animation: page-in var(--t-2) var(--ease) backwards;
+}
+.hive-win .winner-banner { width: min(92vw, 560px); margin: 0; }
+.hive-win .winner-score { display: flex; align-items: center; justify-content: center; gap: var(--s-2); flex-wrap: wrap; }
+.hive-win-swatch { width: 14px; height: 14px; border-radius: 50%; outline: 1px solid var(--line); }
+.hive-win .form-actions { margin-top: var(--s-4); flex-wrap: wrap; }
+
 #hex_root .cell:hover, #hex_root .cell:active { background-image: linear-gradient(rgb(255 255 255 / .22), rgb(255 255 255 / .22)) !important; }
 #hex_root .cell:nth-child(n+6):nth-child(-n+10),
 #hex_root .cell:nth-child(n+16):nth-child(-n+20) { transform: translateX(14px); margin-top: -15px; }

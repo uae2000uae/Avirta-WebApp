@@ -87,6 +87,7 @@ class HexGameRoom:
             'grid': self.grid,
             'current_cell_index': self.current_cell_index,
             'current_team_turn': self.current_team_turn,
+            'winner': self.find_winner(),
         }
 
     # Board and questions
@@ -160,6 +161,9 @@ class HexGameRoom:
         if cell_index < 0 or cell_index >= len(self.grid):
             return {'success': False, 'message': 'Invalid cell index'}
         cell = self.grid[cell_index]
+        winner = self.find_winner()
+        if winner:
+            return {'success': False, 'message': f"{winner['team']} has already won this game.", 'winner': winner}
         if cell['state'] in (self.team_a, self.team_b):
             return {'success': False, 'message': 'Cell already claimed'}
         # If cell has no question or was asked previously and reset, pick a new one matching its points
@@ -268,6 +272,7 @@ class HexGameRoom:
                 'cell': cell,
                 'correct_answer': correct_answer,
                 'correct_index': correct_index,
+                'winner': self.find_winner(),
             }
         # Incorrect: reset cell to neutral and clear question
         try:
@@ -311,6 +316,61 @@ class HexGameRoom:
     def _switch_turn(self):
         self.current_team_turn = self.team_b if self.current_team_turn == self.team_a else self.team_a
 
+    # Winning: Hex-style connection of a team's two board edges.
+    # The 5x5 board is drawn as rows of hexes with every odd row shifted right
+    # by half a cell ("odd-r" offset), so each cell touches up to six others.
+    # Team A (top/bottom edges) wins by linking row 0 to the last row; team B
+    # (left/right edges) wins by linking column 0 to the last column.
+    SIZE = 5
+
+    def neighbors(self, index: int) -> List[int]:
+        n = self.SIZE
+        r, c = divmod(index, n)
+        if r % 2 == 0:
+            deltas = [(0, -1), (0, 1), (-1, -1), (-1, 0), (1, -1), (1, 0)]
+        else:
+            deltas = [(0, -1), (0, 1), (-1, 0), (-1, 1), (1, 0), (1, 1)]
+        out = []
+        for dr, dc in deltas:
+            rr, cc = r + dr, c + dc
+            if 0 <= rr < n and 0 <= cc < n:
+                out.append(rr * n + cc)
+        return out
+
+    def _connection_path(self, team: str, starts: List[int], is_goal) -> Optional[List[int]]:
+        """Shortest chain of `team` cells from any start cell to a goal cell (BFS)."""
+        owned = {i for i, cell in enumerate(self.grid) if cell.get('state') == team}
+        queue = [i for i in starts if i in owned]
+        parent: Dict[int, Optional[int]] = {i: None for i in queue}
+        while queue:
+            current = queue.pop(0)
+            if is_goal(current):
+                path = []
+                while current is not None:
+                    path.append(current)
+                    current = parent[current]
+                return list(reversed(path))
+            for nb in self.neighbors(current):
+                if nb in owned and nb not in parent:
+                    parent[nb] = current
+                    queue.append(nb)
+        return None
+
+    def find_winner(self) -> Optional[Dict[str, Any]]:
+        """Return {'team', 'color', 'path', 'edges'} once a team links its edges, else None."""
+        n = self.SIZE
+        if len(self.grid) != n * n:
+            return None
+        checks = (
+            (self.team_a, [c for c in range(n)], lambda i: i // n == n - 1, 'top-bottom'),
+            (self.team_b, [r * n for r in range(n)], lambda i: i % n == n - 1, 'left-right'),
+        )
+        for team, starts, goal, edges in checks:
+            path = self._connection_path(team, starts, goal)
+            if path:
+                return {'team': team, 'color': self.team_colors.get(team), 'path': path, 'edges': edges}
+        return None
+
     def get_board_state(self) -> Dict[str, Any]:
         return {
             'grid': self.grid,
@@ -318,6 +378,7 @@ class HexGameRoom:
             'team_colors': self.team_colors,
             'team_a': self.team_a,
             'team_b': self.team_b,
+            'winner': self.find_winner(),
         }
 
     # Lifecycle compatibility with app.py end_game route

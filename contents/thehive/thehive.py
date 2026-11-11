@@ -134,6 +134,12 @@ def register_hive_routes(app, game_rooms, game_status_manager, question_uploader
                 'cell_index': res['cell']['id'] if res.get('cell') else None,
                 'points': res['cell']['points'] if res.get('cell') else None
             })
+            if res.get('winner'):
+                add_game_event(room_id, 'game_won', {
+                    'team': res['winner']['team'],
+                    'path': res['winner']['path'],
+                    'message': f"{res['winner']['team']} connected their edges and won the game",
+                })
         game_status_manager.persist_game_room(room_id, hex_room)
         return jsonify(res)
 
