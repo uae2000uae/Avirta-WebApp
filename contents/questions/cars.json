@@ -264,12 +264,12 @@
     "category_id": "cars",
     "correct_answer": "Tesla",
     "created_at": "2026-07-04T17:39:00",
-    "explanation": "",
+    "explanation": "Tesla began deliveries of the all-electric Model S sedan in 2012.",
     "id": "Q0001351",
     "points": 200,
-    "question": "Which company manufactures the Model S?",
+    "question": "Which company manufactures the all-electric Model S sedan, launched in 2012?",
     "type": "text",
-    "updated_at": "2026-07-04T17:39:00",
+    "updated_at": "2026-11-12T07:00:12",
     "use_count": 0
   },
   {
@@ -303,12 +303,12 @@
     "category_id": "cars",
     "correct_answer": "Lexus",
     "created_at": "2026-07-04T17:39:00",
-    "explanation": "",
+    "explanation": "The Lexus RX is a luxury crossover SUV, first launched in 1998. Lexus is the luxury division of Toyota.",
     "id": "Q0001354",
     "points": 200,
-    "question": "Which Japanese manufacturer produces the RX series of SUVs?",
+    "question": "Which Toyota-owned luxury car brand produces the RX SUV?",
     "type": "text",
-    "updated_at": "2026-07-04T17:39:00",
+    "updated_at": "2026-11-12T07:00:12",
     "use_count": 0
   },
   {
@@ -366,19 +366,6 @@
   {
     "active": true,
     "category_id": "cars",
-    "correct_answer": "Peugeot",
-    "created_at": "2026-07-04T17:39:00",
-    "explanation": "",
-    "id": "Q0001359",
-    "points": 400,
-    "question": "What is the oldest car manufacturer still in operation today?",
-    "type": "text",
-    "updated_at": "2026-07-04T17:39:00",
-    "use_count": 0
-  },
-  {
-    "active": true,
-    "category_id": "cars",
     "correct_answer": "Toyota",
     "created_at": "2026-07-04T17:39:00",
     "explanation": "",
@@ -392,14 +379,14 @@
   {
     "active": true,
     "category_id": "cars",
-    "correct_answer": "Bugatti Rimac",
+    "correct_answer": "Rimac",
     "created_at": "2026-07-04T17:39:00",
-    "explanation": "",
+    "explanation": "In 2021, Bugatti and Rimac formed Bugatti Rimac, a joint venture of Rimac Group and Porsche.",
     "id": "Q0001361",
     "points": 400,
-    "question": "Which company currently operates the Bugatti automobile brand?",
+    "question": "In 2021, Bugatti was combined with which Croatian electric hypercar maker to form a new joint-venture company?",
     "type": "text",
-    "updated_at": "2026-07-04T17:39:00",
+    "updated_at": "2026-11-12T07:00:12",
     "use_count": 0
   },
   {
@@ -537,12 +524,12 @@
     "category_id": "cars",
     "correct_answer": "Lexus",
     "created_at": "2026-07-04T17:39:00",
-    "explanation": "",
+    "explanation": "The Lexus LS launched in 1989 as the first model of Lexus, Toyota's luxury brand.",
     "id": "Q0001372",
     "points": 300,
-    "question": "Which Japanese manufacturer produces the luxury car model LS?",
+    "question": "Which luxury car brand, owned by Toyota, produces the LS flagship sedan?",
     "type": "text",
-    "updated_at": "2026-07-04T17:39:00",
+    "updated_at": "2026-11-12T07:00:12",
     "use_count": 0
   },
   {
@@ -652,14 +639,14 @@
   {
     "active": true,
     "category_id": "cars",
-    "correct_answer": "Rover",
+    "correct_answer": "Rover Group",
     "created_at": "2026-07-04T17:39:00",
-    "explanation": "",
+    "explanation": "BMW bought Rover Group from British Aerospace in 1994. The classic Mini was originally launched by the British Motor Corporation in 1959. BMW kept the Mini brand when it broke up Rover in 2000.",
     "id": "Q0001381",
     "points": 300,
-    "question": "Which British car company produced the classic Mini before being acquired by BMW?",
+    "question": "Which British car company, then the maker of the classic Mini, was acquired by BMW in 1994?",
     "type": "text",
-    "updated_at": "2026-07-04T17:39:00",
+    "updated_at": "2026-11-12T07:00:12",
     "use_count": 0
   },
   {
@@ -742,29 +729,28 @@
   },
   {
     "type": "multiple_choice",
-    "question": "Which company is credited with producing the first mass-produced car, the Model T?",
+    "question": "Which American company produced the Model T, the car introduced in 1908 that was built on the first moving assembly line?",
     "options": [
       "Ford",
       "General Motors",
       "Chrysler",
-      "Buick"
+      "Packard"
     ],
     "correct_answer": "Ford",
-    "explanation": "The Ford Model T, introduced in 1908, was the first mass-produced car using the moving assembly line.",
+    "explanation": "Ford introduced the Model T in 1908. In 1913 Ford began building it on a moving assembly line, which made the car affordable for millions of people.",
     "points": 100,
     "id": "Q0002051",
     "category_id": "cars",
     "created_at": "2026-07-04T14:43:28.867702",
-    "updated_at": "2026-07-04T14:43:28.867702",
+    "updated_at": "2026-11-12T07:00:12",
     "active": true,
-    "use_count": 0
+    "use_count": 2
   },
   {
     "type": "text",
-    "question": "What part of a car provides the power to move it, converting fuel or electricity into motion?",
-    "options": [],
+    "question": "In a petrol-powered car, which part burns fuel to produce the power that moves the car?",
     "correct_answer": "Engine",
-    "explanation": "The engine (or motor in electric cars) converts fuel or electricity into mechanical motion.",
+    "explanation": "In a petrol car, the internal combustion engine burns fuel and turns that energy into mechanical motion.",
     "points": 100,
     "acceptable_answers": [
       "Motor",
@@ -773,7 +759,7 @@
     "id": "Q0002052",
     "category_id": "cars",
     "created_at": "2026-07-04T14:43:28.873792",
-    "updated_at": "2026-07-04T14:43:28.873792",
+    "updated_at": "2026-11-12T07:00:12",
     "active": true,
     "use_count": 0
   },
@@ -963,29 +949,6 @@
     "use_count": 0
   },
   {
-    "type": "multiple_choice",
-    "question": "Approximately how many cars were in use worldwide as of 2025?",
-    "options": [
-      "Over 600 million",
-      "Over 1 billion",
-      "Over 1.6 billion",
-      "Over 3 billion"
-    ],
-    "correct_answer": "Over 1.6 billion",
-    "explanation": "There are over 1.6 billion cars in use worldwide as of 2025.",
-    "points": 200,
-    "fact_id": "6f3fa518-e8b6-4fc2-82a8-7a7aab91c8ed",
-    "source_fact_used": "There are over 1.6 billion cars in use worldwide as of 2025.",
-    "source_title": "Car",
-    "source_url": "https://en.wikipedia.org/wiki/Car",
-    "id": "Q0002063",
-    "category_id": "cars",
-    "created_at": "2026-07-04T14:43:28.934069",
-    "updated_at": "2026-07-04T14:43:28.934069",
-    "active": true,
-    "use_count": 0
-  },
-  {
     "type": "text",
     "question": "Lotus Cars, the British maker of luxury sports cars and electric vehicles, was founded by which engineer?",
     "options": [],
@@ -1156,7 +1119,7 @@
   },
   {
     "type": "multiple_choice",
-    "question": "The Citroën DS, unveiled in 1955, was famous for pioneering which advanced technology in a production car?",
+    "question": "The Citroën DS, unveiled in 1955, is famous for which innovative technology fitted to all four wheels?",
     "options": [
       "Hydropneumatic suspension",
       "All-wheel drive",
@@ -1164,14 +1127,14 @@
       "Regenerative braking"
     ],
     "correct_answer": "Hydropneumatic suspension",
-    "explanation": "The Citroën DS pioneered hydropneumatic self-leveling suspension in 1955.",
+    "explanation": "The Citroën DS introduced self-levelling hydropneumatic suspension on all four wheels in 1955. Citroën had first used the system on the rear axle of the Traction Avant 15-6H in 1954.",
     "points": 500,
     "id": "Q0002073",
     "category_id": "cars",
     "created_at": "2026-07-04T14:43:28.997162",
-    "updated_at": "2026-07-04T14:43:28.997162",
+    "updated_at": "2026-11-12T07:00:12",
     "active": true,
-    "use_count": 0
+    "use_count": 1
   },
   {
     "type": "multiple_choice",

@@ -1,5 +1,7 @@
 # Cloud Build config to deploy Avirta to Cloud Run service "avirta" from source.
-# Uses Cloud Run's source-based deploy (Google Cloud buildpacks) — no Docker image to manage.
+# Uses Cloud Run's source-based deploy (Google Cloud buildpacks), so there is no
+# Docker image to manage. The test suite runs first; if any test fails, the
+# build stops and nothing is deployed.
 
 substitutions:
   _REGION: us-central1
@@ -7,8 +9,25 @@ substitutions:
   # You can override _REGION and _SERVICE_NAME at trigger time
 
 steps:
-  # 1) Deploy to Cloud Run directly from source
-  - name: "gcr.io/cloud-builders/gcloud"
+  # 1) Run the tests. Real secrets are replaced with dummy values so tests can
+  #    never reach GitHub or the AI services with live credentials.
+  - id: tests
+    name: "python:3.12-slim"
+    entrypoint: bash
+    env:
+      - "GITHUB_TOKEN=disabled-in-tests"
+      - "OPENAI_API_KEY=disabled-in-tests"
+      - "ANTHROPIC_API_KEY=disabled-in-tests"
+      - "SECRET_KEY=tests-only-secret-key"
+      - "ADMIN_PASSWORD_HASH=disabled-in-tests"
+      - "PIP_DISABLE_PIP_VERSION_CHECK=1"
+    args:
+      - "-c"
+      - "pip install -q -r requirements-dev.txt && python -m pytest -q -p no:warnings"
+
+  # 2) Deploy to Cloud Run directly from source (only runs if the tests passed)
+  - id: deploy
+    name: "gcr.io/cloud-builders/gcloud"
     args:
       [
         "run",
@@ -27,15 +46,14 @@ steps:
         "--max-instances=1",
         # Route a given client back to the same instance (belt-and-suspenders).
         "--session-affinity",
-        # To sign session cookies with a stable key, create a "SECRET_KEY"
-        # secret in Secret Manager and append it below, e.g.:
-        #   SECRET_KEY=SECRET_KEY:latest
-        "--set-secrets=OPENAI_API_KEY=OPENAI_API_KEY:latest,GITHUB_TOKEN=GITHUB_TOKEN:latest,ANTHROPIC_API_KEY=ANTHROPIC_API_KEY:latest"
+        # SECRET_KEY signs session cookies; ADMIN_PASSWORD_HASH is the salted
+        # hash of the admin password (never the password itself).
+        "--set-secrets=OPENAI_API_KEY=OPENAI_API_KEY:latest,GITHUB_TOKEN=GITHUB_TOKEN:latest,ANTHROPIC_API_KEY=ANTHROPIC_API_KEY:latest,SECRET_KEY=SECRET_KEY:latest,ADMIN_PASSWORD_HASH=ADMIN_PASSWORD_HASH:latest"
       ]
 
   # NOTE: A second "add-iam-policy-binding" step was REMOVED. Public access is
   # already granted by --allow-unauthenticated on the deploy above, so the extra
-  # IAM read-modify-write was redundant AND caused, when two builds overlapped:
+  # IAM read-modify-write was redundant and caused, when two builds overlapped:
   #   ERROR: (gcloud.beta.run.services.add-iam-policy-binding) ABORTED: There were
   #   concurrent policy changes ... ETag ... did not match the current policy's ETag
   # allUsers/roles/run.invoker only needs to be granted once. To (re)grant manually:

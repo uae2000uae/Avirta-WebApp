@@ -212,12 +212,12 @@
     "category_id": "jurassic_park",
     "correct_answer": "Jurassic World: Camp Cretaceous",
     "created_at": "2025-05-29T20:28:45.539355",
-    "explanation": "'Jurassic World: Camp Cretaceous' is an animated series on Netflix that follows a group of teenagers attending an adventure camp on the opposite side of Isla Nublar, who must band together to survive when dinosaurs wreak havoc on the island.",
+    "explanation": "'Jurassic World: Camp Cretaceous' premiered on Netflix in September 2020. It follows a group of teenagers at an adventure camp on Isla Nublar who must survive when dinosaurs run loose. Its sequel, 'Jurassic World: Chaos Theory', followed in 2024.",
     "id": "Q0001018",
     "points": 300,
-    "question": "What is the title of the animated 'Jurassic World' series available on Netflix?",
+    "question": "What is the title of the animated 'Jurassic World' series that premiered on Netflix in 2020?",
     "type": "text",
-    "updated_at": "2025-09-21T16:35:40.393137",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -249,14 +249,14 @@
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "BioSyn",
+    "correct_answer": "Biosyn",
     "created_at": "2025-05-29T20:28:45.556871",
-    "explanation": "In the first 'Jurassic Park' film, BioSyn is the rival company that hires Dennis Nedry to steal dinosaur embryos from InGen for its own profit.",
+    "explanation": "In Crichton's novel, Lewis Dodgson of the rival company Biosyn pays InGen programmer Dennis Nedry to smuggle frozen dinosaur embryos off Isla Nublar.",
     "id": "Q0001021",
     "points": 300,
-    "question": "What is the name of the company that attempts to steal dinosaur embryos in the first 'Jurassic Park' film?",
+    "question": "In Michael Crichton's novel 'Jurassic Park', which rival genetics company, represented by Lewis Dodgson, pays Dennis Nedry to steal dinosaur embryos?",
     "type": "text",
-    "updated_at": "2025-09-21T16:35:40.393137",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -329,12 +329,12 @@
     "category_id": "jurassic_park",
     "correct_answer": "Ray Arnold",
     "created_at": "2025-05-29T20:28:45.607879",
-    "explanation": "Ray Arnold, played by Samuel L. Jackson, is the chief engineer in Jurassic Park who attempts to restore power to the park's systems but is killed by a Velociraptor.",
+    "explanation": "Ray Arnold, played by Samuel L. Jackson, goes to the maintenance shed to restart the circuit breakers but is killed by a Velociraptor before he can finish. Ellie Sattler later restores the power.",
     "id": "Q0001029",
     "points": 300,
-    "question": "What is the name of the chief engineer who is eaten after restoring power in Jurassic Park?",
+    "question": "In the original Jurassic Park film, what is the name of the chief engineer, played by Samuel L. Jackson, who is killed while trying to restore the park's power?",
     "type": "text",
-    "updated_at": "2025-09-21T16:35:58.107835",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -392,14 +392,14 @@
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "Zach",
+    "correct_answer": "Zach Mitchell",
     "created_at": "2025-05-29T20:28:45.639408",
-    "explanation": "Zach is one of Claire Dearing's nephews who visits Jurassic World with his brother Gray. During their visit, they become lost after the park's security systems fail.",
+    "explanation": "Zach Mitchell, played by Nick Robinson, is Claire's older nephew. He and his younger brother Gray become stranded in the park after the Indominus rex escapes.",
     "id": "Q0001034",
     "points": 300,
-    "question": "What is the name of Claire Dearing’s nephew who gets lost in Jurassic World?",
+    "question": "In Jurassic World, what is the name of Claire Dearing's older nephew, who visits the park with his younger brother Gray?",
     "type": "text",
-    "updated_at": "2025-11-14T18:40:59.372480",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -433,25 +433,25 @@
     "category_id": "jurassic_park",
     "correct_answer": "Las Cinco Muertes",
     "created_at": "2025-05-29T20:28:45.665417",
-    "explanation": "Las Cinco Muertes, or 'The Five Deaths,' is the fictional island chain near Costa Rica where the events of Jurassic Park and Jurassic World take place. Isla Nublar and Isla Sorna are part of this chain.",
+    "explanation": "Las Cinco Muertes ('The Five Deaths') is a fictional island chain off Costa Rica. It includes Isla Sorna, where InGen bred its dinosaurs. Isla Nublar, home of Jurassic Park and Jurassic World, is a separate island.",
     "id": "Q0001038",
     "points": 400,
-    "question": "What is the name of the fictional Costa Rican island chain where the Jurassic Park and Jurassic World parks are located?",
+    "question": "In the Jurassic Park franchise, what is the name of the fictional island chain off Costa Rica that includes Isla Sorna, InGen's 'Site B'?",
     "type": "text",
-    "updated_at": "2025-09-21T16:36:07.421899",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "Dr. Ellie Sattler",
+    "correct_answer": "B.D. Wong",
     "created_at": "2025-05-29T20:28:45.671420",
-    "explanation": "Dr. Ellie Sattler, a paleobotanist, is a key character in the original Jurassic Park film and returns in Jurassic World: Dominion, continuing her role in the series.",
+    "explanation": "B.D. Wong played Dr. Henry Wu in the original Jurassic Park and reprised the role across the Jurassic World trilogy, including Jurassic World: Dominion.",
     "id": "Q0001039",
     "points": 400,
-    "question": "Which character returns in both Jurassic Park and Jurassic World: Dominion?",
+    "question": "Which actor plays geneticist Dr. Henry Wu in both Jurassic Park (1993) and Jurassic World: Dominion (2022)?",
     "type": "text",
-    "updated_at": "2025-09-21T16:36:07.421899",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -472,12 +472,12 @@
     "category_id": "jurassic_park",
     "correct_answer": "Mosasaurus",
     "created_at": "2025-05-29T20:28:45.684421",
-    "explanation": "In the climax of Jurassic World, the Mosasaurus, a massive aquatic dinosaur, unexpectedly intervenes by emerging from its lagoon to capture the Indominus rex, which is battling the T. rex and raptors.",
+    "explanation": "At the climax of Jurassic World, the T. rex and the raptor Blue fight the Indominus rex. The Mosasaurus, a marine reptile and not a dinosaur, leaps from its lagoon and drags the Indominus underwater.",
     "id": "Q0001041",
     "points": 300,
-    "question": "Which aquatic dinosaur intervenes in the battle between the T. rex and the raptors at the end of Jurassic World?",
+    "question": "In Jurassic World (2015), which giant marine reptile ends the final battle by dragging the Indominus rex into its lagoon?",
     "type": "text",
-    "updated_at": "2025-09-21T16:36:17.151444",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -535,14 +535,14 @@
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "BioSyn",
+    "correct_answer": "Biosyn",
     "created_at": "2025-05-29T20:28:45.717423",
-    "explanation": "In 'Jurassic World: Dominion', BioSyn is the corporation responsible for cloning dinosaurs and conducting genetic experiments.",
+    "explanation": "Biosyn Genetics, headed by CEO Lewis Dodgson, runs a dinosaur sanctuary in the Dolomites and secretly engineers the prehistoric locusts that threaten global crops.",
     "id": "Q0001046",
     "points": 400,
-    "question": "What is the name of the group that illegally clones dinosaurs in 'Jurassic World: Dominion'?",
+    "question": "In 'Jurassic World Dominion', what is the name of the genetics company, run by Lewis Dodgson, that serves as the main corporate antagonist?",
     "type": "text",
-    "updated_at": "2025-09-21T16:36:25.264061",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 0
   },
   {
@@ -604,9 +604,9 @@
     "explanation": "In 'Jurassic Park,' a power outage occurs due to sabotage, which disables the electric fences and allows the dinosaurs to escape their enclosures.",
     "id": "Q0001177",
     "points": 200,
-    "question": "In 'Jurassic Park,' does the power outage allow the dinosaurs to escape their enclosures?",
+    "question": "In 'Jurassic Park,' the power outage allows the dinosaurs to escape their enclosures.",
     "type": "true_false",
-    "updated_at": "2025-09-21T16:36:33.569576",
+    "updated_at": "2026-11-12T06:30:44",
     "use_count": 1
   },
   {
@@ -712,28 +712,28 @@
     "explanation": "In 'Jurassic Park', Tim Murphy, the grandson of John Hammond, is shocked when the electric fence is reactivated while he is climbing over it, leading to a dramatic scene.",
     "id": "Q0001183",
     "points": 100,
-    "question": "In 'Jurassic Park,' does Tim get shocked while climbing an electric fence?",
+    "question": "In 'Jurassic Park,' Tim gets an electric shock while climbing a perimeter fence.",
     "type": "true_false",
-    "updated_at": "2025-09-21T16:36:42.583408",
+    "updated_at": "2026-11-12T06:30:44",
     "use_count": 0
   },
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "In a cage on Isla Nublar",
+    "correct_answer": "In the jungle of Isla Nublar",
     "created_at": "2025-05-31T19:16:56.828290",
-    "explanation": "In 'Jurassic World: Fallen Kingdom', Owen and Claire find Blue in a cage on Isla Nublar during their mission to rescue the dinosaurs from the impending volcanic eruption.",
+    "explanation": "Owen finds Blue in the jungle of Isla Nublar. Mercenaries then shoot and capture her, and she is later taken aboard the Arcadia to the Lockwood Estate.",
     "id": "Q0001184",
     "options": [
-      "In the jungle",
-      "On an auction stage",
-      "In a medical facility",
-      "In a cage on Isla Nublar"
+      "In the jungle of Isla Nublar",
+      "At the Lockwood Estate",
+      "Aboard the ship Arcadia",
+      "Inside the Jurassic World visitor center"
     ],
     "points": 200,
-    "question": "In 'Jurassic World: Fallen Kingdom,' where do Owen and Claire find Blue the Velociraptor?",
+    "question": "In 'Jurassic World: Fallen Kingdom,' where does Owen Grady first track down Blue the Velociraptor?",
     "type": "multiple_choice",
-    "updated_at": "2025-11-24T20:28:11.155794",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -782,9 +782,9 @@
     "explanation": "In 'Jurassic Park III,' Eric Kirby is stranded on Isla Sorna after a parasailing accident. He manages to survive alone for several weeks until he is found by his parents and Dr. Alan Grant.",
     "id": "Q0001187",
     "points": 200,
-    "question": "In 'Jurassic Park III,' does Eric Kirby survive alone on Isla Sorna for weeks?",
+    "question": "In 'Jurassic Park III,' Eric Kirby survives alone on Isla Sorna for weeks.",
     "type": "true_false",
-    "updated_at": "2025-09-21T16:36:51.387481",
+    "updated_at": "2026-11-12T06:30:44",
     "use_count": 0
   },
   {
@@ -809,21 +809,21 @@
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "T. rex attack",
+    "correct_answer": "Tyrannosaurus rex",
     "created_at": "2025-05-31T19:16:57.013355",
-    "explanation": "The first major dinosaur attack witnessed by the main group in 'Jurassic Park' is the T. rex attack on the tour vehicles. This scene is pivotal as it demonstrates the dangers posed by the dinosaurs.",
+    "explanation": "After the power fails during the storm, the tour vehicles stall beside the T. rex paddock. The Tyrannosaurus breaks through the fence and attacks the cars carrying Tim, Lex, Grant, Malcolm and Gennaro.",
     "id": "Q0001189",
     "options": [
-      "T. rex attack",
-      "Velociraptor attack",
-      "Dilophosaurus attack",
-      "Triceratops charge"
+      "Tyrannosaurus rex",
+      "Velociraptor",
+      "Dilophosaurus",
+      "Brachiosaurus"
     ],
     "points": 300,
-    "question": "In 'Jurassic Park,' what is the first dinosaur attack witnessed by the main group?",
+    "question": "In 'Jurassic Park,' which dinosaur attacks the stranded tour vehicles during the storm?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:36:51.387481",
-    "use_count": 0
+    "updated_at": "2026-11-12T07:00:13",
+    "use_count": 1
   },
   {
     "active": true,
@@ -849,18 +849,18 @@
     "category_id": "jurassic_park",
     "correct_answer": "Owen Grady",
     "created_at": "2025-05-31T19:16:57.089652",
-    "explanation": "Owen Grady, played by Chris Pratt, is the raptor trainer in 'Jurassic World.' He has a close relationship with the raptors, particularly with the lead raptor, Blue.",
+    "explanation": "Owen Grady, played by Chris Pratt, is the raptor trainer in 'Jurassic World.' He has a close bond with the raptors, especially the pack leader, Blue.",
     "id": "Q0001191",
     "options": [
       "Owen Grady",
       "Simon Masrani",
-      "Barry",
+      "Zach Mitchell",
       "Dr. Wu"
     ],
     "points": 200,
     "question": "In 'Jurassic World,' who is the trainer that works closely with the raptors?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-27T11:16:13.544484",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -890,9 +890,9 @@
     "explanation": "In 'The Lost World: Jurassic Park,' a T. rex escapes from a cargo ship and causes chaos in San Diego, which is a pivotal scene in the movie.",
     "id": "Q0001193",
     "points": 200,
-    "question": "In 'The Lost World: Jurassic Park,' does the T. rex rampage through San Diego after escaping from a cargo ship?",
+    "question": "In 'The Lost World: Jurassic Park,' a T. rex rampages through San Diego.",
     "type": "true_false",
-    "updated_at": "2025-09-21T16:36:59.544568",
+    "updated_at": "2026-11-12T06:30:44",
     "use_count": 0
   },
   {
@@ -955,20 +955,20 @@
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "Natural geological activity",
+    "correct_answer": "Volcanic eruption",
     "created_at": "2025-05-31T19:16:57.336804",
-    "explanation": "In 'Jurassic World: Fallen Kingdom,' the volcano on Isla Nublar erupts due to natural geological activity, not because of any external interference.",
+    "explanation": "In 'Jurassic World: Fallen Kingdom,' the volcano Mount Sibo on Isla Nublar becomes active and erupts. This threatens to wipe out the island's dinosaurs and drives the rescue mission.",
     "id": "Q0001197",
     "options": [
-      "Natural geological activity",
-      "Dinosaur activity",
-      "Human sabotage",
-      "An earthquake"
+      "Volcanic eruption",
+      "Tsunami",
+      "Hurricane",
+      "Wildfire"
     ],
     "points": 200,
-    "question": "In 'Jurassic World: Fallen Kingdom,' what natural event causes the volcano on Isla Nublar to erupt?",
+    "question": "In 'Jurassic World: Fallen Kingdom,' what natural disaster threatens to wipe out the dinosaurs on Isla Nublar?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:37:08.081829",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -995,7 +995,7 @@
     "category_id": "jurassic_park",
     "correct_answer": "Blue",
     "created_at": "2025-05-31T19:16:57.423349",
-    "explanation": "Blue, the lead raptor, remains loyal to Owen Grady during the final battle against the Indominus rex, showcasing her strong bond with him.",
+    "explanation": "Charlie, Delta and Echo are all killed during 'Jurassic World.' Blue, the beta raptor closely bonded with Owen Grady, is the pack's only survivor.",
     "id": "Q0001199",
     "options": [
       "Blue",
@@ -1004,9 +1004,9 @@
       "Echo"
     ],
     "points": 200,
-    "question": "In 'Jurassic World,' which raptor remains loyal to Owen Grady during the final battle against the Indominus rex?",
+    "question": "In 'Jurassic World,' which member of Owen Grady's Velociraptor pack is the only one to survive the film?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:37:08.081829",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -1036,9 +1036,9 @@
     "explanation": "In 'Jurassic Park III,' the Spinosaurus defeats the T. rex in a fight, showcasing its strength and dominance.",
     "id": "Q0001201",
     "points": 200,
-    "question": "In 'Jurassic Park III,' does the Spinosaurus defeat the T. rex in a fight?",
+    "question": "In 'Jurassic Park III,' the Spinosaurus defeats a T. rex in a fight.",
     "type": "true_false",
-    "updated_at": "2025-09-21T16:37:08.081829",
+    "updated_at": "2026-11-12T06:30:44",
     "use_count": 0
   },
   {
@@ -1046,7 +1046,7 @@
     "category_id": "jurassic_park",
     "correct_answer": "Scorpios rex",
     "created_at": "2025-05-31T19:16:57.555790",
-    "explanation": "The Scorpios rex is the first hybrid dinosaur introduced in the animated series 'Jurassic World: Camp Cretaceous.' It is known for its aggressive nature and unique features.",
+    "explanation": "The Scorpios rex, an early hybrid made by Dr. Henry Wu, was kept frozen in his hidden lab on Isla Nublar. It is released in the animated series 'Jurassic World: Camp Cretaceous.'",
     "id": "Q0001202",
     "options": [
       "Scorpios rex",
@@ -1055,9 +1055,9 @@
       "Spinoraptor"
     ],
     "points": 200,
-    "question": "In 'Jurassic World: Camp Cretaceous,' what is the name of the hybrid dinosaur created on Isla Nublar?",
+    "question": "In 'Jurassic World: Camp Cretaceous,' which hybrid dinosaur is introduced after being kept in cryogenic stasis in Dr. Henry Wu's secret lab on Isla Nublar?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-27T12:02:37.125431",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -1065,7 +1065,7 @@
     "category_id": "jurassic_park",
     "correct_answer": "Roland Tembo",
     "created_at": "2025-05-31T19:16:57.600795",
-    "explanation": "Roland Tembo, a big-game hunter, is the character who successfully tranquilizes the T. rex during the events of 'The Lost World: Jurassic Park.'",
+    "explanation": "Big-game hunter Roland Tembo tranquilizes the male T. rex on Isla Sorna, which allows InGen to capture it. Sarah Harding later tranquilizes it in San Diego.",
     "id": "Q0001203",
     "options": [
       "Roland Tembo",
@@ -1074,47 +1074,28 @@
       "Eddie Carr"
     ],
     "points": 200,
-    "question": "In 'The Lost World: Jurassic Park,' who is responsible for tranquilizing the T. rex?",
+    "question": "In 'The Lost World: Jurassic Park,' who tranquilizes the male T. rex on Isla Sorna so it can be captured?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:37:17.721440",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "A reflection with a spoon",
+    "correct_answer": "A steel cabinet door",
     "created_at": "2025-05-31T19:16:57.648327",
-    "explanation": "Lex uses a spoon to create a reflection that distracts the Velociraptors, allowing her and Tim to escape in the iconic kitchen scene of 'Jurassic Park.'",
+    "explanation": "In the kitchen, a raptor sees Lex's reflection on a stainless steel cabinet door and attacks the reflection instead of her, giving her time to move.",
     "id": "Q0001204",
     "options": [
-      "A ladle",
-      "A reflection with a spoon",
-      "A freezer door",
-      "A pot lid"
+      "A steel cabinet door",
+      "A kitchen window",
+      "A large cooking pot",
+      "A puddle on the floor"
     ],
     "points": 200,
-    "question": "What does Lex use to distract the Velociraptors in the kitchen scene of 'Jurassic Park'?",
+    "question": "In the kitchen scene of 'Jurassic Park,' a Velociraptor is fooled into lunging at Lex's reflection. Where does it see the reflection?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-27T12:27:44.692855",
-    "use_count": 1
-  },
-  {
-    "active": true,
-    "category_id": "jurassic_park",
-    "correct_answer": "Indoraptor",
-    "created_at": "2025-05-31T19:16:57.694333",
-    "explanation": "The Indoraptor, a new hybrid dinosaur, is auctioned for the highest price due to its formidable capabilities and potential use as a weapon in 'Jurassic World: Fallen Kingdom.'",
-    "id": "Q0001205",
-    "options": [
-      "Indoraptor",
-      "T. rex",
-      "Blue",
-      "Stygimoloch"
-    ],
-    "points": 200,
-    "question": "In 'Jurassic World: Fallen Kingdom,' which dinosaur is auctioned for the highest price?",
-    "type": "multiple_choice",
-    "updated_at": "2025-11-24T20:38:52.202614",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -1160,12 +1141,12 @@
     "category_id": "jurassic_park",
     "correct_answer": "True",
     "created_at": "2025-05-31T19:16:57.836710",
-    "explanation": "Dr. Alan Grant and Dr. Ellie Sattler are both paleontologists in 'Jurassic Park,' specializing in the study of fossils and prehistoric life.",
+    "explanation": "Alan Grant is a paleontologist who studies dinosaur fossils, while Ellie Sattler is a paleobotanist who studies prehistoric plants.",
     "id": "Q0001208",
     "points": 200,
-    "question": "In 'Jurassic Park,' are Dr. Alan Grant and Dr. Ellie Sattler paleontologists?",
+    "question": "In 'Jurassic Park,' Dr. Alan Grant is a paleontologist and Dr. Ellie Sattler is a paleobotanist.",
     "type": "true_false",
-    "updated_at": "2025-09-21T16:37:25.759962",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 0
   },
   {
@@ -1192,7 +1173,7 @@
     "category_id": "jurassic_park",
     "correct_answer": "Ray Arnold",
     "created_at": "2025-05-31T19:16:57.936874",
-    "explanation": "Ray Arnold, played by Samuel L. Jackson, attempts to restart the park's power systems but is ultimately killed by velociraptors.",
+    "explanation": "Ray Arnold, played by Samuel L. Jackson, heads to the maintenance shed to restore power and is killed by Velociraptors. Ellie Sattler later turns the power back on.",
     "id": "Q0001210",
     "options": [
       "Ray Arnold",
@@ -1201,9 +1182,9 @@
       "Ian Malcolm"
     ],
     "points": 300,
-    "question": "Which character restarts the park’s power in 'Jurassic Park' but is killed by velociraptors?",
+    "question": "In 'Jurassic Park,' which character goes to the maintenance shed to restore the park's power but is killed by Velociraptors?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:37:25.759962",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -1247,20 +1228,20 @@
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "Responds to commands",
+    "correct_answer": "Owen Grady",
     "created_at": "2025-05-31T19:16:58.088985",
-    "explanation": "Blue, the Velociraptor, is trained to respond to commands given by Owen Grady, showcasing her intelligence and unique bond with humans.",
+    "explanation": "Owen Grady, played by Chris Pratt, raised and trained Blue and the other raptors at Jurassic World. His bond with Blue is central to 'Jurassic World: Fallen Kingdom.'",
     "id": "Q0001213",
     "options": [
-      "Responds to commands",
-      "Invisibility",
-      "Venomous bite",
-      "Flight"
+      "Owen Grady",
+      "Claire Dearing",
+      "Simon Masrani",
+      "Henry Wu"
     ],
     "points": 200,
-    "question": "In 'Jurassic World: Fallen Kingdom,' what is Blue's special ability?",
+    "question": "In the 'Jurassic World' films, which character trained the Velociraptor Blue and her pack?",
     "type": "multiple_choice",
-    "updated_at": "2025-11-14T18:31:54.099505",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -1268,18 +1249,18 @@
     "category_id": "jurassic_park",
     "correct_answer": "A 3D-printed resonating chamber",
     "created_at": "2025-05-31T19:16:58.142223",
-    "explanation": "Dr. Alan Grant uses a 3D-printed replica of a Velociraptor resonating chamber to communicate with the raptors, attempting to mimic their calls.",
+    "explanation": "Grant uses a replica of a Velociraptor resonating chamber, made with a 3D printer, to mimic raptor vocalizations.",
     "id": "Q0001214",
     "options": [
       "A 3D-printed resonating chamber",
-      "A radio",
-      "A whistle",
-      "A flare gun"
+      "A carved bone flute",
+      "A hunter's duck call",
+      "A hollow conch shell"
     ],
     "points": 300,
-    "question": "In 'Jurassic Park III,' what is used to call the raptors for help?",
+    "question": "In 'Jurassic Park III,' what replica does Dr. Alan Grant blow into to imitate Velociraptor calls?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:37:34.694649",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 0
   },
   {
@@ -1323,20 +1304,20 @@
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "Climbs a tree",
+    "correct_answer": "Stuck in a tree",
     "created_at": "2025-05-31T19:16:58.305032",
-    "explanation": "During the T. rex attack in 'Jurassic Park,' Tim escapes the overturned SUV by climbing a tree to avoid the dinosaur.",
+    "explanation": "The T. rex shoves the Ford Explorer over the wall and it lodges in a tree. Grant climbs up to rescue Tim, and they climb down as the car falls.",
     "id": "Q0001217",
     "options": [
-      "Climbs a tree",
-      "Runs through the fence",
-      "Hides under the car",
-      "Screams for help"
+      "Stuck in a tree",
+      "In a river",
+      "In a mud pit",
+      "On the electric fence"
     ],
     "points": 300,
-    "question": "In 'Jurassic Park,' what does Tim use to escape from the overturned SUV during the T. rex attack?",
+    "question": "In 'Jurassic Park,' after the T. rex pushes the tour car with Tim inside over the paddock wall, where does the car end up?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:37:45.972058",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 0
   },
   {
@@ -1380,20 +1361,20 @@
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "Ken Wheatley",
+    "correct_answer": "Eli Mills",
     "created_at": "2025-05-31T19:16:58.473138",
-    "explanation": "In 'Jurassic World: Fallen Kingdom,' Ken Wheatley betrays Claire and Owen by locking them in a cell, facilitating his own agenda of capturing dinosaurs for profit.",
+    "explanation": "Eli Mills, who manages Benjamin Lockwood's estate, deceives Claire and Owen. He uses the rescue mission as cover to capture dinosaurs and sell them at an illegal auction at the Lockwood estate.",
     "id": "Q0001220",
     "options": [
       "Eli Mills",
-      "Maisie Lockwood",
       "Ken Wheatley",
-      "Dr. Wu"
+      "Gunnar Eversol",
+      "Henry Wu"
     ],
     "points": 300,
-    "question": "In 'Jurassic World: Fallen Kingdom,' who betrays Claire and Owen, leaving them trapped in a cell?",
+    "question": "In 'Jurassic World: Fallen Kingdom,' which aide to Benjamin Lockwood secretly plans to sell the rescued dinosaurs at auction?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:37:45.972058",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 1
   },
   {
@@ -1456,28 +1437,9 @@
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "Indominus rex",
-    "created_at": "2025-05-31T19:16:58.707229",
-    "explanation": "Scorpios rex is a hybrid dinosaur in 'Jurassic World: Camp Cretaceous,' created by mixing Velociraptor DNA with that of the Indominus rex.",
-    "id": "Q0001224",
-    "options": [
-      "T. rex",
-      "Carnotaurus",
-      "Indominus rex",
-      "Ankylosaurus"
-    ],
-    "points": 300,
-    "question": "In 'Jurassic World: Camp Cretaceous,' which dinosaur's DNA is mixed with Velociraptor to create Scorpios rex?",
-    "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:37:56.409730",
-    "use_count": 1
-  },
-  {
-    "active": true,
-    "category_id": "jurassic_park",
     "correct_answer": "UNIX system",
     "created_at": "2025-05-31T19:16:58.766404",
-    "explanation": "In 'Jurassic Park,' Lex uses a UNIX system to navigate the park's computer network and successfully restore power to the park.",
+    "explanation": "Lex declares 'It's a UNIX system! I know this!' She then navigates the computer to restore the door locks and protect the group from the raptors.",
     "id": "Q0001225",
     "options": [
       "UNIX system",
@@ -1486,9 +1448,9 @@
       "Linux"
     ],
     "points": 300,
-    "question": "In 'Jurassic Park,' what software program does Lex use to restore the park's power?",
+    "question": "In 'Jurassic Park,' Lex recognizes the control room computer and exclaims 'I know this!' What kind of system does she say it is?",
     "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:37:56.409730",
+    "updated_at": "2026-11-12T07:00:13",
     "use_count": 0
   },
   {
@@ -1522,25 +1484,6 @@
     "type": "multiple_choice",
     "updated_at": "2025-09-21T16:38:06.719344",
     "use_count": 2
-  },
-  {
-    "active": true,
-    "category_id": "jurassic_park",
-    "correct_answer": "Lava flow",
-    "created_at": "2025-05-31T19:16:58.944077",
-    "explanation": "During the volcanic eruption in 'Jurassic World: Fallen Kingdom,' the dinosaurs are seen rushing towards the glass dome to escape the advancing lava flow, which poses an immediate threat to their survival.",
-    "id": "Q0001228",
-    "options": [
-      "Lava flow",
-      "Falling trees",
-      "Ash cloud",
-      "Earthquake"
-    ],
-    "points": 400,
-    "question": "In 'Jurassic World: Fallen Kingdom,' what triggers the dinosaurs to rush towards the glass dome during the volcanic eruption?",
-    "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:38:06.719344",
-    "use_count": 1
   },
   {
     "active": true,
@@ -1710,44 +1653,6 @@
   {
     "active": true,
     "category_id": "jurassic_park",
-    "correct_answer": "Dinosaur dung",
-    "created_at": "2025-05-31T19:16:59.575478",
-    "explanation": "Sarah Harding uses dinosaur dung to mask her scent from the T. rex, as the strong smell helps to cover her human scent, making it harder for the T. rex to track her.",
-    "id": "Q0001238",
-    "options": [
-      "Gasoline",
-      "Mud",
-      "Dinosaur dung",
-      "Water"
-    ],
-    "points": 400,
-    "question": "In 'The Lost World: Jurassic Park,' what does Sarah Harding use to cover up her scent from the T. rex?",
-    "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:38:26.584739",
-    "use_count": 1
-  },
-  {
-    "active": true,
-    "category_id": "jurassic_park",
-    "correct_answer": "Kenji",
-    "created_at": "2025-05-31T19:16:59.641513",
-    "explanation": "Kenji Kon, one of the campers in 'Jurassic World: Camp Cretaceous,' comes from a wealthy background. He initially lies about his family to fit in with the other campers.",
-    "id": "Q0001239",
-    "options": [
-      "Kenji",
-      "Yaz",
-      "Sammy",
-      "Brooklynn"
-    ],
-    "points": 300,
-    "question": "In 'Jurassic World: Camp Cretaceous,' which camper is revealed to have a wealthy background and initially lies about their family?",
-    "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:38:26.584739",
-    "use_count": 0
-  },
-  {
-    "active": true,
-    "category_id": "jurassic_park",
     "correct_answer": "To sell dinosaurs on the black market",
     "created_at": "2025-05-31T19:16:59.709225",
     "explanation": "The operation on Isla Nublar is a front for a plan to capture and sell dinosaurs on the black market, under the guise of rescuing them from the island's impending volcanic eruption.",
@@ -1762,44 +1667,6 @@
     "question": "In 'Jurassic World: Fallen Kingdom,' what is the real purpose of the operation on Isla Nublar?",
     "type": "multiple_choice",
     "updated_at": "2025-09-21T16:38:26.584739",
-    "use_count": 1
-  },
-  {
-    "active": true,
-    "category_id": "jurassic_park",
-    "correct_answer": "Pteranodon",
-    "created_at": "2025-05-31T19:16:59.776735",
-    "explanation": "In 'Jurassic Park III,' Ben Hildebrand is killed by Pteranodons after he and Eric Kirby are stranded on Isla Sorna.",
-    "id": "Q0001241",
-    "options": [
-      "Pteranodon",
-      "Spinosaurus",
-      "T. rex",
-      "Velociraptor"
-    ],
-    "points": 400,
-    "question": "Which dinosaur is responsible for killing Ben Hildebrand in 'Jurassic Park III'?",
-    "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:38:26.584739",
-    "use_count": 0
-  },
-  {
-    "active": true,
-    "category_id": "jurassic_park",
-    "correct_answer": "Jurassic Park Control System",
-    "created_at": "2025-05-31T19:16:59.844272",
-    "explanation": "The software controlling the security systems in 'Jurassic Park' is referred to as the 'Jurassic Park Control System,' which was designed to manage all park operations, including security.",
-    "id": "Q0001242",
-    "options": [
-      "Jurassic Park Control System",
-      "Jurassic OS",
-      "Jurassic Park Network",
-      "Jurassic System"
-    ],
-    "points": 400,
-    "question": "In 'Jurassic Park,' what is the name of the software that controls the park’s security systems?",
-    "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:38:36.211056",
     "use_count": 1
   },
   {
@@ -1877,24 +1744,5 @@
     "type": "multiple_choice",
     "updated_at": "2025-09-27T10:53:06.224515",
     "use_count": 1
-  },
-  {
-    "active": true,
-    "category_id": "jurassic_park",
-    "correct_answer": "Laboratory E750",
-    "created_at": "2025-05-31T19:17:00.214126",
-    "explanation": "In 'Jurassic World: Camp Cretaceous,' Laboratory E750 is the secret facility where new, genetically modified dinosaurs are created. This lab is hidden on Isla Nublar and plays a significant role in the storyline.",
-    "id": "Q0001247",
-    "options": [
-      "Laboratory E750",
-      "Biosyn Lab",
-      "InGen Research Center",
-      "Mantah Corp Island"
-    ],
-    "points": 300,
-    "question": "In 'Jurassic World: Camp Cretaceous,' what is the name of the secret facility where new dinosaurs are created?",
-    "type": "multiple_choice",
-    "updated_at": "2025-09-21T16:38:40.614405",
-    "use_count": 0
   }
 ]

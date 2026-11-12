@@ -1,0 +1,1354 @@
+# Wording suggestions from the AI review (not applied)
+
+These questions are factually fine; the AI only suggests clearer wording. Apply any you like from the AI Validator page or by hand.
+
+## أعلام_الدول (6)
+
+- **Q0001307** ما هما اللونان الرئيسيان في علم كندا؟
+  - suggested: ما اللونان الرئيسيان في علم كندا؟
+- **Q0001308** ما هو اللون المميز في علم اليابان الذي يحتوي على دائرة في الوسط؟
+  - suggested: ما لون الدائرة التي تتوسط علم اليابان؟
+- **Q0001316** ما هي الدولة التي يظهر في علمها تنين؟
+  - suggested: ما الدولة المستقلة التي يظهر في علمها الوطني تنين أبيض؟
+- **Q0001319** ما هو الرمز الموجود في وسط علم الهند؟
+  - suggested: ما الرمز الموجود في وسط علم الهند؟
+  - answer: عجلة زرقاء (عجلة أشوكا) → عجلة أشوكا
+- **Q0001321** ما هو اللون الذي يوجد في علم فرنسا ولا يوجد في علم إيطاليا؟
+  - suggested: ما اللون الموجود في علم فرنسا وغير الموجود في علم إيطاليا؟
+  - answer: الأزرق الداكن → الأزرق
+- **Q0001329** ما هو الشيء الذي يميز علم نيبال عن بقية أعلام العالم؟
+  - suggested: ما الذي يميز شكل علم نيبال عن جميع الأعلام الوطنية الأخرى في العالم؟
+  - answer: ليس مستطيلاً، بل ذو شكلين مثلثيين → شكله غير مستطيل
+
+## superhero_movies (34)
+
+- **Q0001752** In the movie 'Avengers: Endgame', who wields Thor's hammer, Mjolnir, besides Thor?
+  - suggested: In the movie 'Avengers: Endgame' (2019), which character besides Thor wields Thor's hammer, Mjolnir?
+- **Q0001753** What powerful stone does Vision have embedded in his forehead?
+  - suggested: In the Marvel Cinematic Universe, which Infinity Stone is embedded in Vision's forehead?
+- **Q0001755** In 'Justice League', what is the name of the artifact that Cyborg is linked to?
+  - suggested: In the film 'Justice League' (2017), what is the name of the alien artifact that Cyborg is linked to?
+- **Q0001756** Who is the main antagonist in the movie 'Spider-Man: Homecoming'?
+  - suggested: Who is the main villain in the movie 'Spider-Man: Homecoming' (2017)?
+- **Q0001758** Who is the alter ego of the superhero Wonder Woman?
+  - suggested: What is the civilian name of the superhero Wonder Woman?
+- **Q0001759** In 'Guardians of the Galaxy', what is the real name of the character Star-Lord?
+- **Q0001760** What is the name of the secret agency headed by Nick Fury?
+- **Q0001761** In 'Aquaman', what is the name of Aquaman's mother?
+  - suggested: In the 2018 film 'Aquaman', what is the name of Aquaman's mother?
+- **Q0001762** What is the real name of the superhero known as Iron Man?
+- **Q0001763** In 'Thor: Ragnarok', who is Thor's sister and the Goddess of Death?
+- **Q0001765** What is the real name of the superhero Doctor Strange?
+- **Q0001767** In 'Black Panther', what is the name of T'Challa's sister who is a genius inventor?
+  - suggested: In the 2018 film 'Black Panther', what is the name of T'Challa's younger sister, a genius inventor?
+- **Q0001768** What is the name of the artificial intelligence created by Tony Stark that later becomes Vision?
+  - suggested: In the Marvel Cinematic Universe, what is the name of Tony Stark's AI assistant whose programming becomes part of Vision?
+- **Q0001769** In 'The Dark Knight Rises', who is revealed to be the child who escaped the pit prison?
+  - suggested: In 'The Dark Knight Rises' (2012), who is revealed to be the child who escaped the pit prison?
+- **Q0001770** What is the name of the prison where the Guardians of the Galaxy are initially held?
+  - suggested: In 'Guardians of the Galaxy' (2014), what is the name of the prison where the future Guardians are held and first team up?
+- **Q0001771** In 'Man of Steel', who is Superman's biological father?
+  - suggested: In 'Man of Steel' (2013), who is Superman's biological father?
+- **Q0001772** Who is known as the 'Scarlet Speedster' in the DC universe?
+  - suggested: Which DC superhero is nicknamed the 'Scarlet Speedster'?
+- **Q0001774** In 'Doctor Strange', which ancient relic chooses Stephen Strange as its new master?
+  - suggested: In 'Doctor Strange' (2016), which ancient relic chooses Stephen Strange as its new master?
+- **Q0001775** What is the alias of the character Selina Kyle?
+  - suggested: What is the superhero alias of the character Selina Kyle?
+- **Q0001776** In 'X-Men: Days of Future Past', who is the character that can manipulate magnetic fields?
+  - suggested: In 'X-Men: Days of Future Past', which character can manipulate magnetic fields?
+- **Q0001778** Which hero's real name is Arthur Curry?
+  - suggested: Which DC superhero's real name is Arthur Curry?
+- **Q0001779** In 'Thor', who is Thor's brother and often considered the God of Mischief?
+  - suggested: In the film 'Thor', what is the name of Thor's adoptive brother, the God of Mischief?
+- **Q0001781** In 'Avengers: Infinity War', which character uses the Infinity Gauntlet to wipe out half of all life?
+- **Q0001782** Who is the superhero with the real name Barry Allen?
+  - suggested: Which DC superhero has the real name Barry Allen?
+- **Q0001783** In 'Wonder Woman', what is the name of the island where Diana grows up?
+  - suggested: In the 2017 film 'Wonder Woman', what is the name of the island where Diana grows up?
+- **Q0001784** What is the superhero alias of the character named Scott Lang?
+  - suggested: What is the superhero alias of the Marvel character Scott Lang?
+- **Q0001785** In 'Batman Begins', who is the head of the League of Shadows?
+  - suggested: In 'Batman Begins' (2005), who is the true head of the League of Shadows?
+- **Q0001786** What is the name of the fictional metal that is the primary component of Captain America's shield?
+  - suggested: In the Marvel Cinematic Universe, what fictional metal is Captain America's shield made of?
+- **Q0001787** In 'Spider-Man: Into the Spider-Verse', who is the primary antagonist?
+  - suggested: In 'Spider-Man: Into the Spider-Verse' (2018), who is the primary antagonist?
+- **Q0001789** Who is the alter ego of the superhero known as Cyborg?
+  - suggested: What is the real name of the DC superhero Cyborg?
+- **Q0001790** In the movie 'The Avengers', who is the director of the secret agency that brings the team together?
+  - suggested: In the 2012 film 'The Avengers', who is the director of S.H.I.E.L.D., the agency that brings the team together?
+- **Q0001792** In 'Suicide Squad', which character can manipulate fire?
+  - suggested: In the 2016 film 'Suicide Squad', which character can create and control fire?
+- **Q0001795** Who is the superhero with an alias of Natasha Romanoff?
+  - suggested: What is the superhero alias of Natasha Romanoff in the Marvel films?
+- **Q0001799** In 'Deadpool', who is Deadpool's girlfriend?
+  - suggested: In the 2016 film 'Deadpool', what is the name of Wade Wilson's girlfriend, played by Morena Baccarin?
+
+## أين_يقع (17)
+
+- **Q0000935** في أي دولة يجري نهر الأمازون بشكل رئيسي؟
+- **Q0000936** في أي دولة يقع برج خليفة؟
+- **Q0000938** في أي دولة يقع معبد أنغكور وات؟
+- **Q0000940** في أي دولة تقع صخور أولورو (آيرز روك) الشهيرة؟
+  - suggested: في أي دولة تقع صخرة أولورو (آيرز روك) الشهيرة؟
+- **Q0000941** في أي دولة يقع قصر تاج محل؟
+  - suggested: في أي دولة يقع ضريح تاج محل؟
+- **Q0000950** في أي دولة تقع شلالات فيكتوريا؟
+  - suggested: تقع شلالات فيكتوريا على الحدود بين زيمبابوي ودولة أفريقية أخرى، فما هي هذه الدولة؟
+- **Q0000957** في أي دولة يقع وادي رم؟
+- **Q0000963** في أي دولة يقع جبل إلبروس؟
+- **Q0000973** في أي دولة يقع كهف سون دونغ، أكبر كهف طبيعي في العالم؟
+  - suggested: في أي دولة يقع كهف سون دونغ، الذي يُعد أكبر ممر كهفي معروف في العالم من حيث الحجم؟
+- **Q0001960** أين تقع مدينة باريس؟
+  - suggested: في أي دولة تقع مدينة باريس الشهيرة؟
+- **Q0001964** بين أي دولتين يقع مضيق ملقا؟
+  - answer: بين ماليزيا وإندونيسيا → ماليزيا وإندونيسيا
+- **Q0001968** في أي دولة تقع كاتدرائية ساغرادا فاميليا؟
+  - suggested: في أي دولة تقع كنيسة ساغرادا فاميليا؟
+- **Q0001972** في أي دولة تقع بحيرة بلو لاغون الحرارية؟
+- **Q0001977** في أي مدينة تقع مجموعة متاحف الأرميتاج الشهيرة؟
+- **Q0001979** في أي دولة يقع متنزه سيرينغيتي الوطني المعروف بالهجرة الكبرى للحيوانات؟
+- **Q0001984** أين يقع خليج ميلفورد (ميلفورد ساوند) المشهور بقممه الشاهقة وشلالاته؟
+  - suggested: في أي دولة يقع ميلفورد ساوند المشهور بقممه الشاهقة وشلالاته؟
+- **Q0001989** في أي ولاية أمريكية يقع جبل أو مرصد ماونا كيا؟
+  - suggested: في أي ولاية أمريكية يقع بركان ماونا كيا الذي تعلو قمته مراصد فلكية شهيرة؟
+
+## cars (54)
+
+- **Q0001331** Which company manufactures the Civic model?
+  - suggested: Which Japanese carmaker manufactures the Civic?
+- **Q0001332** What country is Mercedes-Benz originally from?
+  - suggested: Which country is the car brand Mercedes-Benz originally from?
+- **Q0001333** Which Italian brand is famous for its prancing horse logo?
+  - suggested: Which Italian car brand is famous for its prancing horse logo?
+- **Q0001334** What is the full name of the car company commonly known as VW?
+- **Q0001335** Which American company manufactures the Mustang?
+- **Q0001336** What country is Toyota from?
+  - suggested: Which country is the carmaker Toyota from?
+- **Q0001337** Name the British luxury car brand with a winged 'B' logo.
+  - suggested: Which British luxury car brand has a winged 'B' logo?
+- **Q0001338** Which company produces the Camry?
+  - suggested: Which carmaker produces the Camry?
+- **Q0001339** Which South Korean manufacturer makes the Elantra?
+- **Q0001340** Which German manufacturer makes the 3 Series?
+- **Q0001341** Which car manufacturer produces the Accord?
+- **Q0001342** What is the luxury division of Toyota?
+- **Q0001343** Which car brand is associated with the Impreza model?
+  - suggested: Which car brand makes the Impreza?
+- **Q0001344** What is the parent company of the Audi brand?
+- **Q0001345** Which car manufacturer is known for the F-150 truck?
+  - suggested: Which car manufacturer makes the F-150 pickup truck?
+- **Q0001346** Which Japanese company produces the Altima?
+- **Q0001347** Which German car manufacturer is known for the Beetle?
+- **Q0001348** Which luxury car brand is a division of Honda?
+- **Q0001349** Which company manufactures the Outback?
+  - suggested: Which Japanese carmaker manufactures the Outback model?
+- **Q0001350** Which Italian carmaker is known for producing the Countach?
+- **Q0001352** What is the name of General Motors' luxury vehicle division?
+- **Q0001353** Which French company produces the Clio?
+- **Q0001355** Which company is known for its 'Spirit of Ecstasy' hood ornament?
+  - suggested: Which car company is known for its 'Spirit of Ecstasy' hood ornament?
+- **Q0001356** Which German car manufacturer produces the A-Class?
+  - suggested: Which German car manufacturer introduced the A-Class compact car in 1997?
+- **Q0001357** Which American manufacturer produces the Corvette sports car?
+  - suggested: Which American car brand produces the Corvette sports car?
+- **Q0001358** Which British manufacturer is known for producing the Defender model?
+  - suggested: Which British car brand is known for the Defender off-road vehicle?
+- **Q0001360** Which company is responsible for producing the sports car model Supra?
+  - suggested: Which car company makes the Supra sports car?
+- **Q0001362** What is the main luxury vehicle brand of Nissan?
+  - suggested: What is the name of Nissan's luxury vehicle brand?
+- **Q0001363** Which American car manufacturer used the slogan 'Like a Rock' in its advertising campaigns?
+  - suggested: Which American car brand used the slogan 'Like a Rock', set to Bob Seger's song, in its truck advertising?
+- **Q0001364** Which Japanese company manufactures the MX-5 Miata?
+  - suggested: Which Japanese company manufactures the MX-5 Miata roadster?
+- **Q0001365** Which Swedish company is renowned for its focus on safety and produced the 240 model?
+  - suggested: Which Swedish car company, renowned for its focus on safety, produced the 240 model?
+- **Q0001366** Which car manufacturer produces the Aventador supercar?
+  - suggested: Which Italian car manufacturer built the Aventador supercar?
+- **Q0001367** Which German car manufacturer produces the Panamera luxury sedan?
+- **Q0001368** Which automaker is responsible for producing the luxury SUV Bentayga?
+  - suggested: Which British automaker produces the Bentayga luxury SUV?
+- **Q0001369** Which company manufactures the i3 electric city car?
+  - suggested: Which German company built the i3 electric city car?
+- **Q0001370** Which car manufacturer is renowned for its Quattro all-wheel-drive system?
+  - suggested: Which German car manufacturer is renowned for its Quattro all-wheel-drive system?
+- **Q0001371** Which Italian company, owned by Stellantis, manufactures the 500 model?
+  - suggested: Which Italian car company, now part of Stellantis, manufactures the 500 model?
+- **Q0001373** Which French car company merged with Peugeot to form the PSA Group?
+  - suggested: Which French car company did Peugeot take over in 1976 to form the PSA Group?
+- **Q0001374** Which British brand is renowned for producing the Phantom luxury car?
+  - suggested: Which British luxury car brand produces the Phantom model?
+- **Q0001375** Which Japanese company is famous for producing the Z series of sports cars?
+  - suggested: Which Japanese car company is famous for producing the Z series of sports cars, starting with the 240Z?
+- **Q0001376** Which British automaker is known for producing the Vantage model?
+  - suggested: Which British automaker is known for producing the Vantage sports car?
+- **Q0001377** Which luxury car manufacturer has its headquarters located in Crewe, England?
+  - suggested: Which luxury car manufacturer has its headquarters and factory in Crewe, England?
+- **Q0001378** Which American electric vehicle company was co-founded by Elon Musk?
+  - suggested: Which American electric vehicle company is officially recognized as having been co-founded by Elon Musk?
+- **Q0001379** Which company manufactures the luxury SUV known as the Escalade?
+- **Q0001380** Which South Korean automaker is the parent company of the luxury brand Genesis?
+- **Q0001382** Which company produces the electric car known as the Leaf?
+- **Q0001383** Which company produces the luxury sedan known as the S-Class?
+- **Q0001385** Which Japanese automaker is known for its rotary engine technology?
+- **Q0001386** Which American manufacturer produced the EV1, one of the first modern electric cars?
+- **Q0001387** Which Italian luxury brand is famous for its signature trident logo?
+- **Q0001388** Which Chinese automotive company owns Volvo Cars?
+- **Q0002064** Lotus Cars, the British maker of luxury sports cars and electric vehicles, was founded by which engineer?
+  - suggested: Lotus Cars, the British maker of sports cars, was founded by which engineer?
+- **Q0002070** In an internal combustion engine, what name is given to the four sequential stages of the operating cycle: intake, compression, power, and exhaust?
+  - suggested: What name is given to the internal combustion engine operating cycle made up of the intake, compression, power and exhaust strokes?
+  - answer: The four-stroke cycle → Four-stroke cycle
+- **Q0002072** What anti-lock system, abbreviated ABS, prevents a car's wheels from locking up during hard braking?
+  - suggested: In car safety systems, what does the abbreviation ABS stand for?
+
+## الحرب_العالمية_الثانية (5)
+
+- **Q0000461** من كان زعيم ألمانيا خلال الحرب العالمية الثانية؟
+- **Q0000469** كانت فرنسا من دول المحور في الحرب العالمية الثانية.
+- **Q0000471** ما اسم السفينة الحربية الأمريكية التي انفجرت خلال هجوم بيرل هاربر؟
+  - suggested: ما اسم السفينة الحربية الأمريكية التي انفجرت وغرقت خلال الهجوم الياباني على بيرل هاربر عام 1941؟
+- **Q0000472** من كان رئيس وزراء بريطانيا خلال معظم فترة الحرب العالمية الثانية؟
+- **Q0000476** أي من الزعماء التاليين لم يشارك في مؤتمر يالطا؟
+  - suggested: أي من الزعماء التاليين لم يشارك في مؤتمر يالطا عام 1945؟
+  - answer: هتلر → شارل ديغول
+
+## الاقتصاد_العالمي (22)
+
+- **Q0001414** أي من البلدان التالية عضو في مجموعة العشرين (G20)؟
+- **Q0001415** أي عملة تمثل العملة المشتركة لدول الاتحاد الأوروبي؟
+  - suggested: ما العملة الموحدة التي تتداولها معظم دول الاتحاد الأوروبي؟
+- **Q0001419** في عام 2020، ما الحدث الذي سبب ركودًا عالميًا في الاقتصاد؟
+  - suggested: في عام 2020، ما الحدث الذي تسبب في ركود اقتصادي عالمي؟
+- **Q0001423** ما اسم المنظمة القارية التي تسعى لتعزيز التكامل الاقتصادي بين الدول الأفريقية؟
+  - suggested: ما اسم المنظمة القارية التي تضم دول أفريقيا وتسعى إلى تعزيز التكامل الاقتصادي بينها؟
+- **Q0001425** أي من الدول التالية اشتهرت باعتبارها مركزًا ماليًا عالميًا؟
+  - suggested: أي من الدول التالية تشتهر بأنها مركز مالي عالمي؟
+- **Q0001432** ما اسم العملة الصينية الرسمية؟
+  - suggested: ما اسم الوحدة الأساسية للعملة الرسمية في الصين؟
+- **Q0001435** أي من الدول التالية شهدت أزمة ديون سيادية كبيرة بداية من عام 2010؟
+  - suggested: أيّ الدول التالية شهدت أزمة ديون سيادية كبيرة بدأت عام 2010 واستدعت خطط إنقاذ دولية؟
+- **Q0001436** اي قطاع تسبب في صدمة أسعار عام 2022 بسبب الحرب في أوكرانيا؟
+  - suggested: أيّ القطاعات التالية شهد صدمة أسعار عالمية حادة عام 2022 بسبب الحرب في أوكرانيا؟
+- **Q0001439** ما هو مصطلح الركود الاقتصادي؟
+  - suggested: ما المقصود بالركود الاقتصادي؟
+  - answer: انخفاض الإنتاج والنمو الاقتصادي → تراجع الإنتاج والنشاط الاقتصادي
+- **Q0001440** أي سوق ناشئ أصبح قوة اقتصادية نتيجة عدد سكانه الكبير ونمو الاستثمارات التكنولوجية؟
+  - suggested: أيّ الأسواق الناشئة التالية أصبح قوة اقتصادية كبرى بفضل عدد سكانه الهائل ونمو قطاع التكنولوجيا فيه؟
+- **Q0001441** أي من المؤسسات التالية مسؤولة عن مراقبة استقرار النظام المالي الدولي؟
+  - suggested: أيّ المؤسسات التالية تتولى مراقبة استقرار النظام النقدي والمالي الدولي؟
+- **Q0001442** أي من مؤشرات الأسهم التالية يُعد الأكثر شهرة في اليابان؟
+  - suggested: ما أشهر مؤشرات الأسهم في اليابان من بين ما يلي؟
+- **Q0001443** ما هو سبب زيادات أسعار الغاز الطبيعي في أوروبا في عام 2022؟
+  - suggested: ما السبب الرئيسي لارتفاع أسعار الغاز الطبيعي في أوروبا عام 2022؟
+- **Q0001445** أي من هذه الدول لم تكن عضوًا في منظمة أوبك حتى تاريخ 2023؟
+  - suggested: أي من الدول التالية لم تكن عضوًا في منظمة أوبك حتى عام 2023؟
+- **Q0001447** ما اسم الدورة الدورية لانخفاض وارتفاع الأداء الاقتصادي الوطني؟
+  - suggested: ما اسم التقلبات المتكررة بين الركود والانتعاش في النشاط الاقتصادي للدولة؟
+- **Q0001449** في عام 2022، ارتفعت معدلات التضخم بسبب ارتفاع أسعار ماذا بشكل رئيسي؟
+  - suggested: ارتفاع أسعار أي مما يلي كان المحرك الرئيسي لموجة التضخم العالمية في عام 2022؟
+- **Q0001451** أي من الدول التالية تملك احتياطيًا ضخمًا من العملات الأجنبية بفضل صادراتها الصناعية؟
+  - suggested: أي من الدول التالية تملك أكبر احتياطي من العملات الأجنبية في العالم، ويعود ذلك أساسًا إلى فوائضها التجارية من الصادرات الصناعية؟
+- **Q0001453** ما اسم مبادرة الصين التجارية العملاقة لإحياء طريق الحرير؟
+  - suggested: ما اسم المبادرة الصينية العملاقة التي أطلقها الرئيس شي جين بينغ عام 2013 لإحياء طريق الحرير التجاري؟
+- **Q0001455** أي من المؤشرات المالية التالية يُستخدم لقياس التضخم؟
+  - suggested: أي من المؤشرات التالية يُستخدم لقياس التضخم؟
+- **Q0001457** مصطلح ESG صار شائعاً في الاقتصاد العالمي ويعني مسؤولية الشركات تجاه ماذا؟
+  - suggested: إلى ماذا تشير الأحرف الثلاثة في مصطلح ESG المستخدم لتقييم الشركات والاستثمارات؟
+- **Q0001459** أي من المنظمات التالية تُعنى بمراقبة الدول المصدرة للنفط؟
+  - suggested: ما المنظمة الدولية التي تأسست في بغداد عام 1960، وتضم عددًا من الدول المصدرة للنفط لتنسيق سياساتها النفطية؟
+- **Q0001461** أي من هذه العملات الرقمية لها ارتباط مباشر بالدولار الأمريكي؟
+  - suggested: أي من العملات الرقمية التالية عملة مستقرة مربوطة بالدولار الأمريكي بنسبة 1 إلى 1؟
+
+## العصر_الذهبي (3)
+
+- **Q0000264** ما هو اسم العالم العربي الذي يُعتبر من أوائل من أسس علم البصريات؟
+  - suggested: من هو العالم المسلم الذي أحدث نقلة كبرى في علم البصريات بكتابه الشهير 'كتاب المناظر'؟
+- **Q0000268** ما هو اسم العالم العربي الذي يُعتبر من أوائل من أسس علم الكيمياء؟
+  - suggested: من هو العالم الذي يُلقَّب بـ'أبي الكيمياء' في التراث العربي؟
+- **Q0000275** من هو العالم العربي الذي كتب 'الشفاء' والذي يُعتبر من أهم الكتب الفلسفية؟
+  - suggested: من هو العالم المسلم الذي ألّف كتاب «الشفاء»، وهو موسوعة كبرى في الفلسفة والعلوم؟
+
+## التاريخ_المعاصر (15)
+
+- **Q0000238** في أي عام تم هدم جدار برلين؟
+  - suggested: في أي عام سقط جدار برلين؟
+- **Q0000251** ما هو الاسم الذي أُطلق على العملية العسكرية التي قادتها الولايات المتحدة لتحرير الكويت في عام 1991؟
+  - suggested: ما الاسم الذي أُطلق على العملية العسكرية التي قادتها الولايات المتحدة لتحرير الكويت عام 1991؟
+- **Q0000253** تُعد معاهدة فرساي من الأسباب الرئيسية لاندلاع الحرب العالمية الثانية.
+  - suggested: تُعد معاهدة فرساي (1919) من أسباب اندلاع الحرب العالمية الثانية.
+- **Q0001049** من هو الزعيم الألماني الذي قاد ألمانيا خلال الحرب العالمية الثانية؟
+- **Q0001056** سقط جدار برلين عام 1989.
+- **Q0001060** ما هي العاصمة التي تم تقسيمها بعد الحرب العالمية الثانية؟
+  - suggested: أي من هذه المدن قُسّمت إلى مناطق احتلال بين الحلفاء بعد الحرب العالمية الثانية؟
+- **Q0001071** ما اسم الحركة السياسية التي لعبت دورًا رئيسيًا في إنهاء نظام الفصل العنصري في جنوب أفريقيا؟
+  - suggested: ما اسم الحركة السياسية التي قادت النضال ضد نظام الفصل العنصري في جنوب أفريقيا، وكان نيلسون مانديلا من أبرز قادتها؟
+- **Q0001080** ما اسم الزعيم الكوبي الذي حكم كوبا بعد الثورة عام 1959؟
+  - suggested: ما اسم الزعيم الذي قاد الثورة الكوبية وحكم كوبا بعد انتصارها عام 1959؟
+- **Q0001085** في أي عام اندلعت الثورة البلشفية في روسيا؟
+  - suggested: في أي عام اندلعت الثورة البلشفية (ثورة أكتوبر) في روسيا؟
+- **Q0001086** ما اسم الاتفاقية التي أنهت الأعمال العدائية في الحرب الكورية؟
+- **Q0001090** ما اسم الرئيس الأمريكي الذي أطلق مشروع أبولو للهبوط على سطح القمر؟
+  - suggested: أي رئيس أمريكي أعلن عام 1961 هدف إنزال إنسان على سطح القمر قبل نهاية ذلك العقد؟
+- **Q0001095** ما اسم المعاهدة التي أنهت الحرب الأمريكية في فيتنام؟
+  - suggested: ما اسم الاتفاقية التي أنهت المشاركة العسكرية المباشرة للولايات المتحدة في حرب فيتنام عام 1973؟
+- **Q0001097** أي بلد شهد مجاعة كبرى في ثلاثينيات القرن العشرين بسبب السياسات الزراعية القسرية؟
+- **Q0001098** ما اسم الثورة التي أطاحت بالشاه في إيران؟
+  - suggested: ما اسم الثورة التي أطاحت بالشاه محمد رضا بهلوي في إيران؟
+- **Q0001099** أي دولة أفريقية حصلت على استقلالها عن البرتغال عام 1975؟
+
+## jurassic_park (17)
+
+- **Q0001000** Which dinosaur is featured on the original Jurassic Park logo?
+- **Q0001032** In which Jurassic Park movie do pteranodons attack people in an aviary?
+  - suggested: In which film are the main characters attacked by Pteranodons inside a giant bird cage on Isla Sorna?
+- **Q0001035** What is the name of the T. rex in Jurassic World: Fallen Kingdom?
+  - suggested: What nickname is commonly given to the Tyrannosaurus rex that appears in both Jurassic Park and the Jurassic World films?
+- **Q0001037** What is the full name of the scientist who cloned the first dinosaur in Jurassic Park?
+  - suggested: In the film Jurassic Park (1993), what is the name of InGen's chief geneticist, who is responsible for creating the park's dinosaurs?
+- **Q0001175** In the original 'Jurassic Park' (1993), what object does Dr. Alan Grant use to distract the T. rex during the rainstorm scene?
+- **Q0001177** In 'Jurassic Park,' the power outage allows the dinosaurs to escape their enclosures.
+  - suggested: In 'Jurassic Park' (1993), Dennis Nedry's sabotage of the park's systems disables the electric fences, allowing dinosaurs to escape.
+- **Q0001186** In 'Jurassic World,' what aquatic dinosaur leaps out of the water to eat a shark during a show?
+  - suggested: In 'Jurassic World,' which giant aquatic reptile leaps out of the water to eat a shark during a park show?
+- **Q0001187** In 'Jurassic Park III,' Eric Kirby survives alone on Isla Sorna for weeks.
+- **Q0001188** What do the raptors use to communicate in 'Jurassic Park III'?
+  - suggested: In 'Jurassic Park III,' what does Dr. Alan Grant believe Velociraptors use to communicate?
+- **Q0001194** In 'Jurassic Park III,' which dinosaur is responsible for the plane crash?
+- **Q0001215** Which character in 'Jurassic Park' gets covered in dinosaur droppings while investigating why a Triceratops is sick?
+  - suggested: Which character in 'Jurassic Park' plunges her arms into a huge pile of dinosaur droppings while investigating a sick Triceratops?
+- **Q0001219** In 'Jurassic Park,' how do the characters escape the velociraptors in the visitor center?
+  - suggested: In 'Jurassic Park,' how do Grant, Ellie, Lex and Tim escape the raptor breaking into the visitor center's control room?
+  - answer: Climbing through the ceiling → Climbing into the ceiling
+- **Q0001223** In 'The Lost World: Jurassic Park,' what device is used to attract the T. rex to the ship in San Diego?
+  - suggested: In 'The Lost World: Jurassic Park,' what do Ian Malcolm and Sarah Harding use to lure the adult T. rex back to the ship in San Diego?
+- **Q0001226** What type of dinosaur kills the Indominus rex at the end of 'Jurassic World'?
+  - suggested: What prehistoric marine reptile kills the Indominus rex at the end of 'Jurassic World'?
+- **Q0001231** What is the name of the cloned girl in 'Jurassic World: Fallen Kingdom'?
+- **Q0001236** In 'Jurassic Park,' what genetic method is used to fill gaps in dinosaur DNA?
+  - suggested: In 'Jurassic Park,' DNA from which type of animal is used to fill the gaps in the dinosaur genetic code?
+- **Q0001243** In 'Jurassic Park III,' what item does Eric Kirby use to keep the raptors away at night?
+  - suggested: In 'Jurassic Park III,' what does Eric Kirby say he collected to keep other dinosaurs away while he survived on Isla Sorna?
+  - answer: T-Rex urine → T. rex urine
+
+## الفيزياء (18)
+
+- **Q0000214** أي من التالي يعتبر مثالًا على الحركة الدائرية المنتظمة؟
+  - suggested: أي مما يلي يُعد مثالًا على الحركة الدائرية المنتظمة؟
+  - answer: عجلة دوارة → عجلة تدور بمعدل ثابت
+- **Q0000225** ما الكمية الفيزيائية التي تُعرَّف بأنها معدل تغيّر السرعة بالنسبة للزمن؟
+  - suggested: ما الكمية الفيزيائية التي تُعرَّف بأنها معدل تغيّر السرعة المتجهة بالنسبة للزمن؟
+  - answer: العجلة (التسارع) → التسارع
+- **Q0001891** يمكن أن تؤثر القوة في الجسم بزوايا مختلفة.
+  - suggested: يمكن تحليل القوة المؤثرة في جسم بزاوية ما إلى مركبتين متعامدتين: أفقية ورأسية.
+- **Q0001892** ما هي العلاقة بين الشحنة الكهربائية والقوة الكهربائية؟
+  - suggested: وفق قانون كولوم، ما العلاقة بين مقدار إحدى الشحنتين والقوة الكهربائية المتبادلة بينهما عند ثبات المسافة؟
+- **Q0001893** ما هو اسم الظاهرة التي تتسبب في انحناء الضوء عند مروره من وسط إلى وسط آخر؟
+  - suggested: ما اسم الظاهرة التي يتغير فيها اتجاه الضوء عند انتقاله من وسط شفاف إلى وسط شفاف آخر؟
+- **Q0001896** ما اسم الظاهرة التي يتغير فيها تردد الموجة بسبب حركة المصدر أو المراقب؟
+  - suggested: ما اسم الظاهرة التي يتغير فيها تردد الموجة المُدرَك بسبب حركة المصدر أو المراقب؟
+- **Q0001905** في الفيزياء، ما هو التعريف الصحيح لمفهوم 'العمل'؟
+  - suggested: في الفيزياء، ما التعريف الصحيح لمفهوم "الشغل"؟
+  - answer: القوة المؤثرة خلال مسافة → حاصل ضرب القوة في الإزاحة باتجاهها
+- **Q0001909** ما هو الجهاز المستخدم لقياس شدة التيار الكهربائي؟
+  - suggested: ما الجهاز المستخدم لقياس شدة التيار الكهربائي؟
+- **Q0001912** ما هو المصطلح الذي يصف مقاومة المادة للتغير في حركتها؟
+  - suggested: ما المصطلح الفيزيائي الذي يصف ممانعة الجسم لأي تغيير في حالته الحركية؟
+- **Q0001914** ما هي درجة غليان الماء في مقياس كلفن؟
+  - suggested: ما درجة غليان الماء النقي عند الضغط الجوي القياسي بمقياس كلفن تقريباً؟
+- **Q0001918** ما هو المفهوم الفيزيائي الذي يصف التغير في الموقع بالنسبة للزمن؟
+  - suggested: ما المفهوم الفيزيائي الذي يعبّر عن المعدل الزمني لتغير موقع الجسم؟
+- **Q0001922** تكون الذرة مستقرة عندما يكون غلافها الخارجي مكتملًا.
+  - suggested: تكون الذرة أكثر استقرارًا كيميائيًا عندما يكون غلاف التكافؤ (الغلاف الخارجي) فيها ممتلئًا بالإلكترونات.
+- **Q0001924** ما هو القانون الذي يشير إلى أن الضغط يتناسب عكسياً مع الحجم عند ثبات درجة الحرارة؟
+  - suggested: ما القانون الذي ينص على أن ضغط كمية محددة من الغاز يتناسب عكسياً مع حجمها عند ثبات درجة الحرارة؟
+- **Q0001927** ما هو الاسم العلمي للعملية التي يتم فيها تحويل الطاقة الضوئية إلى طاقة كيميائية؟
+  - suggested: ما اسم العملية التي تحوّل بها النباتات الطاقة الضوئية إلى طاقة كيميائية مخزنة في الجلوكوز؟
+- **Q0001928** يمكن للشحنة الكهربائية أن تتحرك في دائرة مغلقة.
+  - suggested: يشترط لسريان تيار كهربائي مستمر في دائرة كهربائية أن تكون الدائرة مغلقة.
+- **Q0001929** ما هو المصطلح الذي يصف مقاومة المادة لتدفق التيار الكهربائي؟
+  - suggested: ما الكمية الفيزيائية التي تُقاس بوحدة الأوم (Ω)؟
+- **Q0001933** ما هي العملية التي يتحول فيها الغاز إلى سائل؟
+  - suggested: ما اسم العملية التي تتحول فيها المادة من الحالة الغازية إلى الحالة السائلة؟
+  - answer: التكثيف → التكاثف
+- **Q0001934** الطاقة الكامنة في الجسم عند موضع ثابت تعتمد على ارتفاعه.
+  - suggested: تعتمد طاقة الوضع الجاذبية لجسم على ارتفاعه عن مستوى مرجعي.
+
+## النحو (37)
+
+- **Q0001519** ما نوع الفعل في جملة: ذهب الطالب إلى المدرسة؟
+  - suggested: ما نوع الفعل 'ذهب' من حيث الزمن في جملة: ذهب الطالب إلى المدرسة؟
+- **Q0001520** ما علامة رفع الفاعل في جملة: يلعبُ الطفلُ بالكرة؟
+- **Q0001521** ما إعراب كلمة 'الحديقة' في جملة: جلس الأطفال في الحديقة؟
+- **Q0001522** أعرب كلمة 'العصفور' في جملة: رأيت العصفور يحلّق؟
+  - suggested: ما إعراب كلمة 'العصفور' في جملة: رأيتُ العصفورَ يحلّق؟
+- **Q0001523** كيف تُعرَبُ كلمة 'محمد' في جملة: أكل محمدُ الطعام؟
+  - suggested: كيف تُعرَبُ كلمة 'محمد' في جملة: أكل محمدٌ الطعامَ؟
+- **Q0001525** ما علامة نصب المفعول به في جملة: قرأتُ الكتابَ؟
+- **Q0001526** ما نوع الجملة في: الشمس مشرقةٌ؟
+  - suggested: ما نوع الجملة في: الشمسُ مشرقةٌ؟
+- **Q0001527** أعرب كلمة 'المعلم' في جملة: كافأ المدير المعلمَ؟
+  - suggested: أعرب كلمة 'المعلمَ' في جملة: كافأ المديرُ المعلمَ.
+- **Q0001528** ما علامة نصب كلمة 'الكتابين' في جملة: قرأتُ الكتابين؟
+- **Q0001530** ما علامة رفع جمع المذكر السالم؟
+- **Q0001531** في جملة: أطعمت الأم الطفلَ الحليبَ، ما إعراب 'الحليب'؟
+  - suggested: في جملة: أطعمت الأمُّ الطفلَ الحليبَ، ما إعراب 'الحليبَ'؟
+- **Q0001532** ما هو إعراب كلمة المجتهد في الجملة: جاء الطالب المجتهدُ؟
+  - suggested: ما إعراب كلمة 'المجتهدُ' في جملة: جاء الطالبُ المجتهدُ؟
+- **Q0001533** ما نوع التوكيد في الجملة: جاء المعلم نفسه؟
+  - suggested: ما نوع التوكيد في جملة: جاء المعلمُ نفسُه؟
+- **Q0001534** ما هو التأثير الإعرابي لـ إنَّ وأخواتها في الجملة الاسمية على المبتدأ والخبر؟
+  - suggested: ما الأثر الإعرابي لـ«إنّ وأخواتها» حين تدخل على المبتدأ والخبر؟
+- **Q0001535** ما إعراب كلمة 'طالبين' وعلامة إعرابها في جملة: سلمتُ على طالبين؟
+  - suggested: ما إعراب كلمة «طالبين» وما علامة إعرابها في جملة: سلّمتُ على طالبين؟
+- **Q0001536** ما نوع الفعل الذي يدل على حدث يقع في الحاضر أو المستقبل؟
+- **Q0001537** ما إعراب 'المسافرُ' في جملة: خرج المسافرُ باكراً؟
+  - suggested: ما إعراب كلمة «المسافرُ» في جملة: خرج المسافرُ باكرًا؟
+- **Q0001538** ما جمع كلمة «مَدرَسة» (بمعنى مكان الدراسة)؟
+- **Q0001539** اذكر نوع الحال في الجملة: جاء الطفلُ مسروراً.
+  - suggested: ما نوع الحال في جملة: جاء الطفلُ مسرورًا؟
+- **Q0001540** ما اسم الاسم النكرة المنصوب الذي يُزيل الإبهام عمّا قبله؟
+- **Q0001543** ما هو إعراب "ركضاً" في جملة: ركض الطفل ركضاً؟
+  - suggested: ما إعراب كلمة 'ركضاً' في جملة: ركضَ الطفلُ ركضاً؟
+- **Q0001544** ما إعراب الجملة الفعلية إذا جاءت خبراً في جملة: الطقسُ تحسنَ فجأة؟
+  - suggested: ما محل جملة 'تحسّنَ' من الإعراب في جملة: الطقسُ تحسّنَ فجأةً؟
+  - answer: جملة فعلية في محل رفع خبر → في محل رفع خبر
+- **Q0001545** في جملة: كافأ المديرُ الطلابَ المجتهدينَ، ما نوع أو إعراب كلمة 'المجتهدينَ'؟
+  - suggested: ما إعراب كلمة 'المجتهدينَ' في جملة: كافأ المديرُ الطلابَ المجتهدينَ؟
+  - answer: نعت أو صفة → نعت منصوب
+- **Q0001547** ما إعراب كلمة 'الورقة' في جملة: كُتِبَتِ الورقةُ؟
+  - suggested: ما إعراب كلمة 'الورقةُ' في جملة: كُتِبَتِ الورقةُ؟
+- **Q0001549** ما إعراب كلمة 'تلميذاً' في جملة: رأيت تلميذاً مجتهداً؟
+  - suggested: ما إعراب كلمة 'تلميذاً' في جملة: رأيتُ تلميذاً مجتهداً؟
+- **Q0001550** ما حرف الجر في جملة: ذهبتُ إلى المدرسة؟
+- **Q0001551** ما إعراب كلمة «الطالبِ» في جملة: هذا كتابُ الطالبِ؟
+- **Q0001552** بماذا تبدأ الجملة الاسمية؟
+  - suggested: بأي نوع من الكلمات تبدأ الجملة الاسمية في الأصل؟
+- **Q0001553** ما نوع 'إلا' في جملة: حضر الطلاب إلا طالباً؟
+  - suggested: ما نوع «إلا» في جملة: حضر الطلابُ إلا طالباً؟
+- **Q0001555** اذكر أنواع خبر كان وأخواتها وهي ثلاثة أنواع.
+  - suggested: ما الأنواع الثلاثة لخبر كان وأخواتها؟
+  - answer: خبر مفرد، جملة، شبه جملة → مفرد، جملة، شبه جملة
+- **Q0001556** ماذا يُسمّى الاسم الذي يدل على اثنين أو اثنتين؟
+  - suggested: ماذا يُسمّى الاسم الذي يدل على اثنين أو اثنتين بزيادة ألف ونون أو ياء ونون في آخره؟
+- **Q0001560** ما نوع الجملة التي يُطلب فيها حدوث أمر، مثل: اكتبِ الدرسَ؟
+  - suggested: ما نوع الجملة في قولنا: اكتبِ الدرسَ، من حيث الخبر والإنشاء؟
+  - answer: جملة طلبية (إنشائية) → جملة إنشائية طلبية
+- **Q0001561** كيف يُعرب اسم إنَّ وأخواتها في الجملة؟
+  - suggested: ما الحكم الإعرابي لاسم «إنَّ» وأخواتها؟
+  - answer: اسم إنَّ منصوب → منصوب
+- **Q0001562** على أي حركة يُبنى الفعل المضارع إذا اتصلت به نون النسوة؟
+- **Q0001565** ما نوع النعت في جملة: جاء الرجلُ الكريمُ أبوه؟
+- **Q0001566** ما نوع التمييز في جملة: اشتريتُ رطلًا زيتًا؟
+- **Q0001568** ما حكم المستثنى بـ«إلا» في جملة: حضر الطلابُ إلا زيدًا؟
+  - suggested: ما حكم إعراب المستثنى بـ«إلا» في جملة: حضر الطلابُ إلا زيدًا؟
+
+## تاريخ_الإسلام (26)
+
+- **Q0000098** في أي عام وقعت معركة حطين؟
+- **Q0000099** من هو القائد الذي فتح مصر في عهد الخليفة عمر بن الخطاب؟
+- **Q0000102** في أي عام سقطت الأندلس؟
+  - suggested: في أي عام سقطت غرناطة، آخر معاقل المسلمين في الأندلس؟
+- **Q0000777** في أي عام وُلد النبي محمد صلى الله عليه وسلم؟
+  - suggested: ما الاسم الذي عُرف به العام الذي وُلد فيه النبي محمد صلى الله عليه وسلم؟
+- **Q0000785** ما اسم المعركة التي وقعت بين المسلمين وقريش في السنة الثانية للهجرة؟
+  - suggested: ما اسم المعركة الكبرى التي وقعت بين المسلمين وقريش في السنة الثانية للهجرة؟
+- **Q0000786** كم سنة بقي النبي في مكة بعد البعثة قبل الهجرة؟
+  - suggested: كم سنة أقام النبي محمد صلى الله عليه وسلم في مكة بعد البعثة قبل الهجرة إلى المدينة؟
+  - answer: ثلاث عشرة سنة → 13 سنة
+- **Q0000790** ما اسم صلح عقد بين النبي وقريش في السنة السادسة للهجرة؟
+  - suggested: ما اسم الصلح الذي عُقد بين النبي صلى الله عليه وسلم وقريش في السنة السادسة للهجرة؟
+- **Q0000794** ما اسم القبيلتين اللتين استقبلتا النبي في المدينة؟
+  - suggested: ما اسم القبيلتين اللتين استقبلتا النبي صلى الله عليه وسلم في المدينة المنورة؟
+- **Q0000795** في أي سنة وُقِّعت بيعة العقبة الثانية؟
+  - suggested: في أي سنة من البعثة النبوية عُقدت بيعة العقبة الثانية؟
+  - answer: في السنة الثالثة عشرة من البعثة → السنة 13 من البعثة
+- **Q0001619** كان للخليفة العباسي هارون الرشيد اهتمام خاص بالعلم والعلماء.
+- **Q0001620** من هو القائد المسلم الذي فتح الأندلس؟
+  - suggested: من القائد المسلم الذي عبر بالجيش الإسلامي إلى الأندلس سنة 711م وانتصر في معركة وادي لكة؟
+- **Q0001622** كانت الخلافة الفاطمية أول خلافة شيعية في العالم الإسلامي.
+  - suggested: قامت الخلافة الفاطمية على المذهب الشيعي الإسماعيلي.
+- **Q0001625** التوسع الإسلامي في بلاد فارس حدث في عهد الخليفة عمر بن الخطاب.
+  - suggested: وقعت معركة القادسية بين المسلمين والفرس في عهد الخليفة عمر بن الخطاب.
+- **Q0001628** بدأت الخلافة الأموية بعد مقتل الخليفة علي بن أبي طالب.
+  - suggested: بدأت الخلافة الأموية بعد مقتل الخليفة علي بن أبي طالب وتنازل ابنه الحسن عن الخلافة لمعاوية بن أبي سفيان.
+- **Q0001629** ما هي المدينة الإسلامية التي أصبحت مركزًا ثقافيًا وعلميًا في عهد الدولة العباسية؟
+  - suggested: ما المدينة التي أسسها الخليفة العباسي أبو جعفر المنصور عاصمةً للدولة، واشتهرت ببيت الحكمة مركزًا للعلم والترجمة؟
+- **Q0001630** في أي معركة انتهى التواجد البيزنطي في الشام بشكل نهائي؟
+  - suggested: ما المعركة الحاسمة التي انتصر فيها المسلمون على البيزنطيين سنة 15هـ (636م) ففتحت لهم بلاد الشام؟
+- **Q0001633** ما هو اسم المعاهدة التي عقدها الخليفة عمر بن الخطاب مع أهل القدس؟
+  - suggested: ما اسم الوثيقة التي أعطاها الخليفة عمر بن الخطاب لأهل إيلياء (القدس) عند فتحها؟
+- **Q0001634** أصبحت بغداد عاصمة الخلافة العباسية بعد أن كانت دمشق عاصمة الأموية.
+  - suggested: أصبحت بغداد عاصمة الخلافة العباسية بعد أن كانت دمشق عاصمة الخلافة الأموية.
+- **Q0001635** من هو الخليفة الأموي الذي بني الجامع الأموي في دمشق؟
+  - suggested: من الخليفة الأموي الذي بنى الجامع الأموي في دمشق؟
+- **Q0001637** كانت معركة ملازكرد بين المسلمين والبيزنطيين.
+  - suggested: كانت معركة ملاذكرد بين المسلمين والبيزنطيين.
+- **Q0001638** من هو المؤسس الأول للدولة العباسية؟
+  - suggested: من هو أول خلفاء الدولة العباسية؟
+- **Q0001648** من هو القائد العسكري الذي قاد المسلمين في الفتوحات الإسلامية في شبه القارة الهندية؟
+  - suggested: من القائد الأموي الذي فتح بلاد السند في شبه القارة الهندية سنة 92هـ (711م)؟
+- **Q0001649** كان الخليفة المعتصم بالله آخر الخلفاء العباسيين في بغداد.
+- **Q0001652** كان للحركة الفاطمية تأثير كبير على تاريخ شمال إفريقيا.
+  - suggested: قامت الدولة الفاطمية أولاً في بلاد إفريقية (تونس حالياً) قبل أن تنتقل إلى مصر.
+- **Q0001654** ما هو الاسم الذي أُطلق على المدينة التي تأسست فيها جامعة القرويين؟
+  - suggested: في أي مدينة مغربية تأسست جامعة القرويين؟
+- **Q0001655** كانت الحروب الصليبية بين المسلمين والبيزنطيين.
+  - suggested: كانت معركة حطين عام 1187م بين المسلمين والبيزنطيين.
+
+## تاريخ_الإمارات (17)
+
+- **Q0000359** ما هو اسم المعاهدة التي وُقعت في عام 1820 بين شيوخ الإمارات والبريطانيين؟
+  - suggested: ما اسم المعاهدة التي وُقِّعت عام 1820 بين بريطانيا وشيوخ ساحل الخليج العربي، ومنهم شيوخ الإمارات الحالية؟
+- **Q0000362** ما هو البحر الذي تطل عليه دولة الإمارات العربية المتحدة؟
+  - suggested: أيٌّ من المسطحات المائية التالية تطل عليه دولة الإمارات العربية المتحدة؟
+- **Q0000365** من هو الشيخ الذي يعتبر مؤسس دبي الحديثة؟
+  - suggested: من حاكم دبي الذي حكمها من عام 1958 حتى عام 1990، ويُلقَّب بـ«باني دبي الحديثة»؟
+- **Q0000366** دولة الإمارات العربية المتحدة دولة اتحادية تتكون من سبع إمارات.
+- **Q0000369** تشترك الإمارات السبع جميعها في الحدود مع سلطنة عُمان.
+- **Q0000371** ما هي الإمارة التي تشتهر بوجود مضمار للفورمولا 1؟
+  - suggested: أي إمارة تستضيف جولة من بطولة العالم للفورمولا 1 سنوياً منذ عام 2009؟
+- **Q0001804** ما هو تاريخ الاتحاد الإماراتي، والمعروف باسم يوم الاتحاد؟
+  - suggested: في أي يوم وشهر وسنة أُعلن قيام دولة الإمارات العربية المتحدة، وهو اليوم الذي يُحتفل به سنويًا باسم يوم الاتحاد؟
+- **Q0001805** تقع حديقة حيوانات العين في مدينة أبوظبي.
+  - suggested: تقع حديقة حيوانات العين في إمارة دبي.
+- **Q0001809** تقع إمارتي عجمان وأم القيوين على ساحل الخليج العربي.
+  - suggested: تقع إمارتا عجمان وأم القيوين على ساحل الخليج العربي.
+- **Q0001817** ما هو اسم المهرجان الذي يقام في إمارة الشارقة ويشتهر بعروضه الثقافية المتنوعة؟
+  - suggested: ما اسم المهرجان السنوي الذي تنظمه إمارة الشارقة ويُعنى بالفنون الإسلامية التقليدية والمعاصرة؟
+  - answer: مهرجان الفن الإسلامي → مهرجان الفنون الإسلامية
+- **Q0001820** ما هو النظام الأساسي لحكومة دولة الإمارات المعروف بقوانينه؟
+  - suggested: ما اسم الوثيقة التي صدرت عام 1971 وتُعد القانون الأعلى لدولة الإمارات العربية المتحدة؟
+  - answer: الدستور الإماراتي → الدستور
+- **Q0001826** ما هو اسم الحدث الذي يُعقد في أبوظبي ويستقطب صناع السينما من أنحاء العالم؟
+  - suggested: انطلق في أبوظبي عام 2007 مهرجانٌ باسم «مهرجان الشرق الأوسط السينمائي الدولي»، فما الاسم الذي أصبح يحمله منذ عام 2010؟
+- **Q0001828** ما هو اسم المتحف الذي يُعرف باسم المتحف الوطني لدولة الإمارات ويقع في أبوظبي؟
+  - suggested: ما اسم المتحف الوطني لدولة الإمارات العربية المتحدة الواقع في المنطقة الثقافية في السعديات بأبوظبي؟
+- **Q0001832** ما هو اسم الطريق السريع الذي يربط بين إمارتي دبي وأبوظبي؟
+  - suggested: ما اسم الطريق السريع الرئيسي الذي يربط بين إمارتي دبي وأبوظبي؟
+- **Q0001840** ما هي الإمارة التي تُعرف بكونها موطنًا للعديد من الوديان والينابيع الطبيعية؟
+  - suggested: في أي إمارة تقع محمية وادي الوريعة، أول محمية جبلية في دولة الإمارات؟
+- **Q0001841** تعتبر جزيرة النخلة واحدة من الجزر الصناعية الرائدة في العالم.
+  - suggested: جزيرة نخلة جميرا جزيرة اصطناعية تقع في إمارة دبي.
+- **Q0001842** ما هو اسم المعلم الشهير الذي يقع في أبوظبي ويُعتبر واحدًا من أكبر المساجد في العالم؟
+  - suggested: ما اسم المسجد الواقع في مدينة أبوظبي والذي يُعد من أكبر المساجد في العالم؟
+  - answer: مسجد الشيخ زايد → جامع الشيخ زايد الكبير
+
+## جسم_الإنسان (16)
+
+- **Q0000322** ما هي العصارة التي تفرزها المعدة لهضم الطعام؟
+  - suggested: ما الحمض الذي تفرزه المعدة ضمن عصارتها للمساعدة في هضم الطعام؟
+  - answer: العصارة المعدية → حمض الهيدروكلوريك
+- **Q0000324** أي من الأعضاء التالية يقوم بتنقية الدم وإزالة الفضلات منه؟
+  - suggested: أي من الأعضاء التالية يرشّح الدم ويُخرج الفضلات منه على شكل بول؟
+- **Q0000328** ما هو نوع الخلايا التي تتواجد في الدم وتساعد في التخثر؟
+  - suggested: أي من مكونات الدم التالية يساعد على تخثر الدم؟
+- **Q0000330** ما هو الجزء من الدماغ الذي يسيطر على الأنشطة الإرادية؟
+  - suggested: ما الجزء من الدماغ الذي يتحكم في الحركات الإرادية؟
+- **Q0000978** كم عدد العظام في جسم الإنسان البالغ تقريبًا؟
+  - suggested: كم عدد العظام في الهيكل العظمي للإنسان البالغ عادةً؟
+- **Q0000981** أي عضو في جسم الإنسان مسؤول عن إنتاج خلايا الدم الحمراء؟
+  - suggested: ما الجزء المسؤول عن إنتاج خلايا الدم الحمراء في جسم الإنسان البالغ؟
+- **Q0000986** أي عضو في الجسم يفرز العصارة الصفراوية؟
+- **Q0000990** ما هو العضو الذي ينظم مستوى السكر في الدم؟
+  - suggested: أي عضو يفرز هرمون الأنسولين الذي يخفض مستوى السكر في الدم؟
+- **Q0000993** أي عضو مسؤول عن تخزين الجليكوجين؟
+  - suggested: أي من الأعضاء التالية يخزن الجليكوجين ويحوله إلى جلوكوز لرفع مستوى السكر في الدم عند الحاجة؟
+- **Q0000997** ما هو العضو الذي يوجد في تجويف الصدر ويعمل على حماية القلب والرئتين؟
+  - suggested: ما البنية العظمية التي تحيط بتجويف الصدر وتحمي القلب والرئتين؟
+- **Q0001936** أي نوع من المفاصل يوجد في مفصل الكتف؟
+  - suggested: من أي نوع من المفاصل يُعد مفصل الكتف؟
+- **Q0001941** ما اسم العظم الذي يحيط بالدماغ ويحميه؟
+  - suggested: ما اسم البنية العظمية التي تحيط بالدماغ وتحميه؟
+- **Q0001944** أين يحدث الإخصاب عادةً في الجهاز التناسلي الأنثوي؟
+- **Q0001953** ما اسم الغشاء المصلي الذي يحيط بالرئتين ويقلل الاحتكاك أثناء التنفس؟
+- **Q0001955** ما الدور الأساسي للعروة الصاعدة من عروة هنلي في تكوين تركيز البول؟
+  - suggested: ما الدور الأساسي للطرف الصاعد من عروة هنلي في تكوين البول المركّز؟
+  - answer: إعادة امتصاص أيونات مثل الصوديوم دون ماء لخلق تدرج أسموزي → إعادة امتصاص الأملاح دون الماء
+- **Q0001957** ماذا يمثل الضغط الانقباضي في قراءة ضغط الدم؟
+
+## القرآن_الكريم (83)
+
+- **Q0000178** ما هو اسم السورة التي تحتوي على بسم الله الرحمن الرحيم مرتين؟
+  - suggested: ما السورة التي وردت فيها «بسم الله الرحمن الرحيم» مرتين؟
+- **Q0000179** سورة العصر هي أقصر سورة في القرآن
+  - suggested: سورة العصر هي أقصر سورة في القرآن الكريم.
+- **Q0000181** كم عدد السور التي لا تحتوي آياتها على حرف الميم؟
+  - suggested: كم عدد سور القرآن الكريم التي لا يرد في آياتها حرف الميم، دون احتساب البسملة؟
+- **Q0000182** نزل القرآن الكريم على النبي محمد ﷺ دفعة واحدة في ليلة القدر.
+- **Q0000184** ما هي السورة التي تُطلق عليها أم الكتاب؟
+  - suggested: ما السورة التي تُسمّى «أم الكتاب»؟
+- **Q0000207** ما هي السورة التي تُعرف بأنها قلب القرآن؟
+  - suggested: ما السورة التي اشتهر وصفها بأنها «قلب القرآن»؟
+- **Q0000208** سورة الفاتحة هي أول سورة نزلت على النبي محمد ﷺ.
+  - suggested: سورة الفاتحة هي أول ما نزل من القرآن على النبي محمد ﷺ.
+- **Q0000210** أي من هذه السور تُعرف بأنها السبع المثاني؟
+  - suggested: أي من هذه السور تُعرف بالسبع المثاني؟
+- **Q0000680** قال الله تعالى: {إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ * فَصَلِّ لِرَبِّكَ وَ_____} [الكوثر: 1-2]. املأ الفراغ.
+  - suggested: قال الله تعالى: {إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ * فَصَلِّ لِرَبِّكَ وَ_____} [الكوثر: 1-2]. املأ الفراغ.
+- **Q0000681** قال الله تعالى: {قُلْ هُوَ اللَّهُ أَحَدٌ * اللَّهُ الصَّمَدُ * لَمْ يَلِدْ وَلَمْ _____} [الإخلاص: 1-3]. املأ الفراغ.
+  - suggested: قال الله تعالى: {قُلْ هُوَ اللَّهُ أَحَدٌ * اللَّهُ الصَّمَدُ * لَمْ يَلِدْ وَلَمْ _____} [الإخلاص: 1-3]. املأ الفراغ.
+- **Q0000682** قال الله تعالى: {فَبِأَيِّ آلَاءِ رَبِّكُمَا _____} [الرحمن: 13]. املأ الفراغ.
+  - suggested: قال الله تعالى: {فَبِأَيِّ آلَاءِ رَبِّكُمَا _____} [الرحمن: 13]. املأ الفراغ.
+  - answer: تُكَذِّبَانِ → تُكَذِّبَانِ
+- **Q0000683** قال الله تعالى: {مَالِكِ يَوْمِ _____} [الفاتحة: 4]. املأ الفراغ.
+  - answer: الدِّينِ → الدِّينِ
+- **Q0000684** قال الله تعالى: {وَقُلْ رَبِّ زِدْنِي _____} [طه: 114]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَقُلْ رَبِّ زِدْنِي _____} [طه: 114]. املأ الفراغ.
+- **Q0000685** قال الله تعالى: {إِنَّ مَعَ الْعُسْرِ _____} [الشرح: 6]. املأ الفراغ.
+  - suggested: قال الله تعالى: {إِنَّ مَعَ الْعُسْرِ _____} [الشرح: 6]. املأ الفراغ.
+- **Q0000686** قال الله تعالى: {يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَ_____} [البقرة: 153]. املأ الفراغ.
+  - suggested: قال الله تعالى: {يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَ_____} [البقرة: 153]. املأ الفراغ.
+  - answer: الصَّلَاةِ → الصَّلَاةِ
+- **Q0000687** قال الله تعالى: {إِنَّ اللَّهَ مَعَ _____} [البقرة: 153]. املأ الفراغ.
+  - suggested: قال الله تعالى: {إِنَّ اللَّهَ مَعَ _____} [البقرة: 153]. املأ الفراغ.
+  - answer: الصَّابِرِينَ → الصَّابِرِينَ
+- **Q0000688** قال الله تعالى: {وَبِالْوَالِدَيْنِ _____} [الإسراء: 23]. املأ الفراغ.
+- **Q0000689** قال الله تعالى: {وَتَعَاوَنُوا عَلَى الْبِرِّ وَ_____} [المائدة: 2]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَتَعَاوَنُوا عَلَى الْبِرِّ وَ_____} [المائدة: 2]. املأ الفراغ.
+  - answer: التَّقْوَى → التَّقْوَى
+- **Q0000691** قال الله تعالى: {إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ فَأَصْلِحُوا بَيْنَ _____} [الحجرات: 10]. املأ الفراغ.
+  - suggested: قال الله تعالى: {إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ فَأَصْلِحُوا بَيْنَ _____} [الحجرات: 10]. املأ الفراغ.
+- **Q0000692** قال الله تعالى: {وَعِبَادُ الرَّحْمَٰنِ الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ _____} [الفرقان: 63]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَعِبَادُ الرَّحْمَٰنِ الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ _____} [الفرقان: 63]. املأ الفراغ.
+- **Q0000693** قال الله تعالى: {وَقُلْ جَاءَ الْحَقُّ وَزَهَقَ _____} [الإسراء: 81]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَقُلْ جَاءَ الْحَقُّ وَزَهَقَ _____} [الإسراء: 81]. املأ الفراغ.
+- **Q0000695** قال الله تعالى: {وَقُلْ رَبِّ أَعُوذُ بِكَ مِنْ هَمَزَاتِ _____} [المؤمنون: 97]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَقُلْ رَبِّ أَعُوذُ بِكَ مِنْ هَمَزَاتِ _____} [المؤمنون: 97]. املأ الفراغ.
+  - answer: الشَّيَاطِينِ → الشَّيَاطِينِ
+- **Q0000696** قال الله تعالى: {وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِلْ_____} [الأنبياء: 107]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِلْ_____} [الأنبياء: 107]. املأ الفراغ.
+- **Q0000698** قال الله تعالى: {وَالْعَصْرِ * إِنَّ الْإِنْسَانَ لَفِي _____} [العصر: 1-2]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَالْعَصْرِ * إِنَّ الْإِنْسَانَ لَفِي _____} [العصر: 1-2]. املأ الفراغ.
+- **Q0000699** قال الله تعالى: {وَأَمَّا بِنِعْمَةِ رَبِّكَ فَ_____} [الضحى: 11]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَأَمَّا بِنِعْمَةِ رَبِّكَ فَ_____} [الضحى: 11]. املأ الفراغ.
+  - answer: حَدِّثْ → حَدِّثْ
+- **Q0000700** قال الله تعالى: {وَمَا أُوتِيتُمْ مِنَ الْعِلْمِ إِلَّا _____} [الإسراء: 85]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَمَا أُوتِيتُمْ مِنَ الْعِلْمِ إِلَّا _____} [الإسراء: 85]. املأ الفراغ.
+- **Q0000701** قال الله تعالى: {يُرِيدُ اللَّهُ بِكُمُ الْيُسْرَ وَلَا يُرِيدُ بِكُمُ _____} [البقرة: 185]. املأ الفراغ.
+  - suggested: قال الله تعالى: {يُرِيدُ اللَّهُ بِكُمُ الْيُسْرَ وَلَا يُرِيدُ بِكُمُ _____} [البقرة: 185]. املأ الفراغ.
+- **Q0000702** قال الله تعالى: {وَقُلْ رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي _____} [الإسراء: 24]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَقُلْ رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي _____} [الإسراء: 24]. املأ الفراغ.
+- **Q0000703** قال الله تعالى: {وَاللَّهُ غَالِبٌ عَلَى _____} [يوسف: 21]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَاللَّهُ غَالِبٌ عَلَى _____} [يوسف: 21]. املأ الفراغ.
+- **Q0000704** قال الله تعالى: {وَالَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ أُولَئِكَ أَصْحَابُ _____} [البقرة: 82]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَالَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ أُولَئِكَ أَصْحَابُ _____} [البقرة: 82]. املأ الفراغ.
+  - answer: الْجَنَّةِ → الْجَنَّةِ
+- **Q0000705** قال الله تعالى: {وَإِذَا مَرِضْتُ فَهُوَ _____} [الشعراء: 80]. املأ الفراغ.
+- **Q0000706** قال الله تعالى: {لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا _____} [البقرة: 286]. املأ الفراغ.
+  - suggested: قال الله تعالى: {لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا _____} [البقرة: 286]. املأ الفراغ.
+- **Q0000707** قال الله تعالى: {فَمَنْ يَعْمَلْ مِثْقَالَ ذَرَّةٍ _____ يَرَهُ} [الزلزلة: 7]. املأ الفراغ.
+  - suggested: قال الله تعالى: {فَمَنْ يَعْمَلْ مِثْقَالَ ذَرَّةٍ _____ يَرَهُ} [الزلزلة: 7]. املأ الفراغ.
+- **Q0000708** قال الله تعالى: {وَلَا تَقْتُلُوا أَوْلَادَكُمْ خَشْيَةَ _____} [الإسراء: 31]. املأ الفراغ.
+- **Q0000709** قال الله تعالى: {يَسْأَلُونَكَ عَنِ السَّاعَةِ أَيَّانَ _____} [الأعراف: 187]. املأ الفراغ.
+  - suggested: قال الله تعالى: {يَسْأَلُونَكَ عَنِ السَّاعَةِ أَيَّانَ _____} [الأعراف: 187]. املأ الفراغ.
+- **Q0000710** قال الله تعالى: {وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي _____} [البقرة: 186]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي _____} [البقرة: 186]. املأ الفراغ.
+- **Q0000711** قال الله تعالى: {قَالَ يَا أَبَتِ افْعَلْ مَا _____} [الصافات: 102]. املأ الفراغ.
+- **Q0000712** قال الله تعالى: {وَمَا تَدْرِي نَفْسٌ مَاذَا تَكْسِبُ _____} [لقمان: 34]. املأ الفراغ.
+- **Q0000713** قال الله تعالى: {رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي _____} [طه: 25-26]. املأ الفراغ.
+  - suggested: قال الله تعالى: {رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي _____} [طه: 25-26]. املأ الفراغ.
+- **Q0000714** قال الله تعالى: {وَمَا تَفَرَّقُوا إِلَّا مِنْ بَعْدِ مَا جَاءَهُمُ الْعِلْمُ _____} [الشورى: 14]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَمَا تَفَرَّقُوا إِلَّا مِنْ بَعْدِ مَا جَاءَهُمُ الْعِلْمُ _____} [الشورى: 14]. املأ الفراغ بكلمتين.
+- **Q0000715** قال الله تعالى: {إِنَّ أَكْرَمَكُمْ عِنْدَ اللَّهِ _____} [الحجرات: 13]. املأ الفراغ.
+  - suggested: قال الله تعالى: {إِنَّ أَكْرَمَكُمْ عِنْدَ اللَّهِ _____} [الحجرات: 13]. املأ الفراغ.
+- **Q0000716** قال الله تعالى: {وَجَعَلْنَا نَوْمَكُمْ _____} [النبأ: 9]. املأ الفراغ.
+- **Q0000717** قال الله تعالى: {وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِنْ _____} [القمر: 17]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِنْ _____} [القمر: 17]. املأ الفراغ.
+  - answer: مُدَّكِرٍ → مُدَّكِرٍ
+- **Q0000718** قال الله تعالى: {وَمَا أَدْرَاكَ مَا _____} [البلد: 12]. املأ الفراغ.
+- **Q0000719** قال الله تعالى: {وَذَكِّرْ فَإِنَّ الذِّكْرَى تَنْفَعُ _____} [الذاريات: 55]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَذَكِّرْ فَإِنَّ الذِّكْرَى تَنْفَعُ _____} [الذاريات: 55]. املأ الفراغ.
+- **Q0000720** قال الله تعالى: {وَمَا كَانَ لِنَبِيٍّ أَنْ يَغُلَّ وَمَنْ يَغْلُلْ يَأْتِ بِمَا غَلَّ يَوْمَ _____} [آل عمران: 161]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَمَا كَانَ لِنَبِيٍّ أَنْ يَغُلَّ وَمَنْ يَغْلُلْ يَأْتِ بِمَا غَلَّ يَوْمَ _____} [آل عمران: 161]. املأ الفراغ.
+- **Q0000721** قال الله تعالى: {وَأَنْ لَيْسَ لِلْإِنسَانِ إِلَّا مَا _____} [النجم: 39]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَأَنْ لَيْسَ لِلْإِنسَانِ إِلَّا مَا _____} [النجم: 39]. املأ الفراغ.
+- **Q0000722** قال الله تعالى: {وَإِذَا الْبِحَارُ _____} [الانفطار: 3]. املأ الفراغ.
+  - answer: فُجِّرَتْ → فُجِّرَتْ
+- **Q0000724** قال الله تعالى: {وَلَا تَسْتَوِي الْحَسَنَةُ وَلَا _____} [فصلت: 34]. املأ الفراغ.
+  - answer: السَّيِّئَةُ → السَّيِّئَةُ
+- **Q0000725** قال الله تعالى: {وَبَشِّرِ الصَّابِرِينَ * الَّذِينَ إِذَا أَصَابَتْهُمْ مُصِيبَةٌ قَالُوا إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ _____} [البقرة: 155-156]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَبَشِّرِ الصَّابِرِينَ * الَّذِينَ إِذَا أَصَابَتْهُمْ مُصِيبَةٌ قَالُوا إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ _____} [البقرة: 155-156]. املأ الفراغ.
+- **Q0000726** قال الله تعالى: {وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ _____} [البينة: 5]. املأ الفراغ.
+  - suggested: قال الله تعالى: {وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ _____} [البينة: 5]. املأ الفراغ.
+  - answer: الدِّينَ → الدِّينَ
+- **Q0000727** قال الله تعالى: {فَإِنَّ مَعَ الْعُسْرِ _____} [الشرح: 5]. املأ الفراغ.
+  - suggested: قال الله تعالى: {فَإِنَّ مَعَ الْعُسْرِ _____} [الشرح: 5]. املأ الفراغ.
+- **Q0000728** قال الله تعالى: {وَيُؤْثِرُونَ عَلَى أَنفُسِهِمْ وَلَوْ كَانَ بِهِمْ _____} [الحشر: 9]. املأ الفراغ.
+- **Q0000797** ما هي السورة التي لا تبدأ بالبسملة؟
+  - suggested: ما السورة الوحيدة في القرآن الكريم التي لا تبدأ بالبسملة؟
+- **Q0000798** سورة الإخلاص تتكون من أربع آيات فقط.
+  - suggested: سورة الإخلاص تتكون من أربع آيات.
+- **Q0000799** من هو النبي الذي ذكر أكثر في القرآن الكريم؟
+  - suggested: من هو النبي الذي ورد اسمه في القرآن الكريم أكثر من غيره من الأنبياء؟
+- **Q0000800** أي سورة تبدأ بكلمة "ا ل م ر"؟
+  - suggested: ما السورة التي تبدأ بالحروف المقطعة «المر»؟
+- **Q0000801** سورة الكهف من السور المكية.
+- **Q0000802** ما السورة التي سميت باسم امرأة؟
+  - suggested: ما السورة الوحيدة في القرآن الكريم التي سُمّيت باسم امرأة؟
+- **Q0000803** كم عدد آيات سورة الكوثر؟
+- **Q0000804** من هو الصحابي الذي جمع القرآن الكريم في مصحف واحد بأمر من أبي بكر الصديق؟
+  - suggested: من هو الصحابي الذي كلّفه أبو بكر الصديق بجمع القرآن الكريم؟
+- **Q0000805** سورة الفاتحة تسمى أيضاً أم الكتاب.
+- **Q0000806** ما السورة التي ذكر فيها اسم "رمضان"؟
+  - suggested: في أي سورة ورد ذكر شهر «رمضان» باسمه؟
+- **Q0000807** سورة المجادلة هي السورة الوحيدة في القرآن التي ذكر في كل آية منها لفظ الجلالة.
+  - suggested: سورة المجادلة هي السورة الوحيدة في القرآن الكريم التي ورد لفظ الجلالة في كل آية من آياتها.
+- **Q0000808** أي من هذه السور تعتبر من السور الطوال؟
+  - suggested: أي من السور الآتية تُعد من السور الطوال في القرآن الكريم؟
+- **Q0000811** أي من هذه السور تسمى السبع المثاني؟
+  - suggested: أي من السور الآتية تُسمّى «السبع المثاني»؟
+- **Q0000812** من هو الصحابي الذي لقب بترجمان القرآن؟
+  - suggested: من الصحابي الذي لُقّب بـ«ترجمان القرآن»؟
+- **Q0000813** ما اسم السورة التي يطلق عليها اسم عروس القرآن؟
+  - suggested: ما السورة التي تُلقّب بـ«عروس القرآن»؟
+- **Q0000814** ما هي السورة التي سميت باسم فاكهة؟
+  - suggested: أي من سور القرآن الكريم الآتية سُمّيت باسم فاكهة؟
+- **Q0000815** سورة الإسراء تسمى أيضاً بسورة بني إسرائيل.
+- **Q0000816** ما السورة التي فيها ذكر أطول آية في القرآن؟
+  - suggested: في أي سورة تقع أطول آية في القرآن الكريم؟
+- **Q0000817** ما هي أقصر سورة في القرآن الكريم؟
+  - suggested: ما أقصر سورة في القرآن الكريم؟
+- **Q0000819** كم مرة ذكر اسم "مكة" في القرآن؟
+  - suggested: كم مرة ورد لفظ «مكة» صراحةً في القرآن الكريم؟
+- **Q0000821** كم عدد الأحزاب في القرآن الكريم؟
+- **Q0000822** أي سورة في القرآن ليس فيها حرف الميم؟
+  - suggested: أي سورة من السور التالية لا يرد في آياتها حرف الميم (دون احتساب البسملة)؟
+- **Q0000823** ما عدد السور التي تبدأ بحروف مقطعة؟
+  - suggested: ما عدد سور القرآن الكريم التي تبدأ بالحروف المقطعة؟
+- **Q0000824** أي سورة تسمى أيضاً سورة القتال؟
+  - suggested: أي سورة من سور القرآن الكريم تسمى أيضاً سورة القتال؟
+- **Q0000825** في أي سورة ذكر اسم "زكريا" لأول مرة؟
+  - suggested: بحسب ترتيب المصحف، في أي سورة ورد اسم النبي زكريا عليه السلام لأول مرة؟
+- **Q0000826** سورة الفيل هي السورة رقم 105 في المصحف.
+  - suggested: سورة الفيل هي السورة رقم 105 في ترتيب المصحف.
+- **Q0000830** سورة الحشر مدنية.
+  - suggested: سورة الحشر من السور المدنية.
+- **Q0000831** ما اسم السورة التي فيها آية الكرسي؟
+  - suggested: ما اسم السورة التي وردت فيها آية الكرسي؟
+- **Q0000833** سورة الفتح مدنية.
+  - suggested: سورة الفتح سورة مدنية.
+- **Q0000835** كم عدد آيات القرآن الكريم؟
+  - suggested: كم عدد آيات القرآن الكريم بحسب العد الكوفي المعتمد في المصحف برواية حفص عن عاصم؟
+
+## جغرافيا (22)
+
+- **Q0000108** ما هي أعلى قمة جبلية في العالم العربي؟
+  - answer: جبل طوبقال → جبل توبقال
+- **Q0000109** ما هي الدولة العربية التي تحدها دولة واحدة فقط؟
+  - suggested: ما هي الدولة العربية التي لها حدود برية مع دولة واحدة فقط؟
+- **Q0000536** في أي دولة عربية يقع جبل الشيخ؟
+  - suggested: يقع جبل الشيخ (حرمون) على الحدود بين سوريا وأي دولة عربية؟
+- **Q0000539** أي من هذه الدول تعتبر دولة شبه جزيرية؟
+  - suggested: أي من هذه الدول تتكون أراضيها أساسًا من شبه جزيرة بارزة في مياه الخليج العربي؟
+- **Q0000543** أي من هذه الدول العربية لا تحتوي على صحراء؟
+  - suggested: أي من هذه الدول العربية لا توجد فيها صحراء؟
+- **Q0000544** ما هي أكبر مدينة عربية من حيث عدد السكان؟
+  - suggested: أي من هذه المدن العربية هي الأكبر من حيث عدد السكان؟
+- **Q0000548** أي من الدول العربية ليست عضوًا في الاتحاد المغاربي؟
+  - suggested: أي من هذه الدول العربية ليست عضوًا في اتحاد المغرب العربي؟
+- **Q0000550** ما المدينة العربية التي تعرف بمدينة الشمس؟
+  - suggested: ما المدينة العربية التي عُرفت قديمًا باسم هليوبوليس أي مدينة الشمس؟
+- **Q0000558** أي من الدول العربية لديها حدود مع أكبر عدد من الدول العربية؟
+  - suggested: أي من الدول العربية التالية لديها حدود برية مع أكبر عدد من الدول العربية؟
+- **Q0000559** ما هي الدولة العربية التي تحدها من الغرب المحيط الأطلسي ومن الشرق الجزائر؟
+  - suggested: ما الدولة العربية التي يحدها المحيط الأطلسي من الغرب، والجزائر من الشرق، وتطل على البحر الأبيض المتوسط من الشمال؟
+- **Q0000571** أي من هذه الدول العربية ليست جزءًا من شبه الجزيرة العربية؟
+- **Q0000572** أي من الدول العربية يمر بها مدار السرطان؟
+  - suggested: أي من الدول العربية التالية يمر بها مدار السرطان؟
+- **Q0002005** ما هي أكبر قارة في العالم من حيث المساحة؟
+- **Q0002006** تعتبر قارة أستراليا دولةً وقارةً في نفس الوقت.
+  - suggested: أستراليا هي الدولة الوحيدة في العالم التي تشغل البر الرئيسي لقارة بأكملها.
+- **Q0002011** ما هو اسم أكبر بحيرة في العالم من حيث المساحة؟
+  - suggested: ما هي أكبر بحيرة في العالم من حيث المساحة؟
+  - answer: بحيرة قزوين (أو بحر قزوين) → بحر قزوين
+- **Q0002012** ما هي الدولة التي تشتهر بوجود جبل كليمنجارو؟
+  - suggested: في أي دولة يقع جبل كليمنجارو؟
+- **Q0002013** أي من هذه الدول تعتبر جزيرة؟
+  - suggested: أي من الدول التالية دولة جزرية (أرخبيلية)؟
+- **Q0002014** ما هي العاصمة السياسية للولايات المتحدة الأمريكية؟
+- **Q0002018** ما هي عاصمة أستراليا؟
+- **Q0002020** نهر الأمازون هو أكبر نهر في العالم من حيث حجم المياه.
+  - suggested: نهر الأمازون هو أكبر نهر في العالم من حيث حجم تصريف المياه.
+- **Q0002024** ما هو اسم المحيط الذي يغطي أكبر مساحة من سطح الأرض؟
+  - suggested: ما المحيط الذي يغطي أكبر مساحة من سطح الأرض؟
+- **Q0002026** أي من الخيارات التالية هو معلم شهير في باريس؟
+  - suggested: أي من المعالم التالية يقع في مدينة باريس؟
+
+## تاريخ_كوارث_طبيعية (34)
+
+- **Q0001101** ما اسم البركان الذي دمر مدينة بومبي الرومانية عام 79 ميلادي؟
+  - suggested: ما اسم البركان الذي دمّر مدينة بومبي الرومانية عام 79 ميلاديًا؟
+- **Q0001105** في أي دولة وقع إعصار كاترينا عام 2005؟
+  - suggested: في أي دولة ضرب إعصار كاترينا عام 2005؟
+- **Q0001107** أي جفاف شهير ضرب الولايات المتحدة في ثلاثينيات القرن العشرين؟
+  - suggested: ما الاسم الذي عُرفت به موجة الجفاف والعواصف الترابية التي ضربت السهول الكبرى في الولايات المتحدة في ثلاثينيات القرن العشرين؟
+  - answer: الغبار العظيم → قصعة الغبار
+- **Q0001109** ما اسم الزلزال الشديد الذي ضرب اليابان عام 2011؟
+  - suggested: ما اسم الزلزال الشديد الذي ضرب شمال شرق اليابان في 11 مارس 2011 وأعقبه تسونامي مدمر؟
+- **Q0001110** ما اسم الإعصار الذي تسبب في فيضانات كارثية في بنغلاديش عام 1970؟
+  - suggested: ما اسم الإعصار المداري الذي ضرب باكستان الشرقية (بنغلاديش حاليًا) عام 1970 وتسبب في أحد أكثر الكوارث الطبيعية فتكًا في التاريخ؟
+- **Q0001111** ما اسم البركان الذي تسبب في شتاء بركاني عالمي عام 1815؟
+  - suggested: ما اسم البركان الإندونيسي الذي ثار عام 1815 وتسبب في «العام بلا صيف» عام 1816؟
+- **Q0001114** ما اسم الإعصار الذي دمر مدينة نيو أورلينز عام 2005؟
+  - suggested: ما اسم الإعصار الذي أغرق معظم مدينة نيو أورلينز الأمريكية عام 2005 بعد انهيار سدودها؟
+- **Q0001115** ما اسم الزلزال الذي تسبب في تسونامي مدمر في المحيط الهندي عام 2004؟
+  - suggested: ما اسم الزلزال الذي تسبب في تسونامي المحيط الهندي المدمر في 26 ديسمبر 2004؟
+- **Q0001116** ما اسم البركان الذي سبب دمارا في أيسلندا وأثر على أوروبا عام 2010؟
+  - suggested: ما اسم البركان الأيسلندي الذي تسببت سحابة رماده عام 2010 في شلّ حركة الطيران في معظم أنحاء أوروبا؟
+- **Q0001117** أي نهر في الصين فاض عام 1887 وتسبب في وفاة مئات الآلاف؟
+  - suggested: أي نهر في الصين فاض عام 1887 وتسبب في وفاة مئات الآلاف من الأشخاص؟
+  - answer: نهر الأصفر → النهر الأصفر
+- **Q0001121** في أي سنة حدثت المجاعة الكبرى في أيرلندا بسبب مرض البطاطس؟
+  - suggested: في أي سنة بدأت المجاعة الكبرى في أيرلندا التي سببها مرض لفحة البطاطس؟
+- **Q0001122** ما اسم أكبر زلزال في تاريخ اليابان والذي حدث عام 2011؟
+  - suggested: ما اسم أقوى زلزال مُسجَّل في تاريخ اليابان، والذي وقع في 11 مارس 2011؟
+- **Q0001126** ما اسم البركان الذي تسبب في دمار مدينة سانت بيير في مارتينيك عام 1902؟
+  - suggested: ما اسم البركان الذي تسبب في دمار مدينة سانت بيير في جزيرة مارتينيك عام 1902؟
+- **Q0001128** في أي عام حدثت عاصفة تسونامي في اليابان وتسببت في أزمة نووية في فوكوشيما؟
+  - suggested: في أي عام وقع الزلزال والتسونامي في شرق اليابان اللذان تسببا في كارثة محطة فوكوشيما النووية؟
+- **Q0001133** ما اسم تسونامي الذي ضرب اليابان عام 1707؟
+  - suggested: ما اسم الزلزال والتسونامي الذي ضرب اليابان عام 1707؟
+- **Q0001134** ما اسم البركان الذي ثار في الفلبين عام 1991 وأثر على المناخ العالمي؟
+- **Q0001136** ما اسم الفيضانات التي حدثت في هولندا عام 1953 وأدت إلى غرق مناطق واسعة؟
+  - suggested: ما الاسم الذي تُعرف به الفيضانات التي أغرقت مناطق واسعة من هولندا عام 1953؟
+- **Q0001139** في أي عام حدثت موجة الحر القاتلة في روسيا التي تسببت في حرائق غابات واسعة؟
+- **Q0001142** ما اسم الفيضانات التي ضربت أوروبا الوسطى عام 2002؟
+  - suggested: ما النهر الذي أغرق فيضانه مدينة دريسدن الألمانية خلال فيضانات أوروبا الوسطى عام 2002؟
+  - answer: فيضانات أوروبا 2002 → نهر إلبه
+- **Q0001144** ما اسم البركان الذي ثار عام 1902 ودمر مدينة سانت بيير؟
+  - suggested: ما اسم البركان الذي ثار عام 1902 ودمّر مدينة سان بيير في جزيرة المارتينيك؟
+  - answer: بركان مونت بيليه → جبل بيليه
+- **Q0001145** ما اسم الزلزال الذي دمر مدينة بام في إيران عام 2003؟
+  - suggested: في أي دولة تقع مدينة بام التي دمّرها زلزال عنيف في ديسمبر 2003؟
+  - answer: زلزال بام → إيران
+- **Q0001147** في أي دولة حدثت أسوأ فيضانات في تاريخ القرن العشرين عام 1931؟
+  - suggested: في أي دولة وقعت فيضانات عام 1931 التي تُعدّ من أشد الفيضانات فتكًا في التاريخ؟
+- **Q0001148** ما اسم الزلزال الذي دمر مدينة كويتا في باكستان عام 1935؟
+  - suggested: ما اسم المدينة الواقعة في إقليم بلوشستان التي دمّرها زلزال 31 مايو 1935، وكانت آنذاك جزءًا من الهند البريطانية وتقع اليوم في باكستان؟
+  - answer: زلزال كويتا → كويتا
+- **Q0001152** أي من الكوارث الطبيعية أدت إلى انقراض الديناصورات قبل ظهور الإنسان؟
+  - suggested: ما الكارثة الطبيعية التي يرجّح العلماء أنها تسببت في انقراض الديناصورات قبل نحو 66 مليون سنة؟
+  - answer: اصطدام نيزك ضخم بالأرض → اصطدام كويكب ضخم بالأرض
+- **Q0001153** ما اسم القارة العملاقة التي كانت موجودة قبل تفرق القارات الحالية؟
+  - suggested: ما اسم القارة العظمى التي ضمّت معظم اليابسة قبل أن تتفرق إلى القارات الحالية؟
+  - answer: بانجيه → بانجيا
+- **Q0001154** أي من هذه الأحداث تسبب في تكوين الجبال الكبرى لأول مرة؟
+  - suggested: ما العملية الجيولوجية المسؤولة أساسًا عن تكوّن سلاسل الجبال الكبرى مثل جبال الهيمالايا؟
+  - answer: انجراف الصفائح التكتونية → تصادم الصفائح التكتونية
+- **Q0001158** أي من هذه الأحداث أدى إلى تكون الغلاف الجوي للأرض؟
+  - suggested: ما العملية الرئيسية التي أطلقت الغازات المكوِّنة للغلاف الجوي المبكر للأرض؟
+- **Q0001159** ما اسم الحدث الذي شهد تكون معظم الفحم الحجري في الأرض؟
+  - suggested: في أي عصر جيولوجي تكوّنت معظم رواسب الفحم الحجري على الأرض؟
+- **Q0001160** أي من الكوارث التالية حدثت في العصر الديفوني؟
+- **Q0001163** أي من الأحداث التالية كان له دور في تكوين القمر؟
+  - suggested: وفق الفرضية الأكثر قبولًا لدى العلماء، ما الحدث الذي أدى إلى تكوّن القمر؟
+- **Q0001164** ما هو اسم الفترة التي كانت فيها الأرض مغطاة بالجليد بشكل شبه كامل؟
+  - suggested: ما الاسم الذي يُطلق على الفرضية القائلة إن الأرض غُطّيت بالجليد بشكل شبه كامل في فترات قديمة من تاريخها؟
+  - answer: الأرض الكرة الثلجية → الأرض كرة الثلج
+- **Q0001165** ما هو اسم الانقراض الذي قضى على الديناصورات؟
+  - suggested: ما اسم حدث الانقراض الجماعي الذي قضى على الديناصورات غير الطائرة؟
+- **Q0001166** أي من هذه الأحداث ساعد في تكوين القارات الحالية؟
+  - suggested: أي من هذه الأحداث أسهم في تكوين القارات الحالية؟
+  - answer: انقسام بانجيه → انقسام بانجيا
+- **Q0001168** أي من الأحداث التالية حدث أولاً في تاريخ الأرض؟
+  - suggested: أي من الأحداث التالية وقع أولًا في تاريخ الأرض؟
+  - answer: تكون المحيطات → تكوّن المحيطات
+
+## رياضيات (12)
+
+- **Q0000836** ما هو العدد الذي إذا أضفت إليه 5 وضربته في 2 يصبح الناتج 20؟
+  - suggested: ما العدد الذي إذا أضفت إليه 5 ثم ضربت الناتج في 2 حصلت على 20؟
+- **Q0000838** إذا كان لديك ثلاثة أعداد متتالية مجموعها 18، فما هي؟
+  - suggested: ما الأعداد الصحيحة الثلاثة المتتالية التي مجموعها 18؟
+- **Q0000839** ما هو العدد الذي إذا قسمته على 2 وضربته في 3 تحصل على 12؟
+  - suggested: ما العدد الذي إذا قسمته على 2 ثم ضربت الناتج في 3 حصلت على 12؟
+- **Q0000845** كم عدد الأضلاع في المضلع السداسي؟
+  - suggested: تتخذ خلايا شمع النحل شكل مضلع منتظم، فكم عدد أضلاع هذا المضلع؟
+- **Q0000848** إذا اشتريت 3 أقلام وسعر كل قلم 4 ريالات، فما هو المجموع الكلي؟
+  - suggested: إذا اشتريت 3 أقلام وسعر كل قلم 4 ريالات، فكم ريالًا تدفع في المجموع؟
+- **Q0000856** ما هو الرقم الذي إذا ضربته في 5 ثم طرحت 2 تحصل على 13؟
+  - suggested: ما العدد الذي إذا ضربته في 5 ثم طرحت 2 من الناتج حصلت على 13؟
+- **Q0000864** إذا كان لديك 4 أضعاف عدد معين يساوي 36، فما هو هذا العدد؟
+  - suggested: إذا كانت 4 أضعاف عدد ما تساوي 36، فما هذا العدد؟
+- **Q0000865** ما هو العدد الذي إذا ضربته في 7 ثم طرحت منه 14 تحصل على 35؟
+  - suggested: ما العدد الذي إذا ضربته في 7 ثم طرحت من الناتج 14 حصلت على 35؟
+- **Q0000866** إذا كان لديك نصف عدد زائد 6 يساوي 10، فما هو العدد؟
+  - suggested: ما العدد الذي إذا أضفت 6 إلى نصفه كان الناتج 10؟
+- **Q0001570** ما هو الحل العام للمعادلة التربيعية ص^2 - 5ص + 6 = 0؟
+  - suggested: ما حلا المعادلة التربيعية ص² - 5ص + 6 = 0؟
+- **Q0001576** إذا كان نصف قطر دائرة يساوي 7، فما هو محيطها؟ علماً بأن ط هو 22/7.
+  - suggested: إذا كان نصف قطر دائرة يساوي 7، فما محيطها؟ (اعتبر ط = 22/7)
+- **Q0001578** ما هو عدد الأعداد الأولية بين الأعداد العشرة الأولى؟
+  - suggested: كم عددًا أوليًا يوجد بين الأعداد الطبيعية من 1 إلى 10؟
+
+## دول_عربية (13)
+
+- **Q0001250** ما هو البحر الذي يحد لبنان من الغرب؟
+  - suggested: ما البحر الذي يحد لبنان من الغرب؟
+- **Q0001257** ما هي عاصمة الأردن؟
+  - suggested: ما عاصمة المملكة الأردنية الهاشمية؟
+  - answer: عمان → عمّان
+- **Q0001260** ما هي عاصمة سوريا؟
+  - suggested: ما عاصمة سوريا؟
+- **Q0001263** أي من الدول العربية التالية تعتبر جزيرة؟
+  - suggested: أيّ الدول العربية التالية دولة جزرية؟
+- **Q0001267** ما هو الجبل الأعلى في المغرب؟
+  - suggested: ما أعلى قمة جبلية في المغرب؟
+- **Q0001268** أي دولة عربية تشتهر بوجود مدينة البتراء الوردية فيها؟
+  - suggested: في أي دولة عربية تقع مدينة البتراء الأثرية المعروفة بالمدينة الوردية؟
+- **Q0001271** أي دولة عربية تشتهر بواحة سيوة؟
+  - suggested: في أي دولة عربية تقع واحة سيوة؟
+- **Q0001275** ما هو اسم العاصمة الموريتانية؟
+  - suggested: ما اسم عاصمة موريتانيا؟
+- **Q0001276** ما هي الدولة العربية الوحيدة التي تقع على قارتي آسيا وأفريقيا؟
+  - suggested: ما الدولة العربية الوحيدة التي تمتد أراضيها على قارتي آسيا وأفريقيا؟
+- **Q0001283** يصب نهر الأردن في البحر الميت.
+- **Q0001285** ما هي عاصمة سلطنة عمان؟
+  - suggested: ما عاصمة سلطنة عُمان؟
+- **Q0001291** أي دولة عربية تشتهر بجبال القلمون؟
+  - suggested: في أي دولة عربية تقع منطقة جبال القلمون؟
+- **Q0001302** ما هي الدولة العربية التي تحتضن مدينة شحات الأثرية؟
+  - suggested: ما الدولة العربية التي تضم مدينة شحات (قورينا) الأثرية؟
+
+## دول_العالم (18)
+
+- **Q0000298** اليابان تتكون من أكثر من 6000 جزيرة.
+- **Q0000303** ما هي الدولة التي يُطلق عليها اسم "بلاد الشمس المشرقة"؟
+  - suggested: ما الدولة التي يُطلق عليها اسم "بلاد الشمس المشرقة"؟
+- **Q0000308** ما هي الدولة التي تُعتبر مهد الحضارة الغربية؟
+  - suggested: أي دولة كانت موطن الديمقراطية الأثينية والفلاسفة سقراط وأفلاطون وأرسطو، ولذلك تُوصف غالبًا بأنها مهد الحضارة الغربية؟
+- **Q0000314** ما هي الدولة التي تُعتبر أكبر منتج للكاكاو في العالم؟
+  - suggested: ما الدولة التي كانت أكبر منتج للكاكاو في العالم عام 2020؟
+- **Q0001662** البرازيل تحتوي على أكبر غابة مطيرة في العالم.
+  - suggested: يقع الجزء الأكبر من غابات الأمازون المطيرة، أكبر غابة مطيرة استوائية في العالم، داخل البرازيل.
+- **Q0001663** من هو رئيس الولايات المتحدة الذي زار الصين لأول مرة في عام 1972؟
+  - suggested: من هو أول رئيس للولايات المتحدة يزور جمهورية الصين الشعبية أثناء ولايته، وكان ذلك عام 1972؟
+- **Q0001664** أي من التالي هو الإقليم الفرنسي الواقع في أمريكا الجنوبية؟
+  - suggested: أيّ الأقاليم الفرنسية التالية يقع في أمريكا الجنوبية؟
+- **Q0001666** أي من الدول التالية يُعتبر محايداً ولم يشارك في أي حرب منذ عام 1815؟
+  - suggested: أي من الدول التالية اعترف مؤتمر فيينا عام 1815 بحيادها الدائم؟
+- **Q0001667** من هو المؤسس الأول لدولة باكستان الحديثة؟
+  - suggested: من هو مؤسس دولة باكستان ويُلقَّب بالقائد الأعظم؟
+- **Q0001671** ما هو الجبل الذي يُعتبر أعلى قمة في النرويج؟
+  - suggested: ما هي أعلى قمة جبلية في النرويج؟
+  - answer: جبل غالدهوبيغن → غالدهوبيغن
+- **Q0001677** أي من الرموز الطبيعية التالية يُعتبر رمزًا وطنيًا لأستراليا؟
+  - suggested: أي من الحيوانات التالية يُعدّ رمزًا وطنيًا لأستراليا؟
+- **Q0001679** ما هو الحيوان الوطني في الهند؟
+  - suggested: ما الحيوان الوطني لجمهورية الهند؟
+  - answer: النمر → النمر البنغالي
+- **Q0001684** الأرجنتين تعتبر موقعًا لشلالات إجوازو أحد أعظم الشلالات في العالم.
+  - suggested: تقع شلالات إغوازو على الحدود بين الأرجنتين والبرازيل.
+- **Q0001686** أي دولة تُعرف بأنها الأكثر احتواءً على البراكين النشطة في العالم؟
+  - suggested: أي من الدول التالية تضم أكبر عدد من البراكين النشطة؟
+- **Q0001695** ما هي الدولة التي تحتوي على أكبر شلال في العالم من حيث ارتفاعه؟
+  - suggested: في أي دولة يقع أعلى شلال في العالم؟
+- **Q0001697** ما هي الدولة التي تحتوي على أكبر عدد من المسلمين في العالم؟
+  - suggested: وفق تقديرات عام 2020، ما الدولة التي تضم أكبر عدد من المسلمين في العالم؟
+- **Q0001702** ما هي الدولة التي تعتبر مسقط رأس معمار الحداثة أنطونيو غاودي؟
+  - suggested: في أي دولة وُلد المهندس المعماري أنطونيو غاودي، مصمم كنيسة العائلة المقدسة (ساغرادا فاميليا)؟
+- **Q0001705** ما هي الدولة التي كانت تعرف سابقًا باسم بورما؟
+  - suggested: ما الدولة الآسيوية التي كانت تُعرف سابقًا باسم بورما؟
+
+## رياضة (17)
+
+- **Q0000121** ما هي الرياضة التي اشتهر بها محمد علي كلاي؟
+  - suggested: ما الرياضة التي اشتهر بها محمد علي كلاي؟
+- **Q0000122** كم عدد لاعبي فريق كرة القدم؟
+  - suggested: كم عدد لاعبي فريق كرة القدم الواحد داخل الملعب في الوقت نفسه؟
+- **Q0000123** ما هو النادي الذي فاز بأكبر عدد من بطولات دوري أبطال أوروبا؟
+  - suggested: حتى نهاية موسم 2023-2024، ما النادي الذي فاز بأكبر عدد من ألقاب دوري أبطال أوروبا؟
+- **Q0000579** أي منتخب عربي تأهل إلى نصف نهائي كأس العالم 2022 لأول مرة في تاريخه؟
+- **Q0000580** ما هو النادي الأكثر فوزاً بالدوري الإنجليزي الممتاز حتى عام 2023؟
+  - suggested: ما النادي الأكثر فوزاً بلقب الدوري الإنجليزي الممتاز حتى نهاية موسم 2022-2023؟
+- **Q0000581** من هو اللاعب المصري الذي يلعب في نادي ليفربول الإنجليزي منذ 2017؟
+  - suggested: من اللاعب المصري الذي انضم إلى نادي ليفربول الإنجليزي عام 2017 قادماً من روما؟
+- **Q0000585** ما هو النادي العربي الذي فاز بلقب دوري أبطال آسيا 2021؟
+  - suggested: ما النادي العربي الذي فاز بلقب دوري أبطال آسيا 2021؟
+- **Q0000589** ما هو عدد بطولات كأس العالم التي فاز بها منتخب البرازيل حتى الآن؟
+  - suggested: كم عدد بطولات كأس العالم التي فاز بها منتخب البرازيل حتى نهاية مونديال 2022؟
+- **Q0000593** أي منتخب فاز بكأس أمم إفريقيا 2021؟
+  - suggested: أي منتخب فاز بكأس أمم إفريقيا 2021 التي أقيمت في الكاميرون؟
+- **Q0000598** من هو اللاعب الأكثر صناعة للأهداف في تاريخ الدوري الإنجليزي الممتاز حتى 2023؟
+  - suggested: من هو اللاعب الأكثر صناعة للأهداف في تاريخ الدوري الإنجليزي الممتاز حتى عام 2023؟
+- **Q0000599** أي منتخب أوروبي فاز بكأس العالم مرتين؟
+  - suggested: أي منتخب أوروبي فاز بكأس العالم لكرة القدم مرتين فقط؟
+- **Q0000602** ما هو عدد بطولات دوري أبطال أوروبا التي فاز بها ريال مدريد حتى 2023؟
+  - suggested: كم عدد ألقاب دوري أبطال أوروبا التي أحرزها نادي ريال مدريد حتى نهاية موسم 2022-2023؟
+- **Q0000606** من هو اللاعب الذي حصل على جائزة أفضل لاعب في أوروبا لعام 2022؟
+  - suggested: من هو اللاعب الذي فاز بجائزة الاتحاد الأوروبي لكرة القدم (يويفا) لأفضل لاعب في أوروبا عن موسم 2021-2022؟
+- **Q0000609** أي من اللاعبين التاليين لم يلعب في الدوري الإنجليزي الممتاز؟
+  - suggested: أي من اللاعبين التاليين لم يلعب في الدوري الإنجليزي الممتاز حتى عام 2024؟
+- **Q0000613** من هو اللاعب الذي سجل أسرع هاتريك في تاريخ الدوري الإنجليزي الممتاز؟
+  - suggested: حتى عام 2024، من هو اللاعب صاحب أسرع هاتريك في تاريخ الدوري الإنجليزي الممتاز؟
+- **Q0000619** أي من الأندية التالية حصل على ثلاث بطولات متتالية لدوري أبطال أوروبا منذ عام 2016 حتى 2018؟
+  - suggested: أي من الأندية التالية فاز بلقب دوري أبطال أوروبا ثلاث مرات متتالية في الأعوام 2016 و2017 و2018؟
+- **Q0000624** من هو أكثر لاعب سجل أهداف في تاريخ كأس العالم؟
+  - suggested: حتى نهاية كأس العالم 2022، من هو اللاعب صاحب الرقم القياسي لأكثر الأهداف المسجلة في تاريخ نهائيات كأس العالم؟
+
+## علوم_عامة (19)
+
+- **Q0000090** ما هي وحدة قياس القوة في النظام الدولي؟
+  - suggested: ما وحدة قياس القوة في النظام الدولي للوحدات؟
+- **Q0000096** ما هي النظرية التي وضعها ألبرت أينشتاين والتي ترتبط بالزمان والمكان؟
+  - suggested: ما النظرية التي وضعها ألبرت أينشتاين وتربط بين الزمان والمكان؟
+- **Q0000731** ما هو العنصر الأكثر وفرة في الكون؟
+- **Q0000734** ما اسم الجهاز الذي يقيس درجة الحرارة؟
+- **Q0000740** ما اسم الطبقة الخارجية للأرض؟
+- **Q0000742** ما اسم العملية التي تحول فيها النباتات الطاقة الضوئية إلى طاقة كيميائية؟
+  - suggested: ما اسم العملية التي تحوّل فيها النباتات الطاقة الضوئية إلى طاقة كيميائية؟
+- **Q0000744** الذهب معدن مغناطيسي.
+- **Q0000745** أي من الكواكب التالية لديه أكبر عدد من الأقمار؟
+- **Q0000747** ما اسم أصغر عظمة في جسم الإنسان؟
+- **Q0000748** أي من الغازات التالية يستخدم في تعبئة بالونات الاحتفال؟
+  - suggested: أي من الغازات التالية يُستخدم في تعبئة بالونات الاحتفال التي تطفو في الهواء؟
+- **Q0000749** من هو العالم الذي اكتشف قانون الجاذبية؟
+  - suggested: من هو العالم الذي صاغ قانون الجذب العام؟
+- **Q0000750** ما اسم العملية التي يتحول فيها السائل إلى غاز؟
+  - suggested: ما الاسم العام لعملية تحول المادة من الحالة السائلة إلى الحالة الغازية؟
+- **Q0000752** جميع النباتات تحتاج إلى الشمس لتنمو.
+  - suggested: جميع النباتات تحتاج إلى ضوء الشمس لتنمو.
+- **Q0000761** لا يمكن للنباتات الاستغناء عن ثاني أكسيد الكربون في عملية البناء الضوئي
+  - suggested: تحتاج النباتات إلى ثاني أكسيد الكربون لإجراء عملية البناء الضوئي.
+- **Q0000762** ما هو اسم المجرة التي تنتمي إليها مجموعتنا الشمسية؟
+  - suggested: ما اسم المجرة التي تنتمي إليها مجموعتنا الشمسية؟
+- **Q0000765** عدد الكواكب في المجموعة الشمسية هو 8 كواكب.
+  - suggested: وفق تصنيف الاتحاد الفلكي الدولي المعتمد منذ عام 2006، يبلغ عدد كواكب المجموعة الشمسية 8 كواكب.
+- **Q0000769** أي من الكائنات التالية يعتبر من اللافقاريات؟
+  - suggested: أي من الكائنات التالية يُعدّ من اللافقاريات؟
+- **Q0000770** ما اسم أكبر غدة في جسم الإنسان؟
+  - suggested: ما أكبر غدة في جسم الإنسان؟
+- **Q0000773** يوجد الحمض النووي (DNA) فقط داخل نواة الخلية.
+
+## كأس_العالم (11)
+
+- **Q0000339** أي دولة استضافت كأس العالم 2002؟
+  - suggested: أي دولتين استضافتا كأس العالم لكرة القدم 2002 بشكل مشترك؟
+- **Q0000350** من هو المنتخب الذي خسر نهائي كأس العالم أكثر عدد من المرات حتى 2023؟
+  - suggested: ما المنتخب الذي خسر نهائي كأس العالم أكبر عدد من المرات حتى عام 2023؟
+- **Q0001596** أي دولة كانت أول من فاز بكأس العالم بنظام الدوري النهائي وليس خروج المغلوب؟
+  - suggested: أي منتخب فاز بنسخة كأس العالم الوحيدة التي حُسم لقبها بنظام المجموعة النهائية بدلاً من مباراة نهائية؟
+  - answer: أوروجواي → أوروغواي
+- **Q0001597** من هو اللاعب الذي حصل على جائزة الهداف في مونديال 1986؟
+  - suggested: من هو اللاعب الذي حصل على جائزة هداف كأس العالم 1986 في المكسيك؟
+- **Q0001599** طُرد زين الدين زيدان في نهائي كأس العالم 2006.
+- **Q0001603** استُبدلت كأس جول ريميه بالكأس الحالية لبطولة كأس العالم عام 1974.
+- **Q0001604** من كان قائد المنتخب الألماني في كأس العالم 1990؟
+  - suggested: من كان قائد منتخب ألمانيا الغربية في كأس العالم 1990؟
+- **Q0001610** كم عدد المنتخبات التي شاركت في كأس العالم لأول مرة في عام 1930؟
+  - suggested: كم عدد المنتخبات التي شاركت في أول نسخة من كأس العالم عام 1930؟
+- **Q0001611** البرازيل لم تخسر أي نهائي كأس عالم لعبته حتى الآن.
+  - suggested: لم يخسر المنتخب البرازيلي أي مباراة نهائية في كأس العالم.
+- **Q0001614** أي ملعب استضاف المباراة النهائية لكأس العالم 1998؟
+- **Q0002002** أي منتخب سجل أكبر عدد من الأهداف في نسخة واحدة من كأس العالم؟
+  - suggested: أي منتخب سجّل أكبر عدد من الأهداف في نسخة واحدة من كأس العالم حتى نسخة 2022؟
+
+## عالم_الحيوان (12)
+
+- **Q0001713** ما هو الحيوان الذي يملك نظامًا متطورًا للتواصل باستخدام الرقص للتعبير عن موقع الغذاء؟
+  - suggested: ما الحشرة التي تؤدي «رقصة الاهتزاز» لتُعلم أفراد خليتها بموقع مصادر الغذاء؟
+  - answer: النحلة → نحلة العسل
+- **Q0001718** يُصنَّف الحوت الأزرق من الأنواع المهددة بالانقراض.
+  - suggested: يُصنَّف الحوت الأزرق في القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة ضمن الأنواع المهددة بالانقراض.
+- **Q0001719** ما اسم العملية التي تقوم بها أسماك السلمون للعودة إلى موطنها للتفريخ؟
+  - suggested: ما اسم الرحلة التي تقطعها أسماك السلمون من البحر عائدةً إلى الأنهار التي وُلدت فيها لتضع بيضها؟
+- **Q0001722** ما هو السلوك الذي يتبعه الدب البني للتكيف مع فصول الشتاء الباردة ونقص الغذاء؟
+  - suggested: ما السلوك الذي يتبعه الدب البني للتكيف مع برد الشتاء ونقص الغذاء؟
+- **Q0001724** يستطيع الفيل استخدام خرطومه لشفط الماء من الأنهار.
+- **Q0001727** يغيّر الثعبان جلده بشكل دوري كجزء من نموه.
+- **Q0001729** ما هو الحيوان الذي يُعتبر رمزًا للصحراء بقدرته على البقاء فترات طويلة دون ماء؟
+  - suggested: ما الحيوان الذي يُعدّ رمزًا للصحراء لقدرته على البقاء فترات طويلة دون شرب الماء؟
+- **Q0001730** تمتلك الطيور الجارحة بصرًا حادًا يمكّنها من رؤية الفريسة من مسافات بعيدة.
+- **Q0001733** تقطع بعض الحيتان آلاف الكيلومترات في هجرتها من مناطق التغذية إلى مناطق التزاوج.
+- **Q0001734** ما اسم الطائر الذي يمكنه الطيران للخلف؟
+  - suggested: ما اسم الطائر الذي يستطيع الطيران إلى الخلف؟
+- **Q0001739** يستطيع القرش الأبيض الكبير الحفاظ على حرارة جسمه أعلى من حرارة الماء المحيط به.
+  - suggested: يستطيع القرش الأبيض الكبير الحفاظ على حرارة أجزاء من جسمه أعلى من حرارة الماء المحيط به.
+- **Q0001749** ما هو اسم الطائر المائي الذي يستخدم كيسًا جلديًا تحت منقاره لصيد الأسماك؟
+  - suggested: ما اسم الطائر المائي الذي يستخدم كيسًا جلديًا مرنًا تحت منقاره لصيد الأسماك؟
+
+## مخترعون_ومكتشفون (19)
+
+- **Q0000872** من هو العالم الذي اكتشف قانون الجاذبية بعد أن شاهد سقوط تفاحة؟
+  - suggested: من هو العالم الذي صاغ قانون الجذب العام في كتابه «الأصول الرياضية للفلسفة الطبيعية» عام 1687؟
+- **Q0000873** من هو المخترع الذي اخترع أول هاتف عملي؟
+  - suggested: من هو المخترع الذي حصل على أول براءة اختراع للهاتف في الولايات المتحدة عام 1876؟
+  - answer: جراهام بيل → ألكسندر جراهام بيل
+- **Q0000874** من هو العالم الذي اكتشف البنسلين، أول مضاد حيوي؟
+  - suggested: من هو العالم الاسكتلندي الذي اكتشف البنسلين عام 1928؟
+- **Q0000876** من هو المستكشف الذي اكتشف القارة الأمريكية في عام 1492؟
+  - suggested: من هو المستكشف الذي وصل إلى جزر الكاريبي في العالم الجديد عام 1492 في رحلة موّلها التاج الإسباني؟
+- **Q0000879** من هو العالم الذي اخترع أول مولد كهربائي (الدينامو)؟
+  - suggested: من هو العالم الذي ابتكر أول مولد كهربائي، المعروف باسم «قرص فاراداي»، عام 1831؟
+- **Q0000882** من هو العالم الذي رتب العناصر الكيميائية في الجدول الدوري لأول مرة؟
+  - suggested: من هو العالم الروسي الذي نشر عام 1869 الجدول الدوري للعناصر الكيميائية وتنبأ فيه بعناصر لم تكن مكتشفة بعد؟
+- **Q0000883** من هو المخترع الذي طور أول نظام تلفزيوني عملي؟
+  - suggested: من هو المخترع الاسكتلندي الذي قدّم أول عرض علني لصور تلفزيونية متحركة في لندن عام 1926؟
+- **Q0000885** من هو المخترع الذي اخترع الديناميت؟
+- **Q0000891** من الذي اخترع السيارة الحديثة؟
+  - suggested: من المخترع الألماني الذي حصل عام 1886 على براءة اختراع أول سيارة عملية تعمل بمحرك احتراق داخلي، وتُعد أول سيارة حديثة؟
+- **Q0000892** من اكتشف عنصري الراديوم والبولونيوم؟
+- **Q0000894** من اكتشف كوكب نبتون؟
+  - suggested: من الفلكي الذي رصد كوكب نبتون لأول مرة عام 1846؟
+  - answer: جوهان جوتفريد غاله → يوهان غوتفريد غاله
+- **Q0000896** من الذي اكتشف الدورة الدموية الكبرى في جسم الإنسان؟
+- **Q0000902** من اخترع المنطاد الهوائي؟
+  - suggested: من اخترع منطاد الهواء الساخن عام 1783؟
+- **Q0000903** من اكتشف قانون الطفو؟
+  - suggested: من العالم الإغريقي الذي اكتشف مبدأ الطفو للأجسام المغمورة في السوائل؟
+- **Q0000905** من اكتشف البروتون؟
+  - suggested: من العالم الذي يُنسب إليه اكتشاف البروتون؟
+- **Q0000910** من هو العالم الذي اخترع أول مفاعل نووي؟
+  - suggested: من العالم الذي قاد فريق بناء أول مفاعل نووي من صنع الإنسان عام 1942؟
+- **Q0000919** من اكتشف كوكب بلوتو؟
+  - suggested: من الفلكي الأمريكي الذي اكتشف بلوتو (المصنّف اليوم كوكبًا قزمًا) عام 1930؟
+- **Q0000920** من اخترع الطابعة ثلاثية الأبعاد؟
+  - suggested: من المهندس الأمريكي الذي اخترع تقنية التجسيم الضوئي (Stereolithography)، أولى تقنيات الطباعة ثلاثية الأبعاد التجارية، في ثمانينيات القرن العشرين؟
+- **Q0000921** من اكتشف الأنسولين؟
+  - suggested: من الطبيب الكندي الذي شارك في اكتشاف الأنسولين عام 1921 ونال عنه جائزة نوبل في الطب عام 1923؟
+
+## كلمات_قرآنية (42)
+
+- **Q0000372** ما معنى كلمة 'الغيث' في القرآن؟
+  - suggested: ما معنى كلمة 'الغيث' في القرآن الكريم؟
+- **Q0000374** ما معنى كلمة 'الزقوم' في القرآن؟
+  - suggested: ما معنى كلمة 'الزقوم' في القرآن الكريم؟
+- **Q0000376** ما معنى كلمة 'الأبتر' في القرآن؟
+  - suggested: ما معنى كلمة 'الأبتر' في قوله تعالى: «إن شانئك هو الأبتر»؟
+- **Q0000377** ما معنى كلمة 'المزن' في القرآن؟
+  - suggested: ما معنى كلمة 'المزن' في القرآن الكريم؟
+- **Q0000382** ما معنى كلمة 'الفلق' في القرآن؟
+  - suggested: ما معنى كلمة «الفلق» في قوله تعالى: «قل أعوذ برب الفلق»؟
+- **Q0000383** ما معنى كلمة 'الطور' في القرآن؟
+  - suggested: ما معنى كلمة «الطور» في القرآن الكريم، كما في قوله تعالى: «والطور»؟
+- **Q0000384** ما معنى كلمة 'الغسلين' في القرآن؟
+  - suggested: ما معنى كلمة «غسلين» في قوله تعالى: «ولا طعام إلا من غسلين» (الحاقة: 36)؟
+- **Q0000386** ما معنى كلمة 'العهن' في القرآن؟
+  - suggested: ما معنى كلمة «العهن» في قوله تعالى: «وتكون الجبال كالعهن المنفوش»؟
+- **Q0000390** ما معنى كلمة 'السموم' في القرآن؟
+  - suggested: ما معنى كلمة "السموم" في قوله تعالى: "فِي سَمُومٍ وَحَمِيمٍ"؟
+  - answer: الحر الشديد → الريح الحارة
+- **Q0000408** ما معنى كلمة "يُسر" في قوله تعالى: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا"؟
+  - suggested: ما معنى كلمة "يُسرًا" في قوله تعالى: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا"؟
+- **Q0000409** ما معنى كلمة "الكتاب" في القرآن غالبًا؟
+  - suggested: ما المقصود بكلمة "الكتاب" في قوله تعالى: "ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ"؟
+- **Q0000412** ما معنى كلمة "غفور" في القرآن؟
+  - suggested: ما معنى اسم الله "الغفور" في القرآن الكريم؟
+- **Q0000413** كلمة "الصادقين" تعني الذين لا يكذبون.
+  - suggested: كلمة "الصادقين" في القرآن الكريم تعني الذين لا يكذبون.
+- **Q0000414** كلمة "الرحمن" تعني القوي.
+  - suggested: اسم الله "الرحمن" يعني القوي.
+- **Q0000415** كلمة "الناس" في القرآن تشمل الرجال والنساء والأطفال.
+  - suggested: كلمة "الناس" في اللغة العربية تُطلق على البشر عامةً، رجالًا ونساءً وأطفالًا.
+- **Q0000416** ما معنى كلمة "العليم" في القرآن؟
+  - suggested: ما معنى اسم الله "العليم" في القرآن الكريم؟
+- **Q0000418** ما معنى كلمة "الحق" في القرآن؟
+  - suggested: ما معنى كلمة "الحق" في القرآن الكريم غالبًا؟
+- **Q0000420** ما معنى كلمة "الأبرار" في القرآن؟
+  - suggested: ما معنى كلمة "الأبرار" في القرآن الكريم؟
+- **Q0000422** ما معنى كلمة "الآخرة" في القرآن؟
+  - suggested: ما معنى كلمة "الآخرة" في القرآن الكريم؟
+- **Q0000423** كلمة "الفساد" تعني الإصلاح في الأرض.
+  - suggested: كلمة "الفساد" في القرآن الكريم تعني الإصلاح في الأرض.
+- **Q0000424** كلمة "الملأ" في القرآن تعني الجماعة أو القوم.
+  - suggested: كلمة "الملأ" في القرآن الكريم تعني أشراف القوم ووجهاءهم.
+- **Q0000425** كلمة "الصراط" تعني الطريق.
+  - suggested: كلمة "الصراط" في القرآن الكريم تعني الطريق.
+- **Q0000428** ما معنى كلمة "الكوثر" في سورة الكوثر؟
+  - suggested: ما معنى كلمة "الكوثر" في قوله تعالى: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ"؟
+- **Q0000429** ما معنى كلمة "الرجز" في قوله تعالى: "فَاهْجُرِ الرِّجْزَ"؟
+  - suggested: ما معنى كلمة "الرجز" في قوله تعالى: "وَالرُّجْزَ فَاهْجُرْ"؟
+- **Q0000431** ما معنى كلمة "الفرقان" في القرآن؟
+  - suggested: ما معنى كلمة "الفرقان" التي وُصف بها القرآن الكريم؟
+- **Q0000434** كلمة "الظلمات" في القرآن تعني النور.
+  - suggested: كلمة "الظلمات" في القرآن الكريم تعني النور.
+- **Q0000435** كلمة "البينات" تعني الأدلة الواضحة.
+  - suggested: كلمة "البيّنات" في القرآن الكريم تعني الأدلة والحجج الواضحة.
+- **Q0000436** ما معنى كلمة "أزواج" في قوله: "خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا"؟
+  - suggested: ما معنى كلمة "أزواجًا" في قوله تعالى: "خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا"؟
+  - answer: زوجات أو شريكات الحياة → زوجات
+- **Q0000437** ما معنى كلمة "سُبْحَانَ" في القرآن؟
+  - suggested: ما معنى كلمة "سُبْحَانَ" في القرآن الكريم؟
+- **Q0000438** ما معنى كلمة "القدر" في ليلة القدر؟
+  - suggested: ما معنى كلمة "القدر" في "ليلة القدر" بحسب أشهر أقوال المفسرين؟
+- **Q0000440** ما معنى كلمة "العلق" في سورة العلق؟
+  - suggested: ما معنى كلمة "علق" في قوله تعالى: "خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ"؟
+- **Q0000441** ما معنى كلمة "الطور" في قوله: "وَطُورِ سِينِينَ"؟
+  - suggested: ما معنى كلمة "الطور" في قوله تعالى: "وَطُورِ سِينِينَ"؟
+- **Q0000442** ما معنى كلمة "الأنعام" في القرآن؟
+  - suggested: ما المقصود بـ"الأنعام" في القرآن الكريم؟
+- **Q0000443** كلمة "البأساء" تعني الشدة والكرب.
+  - suggested: كلمة "البأساء" في القرآن الكريم تعني الشدة والكرب.
+- **Q0000444** كلمة "الرجز" تعني الطهارة.
+  - suggested: كلمة "الرجز" في القرآن الكريم تعني الطهارة.
+- **Q0000445** كلمة "الحمد" تعني الشكر والثناء.
+  - suggested: كلمة "الحمد" في قوله تعالى: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ" تعني الثناء والشكر.
+- **Q0000450** ما معنى كلمة "الأعراف" في سورة الأعراف؟
+  - suggested: ما معنى كلمة "الأعراف" التي سُمّيت بها سورة الأعراف؟
+- **Q0000452** ما معنى كلمة "الدهر" في قوله: "هَلْ أَتَى عَلَى الْإِنسَانِ حِينٌ مِّنَ الدَّهْرِ"؟
+  - suggested: ما معنى كلمة "الدهر" في قوله تعالى: "هَلْ أَتَىٰ عَلَى الْإِنسَانِ حِينٌ مِّنَ الدَّهْرِ"؟
+- **Q0000453** كلمة "البأس" تعني القوة والشدة.
+  - suggested: كلمة "البأس" في القرآن الكريم تعني القوة والشدة.
+- **Q0000455** كلمة "المرجان" تعني المرج أو البحر.
+  - suggested: كلمة "المرجان" في القرآن الكريم تعني المرج أو البحر.
+- **Q0000456** ما معنى كلمة "المعيد" في أسماء الله الحسنى؟
+  - suggested: ما معنى اسم الله "المعيد" من أسماء الله الحسنى؟
+- **Q0000457** ما معنى كلمة "البر" في قوله: "إِنَّهُ هُوَ الْبَرُّ الرَّحِيمُ"؟
+  - suggested: ما معنى اسم الله "البر" في قوله تعالى: "إِنَّهُ هُوَ الْبَرُّ الرَّحِيمُ" (الطور: 28)؟
+
+## علم_الفلك (34)
+
+- **Q0001467** يعتبر زحل كوكبًا ذو حلقات بارزة تحيط به.
+  - suggested: يُعدّ زحل كوكباً ذا حلقات بارزة تحيط به.
+- **Q0001480** جميع الكواكب في نظامنا الشمسي صلبة وسطحية.
+  - suggested: جميع كواكب المجموعة الشمسية كواكب صخرية ذات سطح صلب.
+- **Q0001481** أي انفجار ضخم يُعتقد أنه أصل الكون حسب النظرية السائدة؟
+  - suggested: ما اسم النظرية العلمية السائدة التي تفسّر نشأة الكون بتمدده من حالة شديدة الكثافة والحرارة؟
+- **Q0001483** ما اسم الطريق الظاهر كحزام من الضوء في السماء ليلاً ويتكون من عدد هائل من النجوم؟
+  - suggested: ما اسم الحزام الضوئي الذي يظهر في السماء ليلاً بعيداً عن أضواء المدن ويتكوّن من عدد هائل من النجوم؟
+- **Q0001484** الشهب تصل دائماً إلى سطح الأرض.
+  - suggested: تحترق معظم الشهب كلياً في الغلاف الجوي للأرض قبل أن تبلغ سطحها.
+  - answer: False → True
+- **Q0001486** أي من الأبراج التالية يُصنف من الأبراج الهوائية؟
+  - suggested: في التنجيم الغربي، أي من الأبراج التالية يُصنَّف من الأبراج الهوائية؟
+- **Q0001487** علم الفلك "الفيدي" يعتمد بشكل خاص على مواقع القمر.
+  - suggested: يقسّم علم الفلك الهندي التقليدي (جيوتيشا) مسار القمر إلى 27 منزلة تُعرف باسم ناكشاترا.
+- **Q0001491** برج العقرب من أبراج فصل الشتاء.
+  - suggested: تقع فترة برج العقرب في التنجيم الغربي (من 23 أكتوبر إلى 21 نوفمبر تقريبًا) في فصل الشتاء في نصف الكرة الشمالي.
+- **Q0001499** أي كوكبة من كوكبات السماء تُشبه دباً؟
+  - suggested: أي من الكوكبات التالية سُمّيت تشبيهاً بالدب؟
+- **Q0001501** النجم القطبي هو ألمع نجم في السماء.
+  - suggested: النجم القطبي هو ألمع نجم في سماء الليل.
+- **Q0001503** أي نجم يعتبر أقرب نجم إلى الأرض بعد الشمس؟
+  - suggested: أي نجم يُعدّ أقرب نجم إلى الأرض بعد الشمس؟
+- **Q0001504** ما اسم أول قمر صناعي أطلقته البشرية إلى الفضاء؟
+- **Q0001505** كم مدة السنة على كوكب المريخ تقريبًا بالأيام الأرضية؟
+  - suggested: كم تبلغ مدة السنة على كوكب المريخ تقريبًا بالأيام الأرضية؟
+  - answer: 687 يوم → 687 يومًا
+- **Q0001506** يبعد نجم الشعرى اليمانية عن الأرض حوالي 8.6 سنوات ضوئية.
+- **Q0001509** الأبراج الفلكية تتطابق مواقعها الفعلية في السماء مع تواريخ الميلاد المستخدمة حاليًا.
+  - suggested: تتطابق المواقع الفعلية للشمس في كوكبات البروج اليوم مع التواريخ التقليدية للأبراج المستخدمة في التنجيم الغربي.
+- **Q0001512** ما أول كوكب يتم اكتشافه باستخدام تلسكوب؟
+  - suggested: ما أول كوكب اكتُشف باستخدام التلسكوب؟
+- **Q0001515** ما اسم أول رائد فضاء في العالم؟
+  - suggested: ما اسم أول إنسان يصعد إلى الفضاء الخارجي؟
+- **Q0001516** ما هو اسم ظاهرة اختفاء القمر جزئيًا أو كليًا بسبب وقوعه في ظل الأرض؟
+  - suggested: ما اسم الظاهرة التي يختفي فيها القمر جزئيًا أو كليًا بسبب وقوعه في ظل الأرض؟
+- **Q0001517** ما هو اسم الظاهرة التي يظهر فيها القمر مضيئًا بالكامل؟
+  - suggested: ما اسم طور القمر الذي يظهر فيه وجهه المقابل للأرض مضيئًا بالكامل؟
+- **Q0001848** كوكب الزهرة يدور في الاتجاه المعاكس لمعظم الكواكب الأخرى في النظام الشمسي.
+  - suggested: كوكب الزهرة يدور حول محوره في الاتجاه المعاكس لاتجاه دوران معظم كواكب النظام الشمسي.
+- **Q0001853** ما الاسم الذي يُطلق على النجوم التي تتغير سطوعها بانتظام مع مرور الوقت؟
+  - suggested: ما الاسم الذي يُطلق على النجوم التي يتغير سطوعها الظاهري مع مرور الوقت؟
+- **Q0001855** قوة الطرد المركزي هي التي تبقي الكواكب في مداراتها حول الشمس.
+- **Q0001859** ما اسم النظرية التي تنص على أننا نعيش في كون متعدد الأبعاد؟
+  - suggested: أي النظريات الفيزيائية التالية تقترح وجود أبعاد مكانية إضافية تتجاوز الأبعاد الأربعة المعروفة؟
+- **Q0001861** ما اسم الظاهرة التي تحدث عندما يحجب القمر ضوء الشمس بشكل كامل أو جزئي عن الأرض؟
+  - suggested: ما اسم الظاهرة التي تحدث عندما يحجب القمر ضوء الشمس كلياً أو جزئياً عن الأرض؟
+- **Q0001863** النجوم القزمة البيضاء هي المرحلة الأخيرة من حياة نجم متوسط الحجم مثل الشمس.
+  - suggested: ينتهي نجم متوسط الكتلة مثل الشمس، في آخر مراحل تطوره، بأن يتحول إلى قزم أبيض.
+- **Q0001866** ما اسم الجسم الفضائي الذي يُعتقد أنه يتكون بالأساس من الجليد والغبار ويدور في مدار بعيد عن الشمس؟
+  - suggested: ما اسم الجسم الفضائي الصغير المكوّن أساساً من الجليد والغبار، والذي تتكوّن له هالة وذيل عند اقترابه من الشمس؟
+- **Q0001867** ما الظاهرة التي تُعرف بأنها الانحراف الظاهري لموقع نجم نتيجة الحركة المدارية للأرض حول الشمس؟
+  - suggested: ما الظاهرة التي تُعرف بأنها التغير الظاهري في موقع نجم قريب بالنسبة إلى النجوم البعيدة، نتيجة رصده من مواقع مختلفة في مدار الأرض حول الشمس؟
+- **Q0001875** ما اسم الظاهرة التي تحدث عندما يتعرض نجم بعيد لانحراف في ضوءه بسبب مرور جسم ضخم بينه وبين الأرض؟
+  - suggested: ما اسم الظاهرة التي ينحرف فيها ضوء نجم أو مجرة بعيدة بفعل جاذبية جسم ضخم يقع بينه وبين الأرض؟
+- **Q0001876** النجوم النيوترونية هي بقايا نجوم كبيرة انهارت على نفسها بعد انفجار سوبرنوفا.
+  - suggested: النجوم النيوترونية هي بقايا نوى نجوم ضخمة انهارت على نفسها في انفجار سوبرنوفا.
+- **Q0001879** الفضاء الفاصل بين الكواكب هو خالي من أي مواد.
+  - suggested: الفضاء الفاصل بين الكواكب خالٍ تماماً من أي مادة.
+- **Q0001882** تشارك الجسيمات التي تُدعى الميونات في التفاعلات النووية الشمسية التي تولد الطاقة.
+  - suggested: تشارك الجسيمات المسماة الميونات في التفاعلات النووية التي تولّد طاقة الشمس.
+- **Q0001884** الإشعاع الكوني هو إشعاع قادم من خارج النظام الشمسي ويتضمن جسيمات ذات طاقة عالية.
+  - suggested: الأشعة الكونية المجرّية جسيمات عالية الطاقة تأتي من خارج النظام الشمسي.
+- **Q0001885** أي من العوامل التالية ليس له تأثير مباشر على حركة الكواكب في مداراتها؟
+  - suggested: أي من العوامل التالية لا يؤثر تأثيرًا يُذكر في حركة الكواكب في مداراتها حول الشمس؟
+- **Q0001886** ما هو الاسم الذي يُطلق على المادة التي لا يمكن رؤيتها مباشرة، لكنها تشكل معظم الكتلة في الكون؟
+  - suggested: ما اسم المادة غير المرئية التي لا تبعث الضوء ولا تمتصه، ويُستدل على وجودها من تأثير جاذبيتها، وتشكل معظم المادة في الكون؟
+
+## معلومات_عامة (17)
+
+- **Q0000064** كم هي درجة الحرارة الفهرنهايتية التي يتجمد عندها الماء في ضغط الهواء الطبيعي؟
+  - suggested: عند أي درجة على مقياس فهرنهايت يتجمد الماء النقي تحت الضغط الجوي المعتاد؟
+- **Q0000392** ما هي العاصمة الحالية لجمهورية مصر العربية؟
+  - suggested: ما هي عاصمة جمهورية مصر العربية؟
+- **Q0000394** جبل إيفرست هو ثاني أعلى جبل في العالم.
+- **Q0000405** اللغة الإنجليزية هي أكثر لغة في العالم من حيث عدد من يتحدثونها كلغة أم.
+- **Q0000486** من هو مؤلف رواية 'هاري بوتر'؟
+  - suggested: من هي مؤلفة سلسلة روايات «هاري بوتر»؟
+  - answer: جاي. كيه. رولينغ → ج. ك. رولينغ
+- **Q0000490** ما هو العلم الذي يدرس الأحياء الدقيقة؟
+- **Q0000491** ما هو الاسم الذي يُطلق على المنطقة الجغرافية التي تشمل أستراليا، ميلانيزيا، ميكرونيسيا، وبولينيزيا؟
+  - suggested: ما الاسم الذي يُطلق على المنطقة الجغرافية التي تضم أستراليا وميلانيزيا وميكرونيزيا وبولينيزيا؟
+  - answer: أوشينيا → أوقيانوسيا
+- **Q0000497** من هو مخترع الهاتف؟
+  - suggested: من حصل على أول براءة اختراع للهاتف في الولايات المتحدة عام 1876؟
+  - answer: غراهام بيل → ألكسندر غراهام بيل
+- **Q0000499** ما هو أعلى جبل في العالم؟
+  - suggested: ما أعلى جبل في العالم من حيث الارتفاع فوق مستوى سطح البحر؟
+- **Q0000500** أي دولة تشتهر بصناعة سيارات فيراري؟
+  - suggested: في أي دولة يقع المقر الرئيسي لشركة سيارات فيراري؟
+- **Q0000503** من هو مؤسس علم الجبر؟
+  - suggested: اشتُق اسم علم «الجبر» من عنوان كتاب أي عالم؟
+- **Q0000515** ما هو اسم أطول سور في العالم؟
+- **Q0000517** من هو العالم الذي اكتشف البنسلين؟
+- **Q0000522** أي من هذه الدول ليست جزءًا من المملكة المتحدة؟
+  - suggested: أيٌّ من الدول الآتية ليست جزءًا من المملكة المتحدة؟
+  - answer: إيرلندا → جمهورية أيرلندا
+- **Q0000526** ما هو الحيوان الذي لا يستطيع القفز؟
+  - suggested: أيٌّ من الحيوانات الآتية لا يستطيع القفز؟
+- **Q0000528** ما هو اسم أعمق نقطة في المحيطات؟
+  - suggested: في أي خندق محيطي تقع أعمق نقطة معروفة في محيطات العالم؟
+- **Q0000529** ما هي اللغة الرسمية في الأرجنتين؟
+  - suggested: ما اللغة السائدة التي يتحدث بها معظم سكان الأرجنتين؟
+
+## مشاهير_عرب (10)
+
+- **Q0000188** فازت نانسي عجرم بلقب «نجمة العرب» في برنامج سوبر ستار.
+- **Q0000191** أم كلثوم هي أول من غنّى أغنية «إنت عمري».
+  - suggested: أغنية «إنت عمري» التي غنّتها أم كلثوم من ألحان محمد عبد الوهاب.
+- **Q0000194** أي من هؤلاء الفنانين كان أحد أعضاء فرقة 'فور كاتس' اللبنانية؟
+  - suggested: أيٌّ من هؤلاء الفنانات كانت عضوًا في فرقة «فور كاتس» اللبنانية؟
+- **Q0000640** من هو الشاعر الفلسطيني الذي كتب قصيدة "سجل أنا عربي"؟
+- **Q0000646** من هو رائد الأعمال الإماراتي الذي أسس شركة "إعمار العقارية"؟
+  - suggested: من هو رائد الأعمال الإماراتي الذي أسس شركة "إعمار العقارية" عام 1997؟
+- **Q0000650** من هو الكاتب الذي كتب رواية "ساق البامبو"؟
+- **Q0000652** من هو الشاعر العربي الذي كتب قصيدة "لا تسألوني ما اسمه حبيبي"؟
+- **Q0000654** من هو السباح التونسي الذي حقق ميداليات أولمبية؟
+  - suggested: من هو السباح التونسي الذي فاز بذهبية سباق 1500 متر حرة في أولمبياد بكين 2008؟
+- **Q0000661** من هي لاعبة التنس التونسية التي وصلت إلى نهائي ويمبلدون 2022 للسيدات؟
+  - suggested: من هي لاعبة التنس التونسية التي وصلت إلى نهائي بطولة ويمبلدون للسيدات عام 2022؟
+- **Q0000672** من هو السينمائي الجزائري الذي رُشّح فيلمه لجائزة الأوسكار عام 2010؟
+  - suggested: من هو المخرج الجزائري الذي رُشّح فيلمه "خارجون عن القانون" (2010) لجائزة الأوسكار لأفضل فيلم بلغة أجنبية؟
+
+## براندات_عالمية (13)
+
+- **Q0002031** شركة كوكاكولا بدأت في الأصل كدواء.
+  - suggested: ابتُكر مشروب كوكاكولا في الأصل ليُباع كدواء أو مقوٍّ.
+- **Q0002032** ما هي الدولة التي نشأت فيها علامة السيارات 'فولكس فاجن'؟
+  - suggested: في أي دولة نشأت علامة السيارات 'فولكس فاجن'؟
+- **Q0002033** 'ليغو' هي شركة دنماركية متخصصة في الألعاب.
+  - suggested: 'ليغو' شركة دنماركية متخصصة في صناعة الألعاب.
+- **Q0002035** ما هي أول شركة أطلقت هاتفًا ذكيًا يعمل بنظام أندرويد؟
+  - suggested: ما الشركة التي صنعت أول هاتف ذكي تجاري يعمل بنظام أندرويد؟
+- **Q0002036** شركة نايكي سميت بهذا الاسم على اسم إلهة النصر اليونانية.
+  - suggested: سُمّيت شركة نايكي على اسم إلهة النصر في الأساطير اليونانية.
+- **Q0002037** ما هي الدولة التي تأسست فيها شركة نينتندو؟
+  - suggested: في أي دولة تأسست شركة نينتندو؟
+- **Q0002039** ما هو الشعار الخاص بشركة نايكي؟
+  - suggested: ما الشعار الإعلاني الشهير لشركة نايكي للملابس والأحذية الرياضية؟
+- **Q0002041** ما هي الشركة التي تُعرف بتقديم خدمات التوصيل السريعة وتستخدم شعار 'Prime'؟
+  - suggested: ما الشركة التي تقدم خدمة الاشتراك 'Prime' التي توفر لمشتركيها شحنًا سريعًا مجانيًا؟
+- **Q0002043** 'كوكاكولا' كانت تحتوي في الأصل على الكوكايين.
+  - suggested: احتوت الوصفة الأصلية لمشروب كوكاكولا عند ظهوره عام 1886 على مستخلص من أوراق الكوكا يحتوي على الكوكايين.
+- **Q0002046** شركة كوكاكولا تأسست قبل شركة بيبسي.
+  - suggested: ظهر مشروب كوكاكولا قبل ظهور مشروب بيبسي.
+- **Q0002047** أي من هذه العلامات التجارية تمتلك شعار التفاحة المشهورة؟
+  - suggested: أي من هذه العلامات التجارية يتخذ شعارها شكل تفاحة مقضومة؟
+- **Q0002048** ما هو اسم الشركة التي أسسها بيل غيتس؟
+  - suggested: ما اسم شركة البرمجيات التي شارك بيل غيتس في تأسيسها عام 1975؟
+- **Q0002049** 'I’m Lovin’ It' هو شعار أي علامة تجارية مشهورة؟
+  - suggested: عبارة «I'm Lovin' It» هي الشعار الإعلاني لأي علامة تجارية؟
