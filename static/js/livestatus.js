@@ -277,8 +277,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Once a question is picked, the board is frozen until the question page loads.
+// Picking it uses up double points on the server at once, so a poll landing in
+// that moment would redraw the board without its green double-points look.
+let boardFrozen = false;
+document.addEventListener('submit', function (e) {
+    if (e.target && e.target.closest && e.target.closest('.question-box')) boardFrozen = true;
+}, true);
+window.addEventListener('pageshow', function (e) {
+    if (e.persisted) boardFrozen = false;   // came back with the browser's Back button
+});
+
 // Game board update function (only used in game_room.html)
 function updateGameBoard() {
+    if (boardFrozen) return;
     const gameRoomSection = document.querySelector('.page-section');
     if (!gameRoomSection) return;
 
@@ -288,6 +300,7 @@ function updateGameBoard() {
     fetch(`/api/game_updates/${roomId}`)
         .then(response => response.json())
         .then(data => {
+            if (boardFrozen) return;   // a question was picked while this poll was in flight
             if (data.available_questions) {
                 const gameBoardSection = document.querySelector('.game-board');
                 if (!gameBoardSection) return;
