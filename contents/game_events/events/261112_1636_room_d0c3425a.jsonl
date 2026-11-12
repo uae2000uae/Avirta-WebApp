@@ -1,0 +1,5 @@
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "P2", "message": "Turn switched from P1 to P2"}, "timestamp": "2026-11-12T16:36:19.297265"}
+{"type": "tool_used", "data": {"player_name": "P1", "tool_name": "double_points", "target_player": "P2", "message": "P1 activated Double Points for P2"}, "timestamp": "2026-11-12T16:36:23.831106"}
+{"type": "question_selected", "data": {"player_name": "P2", "category": "جسم_الإنسان", "points": 400, "message": "P2 selected a 400-point question from جسم_الإنسان"}, "timestamp": "2026-11-12T16:36:39.373173"}
+{"type": "answer_evaluated", "data": {"player_name": "P2", "evaluator": "P1", "category": "جسم_الإنسان", "points": 400, "is_correct": true, "message": "The Host evaluated P2's answer as correct and earned 400 points"}, "timestamp": "2026-11-12T16:36:45.052133"}
+{"type": "turn_switch", "data": {"previous_player": "P2", "new_player": "P1", "message": "Turn switched from P2 to P1"}, "timestamp": "2026-11-12T16:36:48.311543"}

@@ -1,0 +1,2 @@
+{"type": "tool_used", "data": {"player_name": "P1", "tool_name": "double_points", "target_player": "P1", "message": "P1 activated Double Points"}, "timestamp": "2026-11-12T16:34:02.524293"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "جسم_الإنسان", "points": 600, "message": "P1 selected a 600-point question from جسم_الإنسان"}, "timestamp": "2026-11-12T16:34:20.220316"}
