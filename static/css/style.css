@@ -1460,7 +1460,7 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 
 /* 7.1 Knowledge Columns: board */
 .game-board-section { margin-top: var(--s-4); margin-bottom: var(--s-4); }
-.game-board { display: flex; flex-direction: row; flex-wrap: nowrap; gap: var(--s-3); margin-bottom: var(--s-4); }
+.game-board { display: flex; flex-direction: row; flex-wrap: nowrap; gap: var(--s-1); margin-bottom: var(--s-4); }
 .category {
     flex: 1;
     min-width: 50px;
@@ -1486,12 +1486,14 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
     color: var(--accent-ink);
     background: var(--hairline) bottom / 100% 1px no-repeat, var(--raised);
 }
-.question-list { padding: var(--s-1); flex-direction: column; column-fill: auto; }
+.question-list { padding: var(--s-1) 3px; flex-direction: column; column-fill: auto; }
 .question-item { margin-bottom: var(--s-1); }
 /* Several questions at the same score share the row: equal side-by-side buttons. */
 .question-item.question-split { display: flex; }
 .question-item.question-split > .question-box { flex: 1 1 0; min-width: 0; }
-.question-box { padding: var(--s-1); background: transparent; outline: none; }
+/* Tight sideways spacing; vertical spacing unchanged. */
+.question-box { padding: var(--s-1) 2px; background: transparent; outline: none; }
+/* Available questions use the primary (brass) colour; answered ones stay muted. */
 .question-button {
     width: 100%;
     padding: 0;
@@ -1499,19 +1501,22 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
     border-radius: var(--r-3);
     font-size: 16px;
     cursor: pointer;
-    color: var(--accent-ink);
-    background: var(--edge-hi), var(--raised);
-    outline: 1px solid var(--line);
-    outline-offset: -1px;
-}
-.question-button:hover, .question-button:active { outline-color: var(--accent-1); background: var(--veil-2), var(--raised); }
-.question-button:disabled { color: var(--muted); background: var(--raised); outline-color: var(--line); }
-.question-button.doubled {
     color: var(--on-accent);
     background: var(--accent);
-    outline: 1px solid var(--accent-1);
+    outline: 1px solid transparent;
+    outline-offset: -1px;
+}
+.question-button:hover, .question-button:active { outline-color: var(--accent-1); background: var(--veil-2), var(--accent); }
+.question-button:disabled { color: var(--muted); background: var(--raised); outline-color: var(--line); cursor: default; }
+/* Double points: available questions turn green, in regular weight. */
+.question-button.doubled:not(:disabled) {
+    color: var(--on-accent);
+    background: var(--success);
+    outline: 1px solid var(--success);
     animation: doubled-pulse 1.4s var(--ease) infinite;
 }
+.question-button.doubled:not(:disabled):hover { background: var(--veil-2), var(--success); }
+.question-button.doubled strong { font-weight: normal; }
 
 /* Turn and tools */
 .dp, .tool-btn { cursor: pointer; }

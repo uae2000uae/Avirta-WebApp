@@ -85,12 +85,22 @@ function setupQuestionTimer() {
     questionSection.insertBefore(timerDisplay, questionSection.firstChild);
 
     // Start the countdown
-    const timerInterval = setInterval(function() {
+    let timerInterval = null;
+    // Lets the page freeze the countdown, e.g. once a text answer is revealed.
+    window.stopQuestionTimer = function () {
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timerDisplay.classList.add('timer-stopped');
+        }
+    };
+    timerInterval = setInterval(function() {
         timeLeft--;
         document.getElementById('time-left').textContent = timeLeft;
 
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
+            timerInterval = null;
 
             // Check if this is a text-based question
             const showAnswerBtn = document.getElementById('show-answer-btn');

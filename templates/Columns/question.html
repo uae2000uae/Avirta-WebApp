@@ -70,6 +70,8 @@
 {% block scripts %}
 <script>
     function showAnswer() {
+        // The answer is out: stop the countdown so it no longer runs or ticks.
+        if (window.stopQuestionTimer) window.stopQuestionTimer();
         document.getElementById('show-answer-btn').style.display = 'none';
         document.getElementById('answer-section').style.display = 'block';
         document.getElementById('change-question-form').style.display = 'none';
