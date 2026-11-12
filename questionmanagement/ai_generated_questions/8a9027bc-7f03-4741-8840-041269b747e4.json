@@ -1,0 +1,245 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T07:48:34.167530",
+    "prompt": "الرياضة. بطولات ولاعبون وأرقام قياسية مؤرخة في الرياضات المختلفة، إجابة قصيرة واحدة، وتحديد السنة لأي معلومة متغيرة",
+    "topic": "الرياضة",
+    "focus": "بطولات ولاعبون وأرقام قياسية مؤرخة في الرياضات المختلفة، إجابة قصيرة واحدة، وتحديد السنة لأي معلومة متغيرة.",
+    "category": "رياضة",
+    "question_type": "text",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 13,
+    "num_returned": 13,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "رياضة",
+        "url": "https://ar.wikipedia.org/wiki/%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9"
+      },
+      {
+        "title": "تاريخ الرياضة في السعودية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9"
+      },
+      {
+        "title": "مجلس الرياضة الباكستاني",
+        "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AC%D9%84%D8%B3_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9_%D8%A7%D9%84%D8%A8%D8%A7%D9%83%D8%B3%D8%AA%D8%A7%D9%86%D9%8A"
+      },
+      {
+        "title": "الرياضة في جمهورية التشيك",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9_%D9%81%D9%8A_%D8%AC%D9%85%D9%87%D9%88%D8%B1%D9%8A%D8%A9_%D8%A7%D9%84%D8%AA%D8%B4%D9%8A%D9%83"
+      },
+      {
+        "title": "الرياضة في المملكة المتحدة",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D9%85%D9%85%D9%84%D9%83%D8%A9_%D8%A7%D9%84%D9%85%D8%AA%D8%AD%D8%AF%D8%A9"
+      },
+      {
+        "title": "الرياض",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 16,
+      "structure": 0,
+      "duplicate": 2,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 13,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [
+      {
+        "question": "أي منتخب فاز بأول نسخة من بطولة كأس العالم لكرة القدم عام 1930؟",
+        "answer": "الأوروغواي",
+        "reason": "duplicate of: أي منتخب فاز بأول بطولة كأس عالم لكرة القدم عام 1930؟ (same wording)"
+      },
+      {
+        "question": "من لاعبة التنس التونسية التي بلغت نهائي فردي السيدات في بطولة ويمبلدون عام 2022؟",
+        "answer": "أنس جابر",
+        "reason": "duplicate of: من هي لاعبة التنس التونسية التي وصلت إلى نهائي ويمبلدون 2022 للسيدات؟ (same fact and answer)"
+      }
+    ],
+    "num_questions": 13
+  },
+  "questions": [
+    {
+      "type": "text",
+      "question": "في أي رياضة اشتهر النجم الأمريكي مايكل جوردن الذي لعب لفريق شيكاغو بولز؟",
+      "correct_answer": "كرة السلة",
+      "explanation": "مايكل جوردن أسطورة كرة السلة، وقاد شيكاغو بولز إلى 6 ألقاب في دوري NBA.",
+      "points": 100,
+      "acceptable_answers": [
+        "السلة",
+        "basketball"
+      ],
+      "fact": "Michael Jordan is an American basketball player who won six NBA championships with the Chicago Bulls.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "ما المدينة التي استضافت دورة الألعاب الأولمبية الصيفية عام 2016؟",
+      "correct_answer": "ريو دي جانيرو",
+      "explanation": "أُقيمت أولمبياد 2016 في مدينة ريو دي جانيرو البرازيلية، وكانت أول دورة أولمبية تُقام في أمريكا الجنوبية.",
+      "points": 100,
+      "acceptable_answers": [
+        "ريو",
+        "ريو دي جانيرو البرازيلية"
+      ],
+      "fact": "The 2016 Summer Olympics were held in Rio de Janeiro, Brazil.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من السبّاح الأمريكي الذي فاز بـ 8 ميداليات ذهبية في دورة الألعاب الأولمبية في بكين عام 2008؟",
+      "correct_answer": "مايكل فيلبس",
+      "explanation": "حقق مايكل فيلبس 8 ذهبيات في أولمبياد بكين 2008، وهو أكبر عدد من الذهبيات في دورة أولمبية واحدة.",
+      "points": 200,
+      "acceptable_answers": [
+        "فيلبس",
+        "مايكل فيليبس"
+      ],
+      "fact": "Michael Phelps won eight gold medals at the 2008 Beijing Olympics.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "إلى أي دولة ينتمي العدّاء أوسين بولت الذي سجّل زمن 9.58 ثانية في سباق 100 متر في برلين عام 2009؟",
+      "correct_answer": "جامايكا",
+      "explanation": "أوسين بولت عدّاء جامايكي سجّل في بطولة العالم في برلين عام 2009 رقمًا قياسيًا عالميًا في سباق 100 متر.",
+      "points": 200,
+      "acceptable_answers": [
+        "جمايكا"
+      ],
+      "fact": "Jamaican sprinter Usain Bolt ran the 100 m in 9.58 seconds in Berlin in 2009.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من العدّاء المغربي الذي سجّل الرقم القياسي العالمي لسباق 1500 متر بزمن 3:26.00 دقيقة في روما عام 1998؟",
+      "correct_answer": "هشام الكروج",
+      "explanation": "سجّل هشام الكروج زمن 3:26.00 دقيقة في سباق 1500 متر في روما يوم 14 يوليو 1998.",
+      "points": 300,
+      "acceptable_answers": [
+        "الكروج",
+        "هشام القروج"
+      ],
+      "fact": "Hicham El Guerrouj set the 1500 m world record of 3:26.00 in Rome on 14 July 1998.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من العدّاءة المغربية التي فازت بذهبية سباق 400 متر حواجز في أولمبياد لوس أنجلوس عام 1984، لتصبح أول امرأة عربية تفوز بميدالية ذهبية أولمبية؟",
+      "correct_answer": "نوال المتوكل",
+      "explanation": "فازت نوال المتوكل بذهبية سباق 400 متر حواجز في أولمبياد لوس أنجلوس 1984، فكانت أول امرأة عربية تتوج بذهبية أولمبية.",
+      "points": 300,
+      "acceptable_answers": [
+        "المتوكل"
+      ],
+      "fact": "Nawal El Moutawakel of Morocco won the 400 m hurdles at the 1984 Los Angeles Olympics, becoming the first Arab woman to win an Olympic gold medal.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "في أي رياضة اشتهر النجم السويسري روجر فيدرر الفائز ببطولة ويمبلدون 8 مرات؟",
+      "correct_answer": "التنس",
+      "explanation": "روجر فيدرر لاعب تنس سويسري، وفاز بلقب ويمبلدون للفردي 8 مرات.",
+      "points": 100,
+      "acceptable_answers": [
+        "كرة المضرب",
+        "تنس",
+        "التنس الأرضي"
+      ],
+      "fact": "Roger Federer is a Swiss tennis player who won the Wimbledon men's singles title 8 times.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من لاعب الشطرنج الأمريكي الذي انتزع لقب بطولة العالم من السوفيتي بوريس سباسكي في ريكيافيك عام 1972؟",
+      "correct_answer": "بوبي فيشر",
+      "explanation": "تغلّب بوبي فيشر على بوريس سباسكي في مباراة بطولة العالم للشطرنج التي أقيمت في ريكيافيك بآيسلندا عام 1972.",
+      "points": 400,
+      "acceptable_answers": [
+        "فيشر",
+        "روبرت فيشر",
+        "بوبي فيشير"
+      ],
+      "fact": "American Bobby Fischer defeated Boris Spassky in Reykjavik in 1972 to become World Chess Champion.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من اللاعب الفرنسي الذي سجّل أول هدف في تاريخ بطولات كأس العالم لكرة القدم، وكان ذلك في مرمى المكسيك عام 1930؟",
+      "correct_answer": "لوسيان لوران",
+      "explanation": "سجّل لوسيان لوران أول هدف في تاريخ كأس العالم خلال فوز فرنسا على المكسيك 4-1 في 13 يوليو 1930.",
+      "points": 500,
+      "acceptable_answers": [
+        "لوران",
+        "لوسيان لوغان"
+      ],
+      "fact": "Frenchman Lucien Laurent scored the first goal in World Cup history against Mexico on 13 July 1930.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من العدّاء البريطاني الذي أصبح أول من يقطع مسافة الميل في أقل من 4 دقائق في مدينة أكسفورد عام 1954؟",
+      "correct_answer": "روجر بانيستر",
+      "explanation": "قطع روجر بانيستر مسافة الميل في 3:59.4 دقيقة يوم 6 مايو 1954 في أكسفورد، ليكون أول من يكسر حاجز الأربع دقائق.",
+      "points": 500,
+      "acceptable_answers": [
+        "بانيستر",
+        "روجر بانستر"
+      ],
+      "fact": "On 6 May 1954 in Oxford, Roger Bannister became the first person to run a mile in under four minutes (3:59.4).",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "في أي مدينة أُقيمت أول دورة للألعاب الأولمبية الحديثة عام 1896؟",
+      "correct_answer": "أثينا",
+      "explanation": "أحيا البارون بيير دي كوبرتان الألعاب الأولمبية، فأُقيمت أول دورة حديثة في أثينا باليونان عام 1896 تكريمًا لمهد الألعاب القديمة.",
+      "points": 200,
+      "acceptable_answers": [
+        "أثينا، اليونان",
+        "Athens"
+      ],
+      "fact": "أُقيمت أول دورة ألعاب أولمبية حديثة في أثينا عام 1896.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من لاعبة الجمباز الرومانية التي حصلت على أول علامة كاملة (10) في تاريخ الألعاب الأولمبية، وذلك في أولمبياد مونتريال عام 1976؟",
+      "correct_answer": "ناديا كومانتشي",
+      "explanation": "نالت ناديا كومانتشي، وهي في الرابعة عشرة من عمرها، أول علامة كاملة في الجمباز الأولمبي على جهاز المتوازيين مختلفي الارتفاع في مونتريال 1976.",
+      "points": 300,
+      "acceptable_answers": [
+        "نادية كومانتشي",
+        "كومانتشي",
+        "Nadia Comăneci",
+        "ناديا كومانيتشي"
+      ],
+      "fact": "حصلت الرومانية ناديا كومانتشي على أول علامة 10 كاملة في الجمباز الأولمبي في أولمبياد مونتريال 1976.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من الرياضي الأمريكي الذي حطّم الرقم القياسي العالمي للوثب الطويل بقفزة طولها 8.90 متر في أولمبياد مكسيكو سيتي عام 1968؟",
+      "correct_answer": "بوب بيمون",
+      "explanation": "قفز بوب بيمون مسافة 8.90 متر في أولمبياد مكسيكو 1968، فتجاوز الرقم السابق بخمسة وخمسين سنتيمترًا، وظل رقمه صامدًا حتى عام 1991.",
+      "points": 400,
+      "acceptable_answers": [
+        "بيمون",
+        "Bob Beamon",
+        "روبرت بيمون"
+      ],
+      "fact": "سجّل الأمريكي بوب بيمون رقمًا عالميًا في الوثب الطويل قدره 8.90 متر في أولمبياد مكسيكو سيتي 1968.",
+      "verification": "verified"
+    }
+  ]
+}

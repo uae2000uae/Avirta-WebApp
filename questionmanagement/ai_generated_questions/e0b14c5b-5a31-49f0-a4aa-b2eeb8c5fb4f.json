@@ -1,0 +1,189 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T07:48:26.592876",
+    "prompt": "كأس العالم لكرة القدم. نسخ كأس العالم والدول المضيفة والفائزون والهدافون، إجابة قصيرة واحدة",
+    "topic": "كأس العالم لكرة القدم",
+    "focus": "نسخ كأس العالم والدول المضيفة والفائزون والهدافون، إجابة قصيرة واحدة.",
+    "category": "كأس_العالم",
+    "question_type": "text",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 9,
+    "num_returned": 9,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "كأس العالم",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85"
+      },
+      {
+        "title": "كأس العالم للأندية",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85_%D9%84%D9%84%D8%A3%D9%86%D8%AF%D9%8A%D8%A9"
+      },
+      {
+        "title": "كأس العالم 2026",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85_2026"
+      },
+      {
+        "title": "كأس العالم 2014",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85_2014"
+      },
+      {
+        "title": "كأس العالم 2022",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85_2022"
+      },
+      {
+        "title": "كأس العالم 2018",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85_2018"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 11,
+      "structure": 0,
+      "duplicate": 1,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 9,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [
+      {
+        "question": "من هو اللاعب الكولومبي الذي فاز بلقب هداف كأس العالم لكرة القدم 2014 برصيد 6 أهداف؟",
+        "answer": "خاميس رودريغيز",
+        "reason": "duplicate of: من هو اللاعب الذي فاز بلقب هداف كأس العالم لكرة القدم 2022 برصيد 8 أهداف؟ (same wording)"
+      }
+    ],
+    "num_questions": 9
+  },
+  "questions": [
+    {
+      "type": "text",
+      "question": "أي منتخب فاز بكأس العالم لكرة القدم 2022 التي أقيمت في قطر؟",
+      "correct_answer": "الأرجنتين",
+      "explanation": "تغلبت الأرجنتين على فرنسا بركلات الترجيح بعد التعادل 3–3 في نهائي مونديال قطر 2022 وأحرزت لقبها الثالث.",
+      "points": 100,
+      "acceptable_answers": [
+        "منتخب الأرجنتين",
+        "الارجنتين"
+      ],
+      "fact": "فازت الأرجنتين بكأس العالم 2022 بعد فوزها على فرنسا بركلات الترجيح في النهائي.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "أي دولة استضافت بطولة كأس العالم لكرة القدم 2014؟",
+      "correct_answer": "البرازيل",
+      "explanation": "أقيمت كأس العالم 2014 في البرازيل، وكانت ثاني استضافة لها بعد نسخة 1950.",
+      "points": 100,
+      "acceptable_answers": [
+        "البرازيل"
+      ],
+      "fact": "استضافت البرازيل كأس العالم 2014.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "ما الدولة التي استضافت كأس العالم لكرة القدم 2010، وهي أول نسخة تقام في قارة أفريقيا؟",
+      "correct_answer": "جنوب أفريقيا",
+      "explanation": "استضافت جنوب أفريقيا مونديال 2010، فكانت أول دولة أفريقية تنظم البطولة.",
+      "points": 200,
+      "acceptable_answers": [
+        "جنوب افريقيا",
+        "جمهورية جنوب أفريقيا"
+      ],
+      "fact": "أقيمت كأس العالم 2010 في جنوب أفريقيا، وهي أول نسخة تقام في أفريقيا.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من هو اللاعب الذي فاز بلقب هداف كأس العالم لكرة القدم 2022 برصيد 8 أهداف؟",
+      "correct_answer": "كيليان مبابي",
+      "explanation": "سجل الفرنسي كيليان مبابي 8 أهداف في مونديال 2022، منها ثلاثية في النهائي أمام الأرجنتين، ونال الحذاء الذهبي.",
+      "points": 200,
+      "acceptable_answers": [
+        "مبابي",
+        "كيليان إمبابي",
+        "إمبابي"
+      ],
+      "fact": "كان كيليان مبابي هداف كأس العالم 2022 برصيد 8 أهداف.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من هو اللاعب الفرنسي الذي سجل 13 هدفًا في كأس العالم 1958، وهو أكبر عدد من الأهداف يسجله لاعب في نسخة واحدة من البطولة؟",
+      "correct_answer": "جوست فونتين",
+      "explanation": "سجل جوست فونتين 13 هدفًا مع فرنسا في مونديال السويد 1958، وهو رقم قياسي لنسخة واحدة لم يُكسر.",
+      "points": 400,
+      "acceptable_answers": [
+        "فونتين",
+        "جيست فونتين",
+        "جوس فونتين"
+      ],
+      "fact": "سجل الفرنسي جوست فونتين 13 هدفًا في كأس العالم 1958، وهو أكبر عدد أهداف للاعب في نسخة واحدة.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "أي دولة استضافت كأس العالم لكرة القدم عام 1966 وفازت بلقبها؟",
+      "correct_answer": "إنجلترا",
+      "explanation": "استضافت إنجلترا مونديال 1966 وتغلبت على ألمانيا الغربية في النهائي، فأحرزت لقبها الوحيد حتى الآن.",
+      "points": 300,
+      "acceptable_answers": [
+        "انجلترا",
+        "المنتخب الإنجليزي"
+      ],
+      "fact": "England hosted and won the 1966 FIFA World Cup.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من هو اللاعب البرازيلي الذي توج بلقب هداف كأس العالم 2002 برصيد 8 أهداف؟",
+      "correct_answer": "رونالدو",
+      "explanation": "سجل رونالدو 8 أهداف في مونديال 2002، منها هدفا البرازيل في النهائي أمام ألمانيا.",
+      "points": 300,
+      "acceptable_answers": [
+        "رونالدو نازاريو",
+        "رونالدو الظاهرة",
+        "رونالدو لويس نازاريو دي ليما"
+      ],
+      "fact": "Brazil's Ronaldo won the Golden Boot at the 2002 World Cup with 8 goals.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "أي منتخب فاز بكأس العالم لكرة القدم 1990 التي أقيمت في إيطاليا؟",
+      "correct_answer": "ألمانيا الغربية",
+      "explanation": "فازت ألمانيا الغربية بمونديال 1990 بعد تغلبها على الأرجنتين 1–0 في المباراة النهائية.",
+      "points": 300,
+      "acceptable_answers": [
+        "ألمانيا",
+        "ألمانيا الاتحادية",
+        "المانيا الغربية"
+      ],
+      "fact": "West Germany won the 1990 World Cup in Italy, beating Argentina 1–0 in the final.",
+      "verification": "verified"
+    },
+    {
+      "type": "text",
+      "question": "من هو اللاعب الكولومبي الذي توج بلقب هداف كأس العالم 2014 في البرازيل برصيد 6 أهداف؟",
+      "correct_answer": "خاميس رودريغيز",
+      "explanation": "سجل خاميس رودريغيز 6 أهداف في مونديال 2014 ونال جائزة الحذاء الذهبي.",
+      "points": 400,
+      "acceptable_answers": [
+        "خاميس",
+        "جيمس رودريغيز",
+        "خاميس رودريغز"
+      ],
+      "fact": "James Rodríguez of Colombia won the Golden Boot at the 2014 World Cup with 6 goals.",
+      "verification": "verified"
+    }
+  ]
+}

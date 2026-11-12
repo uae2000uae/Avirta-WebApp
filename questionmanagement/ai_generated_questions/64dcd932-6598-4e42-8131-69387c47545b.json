@@ -1,0 +1,340 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T07:48:16.952022",
+    "prompt": "الرياضيات. مسائل حسابية وهندسية قصيرة يمكن حلها ذهنيًا، لها جواب عددي واحد، وخيارات أرقام معقولة",
+    "topic": "الرياضيات",
+    "focus": "مسائل حسابية وهندسية قصيرة يمكن حلها ذهنيًا، لها جواب عددي واحد، وخيارات أرقام معقولة.",
+    "category": "رياضيات",
+    "question_type": "multiple_choice",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 17,
+    "num_returned": 17,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "رياضيات",
+        "url": "https://ar.wikipedia.org/wiki/%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA"
+      },
+      {
+        "title": "مشروع إحصاء علماء الرياضيات",
+        "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%B4%D8%B1%D9%88%D8%B9_%D8%A5%D8%AD%D8%B5%D8%A7%D8%A1_%D8%B9%D9%84%D9%85%D8%A7%D8%A1_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA"
+      },
+      {
+        "title": "تاريخ الرياضيات",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA"
+      },
+      {
+        "title": "الرياضيات في العصر العباسي",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA_%D9%81%D9%8A_%D8%A7%D9%84%D8%B9%D8%B5%D8%B1_%D8%A7%D9%84%D8%B9%D8%A8%D8%A7%D8%B3%D9%8A"
+      },
+      {
+        "title": "جمعية الرياضيات الأمريكية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AC%D9%85%D8%B9%D9%8A%D8%A9_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA_%D8%A7%D9%84%D8%A3%D9%85%D8%B1%D9%8A%D9%83%D9%8A%D8%A9"
+      },
+      {
+        "title": "فلسفة الرياضيات",
+        "url": "https://ar.wikipedia.org/wiki/%D9%81%D9%84%D8%B3%D9%81%D8%A9_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 18,
+      "structure": 0,
+      "duplicate": 1,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 17,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [
+      {
+        "question": "ما ناتج ضرب 9 في 9؟",
+        "answer": "81",
+        "reason": "duplicate of: ما ناتج ضرب 7 في 8؟ (same wording)"
+      }
+    ],
+    "num_questions": 17
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "question": "ما مساحة مستطيل طوله 8 سنتيمترات وعرضه 5 سنتيمترات؟",
+      "correct_answer": "40 سم²",
+      "explanation": "مساحة المستطيل تساوي الطول مضروبًا في العرض، و8 × 5 = 40.",
+      "points": 100,
+      "options": [
+        "13 سم²",
+        "40 سم²",
+        "45 سم²",
+        "26 سم²"
+      ],
+      "acceptable_answers": [],
+      "fact": "مساحة المستطيل تساوي حاصل ضرب طوله في عرضه.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "ما ناتج ضرب 25 في 4؟",
+      "correct_answer": "100",
+      "explanation": "أربعة أرباع المئة تساوي مئة، لذا 25 × 4 = 100.",
+      "points": 100,
+      "options": [
+        "125",
+        "80",
+        "120",
+        "100"
+      ],
+      "acceptable_answers": [],
+      "fact": "حاصل ضرب 25 في 4 يساوي 100.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "كم يبلغ مجموع قياسات الزوايا الداخلية لأي شكل رباعي؟",
+      "correct_answer": "360 درجة",
+      "explanation": "يمكن تقسيم الشكل الرباعي بقطر إلى مثلثين، مجموع زوايا كل منهما 180 درجة، فيكون المجموع 360 درجة.",
+      "points": 200,
+      "options": [
+        "360 درجة",
+        "540 درجة",
+        "270 درجة",
+        "180 درجة"
+      ],
+      "acceptable_answers": [],
+      "fact": "مجموع الزوايا الداخلية لأي شكل رباعي يساوي 360 درجة.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "كم يساوي 15% من 200؟",
+      "correct_answer": "30",
+      "explanation": "10% من 200 تساوي 20، و5% منها تساوي 10، فيكون المجموع 30.",
+      "points": 300,
+      "options": [
+        "30",
+        "20",
+        "35",
+        "15"
+      ],
+      "acceptable_answers": [],
+      "fact": "15% من 200 تساوي 30.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "ما مجموع الأعداد الصحيحة من 1 إلى 100؟",
+      "correct_answer": "5050",
+      "explanation": "المجموع يساوي ن(ن+1)÷2، أي 100 × 101 ÷ 2 = 5050.",
+      "points": 400,
+      "options": [
+        "10100",
+        "5000",
+        "5050",
+        "5100"
+      ],
+      "acceptable_answers": [],
+      "fact": "مجموع الأعداد الصحيحة من 1 إلى 100 يساوي 5050.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "كم عددًا أوليًا يوجد بين الأعداد الصحيحة الموجبة الأصغر من 50؟",
+      "correct_answer": "15",
+      "explanation": "الأعداد الأولية الأصغر من 50 هي: 2، 3، 5، 7، 11، 13، 17، 19، 23، 29، 31، 37، 41، 43، 47، وعددها 15.",
+      "points": 500,
+      "options": [
+        "16",
+        "14",
+        "13",
+        "15"
+      ],
+      "acceptable_answers": [],
+      "fact": "يوجد 15 عددًا أوليًا أصغر من 50.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "ما ناتج ضرب 7 في 8؟",
+      "correct_answer": "56",
+      "explanation": "حاصل ضرب 7 في 8 يساوي 56 وفق جدول الضرب.",
+      "points": 100,
+      "options": [
+        "56",
+        "54",
+        "63",
+        "48"
+      ],
+      "acceptable_answers": [],
+      "fact": "7 × 8 = 56.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "ما محيط مربع طول ضلعه 9 سنتيمترات؟",
+      "correct_answer": "36 سم",
+      "explanation": "محيط المربع يساوي 4 أضعاف طول ضلعه، أي 4 × 9 = 36 سم.",
+      "points": 200,
+      "options": [
+        "81 سم",
+        "27 سم",
+        "36 سم",
+        "18 سم"
+      ],
+      "acceptable_answers": [],
+      "fact": "محيط المربع الذي طول ضلعه 9 سم يساوي 36 سم.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "ما الجذر التربيعي الموجب للعدد 144؟",
+      "correct_answer": "12",
+      "explanation": "لأن 12 × 12 = 144.",
+      "points": 200,
+      "options": [
+        "13",
+        "12",
+        "11",
+        "14"
+      ],
+      "acceptable_answers": [],
+      "fact": "الجذر التربيعي الموجب للعدد 144 هو 12.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "ما مساحة مثلث طول قاعدته 10 سنتيمترات وارتفاعه 6 سنتيمترات؟",
+      "correct_answer": "30 سم²",
+      "explanation": "مساحة المثلث تساوي نصف حاصل ضرب القاعدة في الارتفاع، أي (10 × 6) ÷ 2 = 30 سم².",
+      "points": 300,
+      "options": [
+        "16 سم²",
+        "30 سم²",
+        "60 سم²",
+        "32 سم²"
+      ],
+      "acceptable_answers": [],
+      "fact": "مساحة مثلث قاعدته 10 سم وارتفاعه 6 سم تساوي 30 سم².",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "كم عدد الأقطار في المضلع السداسي المحدب؟",
+      "correct_answer": "9",
+      "explanation": "عدد أقطار المضلع ذي n ضلعًا يساوي n(n-3)÷2، أي 6 × 3 ÷ 2 = 9.",
+      "points": 400,
+      "options": [
+        "9",
+        "6",
+        "15",
+        "12"
+      ],
+      "acceptable_answers": [],
+      "fact": "للمضلع السداسي المحدب 9 أقطار.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "كم يبلغ قياس كل زاوية داخلية في المضلع المنتظم ذي 12 ضلعًا؟",
+      "correct_answer": "150 درجة",
+      "explanation": "مجموع زواياه الداخلية (12 - 2) × 180 = 1800 درجة، وبقسمته على 12 تكون كل زاوية 150 درجة.",
+      "points": 500,
+      "options": [
+        "160 درجة",
+        "150 درجة",
+        "144 درجة",
+        "140 درجة"
+      ],
+      "acceptable_answers": [],
+      "fact": "قياس الزاوية الداخلية في المضلع المنتظم ذي 12 ضلعًا يساوي 150 درجة.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "ما محيط مستطيل طوله 7 سنتيمترات وعرضه 3 سنتيمترات؟",
+      "correct_answer": "20 سم",
+      "explanation": "محيط المستطيل يساوي 2 × (الطول + العرض) = 2 × (7 + 3) = 20 سم.",
+      "points": 100,
+      "options": [
+        "24 سم",
+        "20 سم",
+        "10 سم",
+        "21 سم"
+      ],
+      "acceptable_answers": [],
+      "fact": "محيط مستطيل أبعاده 7 سم و3 سم يساوي 20 سم.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "ما حجم مكعب طول ضلعه 3 سنتيمترات؟",
+      "correct_answer": "27 سم³",
+      "explanation": "حجم المكعب يساوي طول الضلع مرفوعًا للقوة الثالثة: 3 × 3 × 3 = 27 سم³.",
+      "points": 200,
+      "options": [
+        "27 سم³",
+        "9 سم³",
+        "36 سم³",
+        "18 سم³"
+      ],
+      "acceptable_answers": [],
+      "fact": "حجم مكعب طول ضلعه 3 سم يساوي 27 سم³.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "مثلث قائم الزاوية طولا ضلعي القائمة فيه 6 سنتيمترات و8 سنتيمترات، فما طول الوتر؟",
+      "correct_answer": "10 سم",
+      "explanation": "حسب مبرهنة فيثاغورس: 6² + 8² = 36 + 64 = 100، وجذرها التربيعي 10.",
+      "points": 300,
+      "options": [
+        "9 سم",
+        "14 سم",
+        "12 سم",
+        "10 سم"
+      ],
+      "acceptable_answers": [],
+      "fact": "وتر المثلث القائم الذي ضلعا القائمة فيه 6 و8 يساوي 10.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "ما ناتج العدد 2 مرفوعًا للقوة العاشرة؟",
+      "correct_answer": "1024",
+      "explanation": "بمضاعفة العدد 2 عشر مرات نحصل على 2 ← 4 ← 8 ← ... ← 512 ← 1024.",
+      "points": 400,
+      "options": [
+        "1000",
+        "1024",
+        "512",
+        "2048"
+      ],
+      "acceptable_answers": [],
+      "fact": "2 مرفوعًا للقوة 10 يساوي 1024.",
+      "verification": "verified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "ما مجموع الأعداد الفردية الموجبة من 1 إلى 19؟",
+      "correct_answer": "100",
+      "explanation": "مجموع أول n من الأعداد الفردية يساوي n²، وهنا 10 أعداد فردية فمجموعها 10² = 100.",
+      "points": 500,
+      "options": [
+        "190",
+        "110",
+        "100",
+        "90"
+      ],
+      "acceptable_answers": [],
+      "fact": "مجموع الأعداد الفردية من 1 إلى 19 (وهي 10 أعداد) يساوي 100.",
+      "verification": "verified"
+    }
+  ]
+}

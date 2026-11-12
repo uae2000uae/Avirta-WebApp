@@ -648,5 +648,347 @@
     "updated_at": "2026-11-12T07:00:12",
     "active": true,
     "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which actor played Tony Stark in the 2008 film 'Iron Man'?",
+    "correct_answer": "Robert Downey Jr.",
+    "explanation": "Robert Downey Jr. starred as Tony Stark in 'Iron Man' (2008), the film that launched the Marvel Cinematic Universe.",
+    "points": 100,
+    "options": [
+      "Chris Evans",
+      "Chris Hemsworth",
+      "Robert Downey Jr.",
+      "Mark Ruffalo"
+    ],
+    "id": "Q0002098",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.180161",
+    "updated_at": "2026-11-12T07:51:10.180161",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In 'Avengers: Infinity War' (2018), which villain seeks to collect all six Infinity Stones?",
+    "correct_answer": "Thanos",
+    "explanation": "Thanos is the main antagonist of 'Avengers: Infinity War' and gathers the Infinity Stones to wipe out half of all life.",
+    "points": 100,
+    "options": [
+      "Thanos",
+      "Ultron",
+      "Red Skull",
+      "Loki"
+    ],
+    "id": "Q0002099",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.185398",
+    "updated_at": "2026-11-12T07:51:10.185398",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The 2019 Marvel film 'Captain Marvel' is mainly set in which decade?",
+    "correct_answer": "1990s",
+    "explanation": "'Captain Marvel' is set in 1995, which is why Samuel L. Jackson was digitally de-aged for the film.",
+    "points": 200,
+    "options": [
+      "1980s",
+      "2000s",
+      "1990s",
+      "1970s"
+    ],
+    "id": "Q0002100",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.186329",
+    "updated_at": "2026-11-12T07:51:10.186329",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In the 2019 DC film 'Shazam!', which actor plays the adult superhero form of Billy Batson?",
+    "correct_answer": "Zachary Levi",
+    "explanation": "Zachary Levi plays the adult superhero, while Asher Angel plays the teenage Billy Batson.",
+    "points": 300,
+    "options": [
+      "Ryan Reynolds",
+      "Chris Pratt",
+      "John Cena",
+      "Zachary Levi"
+    ],
+    "id": "Q0002101",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.191873",
+    "updated_at": "2026-11-12T07:51:10.191873",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which actor played the Joker in Tim Burton's 1989 film 'Batman'?",
+    "correct_answer": "Jack Nicholson",
+    "explanation": "Jack Nicholson played the Joker opposite Michael Keaton's Batman in the 1989 film.",
+    "points": 400,
+    "options": [
+      "Christopher Walken",
+      "Danny DeVito",
+      "Gene Hackman",
+      "Jack Nicholson"
+    ],
+    "id": "Q0002102",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.192207",
+    "updated_at": "2026-11-12T07:51:10.192207",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which directing duo directed the 2019 Marvel Studios film 'Captain Marvel'?",
+    "correct_answer": "Anna Boden and Ryan Fleck",
+    "explanation": "Anna Boden and Ryan Fleck directed 'Captain Marvel' and co-wrote its screenplay with Geneva Robertson-Dworet.",
+    "points": 500,
+    "options": [
+      "Phil Lord and Christopher Miller",
+      "Anthony Russo and Joe Russo",
+      "Anna Boden and Ryan Fleck",
+      "Jonathan Dayton and Valerie Faris"
+    ],
+    "id": "Q0002103",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.197953",
+    "updated_at": "2026-11-12T07:51:10.197953",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which actor played Peter Parker in Sam Raimi's 2002 film 'Spider-Man'?",
+    "correct_answer": "Tobey Maguire",
+    "explanation": "Tobey Maguire starred as Peter Parker in Sam Raimi's 2002 'Spider-Man' and its two sequels.",
+    "points": 100,
+    "options": [
+      "Andrew Garfield",
+      "Tom Holland",
+      "Jake Gyllenhaal",
+      "Tobey Maguire"
+    ],
+    "id": "Q0002104",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.198319",
+    "updated_at": "2026-11-12T07:51:10.198319",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which actor played the Joker in Christopher Nolan's 2008 film 'The Dark Knight'?",
+    "correct_answer": "Heath Ledger",
+    "explanation": "Heath Ledger played the Joker in 'The Dark Knight' and won a posthumous Academy Award for the role.",
+    "points": 200,
+    "options": [
+      "Heath Ledger",
+      "Jared Leto",
+      "Joaquin Phoenix",
+      "Christian Bale"
+    ],
+    "id": "Q0002105",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.204000",
+    "updated_at": "2026-11-12T07:51:10.204000",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which actress played the title role in the 2017 DC film 'Wonder Woman'?",
+    "correct_answer": "Gal Gadot",
+    "explanation": "Gal Gadot played Diana in Patty Jenkins' 2017 film 'Wonder Woman'.",
+    "points": 200,
+    "options": [
+      "Amber Heard",
+      "Connie Nielsen",
+      "Margot Robbie",
+      "Gal Gadot"
+    ],
+    "id": "Q0002106",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.204899",
+    "updated_at": "2026-11-12T07:51:10.204899",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In the 2019 DC film 'Shazam!', which actor plays the villain Dr. Thaddeus Sivana?",
+    "correct_answer": "Mark Strong",
+    "explanation": "Mark Strong plays Dr. Thaddeus Sivana, while Djimon Hounsou plays the wizard Shazam.",
+    "points": 300,
+    "options": [
+      "Djimon Hounsou",
+      "Ben Mendelsohn",
+      "Jude Law",
+      "Mark Strong"
+    ],
+    "id": "Q0002107",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.208580",
+    "updated_at": "2026-11-12T07:51:10.208580",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In the 2019 Marvel film 'Captain Marvel', which actor plays the Skrull leader Talos?",
+    "correct_answer": "Ben Mendelsohn",
+    "explanation": "Ben Mendelsohn plays Talos, while Jude Law plays the Kree commander Yon-Rogg.",
+    "points": 400,
+    "options": [
+      "Lee Pace",
+      "Jude Law",
+      "Ben Mendelsohn",
+      "Clark Gregg"
+    ],
+    "id": "Q0002108",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.208580",
+    "updated_at": "2026-11-12T07:51:10.208580",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The 2019 film 'Captain Marvel' is which numbered film in the Marvel Cinematic Universe?",
+    "correct_answer": "21st",
+    "explanation": "'Captain Marvel' came after 'Ant-Man and the Wasp' (20th) and before 'Avengers: Endgame' (22nd), making it the 21st MCU film.",
+    "points": 500,
+    "options": [
+      "20th",
+      "19th",
+      "21st",
+      "22nd"
+    ],
+    "id": "Q0002109",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.216243",
+    "updated_at": "2026-11-12T07:51:10.216243",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which actor played T'Challa in the 2018 Marvel film 'Black Panther'?",
+    "correct_answer": "Chadwick Boseman",
+    "explanation": "Chadwick Boseman played T'Challa, first in 'Captain America: Civil War' and then in the 2018 solo film 'Black Panther'.",
+    "points": 100,
+    "options": [
+      "Michael B. Jordan",
+      "Chadwick Boseman",
+      "Daniel Kaluuya",
+      "Winston Duke"
+    ],
+    "id": "Q0002110",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.219114",
+    "updated_at": "2026-11-12T07:51:10.219114",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which actor played Bruce Wayne in Christopher Nolan's 2005 film 'Batman Begins'?",
+    "correct_answer": "Christian Bale",
+    "explanation": "Christian Bale played Batman in all three films of Nolan's trilogy, starting with 'Batman Begins' in 2005.",
+    "points": 200,
+    "options": [
+      "George Clooney",
+      "Christian Bale",
+      "Michael Keaton",
+      "Ben Affleck"
+    ],
+    "id": "Q0002111",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.222707",
+    "updated_at": "2026-11-12T07:51:10.222707",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In the 2019 DC film 'Shazam!', what is the name of Billy Batson's superhero-obsessed foster brother?",
+    "correct_answer": "Freddy Freeman",
+    "explanation": "Freddy Freeman, played by Jack Dylan Grazer, helps Billy discover his new powers.",
+    "points": 300,
+    "options": [
+      "Jimmy Olsen",
+      "Freddy Freeman",
+      "Ned Leeds",
+      "Eddie Brock"
+    ],
+    "id": "Q0002112",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.226779",
+    "updated_at": "2026-11-12T07:51:10.226779",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In the 2019 Marvel film 'Captain Marvel', which actor plays Yon-Rogg, Carol Danvers' Kree commander?",
+    "correct_answer": "Jude Law",
+    "explanation": "Jude Law plays Yon-Rogg, the commander of the Kree Starforce team that Carol Danvers belongs to.",
+    "points": 300,
+    "options": [
+      "Djimon Hounsou",
+      "Jude Law",
+      "Lee Pace",
+      "Clark Gregg"
+    ],
+    "id": "Q0002113",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.228752",
+    "updated_at": "2026-11-12T07:51:10.228752",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In the 2019 DC film 'Shazam!', the villain Dr. Thaddeus Sivana draws his power from which group of demonic beings?",
+    "correct_answer": "The Seven Deadly Sins",
+    "explanation": "Sivana becomes the host of the Seven Deadly Sins, demons that were imprisoned by the wizard Shazam.",
+    "points": 400,
+    "options": [
+      "The Twelve Plagues",
+      "The Five Furies",
+      "The Four Horsemen",
+      "The Seven Deadly Sins"
+    ],
+    "id": "Q0002114",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.233401",
+    "updated_at": "2026-11-12T07:51:10.233401",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Principal photography for the 2019 DC film 'Shazam!' took place mainly in which city?",
+    "correct_answer": "Toronto",
+    "explanation": "Filming began in Toronto in January 2018, with most of the movie shot at Pinewood Toronto Studios.",
+    "points": 500,
+    "options": [
+      "Vancouver",
+      "Atlanta",
+      "Toronto",
+      "Montreal"
+    ],
+    "id": "Q0002115",
+    "category_id": "superhero_movies",
+    "created_at": "2026-11-12T07:51:10.235330",
+    "updated_at": "2026-11-12T07:51:10.235330",
+    "active": true,
+    "use_count": 0
   }
 ]
