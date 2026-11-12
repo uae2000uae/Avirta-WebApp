@@ -19,7 +19,7 @@ steps:
       - "OPENAI_API_KEY=disabled-in-tests"
       - "ANTHROPIC_API_KEY=disabled-in-tests"
       - "SECRET_KEY=tests-only-secret-key"
-      - "ADMIN_PASSWORD_HASH=disabled-in-tests"
+      - "ADMIN_PASSWORD=disabled-in-tests"
       - "PIP_DISABLE_PIP_VERSION_CHECK=1"
     args:
       - "-c"
@@ -49,9 +49,9 @@ steps:
         # Save live game rooms to Firestore (database "avirta-state") so a
         # redeploy or restart does not end games in progress.
         "--update-env-vars=ROOM_STORE=firestore,FIRESTORE_DATABASE=avirta-state",
-        # SECRET_KEY signs session cookies; ADMIN_PASSWORD_HASH is the salted
-        # hash of the admin password (never the password itself).
-        "--set-secrets=OPENAI_API_KEY=OPENAI_API_KEY:latest,GITHUB_TOKEN=GITHUB_TOKEN:latest,ANTHROPIC_API_KEY=ANTHROPIC_API_KEY:latest,SECRET_KEY=SECRET_KEY:latest,ADMIN_PASSWORD_HASH=ADMIN_PASSWORD_HASH:latest"
+        # SECRET_KEY signs session cookies; ADMIN_PASSWORD is the admin password
+        # (admin access is password only).
+        "--set-secrets=OPENAI_API_KEY=OPENAI_API_KEY:latest,GITHUB_TOKEN=GITHUB_TOKEN:latest,ANTHROPIC_API_KEY=ANTHROPIC_API_KEY:latest,SECRET_KEY=SECRET_KEY:latest,ADMIN_PASSWORD=ADMIN_PASSWORD:latest"
       ]
 
   # NOTE: A second "add-iam-policy-binding" step was REMOVED. Public access is

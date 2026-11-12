@@ -21,23 +21,23 @@ Cloud Run reads these from **Secret Manager** (mapped in `cloudbuild.yaml`
 | `CUSTOM_AI_API_KEY` | AI option "Your own AI key" (read directly from Secret Manager; not in `--set-secrets`) |
 | `GITHUB_TOKEN` | Pushing question, report and usage data back to GitHub |
 | `SECRET_KEY` | Signs session cookies, so admin logins survive restarts |
-| `ADMIN_PASSWORD_HASH` | Salted hash of the admin password (never the password itself) |
+| `ADMIN_PASSWORD` | The admin password (admin access is password only) |
 
 ### Admin login
 
-The admin username is `Admin` (override with an `ADMIN_USERNAME` secret). The
-password is checked against `ADMIN_PASSWORD_HASH`; if that secret is missing,
-admin login is refused. After 5 failed attempts in 15 minutes, that address is
-locked out for 15 minutes.
+Admin access needs only the password; there is no username. The password is
+checked against the `ADMIN_PASSWORD` secret; if that secret is missing, admin
+login is refused. After 5 failed attempts in 15 minutes, that address is locked
+out for 15 minutes.
 
-To change the password, create a new hash and add it as a new secret version,
-then redeploy (or restart the service):
+To change the password, add a new version of the secret, then redeploy (or
+restart the service) so the new value is read:
 
 ```bash
-python -c "from werkzeug.security import generate_password_hash as g; import getpass; print(g(getpass.getpass('New admin password: '), method='pbkdf2:sha256:600000'), end='')" > hash.txt
-gcloud secrets versions add ADMIN_PASSWORD_HASH --project=avirta-461720 --data-file=hash.txt
-rm hash.txt
+printf '%s' 'NEW-PASSWORD' | gcloud secrets versions add ADMIN_PASSWORD --project=avirta-461720 --data-file=-
 ```
+
+The older `ADMIN_PASSWORD_HASH` secret is no longer used.
 
 ### Tests before deploy
 

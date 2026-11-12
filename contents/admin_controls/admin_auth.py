@@ -1,11 +1,11 @@
 """Admin login checks.
 
-The admin password is never stored in the code. Only a salted hash of it lives
-in Google Cloud Secret Manager as ADMIN_PASSWORD_HASH (read through
+Admin access is password only. The password is never stored in the code: it
+lives in Google Cloud Secret Manager as ADMIN_PASSWORD (read through
 secret_loader, so an environment variable of the same name also works for
-local development). The username comes from ADMIN_USERNAME, default "Admin".
+local development) and is compared in constant time.
 
-If no hash is configured, admin login is refused (fail closed).
+If no password is configured, admin login is refused (fail closed).
 
 Repeated failures are throttled per client address: after MAX_FAILURES failed
 attempts within WINDOW seconds, that address is locked out for LOCKOUT seconds.
@@ -18,8 +18,6 @@ import threading
 import time
 from typing import Dict, List, Optional, Tuple
 
-from werkzeug.security import check_password_hash
-
 from contents.admin_controls.secret_loader import get_secret
 
 MAX_FAILURES = 5
@@ -31,17 +29,14 @@ _failures: Dict[str, List[float]] = {}
 _locked_until: Dict[str, float] = {}
 
 
-def _username() -> str:
-    return (get_secret("ADMIN_USERNAME") or "Admin").strip()
-
-
-def _password_hash() -> Optional[str]:
-    value = get_secret("ADMIN_PASSWORD_HASH")
-    return value.strip() if value else None
+def _password() -> Optional[str]:
+    value = get_secret("ADMIN_PASSWORD")
+    value = value.strip() if value else ""
+    return value or None
 
 
 def is_configured() -> bool:
-    return bool(_password_hash())
+    return bool(_password())
 
 
 def client_key(request) -> str:
@@ -70,21 +65,16 @@ def _record_failure(key: str, now: float) -> None:
             _failures[key] = []
 
 
-def check_login(key: str, username: str, password: str, now: Optional[float] = None) -> Tuple[bool, str]:
+def check_login(key: str, password: str, now: Optional[float] = None) -> Tuple[bool, str]:
     """Return (ok, message). The message is safe to show on the login page."""
     now = now or time.time()
     wait = seconds_locked(key, now)
     if wait:
         return False, f"Too many failed attempts. Try again in {max(1, wait // 60)} minute(s)."
-    stored = _password_hash()
+    stored = _password()
     if not stored:
-        return False, "Admin login is not configured on this server (ADMIN_PASSWORD_HASH is missing)."
-    user_ok = hmac.compare_digest((username or "").strip(), _username())
-    try:
-        pass_ok = check_password_hash(stored, password or "")
-    except Exception:
-        pass_ok = False
-    if user_ok and pass_ok:
+        return False, "Admin login is not configured on this server (ADMIN_PASSWORD is missing)."
+    if hmac.compare_digest((password or "").encode("utf-8"), stored.encode("utf-8")):
         with _lock:
             _failures.pop(key, None)
         return True, ""
@@ -92,7 +82,7 @@ def check_login(key: str, username: str, password: str, now: Optional[float] = N
     wait = seconds_locked(key, now)
     if wait:
         return False, f"Too many failed attempts. Try again in {max(1, wait // 60)} minute(s)."
-    return False, "Invalid username or password."
+    return False, "Invalid password."
 
 
 def reset() -> None:

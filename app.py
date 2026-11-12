@@ -2328,14 +2328,13 @@ def admin_controls():
 
         # Handle login
         else:
-            username = request.form.get('username')
             password = request.form.get('password')
 
-            # Check credentials against the hash in Secret Manager (see
+            # Password only, checked against ADMIN_PASSWORD in Secret Manager (see
             # contents/admin_controls/admin_auth.py); repeated failures lock out.
             from contents.admin_controls import admin_auth
             login_ok, login_message = admin_auth.check_login(
-                admin_auth.client_key(request), username, password)
+                admin_auth.client_key(request), password)
             if login_ok:
                 session['admin_authenticated'] = True
                 admin_setup.record_stat('logins')
@@ -2346,8 +2345,7 @@ def admin_controls():
                 login_error = login_message
                 is_authenticated = False
                 admin_setup.record_stat('failed_logins')
-                admin_setup.log_event(f"Failed admin login attempt for username '{username}'",
-                                      level='WARNING', category='AUTH')
+                admin_setup.log_event("Failed admin login attempt", level='WARNING', category='AUTH')
 
     return render_template(
         'admin_controls.html',
