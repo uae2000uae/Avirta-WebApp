@@ -1,0 +1,2 @@
+{"type": "game_started", "data": {"player_name": "Tester", "message": "Game started by Tester", "categories": ["cars"], "question_types": ["true_false"], "players": ["Tester"]}, "timestamp": "2026-11-12T04:25:14.006748"}
+{"type": "game_ended", "data": {"player_name": "Tester", "message": "The game has been ended by the host (Tester)"}, "timestamp": "2026-11-12T04:25:14.556280"}
