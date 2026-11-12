@@ -262,6 +262,21 @@ class QuestionUploader:
                     except (json.JSONDecodeError, IOError) as e:
                         print(f"Error loading questions from {filename}: {e}")
 
+        # Add the plays recorded in the usage ledgers. The question files hold
+        # only a base count and are not rewritten on each play, so without this
+        # the boards would always see the same "least used" questions.
+        try:
+            from questionmanagement.usage_ledger import get_totals
+            totals = get_totals()
+            self._ledger_extra = {}
+            for question_id, question in self.questions.items():
+                extra = totals.get(question_id)
+                if extra:
+                    question["use_count"] = int(question.get("use_count", 0) or 0) + int(extra)
+                    self._ledger_extra[question_id] = int(extra)
+        except Exception as e:
+            print(f"usage ledger overlay skipped: {e}")
+
         return count
 
     def remove_duplicate_questions(self):
@@ -387,6 +402,7 @@ class QuestionUploader:
         """
         category_id = question_data.get("category_id", "general")
         file_path = os.path.join(self.storage_path, f"{category_id}.json")
+        question_data = _without_ledger_uses(question_data, getattr(self, "_ledger_extra", {}).get(question_id, 0))
 
         try:
             # Load existing category file if it exists
@@ -416,3 +432,13 @@ class QuestionUploader:
                 json.dump(category_questions, f, indent=2, ensure_ascii=False)
         except IOError as e:
             print(f"Error saving question {question_id}: {e}")
+
+
+def _without_ledger_uses(question_data, extra):
+    """Copy of the question for writing to its file: the plays counted in the
+    usage ledgers are taken off again, so the file keeps only its base count."""
+    if not extra:
+        return question_data
+    data = dict(question_data)
+    data["use_count"] = max(0, int(data.get("use_count", 0) or 0) - int(extra))
+    return data

@@ -10,6 +10,23 @@ centralized game board creation with support for configurable number of question
 per category and multiple questions with the same point value.
 """
 
+import random
+
+
+def least_used_first(questions):
+    """Least-used questions first. Among questions with the same count, ones
+    played most recently go last and the rest come in random order, so boards
+    do not repeat the same questions game after game."""
+    try:
+        from questionmanagement.usage_ledger import recently_played
+        recent = recently_played()
+    except Exception:
+        recent = {}
+    shuffled = list(questions)
+    random.shuffle(shuffled)
+    return sorted(shuffled, key=lambda q: (int(q.get("use_count", 0) or 0), recent.get(q.get("id"), -1)))
+
+
 def create_board(categories, question_uploader, questions_per_category=10, point_values=None, question_types=None):
     """
     Create a game board with questions for each category.
@@ -140,7 +157,7 @@ def build_custom_points_board(all_questions, selected_point_values, questions_pe
     selected_questions = []
 
     # Sort questions by use_count to prioritize less-used questions
-    sorted_questions = sorted(all_questions, key=lambda q: q.get("use_count", 0))
+    sorted_questions = least_used_first(all_questions)
 
     # Select questions that match the selected point values and question types
     for question in sorted_questions:
@@ -225,7 +242,7 @@ def build_standard_board(all_questions, point_values, questions_per_category, qu
         filtered_questions.append(question)
 
     # Step 2: Sort filtered list by least used questions to most used
-    sorted_questions = sorted(filtered_questions, key=lambda q: q.get("use_count", 0))
+    sorted_questions = least_used_first(filtered_questions)
 
     # Step 3: First pass - collect first 5 questions to fill all point values
     # One question per point value: 100, 200, 300, 400, 500 (from lowest to highest)

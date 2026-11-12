@@ -288,11 +288,13 @@ class QuestionBank:
         try:
             from questionmanagement.usage_ledger import get_totals
             _totals = get_totals()
+            self._ledger_extra = {}
             if _totals:
                 for _qid, _q in self.questions.items():
                     _add = _totals.get(_qid)
                     if _add:
                         _q["use_count"] = int(_q.get("use_count", 0) or 0) + int(_add)
+                        self._ledger_extra[_qid] = int(_add)
         except Exception as _e:
             print(f"usage ledger overlay skipped: {_e}")
 
@@ -331,6 +333,9 @@ class QuestionBank:
         """
         category_id = question_data.get("category_id", "general")
         file_path = os.path.join(self.storage_path, f"{category_id}.json")
+        # Keep only the base count in the file; ledger plays are added on load.
+        from questionmanagement.categories_questions.question_uploader import _without_ledger_uses
+        question_data = _without_ledger_uses(question_data, getattr(self, "_ledger_extra", {}).get(question_id, 0))
 
         try:
             # Load existing category file if it exists
@@ -386,6 +391,10 @@ class QuestionBank:
             # Reflect the increment in the in-memory effective count for live
             # question selection (NOT written back to the question file).
             question["use_count"] = int(question.get("use_count", 0) or 0) + 1
+            extra = getattr(self, "_ledger_extra", None)
+            if extra is None:
+                extra = self._ledger_extra = {}
+            extra[question_id] = extra.get(question_id, 0) + 1
             return True
         except Exception as e:
             # Fallback to the legacy inline behavior so a use is never lost.

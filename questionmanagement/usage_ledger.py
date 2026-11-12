@@ -132,6 +132,12 @@ def _save_this_ledger() -> None:
     os.replace(tmp, path)  # atomic
 
 
+# Order in which this instance played questions (oldest first, newest last).
+# Used to break ties: among equally used questions, the ones just played go last.
+_RECENT: Dict[str, None] = {}
+_RECENT_MAX = 3000
+
+
 def increment(question_id: str, n: int = 1) -> int:
     """Add `n` to this instance's tally for `question_id`; returns new local tally."""
     if not question_id:
@@ -140,7 +146,17 @@ def increment(question_id: str, n: int = 1) -> int:
         led = _load_this_ledger()
         led[question_id] = int(led.get(question_id, 0)) + int(n)
         _save_this_ledger()
+        _RECENT.pop(question_id, None)
+        _RECENT[question_id] = None
+        while len(_RECENT) > _RECENT_MAX:
+            _RECENT.pop(next(iter(_RECENT)))
         return led[question_id]
+
+
+def recently_played() -> Dict[str, int]:
+    """{question_id: rank}, higher = played more recently on this instance."""
+    with _LOCK:
+        return {qid: i for i, qid in enumerate(_RECENT)}
 
 
 def list_ledger_files(directory: Optional[str] = None) -> List[str]:

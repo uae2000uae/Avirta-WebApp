@@ -184,6 +184,11 @@ class HexGameRoom:
         cell['question'] = question
         cell['asked'] = True
         self.current_cell_index = cell_index
+        # Remember it for the rest of this game (older saved rooms lack the set).
+        if getattr(self, 'asked_question_ids', None) is None:
+            self.asked_question_ids = set()
+        if question.get('id'):
+            self.asked_question_ids.add(question['id'])
         # Note: use_count is updated upon answering to reflect actual usage, not just reveal.
         return {'success': True, 'cell': cell}
 
@@ -194,6 +199,12 @@ class HexGameRoom:
         pool = [q for q in self._get_filtered_questions(question_uploader) if q['points'] == points]
         if not pool:
             return None
+        # Never repeat a question within a game, unless this point value has
+        # truly run out (then any question is better than an empty cell).
+        asked = getattr(self, 'asked_question_ids', None) or set()
+        fresh = [q for q in pool if q.get('id') not in asked]
+        if fresh:
+            pool = fresh
 
         def get_use_count(q: Dict[str, Any]) -> int:
             try:
