@@ -101,7 +101,7 @@
         </div>
         <form action="{{ url_for('fastest_next_question') }}" method="post" class="form-actions clear">
             <input type="hidden" name="room_id" value="{{ room.room_id }}">
-            <button type="submit" class="delete-button" data-sfx="noAnswer" {% if not is_host or not stats.answer_revealed %}disabled{% endif %}>No one | لا أحــد</button>
+            <button type="submit" class="delete-button no-one-button" data-sfx="noAnswer" {% if not is_host or not stats.answer_revealed %}disabled{% endif %}>No one | لا أحــد</button>
         </form>
     </div>
     {% endif %}
@@ -299,9 +299,23 @@
                     isPulsating = false;
                 }
                 clearInterval(timerInterval);
+                timerInterval = null;
+                autoRevealAnswer();
             }
 
             updateTimerDisplay();
+        }, 1000);
+    }
+
+    // Time is up: one second later the host's page reveals the answer by
+    // itself (the time-up tune plays first). Only the host has this form.
+    function autoRevealAnswer() {
+        setTimeout(function () {
+            const form = document.querySelector('form[action*="reveal_answer"]');
+            if (form && !form.dataset.sent) {
+                form.dataset.sent = '1';
+                form.requestSubmit ? form.requestSubmit() : form.submit();
+            }
         }, 1000);
     }
 

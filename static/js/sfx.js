@@ -63,7 +63,14 @@
     timerLow:  function () { note(440, 0, 0.07, 0.26, 'triangle'); },          // each second while time remains
     timerTick: function () { note(1320, 0, 0.06, 0.32, 'triangle'); },        // last 5 seconds
     noAnswer:  function () { note(392, 0, 0.16, 0.26, 'sine'); note(349.23, 0.13, 0.32, 0.24, 'sine'); },
-    timerEnd:  function () { note(A5, 0, 0.22, 0.4, 'sine', true); note(E5, 0.16, 0.42, 0.4, 'sine', true); },
+    // Time up: a falling four-note phrase that settles on a held low note (~1.8 s).
+    timerEnd:  function () {
+      note(A5, 0, 0.3, 0.4, 'sine', true);
+      note(E5, 0.22, 0.3, 0.38, 'sine', true);
+      note(C5, 0.44, 0.3, 0.36, 'sine', true);
+      note(440, 0.7, 1.1, 0.4, 'sine', true);
+      note(220, 0.7, 1.1, 0.18, 'triangle');
+    },
     start:     function () { note(C5, 0, 0.18, 0.32, 'sine', true); note(E5, 0.08, 0.18, 0.32, 'sine', true); note(G5, 0.16, 0.32, 0.34, 'sine', true); },
     correct:   function () { note(E5, 0, 0.16, 0.36, 'sine', true); note(B5, 0.09, 0.42, 0.36, 'sine', true); },
     wrong:     function () { note(311.13, 0, 0.2, 0.3, 'triangle'); note(261.63, 0.12, 0.34, 0.28, 'triangle'); },

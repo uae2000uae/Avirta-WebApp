@@ -1627,13 +1627,16 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 .fastest-page .form-actions { margin-top: var(--s-1); }
 .fastest-answer { display: flex; align-items: center; justify-content: center; gap: var(--s-2); }
 .fastest-answer h2 { margin: var(--s-1) 0; }
-.fastest-timer-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; column-gap: var(--s-4); margin-top: var(--s-1); }
+/* Timer on one line, Reveal Answer on the next. */
+.fastest-timer-row { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s-1); margin-top: var(--s-1); }
 .fastest-timer-row .timer-container { height: auto; gap: var(--s-2); }
 .fastest-timer-row .timer-container p, .fastest-timer-row .timer-container h4 { margin: 0; }
 .fastest-timer-row .form-actions { flex-basis: auto; margin: 0; padding: 0; background: none; outline: none; }
 .fastest-players { margin: 0; padding: var(--s-2); }
 .fastest-players h4 { margin: 0 0 var(--s-2); }
-.fastest-players .form-group-inline-grid { gap: var(--s-2); }
+.fastest-players .form-group-inline-grid { gap: var(--s-2); grid-template-columns: repeat(auto-fit, minmax(110px, 200px)); justify-content: center; }
+/* "No one" matches the name buttons: same pill shape and height. */
+.fastest-players .no-one-button { min-width: 140px; padding: var(--s-1) var(--s-4); border-radius: var(--r-5); font-size: 16px; font-weight: bold; line-height: inherit; min-height: 40px; }
 .fastest-nav { margin-top: 0; }
 
 /* Timer */
@@ -1682,11 +1685,15 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 .result-icon { margin: var(--s-3) 0; font-size: 35px; }
 
 /* 7.4 Leaderboards */
-.leaderboard-section { margin-bottom: var(--s-6); }
-.leaderboard-display { padding: var(--s-4); }
-.leaderboard-table { margin-bottom: var(--s-5); }
-.leaderboard-table th, .leaderboard-table td { padding: var(--s-2); text-align: center; border-bottom: 1px solid var(--line); }
-.leaderboard-table td { padding: var(--s-3); }
+/* Scores pages (all games): concise spacing. */
+.leaderboard-section { margin-bottom: var(--s-3); }
+.leaderboard-section .leaderboard-header { margin-bottom: var(--s-2); padding-bottom: var(--s-1); }
+.leaderboard-section .leaderboard-header h2 { margin: 0; }
+.leaderboard-display { padding: var(--s-1) 0; }
+.leaderboard-table { margin-bottom: var(--s-2); }
+.leaderboard-table th, .leaderboard-table td { padding: var(--s-1) var(--s-2); text-align: center; border-bottom: 1px solid var(--line); }
+.leaderboard-table td { padding: var(--s-1) var(--s-2); }
+.leaderboard-section .form-actions { margin-top: var(--s-1); }
 .leaderboard-table tr:first-child td { font-weight: bold; }
 .leaderboard-table tbody tr:first-child td { color: var(--accent-ink); }
 
