@@ -80,6 +80,7 @@ def project(tmp_path, monkeypatch):
     monkeypatch.setattr(github_sync, "_repo_root", lambda: root)
     with github_sync._lock:
         github_sync._snapshot.clear()
+        github_sync._baselines.pop(os.path.abspath(root), None)
         github_sync._state.update(status="idle", pending=[], last_success=None, last_failure=None, history=[])
     return root
 
@@ -178,3 +179,20 @@ def test_players_are_not_polled(client):
 def _csrf(client):
     with client.session_transaction() as s:
         return s["_csrf_token"]
+
+
+def test_files_untouched_since_start_are_never_pushed(project):
+    """A new revision ships older copies of data files. If another revision
+    updated one on GitHub since, the untouched copy must not roll it back."""
+    write(project, "datastore/usage/usage_old_revision.json", '{"Q1": 10}')
+    write(project, "contents/questions/geo.json", "[1]")
+    github_sync.capture_baseline(project)            # the files as deployed
+    newer = b'{"Q1": 12}'                             # the old revision synced 2 more uses
+    gh = FakeGitHub(project, {"datastore/usage/usage_old_revision.json": blob_sha(newer)})
+    write(project, "contents/questions/geo.json", "[1, 2]")                 # changed here
+    mine = write(project, "datastore/usage/usage_this_revision.json", '{"Q2": 1}')  # created here
+    ok, msg, files = github_sync.sync_once(["game ended"], gh=gh, root=project)
+    assert ok and files == 2, msg
+    pushed = {b["content"] for b in gh.blobs}
+    assert mine.decode() in pushed and "[1, 2]" in pushed
+    assert '{"Q1": 10}' not in pushed                 # the stale ledger stays on GitHub as 12

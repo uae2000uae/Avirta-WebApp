@@ -125,6 +125,30 @@ def _read_all(root: str) -> Dict[str, bytes]:
     return data
 
 
+# Data files as this process found them when it started (path -> blob sha),
+# per project folder. A deploy ships a copy of every data file as of build
+# time; another revision may update those files on GitHub afterwards (for
+# example its own usage ledger). Pushing our untouched, older copies would
+# undo those updates, so only files this process created or changed are synced.
+_baselines: Dict[str, Dict[str, str]] = {}
+
+
+def capture_baseline(root: Optional[str] = None) -> None:
+    """Remember the data files as shipped. Call once at startup."""
+    root = os.path.abspath(root or _repo_root())
+    shas = {rel: _blob_sha(data) for rel, data in _read_all(root).items()}
+    with _lock:
+        _baselines.setdefault(root, shas)
+
+
+def _changed_here(rel: str, data: bytes, root: str) -> bool:
+    """True if this process created or changed the file since it started."""
+    base = _baselines.get(os.path.abspath(root))
+    if base is None:
+        return True          # no baseline recorded: treat every file as ours
+    return base.get(rel) != _blob_sha(data)
+
+
 def sync_once(reasons: List[str], gh: Optional[GitHubIntegration] = None,
               root: Optional[str] = None, snapshot: Optional[Dict[str, bytes]] = None) -> Tuple[bool, str, int]:
     """Run one sync. Returns (ok, message, files_committed)."""
@@ -136,6 +160,9 @@ def sync_once(reasons: List[str], gh: Optional[GitHubIntegration] = None,
 
     local = dict(snapshot or {})
     local.update(_read_all(root))  # files on disk now win over older snapshots
+    # Never push a file this process has not touched: GitHub may hold a newer
+    # version written by another revision since this one was built.
+    local = {rel: data for rel, data in local.items() if _changed_here(rel, data, root)}
 
     try:
         r = gh._get(f"git/ref/heads/{gh.branch}")

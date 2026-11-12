@@ -200,6 +200,9 @@ def _record_sync_event(level, message, detail):
 
 from contents.admin_controls import github_sync as _github_sync  # noqa: E402
 _github_sync.set_event_hook(_record_sync_event)
+# Remember the data files as deployed, so a sync only pushes files this
+# instance changes and never rolls back newer copies written by other revisions.
+_github_sync.capture_baseline()
 
 
 def _request_github_sync(reason):
