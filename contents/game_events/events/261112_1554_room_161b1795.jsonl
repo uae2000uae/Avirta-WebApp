@@ -1,0 +1,6 @@
+{"type": "game_started", "data": {"player_name": "P1", "message": "Game started by P1", "categories": ["أين_يقع", "دول_عربية", "كلمات_قرآنية"], "question_types": ["text", "multiple_choice", "true_false"], "players": ["P1", "P2"]}, "timestamp": "2026-11-12T15:54:06.240654"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "دول_عربية", "points": 100, "message": "P1 selected a 100-point question from دول_عربية"}, "timestamp": "2026-11-12T15:54:20.675874"}
+{"type": "answer_evaluated", "data": {"player_name": "P1", "evaluator": "P1", "category": "دول_عربية", "points": 100, "is_correct": true, "message": "The Host evaluated P1's answer as correct and earned 100 points"}, "timestamp": "2026-11-12T15:54:27.815660"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "P2", "message": "Turn switched from P1 to P2"}, "timestamp": "2026-11-12T15:54:45.870096"}
+{"type": "tool_used", "data": {"player_name": "P1", "tool_name": "double_points", "target_player": "P2", "message": "P1 activated Double Points for P2"}, "timestamp": "2026-11-12T15:54:52.908162"}
+{"type": "question_selected", "data": {"player_name": "P2", "category": "دول_عربية", "points": 800, "message": "P2 selected a 800-point question from دول_عربية"}, "timestamp": "2026-11-12T15:54:57.172838"}
