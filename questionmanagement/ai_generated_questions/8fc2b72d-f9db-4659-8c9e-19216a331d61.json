@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:17:49.742821",
+    "prompt": "الجغرافيا. أنهار وجبال وقارات ومحيطات وعواصم. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "الجغرافيا",
+    "focus": "أنهار وجبال وقارات ومحيطات وعواصم. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "جغرافيا",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 11,
+    "num_returned": 11,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "جغرافيا",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AC%D8%BA%D8%B1%D8%A7%D9%81%D9%8A%D8%A7"
+      },
+      {
+        "title": "تاريخ الجغرافيا البشرية في الصين",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A7%D9%84%D8%AC%D8%BA%D8%B1%D8%A7%D9%81%D9%8A%D8%A7_%D8%A7%D9%84%D8%A8%D8%B4%D8%B1%D9%8A%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D8%B5%D9%8A%D9%86"
+      },
+      {
+        "title": "جغرافيا اقتصادية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AC%D8%BA%D8%B1%D8%A7%D9%81%D9%8A%D8%A7_%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A%D8%A9"
+      },
+      {
+        "title": "مشتة البلوط",
+        "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%B4%D8%AA%D8%A9_%D8%A7%D9%84%D8%A8%D9%84%D9%88%D8%B7"
+      },
+      {
+        "title": "مشتة زراقنة",
+        "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%B4%D8%AA%D8%A9_%D8%B2%D8%B1%D8%A7%D9%82%D9%86%D8%A9"
+      },
+      {
+        "title": "قاموس الجغرافيا اليونانية والرومانية",
+        "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%85%D9%88%D8%B3_%D8%A7%D9%84%D8%AC%D8%BA%D8%B1%D8%A7%D9%81%D9%8A%D8%A7_%D8%A7%D9%84%D9%8A%D9%88%D9%86%D8%A7%D9%86%D9%8A%D8%A9_%D9%88%D8%A7%D9%84%D8%B1%D9%88%D9%85%D8%A7%D9%86%D9%8A%D8%A9"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 12,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 11,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 11
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "يصب نهر النيل في البحر الأبيض المتوسط.",
+      "correct_answer": "True",
+      "explanation": "يجري نهر النيل شمالًا حتى يصب في البحر الأبيض المتوسط عبر دلتاه في شمال مصر.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "مصب نهر النيل في البحر الأبيض المتوسط عند دلتا النيل في مصر.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع قمة إيفرست، أعلى قمة جبلية في العالم، في سلسلة جبال الألب.",
+      "correct_answer": "False",
+      "explanation": "تقع قمة إيفرست في سلسلة جبال الهيمالايا على الحدود بين نيبال والصين، لا في جبال الألب الأوروبية.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "قمة إيفرست جزء من سلسلة جبال الهيمالايا في آسيا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مدينة أوتاوا هي عاصمة كندا.",
+      "correct_answer": "True",
+      "explanation": "أوتاوا هي العاصمة الاتحادية لكندا، وتقع في مقاطعة أونتاريو.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "عاصمة كندا هي أوتاوا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يصب نهر الأمازون في المحيط الهادئ.",
+      "correct_answer": "False",
+      "explanation": "يجري نهر الأمازون شرقًا عبر أمريكا الجنوبية ويصب في المحيط الأطلسي شمال شرق البرازيل.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "مصب نهر الأمازون في المحيط الأطلسي.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع بحيرة بايكال، أعمق بحيرة في العالم، في روسيا.",
+      "correct_answer": "True",
+      "explanation": "تقع بحيرة بايكال في منطقة سيبيريا الروسية، وهي أعمق بحيرة على سطح الأرض.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "بحيرة بايكال في سيبيريا بروسيا هي أعمق بحيرة في العالم.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع جبل أكونكاغوا، أعلى قمة في قارتي الأمريكتين، في تشيلي.",
+      "correct_answer": "False",
+      "explanation": "يقع جبل أكونكاغوا في الأرجنتين ضمن مقاطعة مندوزا في جبال الأنديز، قرب الحدود مع تشيلي لا داخلها.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "جبل أكونكاغوا، أعلى قمة في الأمريكتين، يقع في مقاطعة مندوزا بالأرجنتين.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "المحيط الهادئ هو أكبر محيطات العالم مساحةً.",
+      "correct_answer": "True",
+      "explanation": "المحيط الهادئ أكبر المحيطات مساحةً، ويليه المحيط الأطلسي.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "المحيط الهادئ هو أكبر محيطات الأرض مساحةً.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مدينة أوساكا هي عاصمة اليابان.",
+      "correct_answer": "False",
+      "explanation": "عاصمة اليابان هي طوكيو، أما أوساكا فمدينة يابانية كبرى وليست العاصمة.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "عاصمة اليابان هي طوكيو.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تمتد سلسلة جبال الأنديز على طول الساحل الغربي لقارة أفريقيا.",
+      "correct_answer": "False",
+      "explanation": "تمتد جبال الأنديز على طول الساحل الغربي لقارة أمريكا الجنوبية، لا أفريقيا.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "تمتد سلسلة جبال الأنديز على طول الساحل الغربي لأمريكا الجنوبية.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مدينة سيدني هي عاصمة أستراليا.",
+      "correct_answer": "False",
+      "explanation": "عاصمة أستراليا هي كانبرا، أما سيدني فهي أكبر مدنها.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "كانبرا هي عاصمة أستراليا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يصب نهر الدانوب في البحر الأسود.",
+      "correct_answer": "True",
+      "explanation": "ينبع نهر الدانوب من ألمانيا ويصب في البحر الأسود عند حدود رومانيا وأوكرانيا.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "نهر الدانوب يصب في البحر الأسود.",
+      "verification": "verified"
+    }
+  ]
+}

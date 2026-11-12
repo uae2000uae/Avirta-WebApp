@@ -1,0 +1,202 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:17:01.970612",
+    "prompt": "العصر الذهبي للحضارة الإسلامية. علماء وكتب ومدن العصر الذهبي الإسلامي. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "العصر الذهبي للحضارة الإسلامية",
+    "focus": "علماء وكتب ومدن العصر الذهبي الإسلامي. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "العصر_الذهبي",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 14,
+    "num_returned": 14,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "العصر الذهبي للإسلام",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B9%D8%B5%D8%B1_%D8%A7%D9%84%D8%B0%D9%87%D8%A8%D9%8A_%D9%84%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85"
+      },
+      {
+        "title": "علم النفس في عصر الحضارة الإسلامية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%B9%D9%84%D9%85_%D8%A7%D9%84%D9%86%D9%81%D8%B3_%D9%81%D9%8A_%D8%B9%D8%B5%D8%B1_%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A9_%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%D9%8A%D8%A9"
+      },
+      {
+        "title": "طب العيون في عصر الحضارة الإسلامية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%B7%D8%A8_%D8%A7%D9%84%D8%B9%D9%8A%D9%88%D9%86_%D9%81%D9%8A_%D8%B9%D8%B5%D8%B1_%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A9_%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%D9%8A%D8%A9"
+      },
+      {
+        "title": "قائمة الخرائط في العصر الذهبي للإسلام",
+        "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D8%A6%D9%85%D8%A9_%D8%A7%D9%84%D8%AE%D8%B1%D8%A7%D8%A6%D8%B7_%D9%81%D9%8A_%D8%A7%D9%84%D8%B9%D8%B5%D8%B1_%D8%A7%D9%84%D8%B0%D9%87%D8%A8%D9%8A_%D9%84%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85"
+      },
+      {
+        "title": "عصر ذهبي",
+        "url": "https://ar.wikipedia.org/wiki/%D8%B9%D8%B5%D8%B1_%D8%B0%D9%87%D8%A8%D9%8A"
+      },
+      {
+        "title": "العلم في عصر الحضارة الإسلامية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B9%D9%84%D9%85_%D9%81%D9%8A_%D8%B9%D8%B5%D8%B1_%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A9_%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%D9%8A%D8%A9"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 15,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 14,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 14
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "تقع مدينة بغداد، عاصمة الخلافة العباسية، على ضفاف نهر النيل.",
+      "correct_answer": "False",
+      "explanation": "تقع بغداد على ضفاف نهر دجلة في العراق، أما نهر النيل فيجري في مصر والسودان.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "تقع مدينة بغداد على نهر دجلة.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "سقطت بغداد في يد المغول بقيادة هولاكو عام 1258م.",
+      "correct_answer": "True",
+      "explanation": "اجتاح المغول بقيادة هولاكو بغداد عام 1258م، فسقطت الخلافة العباسية فيها.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "سقطت بغداد في يد المغول بقيادة هولاكو عام 1258م.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "وُلد الفيلسوف ابن رشد، المشهور بشروحه لمؤلفات أرسطو، في مدينة قرطبة بالأندلس.",
+      "correct_answer": "True",
+      "explanation": "وُلد أبو الوليد ابن رشد في قرطبة عام 1126م، واشتهر بشروحه لمؤلفات أرسطو.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "وُلد ابن رشد في قرطبة عام 1126م.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أسست فاطمة الفهرية جامع القرويين في مدينة مراكش.",
+      "correct_answer": "False",
+      "explanation": "أسست فاطمة الفهرية جامع القرويين في مدينة فاس بالمغرب، لا في مراكش.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "أسست فاطمة الفهرية جامع القرويين في مدينة فاس.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "ابن سينا هو مؤلف كتاب «آراء أهل المدينة الفاضلة».",
+      "correct_answer": "False",
+      "explanation": "مؤلف كتاب «آراء أهل المدينة الفاضلة» هو أبو نصر الفارابي، لا ابن سينا.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "ألّف الفارابي كتاب «آراء أهل المدينة الفاضلة».",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "عاش الطبيب ابن النفيس، الذي وصف الدورة الدموية الصغرى (الرئوية)، في القرن الثالث عشر الميلادي.",
+      "correct_answer": "True",
+      "explanation": "عاش ابن النفيس بين عامي 1213م و1288م تقريبًا، ووصف الدورة الدموية الرئوية في شرحه لتشريح القانون.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "عاش ابن النفيس في القرن الثالث عشر الميلادي، وهو أول من وصف الدورة الدموية الصغرى.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يُلقَّب الفيلسوف يعقوب بن إسحاق الكندي بـ«المعلم الثاني».",
+      "correct_answer": "False",
+      "explanation": "لقب «المعلم الثاني» للفارابي بعد أرسطو «المعلم الأول»، أما الكندي فيُلقَّب بـ«فيلسوف العرب».",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "لقب «المعلم الثاني» يُطلق على الفارابي، ويُلقَّب الكندي بـ«فيلسوف العرب».",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أسس القائد جوهر الصقلي مدينة القاهرة لتكون عاصمة للخلافة الفاطمية.",
+      "correct_answer": "True",
+      "explanation": "بنى جوهر الصقلي القاهرة سنة 969م بأمر من الخليفة الفاطمي المعز لدين الله بعد فتح مصر.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "أسس جوهر الصقلي مدينة القاهرة سنة 969م للخلافة الفاطمية.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "ألّف الخوارزمي كتابه «المختصر في حساب الجبر والمقابلة» في عهد الخليفة العباسي هارون الرشيد.",
+      "correct_answer": "False",
+      "explanation": "ألّف الخوارزمي كتابه نحو سنة 820م في عهد الخليفة المأمون، وكان هارون الرشيد قد توفي سنة 809م.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "ألّف الخوارزمي كتاب «المختصر في حساب الجبر والمقابلة» في عهد الخليفة المأمون.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "وُلد المؤرخ عبد الرحمن بن خلدون في مدينة فاس.",
+      "correct_answer": "False",
+      "explanation": "وُلد ابن خلدون في مدينة تونس سنة 1332م، وإن عاش فترة من حياته في فاس.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "وُلد ابن خلدون في مدينة تونس سنة 1332م.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "توفي الطبيب والفيلسوف ابن سينا في مدينة همذان.",
+      "correct_answer": "True",
+      "explanation": "توفي ابن سينا في همذان سنة 1037م، وفيها يقع ضريحه.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "توفي ابن سينا في مدينة همذان سنة 1037م، وفيها ضريحه.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أجرى الفلكي محمد بن جابر البتاني معظم أرصاده الفلكية في مدينة الرقة.",
+      "correct_answer": "True",
+      "explanation": "عاش البتاني، المولود في حرّان، في الرقة وأجرى فيها أرصاده التي جمعها في «الزيج الصابئ».",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "أجرى البتاني أرصاده الفلكية في مدينة الرقة على نهر الفرات.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "شُيّد جامع الأزهر في عهد الدولة الفاطمية في مدينة دمشق.",
+      "correct_answer": "False",
+      "explanation": "بنى الفاطميون جامع الأزهر في مدينة القاهرة بين عامي 970 و972م، لا في دمشق.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "جامع الأزهر بناه الفاطميون في مدينة القاهرة بعد تأسيسها، واكتمل بناؤه عام 972م.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع قصر الحمراء، أحد أشهر معالم العمارة الإسلامية في الأندلس، في مدينة غرناطة.",
+      "correct_answer": "True",
+      "explanation": "بنى بنو نصر قصر الحمراء في غرناطة، عاصمة مملكتهم في الأندلس.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "قصر الحمراء يقع في مدينة غرناطة، وقد شيّده حكام الدولة النصرية في القرنين الثالث عشر والرابع عشر الميلاديين.",
+      "verification": "verified"
+    }
+  ]
+}

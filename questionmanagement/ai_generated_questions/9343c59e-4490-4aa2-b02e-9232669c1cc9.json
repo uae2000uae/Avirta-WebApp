@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:19:47.456049",
+    "prompt": "معلومات عامة. معلومات عامة ثابتة ومتنوعة. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "معلومات عامة",
+    "focus": "معلومات عامة ثابتة ومتنوعة. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "معلومات_عامة",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 14,
+    "num_returned": 14,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "الهيئة العامة للمعلومات المدنية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9_%D9%84%D9%84%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA_%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%D8%A9"
+      },
+      {
+        "title": "مسؤول المعلومات العامة",
+        "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%B3%D8%A4%D9%88%D9%84_%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9"
+      },
+      {
+        "title": "نظام معلومات الأرض",
+        "url": "https://ar.wikipedia.org/wiki/%D9%86%D8%B8%D8%A7%D9%85_%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA_%D8%A7%D9%84%D8%A3%D8%B1%D8%B6"
+      },
+      {
+        "title": "الدعوة عامة (فلم)",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AF%D8%B9%D9%88%D8%A9_%D8%B9%D8%A7%D9%85%D8%A9_(%D9%81%D9%84%D9%85)"
+      },
+      {
+        "title": "خادمات معلومات الإنترنت",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AE%D8%A7%D8%AF%D9%85%D8%A7%D8%AA_%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA_%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%B1%D9%86%D8%AA"
+      },
+      {
+        "title": "الانتخابات التشريعية التركية 1923",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA_%D8%A7%D9%84%D8%AA%D8%B4%D8%B1%D9%8A%D8%B9%D9%8A%D8%A9_%D8%A7%D9%84%D8%AA%D8%B1%D9%83%D9%8A%D8%A9_1923"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 20,
+      "structure": 0,
+      "duplicate": 6,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 14,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [
+      {
+        "question": "سيدني هي عاصمة أستراليا.",
+        "answer": "False",
+        "reason": "duplicate of: مدينة سيدني هي عاصمة أستراليا. (same wording)"
+      },
+      {
+        "question": "أوتاوا هي عاصمة كندا.",
+        "answer": "True",
+        "reason": "duplicate of: مدينة أوتاوا هي عاصمة كندا. (same wording)"
+      },
+      {
+        "question": "مدينة سيدني هي عاصمة أستراليا.",
+        "answer": "False",
+        "reason": "duplicate of: مدينة سيدني هي عاصمة أستراليا. (same wording)"
+      },
+      {
+        "question": "سقط جدار برلين عام 1989.",
+        "answer": "True",
+        "reason": "duplicate of: سقط جدار برلين عام 1989. (same wording)"
+      },
+      {
+        "question": "العملة الرسمية لكوريا الجنوبية هي الين.",
+        "answer": "False",
+        "reason": "duplicate of: الين هو العملة الرسمية لكوريا الجنوبية. (same wording)"
+      },
+      {
+        "question": "عاصمة أستراليا هي مدينة سيدني.",
+        "answer": "False",
+        "reason": "duplicate of: مدينة سيدني هي عاصمة أستراليا. (same wording)"
+      }
+    ],
+    "num_questions": 14
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "يتكون علم اليابان من دائرة حمراء في وسط خلفية بيضاء.",
+      "correct_answer": "True",
+      "explanation": "علم اليابان أبيض تتوسطه دائرة حمراء ترمز إلى الشمس.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "علم اليابان أبيض تتوسطه دائرة حمراء.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع برج خليفة في مدينة أبوظبي في دولة الإمارات العربية المتحدة.",
+      "correct_answer": "False",
+      "explanation": "يقع برج خليفة في مدينة دبي، لا في أبوظبي.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "يقع برج خليفة في مدينة دبي بالإمارات العربية المتحدة.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع مدينة البتراء الأثرية في سوريا.",
+      "correct_answer": "False",
+      "explanation": "تقع مدينة البتراء الأثرية في جنوب الأردن، وهي من أشهر معالمه.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "تقع مدينة البتراء الأثرية في الأردن.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "حصل الروائي المصري نجيب محفوظ على جائزة نوبل للآداب عام 1988.",
+      "correct_answer": "True",
+      "explanation": "نال نجيب محفوظ جائزة نوبل للآداب عام 1988، وهو أول أديب عربي يحصل عليها.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "حصل نجيب محفوظ على جائزة نوبل للآداب عام 1988.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "افتُتحت قناة السويس للملاحة الدولية عام 1869.",
+      "correct_answer": "True",
+      "explanation": "افتُتحت قناة السويس رسميًا للملاحة في نوفمبر عام 1869.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "افتُتحت قناة السويس للملاحة عام 1869.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فتح العثمانيون مدينة القسطنطينية عام 1453 في عهد السلطان سليم الأول.",
+      "correct_answer": "False",
+      "explanation": "فُتحت القسطنطينية عام 1453 في عهد السلطان محمد الثاني الملقب بالفاتح، لا سليم الأول.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "فتح السلطان العثماني محمد الثاني (الفاتح) القسطنطينية عام 1453.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "افتُتح برج إيفل في باريس عام 1889 بمناسبة المعرض العالمي.",
+      "correct_answer": "True",
+      "explanation": "بُني برج إيفل ليكون مدخلًا للمعرض العالمي الذي أقيم في باريس عام 1889.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "افتُتح برج إيفل عام 1889 للمعرض العالمي في باريس.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "اكتشف العالم الاسكتلندي ألكسندر فليمنغ البنسلين عام 1945.",
+      "correct_answer": "False",
+      "explanation": "اكتشف فليمنغ البنسلين عام 1928، أما عام 1945 فهو العام الذي نال فيه جائزة نوبل في الطب.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "اكتشف ألكسندر فليمنغ البنسلين عام 1928.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "العنصر الكيميائي الذي عدده الذري 79 هو الفضة.",
+      "correct_answer": "False",
+      "explanation": "العنصر ذو العدد الذري 79 هو الذهب، أما الفضة فعددها الذري 47.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "العدد الذري للذهب 79، والعدد الذري للفضة 47.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "بلغ عدد الدول المؤسسة لجامعة الدول العربية عند تأسيسها عام 1945 سبع دول.",
+      "correct_answer": "True",
+      "explanation": "أسست الجامعة مصر والعراق وشرق الأردن ولبنان والسعودية وسوريا واليمن، وهي سبع دول.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "تأسست جامعة الدول العربية عام 1945 بسبع دول مؤسسة.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يغلي الماء النقي عند 100 درجة مئوية تحت الضغط الجوي عند مستوى سطح البحر.",
+      "correct_answer": "True",
+      "explanation": "درجة غليان الماء النقي عند الضغط الجوي المعياري هي 100 درجة مئوية.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "يغلي الماء النقي عند 100 درجة مئوية تحت الضغط الجوي المعياري عند مستوى سطح البحر.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "كان رائد الفضاء الأمريكي باز ألدرين أول إنسان يمشي على سطح القمر عام 1969.",
+      "correct_answer": "False",
+      "explanation": "أول من مشى على سطح القمر هو نيل أرمسترونغ، وتبعه باز ألدرين ضمن رحلة أبولو 11.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "نيل أرمسترونغ هو أول إنسان مشى على سطح القمر في 20 يوليو 1969 ضمن رحلة أبولو 11، وكان باز ألدرين ثانيهما.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تتكون رقعة الشطرنج من 64 مربعًا.",
+      "correct_answer": "True",
+      "explanation": "رقعة الشطرنج مقسمة إلى 8 صفوف و8 أعمدة، أي 64 مربعًا.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "تتكون رقعة الشطرنج القياسية من 64 مربعًا مرتبة في 8 صفوف و8 أعمدة.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "سقط جدار برلين الفاصل بين شطري المدينة الألمانية عام 1991.",
+      "correct_answer": "False",
+      "explanation": "سقط جدار برلين في 9 نوفمبر 1989، وتوحدت ألمانيا عام 1990.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "فُتح جدار برلين وسقط في 9 نوفمبر 1989.",
+      "verification": "verified"
+    }
+  ]
+}

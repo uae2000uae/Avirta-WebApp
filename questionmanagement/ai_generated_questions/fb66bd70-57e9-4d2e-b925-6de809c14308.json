@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:18:08.852318",
+    "prompt": "جسم الإنسان. أعضاء جسم الإنسان ووظائفها. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "جسم الإنسان",
+    "focus": "أعضاء جسم الإنسان ووظائفها. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "جسم_الإنسان",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 18,
+    "num_returned": 18,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "جسم الإنسان",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AC%D8%B3%D9%85_%D8%A7%D9%84%D8%A5%D9%86%D8%B3%D8%A7%D9%86"
+      },
+      {
+        "title": "قائمة أعضاء جسم الإنسان",
+        "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D8%A6%D9%85%D8%A9_%D8%A3%D8%B9%D8%B6%D8%A7%D8%A1_%D8%AC%D8%B3%D9%85_%D8%A7%D9%84%D8%A5%D9%86%D8%B3%D8%A7%D9%86"
+      },
+      {
+        "title": "إتاحة الطاقة في جسم الإنسان",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A5%D8%AA%D8%A7%D8%AD%D8%A9_%D8%A7%D9%84%D8%B7%D8%A7%D9%82%D8%A9_%D9%81%D9%8A_%D8%AC%D8%B3%D9%85_%D8%A7%D9%84%D8%A5%D9%86%D8%B3%D8%A7%D9%86"
+      },
+      {
+        "title": "هيكل عظمي بشري",
+        "url": "https://ar.wikipedia.org/wiki/%D9%87%D9%8A%D9%83%D9%84_%D8%B9%D8%B8%D9%85%D9%8A_%D8%A8%D8%B4%D8%B1%D9%8A"
+      },
+      {
+        "title": "قائمة أنظمة جسم الإنسان",
+        "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D8%A6%D9%85%D8%A9_%D8%A3%D9%86%D8%B8%D9%85%D8%A9_%D8%AC%D8%B3%D9%85_%D8%A7%D9%84%D8%A5%D9%86%D8%B3%D8%A7%D9%86"
+      },
+      {
+        "title": "إنسان",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A5%D9%86%D8%B3%D8%A7%D9%86"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 18,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 18,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 18
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "يبلغ عدد أسنان الإنسان البالغ الدائمة عادةً 32 سنًا بما فيها أضراس العقل.",
+      "correct_answer": "True",
+      "explanation": "للبالغ عادةً 32 سنًا دائمًا: 8 قواطع و4 أنياب و8 ضواحك و12 ضرسًا، منها 4 أضراس عقل.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "يبلغ عدد الأسنان الدائمة لدى الإنسان البالغ عادةً 32 سنًا بما فيها أضراس العقل الأربعة.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع الكليتان في جسم الإنسان داخل التجويف الصدري.",
+      "correct_answer": "False",
+      "explanation": "تقع الكليتان في التجويف البطني خلف الصفاق على جانبي العمود الفقري، لا في التجويف الصدري.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "تقع الكليتان في الجزء الخلفي من التجويف البطني خلف الصفاق على جانبي العمود الفقري.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تُخزَّن العصارة الصفراوية التي يفرزها الكبد في المرارة.",
+      "correct_answer": "True",
+      "explanation": "يفرز الكبد العصارة الصفراوية، ثم تُخزَّن وتُركَّز في المرارة حتى تُطلق إلى الأمعاء الدقيقة للمساعدة في هضم الدهون.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "تُخزّن المرارة العصارة الصفراوية التي ينتجها الكبد وتُركّزها.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يحدث امتصاص معظم العناصر الغذائية المهضومة في جسم الإنسان في الأمعاء الغليظة.",
+      "correct_answer": "False",
+      "explanation": "تُمتص معظم العناصر الغذائية في الأمعاء الدقيقة بفضل الزغابات المعوية، أما الأمعاء الغليظة فتمتص أساسًا الماء والأملاح.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "الأمعاء الدقيقة هي الموضع الرئيسي لامتصاص معظم العناصر الغذائية في الجهاز الهضمي.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع العقدة الجيبية الأذينية، وهي منظم ضربات القلب الطبيعي، في جدار الأذين الأيمن.",
+      "correct_answer": "True",
+      "explanation": "تقع العقدة الجيبية الأذينية في جدار الأذين الأيمن، وتُطلق النبضات الكهربائية التي تبدأ كل ضربة قلب.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "العقدة الجيبية الأذينية هي منظم ضربات القلب الطبيعي وتقع في جدار الأذين الأيمن.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يبلغ عدد أزواج الأعصاب القحفية في جسم الإنسان 31 زوجًا.",
+      "correct_answer": "False",
+      "explanation": "للإنسان 12 زوجًا من الأعصاب القحفية، أما الأزواج الـ31 فهي عدد الأعصاب الشوكية.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "للإنسان 12 زوجًا من الأعصاب القحفية و31 زوجًا من الأعصاب الشوكية.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع القلب في جسم الإنسان داخل التجويف الصدري بين الرئتين.",
+      "correct_answer": "True",
+      "explanation": "يقع القلب في المنصف داخل التجويف الصدري بين الرئتين، ويميل قليلًا نحو اليسار.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "يقع قلب الإنسان في التجويف الصدري بين الرئتين.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تتكون الرئة اليمنى في جسم الإنسان من فصين اثنين.",
+      "correct_answer": "False",
+      "explanation": "تتكون الرئة اليمنى من 3 فصوص، أما الرئة اليسرى فتتكون من فصين لإفساح المجال للقلب.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "تتكون الرئة اليمنى للإنسان من 3 فصوص والرئة اليسرى من فصين.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يبدأ الهضم الكيميائي للنشويات في الفم بفعل إنزيم الأميليز الموجود في اللعاب.",
+      "correct_answer": "True",
+      "explanation": "تفرز الغدد اللعابية إنزيم الأميليز الذي يبدأ تفكيك النشويات قبل وصول الطعام إلى المعدة.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "يبدأ الهضم الكيميائي للنشويات في الفم بواسطة إنزيم الأميليز اللعابي.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يخرج الشريان الأبهر، وهو أكبر شريان في جسم الإنسان، من البطين الأيمن للقلب.",
+      "correct_answer": "False",
+      "explanation": "يخرج الشريان الأبهر من البطين الأيسر، أما البطين الأيمن فيخرج منه الشريان الرئوي.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "يخرج الشريان الأبهر من البطين الأيسر للقلب.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تفرز الخلايا الجدارية في بطانة المعدة حمض الهيدروكلوريك.",
+      "correct_answer": "True",
+      "explanation": "الخلايا الجدارية في غدد المعدة هي المسؤولة عن إفراز حمض الهيدروكلوريك، كما تفرز العامل الداخلي.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "تفرز الخلايا الجدارية في المعدة حمض الهيدروكلوريك.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يُفرَز هرمون الإريثروبويتين الذي يحفّز إنتاج خلايا الدم الحمراء في الإنسان البالغ أساسًا من الكبد.",
+      "correct_answer": "False",
+      "explanation": "تفرز الكليتان معظم هرمون الإريثروبويتين لدى البالغين، بينما يفرز الكبد كمية صغيرة منه فقط.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "تُعدّ الكليتان المصدر الرئيسي لهرمون الإريثروبويتين لدى الإنسان البالغ.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تتصل العين بالدماغ عن طريق العصب البصري.",
+      "correct_answer": "True",
+      "explanation": "العصب البصري ينقل الإشارات العصبية من شبكية العين إلى الدماغ لتتم معالجتها وتكوين الصورة.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "العصب البصري هو العصب الذي ينقل المعلومات البصرية من شبكية العين إلى الدماغ.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع الكبد في جسم الإنسان في الجهة اليسرى العليا من البطن.",
+      "correct_answer": "False",
+      "explanation": "يقع معظم الكبد في الجهة اليمنى العليا من البطن تحت الحجاب الحاجز.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "يقع الكبد أساسًا في الربع العلوي الأيمن من البطن تحت الحجاب الحاجز.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يُنتج جلد الإنسان فيتامين د عند تعرضه للأشعة فوق البنفسجية من الشمس.",
+      "correct_answer": "True",
+      "explanation": "تحوّل الأشعة فوق البنفسجية مادة في الجلد مشتقة من الكوليسترول إلى فيتامين د3.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "يصنّع الجلد فيتامين د3 عند تعرضه للأشعة فوق البنفسجية من نوع UVB.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تفرز الغدة الدرقية في جسم الإنسان هرمون الأدرينالين.",
+      "correct_answer": "False",
+      "explanation": "يُفرَز الأدرينالين من لب الغدة الكظرية، أما الغدة الدرقية فتفرز هرمونات مثل الثيروكسين.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "يُفرَز هرمون الأدرينالين من لب الغدة الكظرية الواقعة فوق الكلية.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "العظم اللامي في العنق هو العظم الوحيد في جسم الإنسان الذي لا يتمفصل مع أي عظم آخر.",
+      "correct_answer": "True",
+      "explanation": "يبقى العظم اللامي معلقًا في مكانه بواسطة العضلات والأربطة دون أن يكوّن مفصلًا مع أي عظم آخر.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "العظم اللامي هو العظم الوحيد في جسم الإنسان الذي لا يشكّل مفصلًا مع أي عظم آخر.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "توجد خلايا كوبفر، وهي خلايا بلعمية متخصصة، في الطحال.",
+      "correct_answer": "False",
+      "explanation": "خلايا كوبفر بلعميات متخصصة تبطّن الجيوب الدموية في الكبد وليس في الطحال.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "خلايا كوبفر هي بلعميات مقيمة في الجيوب الدموية للكبد.",
+      "verification": "verified"
+    }
+  ]
+}

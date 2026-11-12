@@ -1,0 +1,248 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:18:42.134818",
+    "prompt": "الرياضيات. حقائق ومسائل حسابية وهندسية قصيرة يمكن التحقق منها ذهنيًا. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "الرياضيات",
+    "focus": "حقائق ومسائل حسابية وهندسية قصيرة يمكن التحقق منها ذهنيًا. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "رياضيات",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 18,
+    "num_returned": 18,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "رياضيات",
+        "url": "https://ar.wikipedia.org/wiki/%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA"
+      },
+      {
+        "title": "مشروع إحصاء علماء الرياضيات",
+        "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%B4%D8%B1%D9%88%D8%B9_%D8%A5%D8%AD%D8%B5%D8%A7%D8%A1_%D8%B9%D9%84%D9%85%D8%A7%D8%A1_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA"
+      },
+      {
+        "title": "تاريخ الرياضيات",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA"
+      },
+      {
+        "title": "الرياضيات في العصر العباسي",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA_%D9%81%D9%8A_%D8%A7%D9%84%D8%B9%D8%B5%D8%B1_%D8%A7%D9%84%D8%B9%D8%A8%D8%A7%D8%B3%D9%8A"
+      },
+      {
+        "title": "جمعية الرياضيات الأمريكية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AC%D9%85%D8%B9%D9%8A%D8%A9_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA_%D8%A7%D9%84%D8%A3%D9%85%D8%B1%D9%8A%D9%83%D9%8A%D8%A9"
+      },
+      {
+        "title": "فلسفة الرياضيات",
+        "url": "https://ar.wikipedia.org/wiki/%D9%81%D9%84%D8%B3%D9%81%D8%A9_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 20,
+      "structure": 0,
+      "duplicate": 1,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 18,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [
+      {
+        "question": "الجذر التربيعي الموجب للعدد 144 يساوي 14.",
+        "answer": "False",
+        "reason": "duplicate of: ما الجذر التربيعي الموجب للعدد 144؟ (same wording)"
+      }
+    ],
+    "num_questions": 18
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "ناتج ضرب 9 في 8 يساوي 81.",
+      "correct_answer": "False",
+      "explanation": "ناتج 9 × 8 يساوي 72، أما 81 فهو ناتج 9 × 9.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "ناتج ضرب 9 في 8 يساوي 72.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مجموع قياسات الزوايا الداخلية للمربع يساوي 360 درجة.",
+      "correct_answer": "True",
+      "explanation": "للمربع 4 زوايا قائمة، وقياس كل منها 90 درجة، فيكون المجموع 4 × 90 = 360 درجة.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "مجموع الزوايا الداخلية للمربع يساوي 360 درجة.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "عدد أقطار المضلع الخماسي يساوي 5 أقطار.",
+      "correct_answer": "True",
+      "explanation": "عدد أقطار المضلع الذي عدد أضلاعه ن يساوي ن(ن−3)÷2، فيكون للخماسي 5 × 2 ÷ 2 = 5 أقطار.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "للمضلع الخماسي 5 أقطار.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مُنحت جائزة أبيل في الرياضيات، التي تمنحها الأكاديمية النرويجية للعلوم والآداب، لأول مرة عام 1993.",
+      "correct_answer": "False",
+      "explanation": "مُنحت جائزة أبيل لأول مرة عام 2003، وكان أول الفائزين بها الفرنسي جان بيير سير.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "مُنحت جائزة أبيل في الرياضيات لأول مرة عام 2003.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مُنحت ميدالية فيلدز في الرياضيات لأول مرة عام 1936.",
+      "correct_answer": "True",
+      "explanation": "مُنحت ميدالية فيلدز لأول مرة عام 1936 للفنلندي لارس ألفورس والأمريكي جيسي دوغلاس.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "مُنحت ميدالية فيلدز لأول مرة عام 1936.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "العدد 7 عدد أولي.",
+      "correct_answer": "True",
+      "explanation": "العدد 7 لا يقبل القسمة إلا على 1 وعلى نفسه، فهو عدد أولي.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "العدد 7 عدد أولي لأن قواسمه الوحيدة هي 1 و7.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "الجذر التربيعي للعدد 144 يساوي 14.",
+      "correct_answer": "False",
+      "explanation": "الجذر التربيعي للعدد 144 هو 12، لأن 12 × 12 = 144، أما 14 × 14 فتساوي 196.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "الجذر التربيعي للعدد 144 يساوي 12.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مجموع قياسات الزوايا الداخلية للمضلع السداسي يساوي 720 درجة.",
+      "correct_answer": "True",
+      "explanation": "مجموع الزوايا الداخلية لأي مضلع يساوي (عدد الأضلاع − 2) × 180، أي (6 − 2) × 180 = 720 درجة.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "مجموع قياسات الزوايا الداخلية للمضلع السداسي يساوي 720 درجة.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مضروب العدد 5 (أي 5!) يساوي 120.",
+      "correct_answer": "True",
+      "explanation": "مضروب العدد 5 هو 5 × 4 × 3 × 2 × 1 = 120.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "5! = 120.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مؤلف كتاب «الأصول» في الهندسة، الذي يُعد من أشهر الكتب في تاريخ الرياضيات، هو فيثاغورس.",
+      "correct_answer": "False",
+      "explanation": "كتاب «الأصول» من تأليف عالم الرياضيات اليوناني إقليدس، لا فيثاغورس.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "كتاب «الأصول» في الهندسة من تأليف إقليدس.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "عالم الرياضيات الروسي غريغوري بيرلمان هو من أثبت مبرهنة فيرما الأخيرة.",
+      "correct_answer": "False",
+      "explanation": "أثبت مبرهنةَ فيرما الأخيرة عالمُ الرياضيات البريطاني أندرو وايلز، ونُشر برهانه عام 1995، أما بيرلمان فاشتهر بإثبات حدسية بوانكاريه.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "أندرو وايلز هو من أثبت مبرهنة فيرما الأخيرة، ونُشر برهانه عام 1995.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "ناتج ضرب 7 في 6 يساوي 42.",
+      "correct_answer": "True",
+      "explanation": "حاصل ضرب 7 × 6 هو 42 وفق جدول الضرب.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "7 × 6 = 42.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "عدد أوجه المكعب يساوي 8 أوجه.",
+      "correct_answer": "False",
+      "explanation": "للمكعب 6 أوجه مربعة، أما العدد 8 فهو عدد رؤوسه.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "للمكعب 6 أوجه و8 رؤوس و12 حرفًا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مساحة مستطيل طوله 8 سنتيمترات وعرضه 5 سنتيمترات تساوي 45 سنتيمترًا مربعًا.",
+      "correct_answer": "False",
+      "explanation": "مساحة المستطيل تساوي الطول × العرض، أي 8 × 5 = 40 سنتيمترًا مربعًا.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "مساحة مستطيل أبعاده 8 سم و5 سم تساوي 40 سم².",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "كتاب «المختصر في حساب الجبر والمقابلة» من تأليف العالم المسلم محمد بن موسى الخوارزمي.",
+      "correct_answer": "True",
+      "explanation": "ألّف الخوارزمي هذا الكتاب في العصر العباسي، ومنه اشتُقّ اسم علم الجبر.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "محمد بن موسى الخوارزمي هو مؤلف كتاب «المختصر في حساب الجبر والمقابلة».",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "مُنحت جائزة وولف في الرياضيات، التي تمنحها مؤسسة وولف، لأول مرة عام 1988.",
+      "correct_answer": "False",
+      "explanation": "مُنحت جائزة وولف في الرياضيات لأول مرة عام 1978 وليس عام 1988.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "تمنح مؤسسة وولف جائزتها في الرياضيات منذ عام 1978.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "عرض عالم الرياضيات الألماني ديفيد هيلبرت عام 1900 قائمة تضم 23 مسألة رياضية لم تكن قد حُلّت بعد.",
+      "correct_answer": "True",
+      "explanation": "قدّم هيلبرت مسائله الثلاث والعشرين الشهيرة عام 1900 في المؤتمر الدولي لعلماء الرياضيات في باريس.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "نشر ديفيد هيلبرت عام 1900 قائمة من 23 مسألة رياضية لم تكن قد حُلّت، وعرض بعضها في المؤتمر الدولي لعلماء الرياضيات في باريس.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "عدد الأعداد الأولية الأصغر من 100 يساوي 25 عددًا.",
+      "correct_answer": "True",
+      "explanation": "الأعداد الأولية الأصغر من 100 هي 25 عددًا، أولها 2 وآخرها 97.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "يوجد 25 عددًا أوليًا أصغر من 100.",
+      "verification": "verified"
+    }
+  ]
+}

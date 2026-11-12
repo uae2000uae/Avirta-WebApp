@@ -1,0 +1,212 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:19:30.420172",
+    "prompt": "مشاهير العرب. فنانون ورياضيون وأدباء وعلماء عرب، حقائق موثقة. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "مشاهير العرب",
+    "focus": "فنانون ورياضيون وأدباء وعلماء عرب، حقائق موثقة. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "مشاهير_عرب",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 15,
+    "num_returned": 15,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "لامية العرب",
+        "url": "https://ar.wikipedia.org/wiki/%D9%84%D8%A7%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8"
+      },
+      {
+        "title": "وفاء الكيلاني",
+        "url": "https://ar.wikipedia.org/wiki/%D9%88%D9%81%D8%A7%D8%A1_%D8%A7%D9%84%D9%83%D9%8A%D9%84%D8%A7%D9%86%D9%8A"
+      },
+      {
+        "title": "ستورمي دانيالز",
+        "url": "https://ar.wikipedia.org/wiki/%D8%B3%D8%AA%D9%88%D8%B1%D9%85%D9%8A_%D8%AF%D8%A7%D9%86%D9%8A%D8%A7%D9%84%D8%B2"
+      },
+      {
+        "title": "لارا إسكندر",
+        "url": "https://ar.wikipedia.org/wiki/%D9%84%D8%A7%D8%B1%D8%A7_%D8%A5%D8%B3%D9%83%D9%86%D8%AF%D8%B1"
+      },
+      {
+        "title": "عادل حقي",
+        "url": "https://ar.wikipedia.org/wiki/%D8%B9%D8%A7%D8%AF%D9%84_%D8%AD%D9%82%D9%8A"
+      },
+      {
+        "title": "هيفاء وهبي",
+        "url": "https://ar.wikipedia.org/wiki/%D9%87%D9%8A%D9%81%D8%A7%D8%A1_%D9%88%D9%87%D8%A8%D9%8A"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 16,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 15,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 15
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "لُقّبت المطربة المصرية أم كلثوم بـ«كوكب الشرق».",
+      "correct_answer": "True",
+      "explanation": "«كوكب الشرق» هو أشهر ألقاب أم كلثوم.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "لُقّبت المطربة المصرية أم كلثوم بكوكب الشرق.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "المطربة فيروز سورية الجنسية.",
+      "correct_answer": "False",
+      "explanation": "فيروز مطربة لبنانية وُلدت في لبنان.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "فيروز مطربة لبنانية.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "وُلد الشاعر نزار قباني في مدينة دمشق.",
+      "correct_answer": "True",
+      "explanation": "وُلد نزار قباني في دمشق عام 1923.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "وُلد الشاعر السوري نزار قباني في دمشق عام 1923.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "رواية «موسم الهجرة إلى الشمال» من تأليف الكاتب السوداني الطيب صالح.",
+      "correct_answer": "True",
+      "explanation": "«موسم الهجرة إلى الشمال» أشهر روايات الطيب صالح.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "ألّف الكاتب السوداني الطيب صالح رواية «موسم الهجرة إلى الشمال».",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فاز العدّاء المغربي هشام الكروج بذهبيتي سباقَي 1500 متر و5000 متر في أولمبياد سيدني 2000.",
+      "correct_answer": "False",
+      "explanation": "حقق الكروج الذهبيتين في أولمبياد أثينا 2004، أما في سيدني 2000 فنال فضية سباق 1500 متر.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "فاز هشام الكروج بذهبيتي 1500 متر و5000 متر في أولمبياد أثينا 2004.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فاز لاعب الجودو المصري محمد رشوان بالميدالية الذهبية في أولمبياد لوس أنجلوس 1984.",
+      "correct_answer": "False",
+      "explanation": "نال رشوان الميدالية الفضية بعد خسارته النهائي أمام الياباني ياسوهيرو ياماشيتا.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "فاز محمد رشوان بالميدالية الفضية في الجودو في أولمبياد لوس أنجلوس 1984.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "لُقّب الأديب المصري طه حسين بـ«عميد الأدب العربي».",
+      "correct_answer": "True",
+      "explanation": "اشتهر طه حسين بلقب «عميد الأدب العربي» لمكانته الريادية في الأدب والنقد.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "الأديب المصري طه حسين يُلقّب بعميد الأدب العربي.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أدّت الفنانة هيفاء وهبي دور البطولة في فيلم «دكان شحاتة» عام 2009 من إخراج خالد يوسف.",
+      "correct_answer": "True",
+      "explanation": "اختيرت هيفاء وهبي عام 2009 لبطولة فيلم «دكان شحاتة» الذي أخرجه المصري خالد يوسف.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "قامت هيفاء وهبي ببطولة فيلم دكان شحاتة عام 2009 من إخراج خالد يوسف.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "وُلد المطرب المصري عبد الحليم حافظ في محافظة الإسكندرية.",
+      "correct_answer": "False",
+      "explanation": "وُلد عبد الحليم حافظ في قرية الحلوات بمحافظة الشرقية، لا في الإسكندرية.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "وُلد عبد الحليم حافظ في قرية الحلوات بمحافظة الشرقية في مصر.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "كتب الأديب اللبناني جبران خليل جبران كتابه «النبي» باللغة الإنجليزية في الأصل.",
+      "correct_answer": "True",
+      "explanation": "نُشر كتاب «النبي» (The Prophet) بالإنجليزية في نيويورك عام 1923، ثم تُرجم إلى العربية.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "ألّف جبران خليل جبران كتاب النبي بالإنجليزية ونُشر عام 1923.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فاز العدّاء المغربي سعيد عويطة بالميدالية الذهبية في سباق 10000 متر في أولمبياد لوس أنجلوس 1984.",
+      "correct_answer": "False",
+      "explanation": "فاز سعيد عويطة في أولمبياد لوس أنجلوس 1984 بذهبية سباق 5000 متر، لا سباق 10000 متر.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "فاز سعيد عويطة بذهبية سباق 5000 متر في أولمبياد لوس أنجلوس 1984.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فازت العدّاءة الجزائرية حسيبة بولمرقة بالميدالية الذهبية في سباق 1500 متر في أولمبياد أتلانتا 1996.",
+      "correct_answer": "False",
+      "explanation": "نالت حسيبة بولمرقة ذهبية سباق 1500 متر في أولمبياد برشلونة 1992، لا في أتلانتا 1996.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "فازت حسيبة بولمرقة بذهبية سباق 1500 متر للسيدات في أولمبياد برشلونة 1992.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يُلقَّب المطرب المصري عبد الحليم حافظ بـ«العندليب الأسمر».",
+      "correct_answer": "True",
+      "explanation": "اشتهر عبد الحليم حافظ بلقب «العندليب الأسمر» لعذوبة صوته وسمرة بشرته.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "لقب المطرب المصري عبد الحليم حافظ هو «العندليب الأسمر».",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "لعب النجم رياض محرز دوليًا لمنتخب المغرب لكرة القدم.",
+      "correct_answer": "False",
+      "explanation": "رياض محرز لاعب دولي جزائري، وقد قاد منتخب الجزائر للفوز بكأس الأمم الأفريقية 2019.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "رياض محرز يلعب دوليًا لمنتخب الجزائر لكرة القدم.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فازت العدّاءة السورية غادة شعاع بالميدالية الذهبية في مسابقة السباعي في أولمبياد سيدني 2000.",
+      "correct_answer": "False",
+      "explanation": "فازت غادة شعاع بذهبية السباعي في أولمبياد أتلانتا 1996، وهي أول ذهبية أولمبية في تاريخ سوريا.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "فازت غادة شعاع بالميدالية الذهبية في مسابقة السباعي في أولمبياد أتلانتا 1996.",
+      "verification": "verified"
+    }
+  ]
+}

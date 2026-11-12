@@ -1,0 +1,232 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:15:43.670356",
+    "prompt": "Cars and car manufacturers. Facts about car brands, famous models, founders and automotive history. Make about half the statements false by changing one specific detail (year, name, number, place) so the error is clear-cut. One clear declarative statement, not a question",
+    "topic": "Cars and car manufacturers",
+    "focus": "Facts about car brands, famous models, founders and automotive history. Make about half the statements false by changing one specific detail (year, name, number, place) so the error is clear-cut. One clear declarative statement, not a question.",
+    "category": "cars",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "english",
+    "include_explanations": true,
+    "num_requested": 17,
+    "num_returned": 17,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "Stephens (car manufacturer)",
+        "url": "https://en.wikipedia.org/wiki/Stephens_(car_manufacturer)"
+      },
+      {
+        "title": "Puma (car manufacturer)",
+        "url": "https://en.wikipedia.org/wiki/Puma_(car_manufacturer)"
+      },
+      {
+        "title": "List of automobile manufacturers of the United States",
+        "url": "https://en.wikipedia.org/wiki/List_of_automobile_manufacturers_of_the_United_States"
+      },
+      {
+        "title": "Jaguar Cars",
+        "url": "https://en.wikipedia.org/wiki/Jaguar_Cars"
+      },
+      {
+        "title": "Car dealership",
+        "url": "https://en.wikipedia.org/wiki/Car_dealership"
+      },
+      {
+        "title": "List of production car speed records",
+        "url": "https://en.wikipedia.org/wiki/List_of_production_car_speed_records"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 18,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 17,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 17
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "Kia is a Japanese car manufacturer.",
+      "correct_answer": "False",
+      "explanation": "Kia is a South Korean car manufacturer based in Seoul, not a Japanese one.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "Kia is a South Korean automobile manufacturer headquartered in Seoul.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Henry Ford founded the Ford Motor Company in 1903.",
+      "correct_answer": "True",
+      "explanation": "Henry Ford incorporated the Ford Motor Company in Michigan in June 1903.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "The Ford Motor Company was founded by Henry Ford in 1903.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The Japanese car company Honda was founded by Soichiro Honda.",
+      "correct_answer": "True",
+      "explanation": "Soichiro Honda founded the Honda Motor Company in 1948, and the company bears his family name.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Honda Motor Company was founded by Soichiro Honda in 1948.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Before founding his car company, Ferruccio Lamborghini became wealthy by manufacturing motorcycles.",
+      "correct_answer": "False",
+      "explanation": "Ferruccio Lamborghini made his fortune manufacturing tractors before he founded Automobili Lamborghini in 1963.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "Ferruccio Lamborghini was a successful tractor manufacturer before founding Automobili Lamborghini in 1963.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The British car brand Jaguar began in 1922 as the Swallow Sidecar Company, which made motorcycle sidecars.",
+      "correct_answer": "True",
+      "explanation": "Jaguar started out in 1922 as the Swallow Sidecar Company and only took the name Jaguar Cars in 1945.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "Jaguar was founded as the Swallow Sidecar Company in 1922, originally making motorcycle sidecars.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Ettore Bugatti founded the Bugatti car company in 1909 in Milan, Italy.",
+      "correct_answer": "False",
+      "explanation": "Although Ettore Bugatti was born in Milan, he founded his car company in 1909 in Molsheim, Alsace, which was then part of Germany and is now in France.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "Ettore Bugatti founded Bugatti in 1909 in Molsheim, Alsace (then part of Germany, now France).",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The car brand Volvo was founded in Sweden.",
+      "correct_answer": "True",
+      "explanation": "Volvo was founded in Gothenburg, Sweden, and built its first production car in 1927.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "Volvo is a car brand founded in Gothenburg, Sweden.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The Ford Model T was first introduced to the public in 1920.",
+      "correct_answer": "False",
+      "explanation": "Ford introduced the Model T in 1908, not 1920.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "The Ford Model T was introduced on 1 October 1908.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "In 2008, Ford sold Jaguar and Land Rover to the Indian company Mahindra.",
+      "correct_answer": "False",
+      "explanation": "The buyer in 2008 was Tata Motors, not Mahindra.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "In 2008, Ford sold Jaguar and Land Rover to the Indian company Tata Motors.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Karl Benz's Patent-Motorwagen, patented in 1886 and often called the first true automobile, had four wheels.",
+      "correct_answer": "False",
+      "explanation": "The Benz Patent-Motorwagen of 1886 was a three-wheeled vehicle.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "Karl Benz's 1886 Patent-Motorwagen was a three-wheeled vehicle.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The name 'Mercedes' in Mercedes-Benz comes from the daughter of the Austrian businessman Emil Jellinek.",
+      "correct_answer": "True",
+      "explanation": "Emil Jellinek, a key Daimler dealer and racer, named the cars after his daughter Mercedes Jellinek.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "The Mercedes name was taken from Mercedes Jellinek, daughter of Austrian businessman Emil Jellinek.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The Toyota Corolla was first launched in Japan in 1966.",
+      "correct_answer": "True",
+      "explanation": "Toyota launched the first-generation Corolla in Japan in November 1966.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "The first-generation Toyota Corolla went on sale in Japan in 1966.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "BMW is a French car manufacturer.",
+      "correct_answer": "False",
+      "explanation": "BMW (Bayerische Motoren Werke) is a German manufacturer based in Munich, Bavaria.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "BMW is a German car manufacturer headquartered in Munich.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The Patrol SUV is made by Toyota.",
+      "correct_answer": "False",
+      "explanation": "The Patrol is made by Nissan, and Toyota's rival model is the Land Cruiser.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "The Patrol is a long-running SUV model produced by Nissan.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The German sports car company Porsche was founded by Ferdinand Porsche.",
+      "correct_answer": "True",
+      "explanation": "Ferdinand Porsche founded the company that bears his family name in 1931.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Porsche was founded by Ferdinand Porsche in 1931.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The Ford Mustang was first introduced in 1974.",
+      "correct_answer": "False",
+      "explanation": "The Ford Mustang was introduced in April 1964.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "The Ford Mustang debuted in 1964.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The British car company SS Cars changed its name to Jaguar Cars in 1945.",
+      "correct_answer": "True",
+      "explanation": "After the Second World War the company dropped the SS name and became Jaguar Cars in 1945.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "The company's name was changed from SS Cars to Jaguar Cars in 1945.",
+      "verification": "verified"
+    }
+  ]
+}

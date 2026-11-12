@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:18:30.178422",
+    "prompt": "الرياضة. بطولات ولاعبون وأرقام مؤرخة. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "الرياضة",
+    "focus": "بطولات ولاعبون وأرقام مؤرخة. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "رياضة",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 18,
+    "num_returned": 18,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "رياضة",
+        "url": "https://ar.wikipedia.org/wiki/%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9"
+      },
+      {
+        "title": "تاريخ الرياضة في السعودية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9"
+      },
+      {
+        "title": "مجلس الرياضة الباكستاني",
+        "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AC%D9%84%D8%B3_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9_%D8%A7%D9%84%D8%A8%D8%A7%D9%83%D8%B3%D8%AA%D8%A7%D9%86%D9%8A"
+      },
+      {
+        "title": "الرياضة في جمهورية التشيك",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9_%D9%81%D9%8A_%D8%AC%D9%85%D9%87%D9%88%D8%B1%D9%8A%D8%A9_%D8%A7%D9%84%D8%AA%D8%B4%D9%8A%D9%83"
+      },
+      {
+        "title": "الرياضة في المملكة المتحدة",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D9%85%D9%85%D9%84%D9%83%D8%A9_%D8%A7%D9%84%D9%85%D8%AA%D8%AD%D8%AF%D8%A9"
+      },
+      {
+        "title": "الرياض",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 18,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 18,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 18
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "تُقام مباريات بطولة ويمبلدون للتنس على ملاعب عشبية.",
+      "correct_answer": "True",
+      "explanation": "ويمبلدون هي بطولة الغراند سلام الوحيدة التي تُلعب على العشب.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "تُقام بطولة ويمبلدون في لندن على ملاعب عشبية.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أُقيمت أول نسخة من كأس العالم لكرة القدم في البرازيل عام 1930.",
+      "correct_answer": "False",
+      "explanation": "استضافت الأوروغواي أول كأس عالم عام 1930 وفازت بلقبها.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "أُقيمت أول نسخة من كأس العالم لكرة القدم في الأوروغواي عام 1930.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أُقيمت أول دورة ألعاب أولمبية حديثة في مدينة أثينا عام 1896.",
+      "correct_answer": "True",
+      "explanation": "احتضنت أثينا أول دورة أولمبية حديثة عام 1896 بمبادرة من بيير دي كوبرتان.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "أُقيمت أول دورة ألعاب أولمبية حديثة في أثينا عام 1896.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "سجّل العدّاء الجامايكي يوسain بولت رقمه القياسي العالمي في سباق 100 متر (9.58 ثانية) في أولمبياد بكين 2008.",
+      "correct_answer": "False",
+      "explanation": "سجّل بولت زمن 9.58 ثانية في بطولة العالم لألعاب القوى في برلين عام 2009، أما في بكين 2008 فكان زمنه 9.69 ثانية.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "سجّل يوسين بولت الرقم القياسي العالمي في سباق 100 متر بزمن 9.58 ثانية في بطولة العالم ببرلين عام 2009.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فاز المنتخب السعودي بلقب كأس آسيا لكرة القدم لأول مرة عام 1984 في سنغافورة.",
+      "correct_answer": "True",
+      "explanation": "توّج المنتخب السعودي بأول ألقابه القارية في كأس آسيا 1984 بسنغافورة بعد فوزه على الصين 2-0 في النهائي.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "فاز المنتخب السعودي بكأس آسيا لأول مرة عام 1984 في سنغافورة بفوزه على الصين 2-0 في النهائي.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أحرز العدّاء المغربي سعيد عويطة الميدالية الذهبية في سباق 1500 متر في أولمبياد لوس أنجلوس 1984.",
+      "correct_answer": "False",
+      "explanation": "فاز سعيد عويطة بذهبية سباق 5000 متر في لوس أنجلوس 1984، بينما ذهبت ذهبية 1500 متر إلى البريطاني سيباستيان كو.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "أحرز سعيد عويطة الميدالية الذهبية في سباق 5000 متر في أولمبياد لوس أنجلوس 1984.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يتكوّن فريق كرة السلة داخل الملعب أثناء المباراة من 5 لاعبين.",
+      "correct_answer": "True",
+      "explanation": "تنص قوانين كرة السلة على أن يشارك كل فريق في اللعب بخمسة لاعبين داخل الملعب.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "يلعب كل فريق في كرة السلة بخمسة لاعبين داخل الملعب.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أُقيمت أول نسخة من كأس العالم لكرة القدم في قارة أفريقيا عام 2010 في نيجيريا.",
+      "correct_answer": "False",
+      "explanation": "استضافت جنوب أفريقيا كأس العالم 2010، وهي أول نسخة تُقام في قارة أفريقيا.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "استضافت جنوب أفريقيا كأس العالم لكرة القدم 2010، وكانت أول نسخة تُقام في أفريقيا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فاز منتخب الأرجنتين بلقب كأس العالم لكرة القدم 2022 بعد تغلّبه على فرنسا في المباراة النهائية.",
+      "correct_answer": "True",
+      "explanation": "تعادلت الأرجنتين وفرنسا 3-3 في نهائي 2022، ثم فازت الأرجنتين بركلات الترجيح.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "فازت الأرجنتين على فرنسا بركلات الترجيح في نهائي كأس العالم 2022 بعد التعادل 3-3.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فاز منتخب الأرجنتين بقيادة دييغو مارادونا بكأس العالم 1986 بعد تغلّبه على إيطاليا في المباراة النهائية.",
+      "correct_answer": "False",
+      "explanation": "تغلّبت الأرجنتين في نهائي كأس العالم 1986 على ألمانيا الغربية بنتيجة 3-2، وليس على إيطاليا.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "فازت الأرجنتين على ألمانيا الغربية 3-2 في نهائي كأس العالم 1986 بالمكسيك.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أحرز الملاكم محمد علي كلاي الميدالية الذهبية الأولمبية في أولمبياد روما 1960.",
+      "correct_answer": "True",
+      "explanation": "فاز محمد علي، وكان يُعرف آنذاك باسم كاسيوس كلاي، بذهبية وزن خفيف الثقيل في أولمبياد روما 1960.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "فاز كاسيوس كلاي (محمد علي) بالميدالية الذهبية في الملاكمة لوزن خفيف الثقيل في أولمبياد روما 1960.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أحرز العدّاء المغربي هشام الكروج الميداليتين الذهبيتين في سباقي 1500 متر و5000 متر في أولمبياد سيدني 2000.",
+      "correct_answer": "False",
+      "explanation": "حقق الكروج ثنائية ذهبيتي 1500 و5000 متر في أولمبياد أثينا 2004، أما في سيدني 2000 فنال فضية سباق 1500 متر.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "فاز هشام الكروج بذهبيتي سباقي 1500 متر و5000 متر في أولمبياد أثينا 2004.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يتكوّن شعار الألعاب الأولمبية من 5 حلقات متداخلة.",
+      "correct_answer": "True",
+      "explanation": "يضم الشعار الأولمبي 5 حلقات متداخلة بألوان الأزرق والأصفر والأسود والأخضر والأحمر.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "The Olympic symbol consists of five interlocking rings.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فاز منتخب إسبانيا بكأس العالم لكرة القدم 2010 بعد تغلّبه على ألمانيا في المباراة النهائية.",
+      "correct_answer": "False",
+      "explanation": "تغلّبت إسبانيا في نهائي 2010 على هولندا بنتيجة 1-0، أما ألمانيا فقد خسرت أمامها في نصف النهائي.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Spain won the 2010 FIFA World Cup by beating the Netherlands 1-0 in the final in Johannesburg.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أحرز السبّاح الأمريكي مايكل فيلبس 8 ميداليات ذهبية في أولمبياد بكين 2008.",
+      "correct_answer": "True",
+      "explanation": "حقق فيلبس في بكين 2008 ثماني ذهبيات في دورة واحدة، وهو رقم قياسي أولمبي.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "Michael Phelps won 8 gold medals at the 2008 Beijing Olympics.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "استضافت مدينة سيدني الأسترالية الألعاب الأولمبية الصيفية عام 2004.",
+      "correct_answer": "False",
+      "explanation": "استضافت سيدني الأولمبياد الصيفي عام 2000، أما دورة 2004 فأُقيمت في أثينا.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "Sydney hosted the 2000 Summer Olympics, while the 2004 Games were held in Athens.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أحرزت العدّاءة المغربية نوال المتوكل الميدالية الذهبية في سباق 400 متر حواجز في أولمبياد لوس أنجلوس 1984.",
+      "correct_answer": "True",
+      "explanation": "فازت نوال المتوكل بذهبية 400 متر حواجز في لوس أنجلوس 1984، وكانت أول نسخة أولمبية يُقام فيها هذا السباق للسيدات.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "Nawal El Moutawakel won the women's 400 m hurdles gold medal at the 1984 Los Angeles Olympics.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أحرز الرامي الإماراتي الشيخ أحمد بن حشر آل مكتوم الميدالية الذهبية في رماية الحفرة المزدوجة (دبل تراب) في أولمبياد سيدني 2000.",
+      "correct_answer": "False",
+      "explanation": "نال أحمد بن حشر آل مكتوم ذهبية الحفرة المزدوجة في أولمبياد أثينا 2004، وهي أول ذهبية أولمبية للإمارات.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "Ahmed bin Hasher Al Maktoum won the double trap shooting gold medal at the 2004 Athens Olympics.",
+      "verification": "verified"
+    }
+  ]
+}

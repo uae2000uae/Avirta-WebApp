@@ -1,0 +1,152 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:18:30.520136",
+    "prompt": "كأس العالم لكرة القدم. نسخ كأس العالم والمضيفون والفائزون. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "كأس العالم لكرة القدم",
+    "focus": "نسخ كأس العالم والمضيفون والفائزون. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "كأس_العالم",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 9,
+    "num_returned": 9,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "كأس العالم",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85"
+      },
+      {
+        "title": "كأس العالم للأندية",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85_%D9%84%D9%84%D8%A3%D9%86%D8%AF%D9%8A%D8%A9"
+      },
+      {
+        "title": "كأس العالم 2026",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85_2026"
+      },
+      {
+        "title": "كأس العالم 2014",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85_2014"
+      },
+      {
+        "title": "كأس العالم 2022",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85_2022"
+      },
+      {
+        "title": "كأس العالم 2018",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D8%A3%D8%B3_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85_2018"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 10,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 9,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 9
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "استضافت روسيا بطولة كأس العالم لكرة القدم عام 2018.",
+      "correct_answer": "True",
+      "explanation": "أقيمت كأس العالم 2018 في روسيا، وكانت أول نسخة تُقام في أوروبا الشرقية.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "استضافت روسيا كأس العالم لكرة القدم 2018.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أقيمت بطولة كأس العالم لكرة القدم 2006 في إسبانيا.",
+      "correct_answer": "False",
+      "explanation": "استضافت ألمانيا كأس العالم 2006، أما إسبانيا فاستضافت نسخة 1982.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "استضافت ألمانيا كأس العالم لكرة القدم 2006.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فازت البرازيل بكأس العالم لكرة القدم 2002 بعد فوزها على ألمانيا في المباراة النهائية.",
+      "correct_answer": "True",
+      "explanation": "تغلبت البرازيل على ألمانيا 2–0 في نهائي 2002 بيوكوهاما وأحرزت لقبها الخامس.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "فازت البرازيل على ألمانيا 2–0 في نهائي كأس العالم 2002.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فازت إسبانيا بكأس العالم لكرة القدم 2010 بعد فوزها على ألمانيا في المباراة النهائية.",
+      "correct_answer": "False",
+      "explanation": "فازت إسبانيا على هولندا 1–0 بعد التمديد في نهائي 2010، أما ألمانيا فقد خسرت أمام إسبانيا في نصف النهائي.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "فازت إسبانيا على هولندا 1–0 بعد الوقت الإضافي في نهائي كأس العالم 2010.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "استضافت السويد بطولة كأس العالم لكرة القدم عام 1958.",
+      "correct_answer": "True",
+      "explanation": "أقيمت كأس العالم 1958 في السويد، وفازت فيها البرازيل بلقبها الأول على حساب البلد المضيف في النهائي.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "استضافت السويد كأس العالم لكرة القدم 1958.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فازت ألمانيا الغربية بكأس العالم لكرة القدم 1954 بعد فوزها على هولندا في المباراة النهائية.",
+      "correct_answer": "False",
+      "explanation": "فازت ألمانيا الغربية في نهائي 1954 على المجر 3–2 في المباراة المعروفة بـ«معجزة برن».",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "فازت ألمانيا الغربية على المجر 3–2 في نهائي كأس العالم 1954 في برن.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "استضافت المكسيك بطولة كأس العالم لكرة القدم عام 1986.",
+      "correct_answer": "True",
+      "explanation": "أقيمت نسخة 1986 في المكسيك، وكانت ثاني استضافة لها بعد نسخة 1970.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "استضافت المكسيك بطولة كأس العالم لكرة القدم عام 1986.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فازت الأرجنتين بكأس العالم لكرة القدم 1978 بعد فوزها على ألمانيا الغربية في المباراة النهائية.",
+      "correct_answer": "False",
+      "explanation": "فازت الأرجنتين في نهائي 1978 على هولندا بنتيجة 3–1 بعد التمديد، لا على ألمانيا الغربية.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "فازت الأرجنتين بكأس العالم 1978 بعد فوزها على هولندا 3–1 في المباراة النهائية.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "فازت إيطاليا ببطولة كأس العالم لكرة القدم 1938 التي أقيمت في فرنسا.",
+      "correct_answer": "True",
+      "explanation": "أقيمت نسخة 1938 في فرنسا، وفازت بها إيطاليا بعد تغلبها على المجر 4–2 في النهائي.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "فازت إيطاليا بكأس العالم 1938 التي استضافتها فرنسا.",
+      "verification": "verified"
+    }
+  ]
+}

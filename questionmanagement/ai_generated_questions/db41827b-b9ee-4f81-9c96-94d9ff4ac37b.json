@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:15:34.456740",
+    "prompt": "Superhero movies (Marvel and DC films). Facts about superhero films, actors and release years, each tied to a specific film. Make about half the statements false by changing one specific detail (year, name, number, place) so the error is clear-cut. One clear declarative statement, not a question",
+    "topic": "Superhero movies (Marvel and DC films)",
+    "focus": "Facts about superhero films, actors and release years, each tied to a specific film. Make about half the statements false by changing one specific detail (year, name, number, place) so the error is clear-cut. One clear declarative statement, not a question.",
+    "category": "superhero_movies",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "english",
+    "include_explanations": true,
+    "num_requested": 18,
+    "num_returned": 18,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "Shazam! (film)",
+        "url": "https://en.wikipedia.org/wiki/Shazam!_(film)"
+      },
+      {
+        "title": "Captain Marvel (film)",
+        "url": "https://en.wikipedia.org/wiki/Captain_Marvel_(film)"
+      },
+      {
+        "title": "Superhero film",
+        "url": "https://en.wikipedia.org/wiki/Superhero_film"
+      },
+      {
+        "title": "Marvel Studios",
+        "url": "https://en.wikipedia.org/wiki/Marvel_Studios"
+      },
+      {
+        "title": "Marvel Cinematic Universe",
+        "url": "https://en.wikipedia.org/wiki/Marvel_Cinematic_Universe"
+      },
+      {
+        "title": "DC Universe Animated Original Movies",
+        "url": "https://en.wikipedia.org/wiki/DC_Universe_Animated_Original_Movies"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 18,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 18,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 18
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "Andrew Garfield played Peter Parker in Sam Raimi's 2002 film 'Spider-Man'.",
+      "correct_answer": "False",
+      "explanation": "Tobey Maguire played Peter Parker in Sam Raimi's 2002 'Spider-Man'; Andrew Garfield took the role later, in 'The Amazing Spider-Man' (2012).",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "Tobey Maguire starred as Peter Parker in the 2002 film 'Spider-Man', directed by Sam Raimi.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Robert Downey Jr. starred as Tony Stark in the 2008 film 'Iron Man'.",
+      "correct_answer": "True",
+      "explanation": "Robert Downey Jr. played Tony Stark in 'Iron Man' (2008), the film that launched the Marvel Cinematic Universe.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "Robert Downey Jr. played Tony Stark in the 2008 film 'Iron Man'.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Marvel Studios' film 'The Avengers', directed by Joss Whedon, was released in 2010.",
+      "correct_answer": "False",
+      "explanation": "'The Avengers' was released in 2012, not 2010.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Marvel Studios' 'The Avengers', directed by Joss Whedon, was released in 2012.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The 2019 Marvel film 'Captain Marvel' became the first female-led superhero film to gross over $1 billion worldwide.",
+      "correct_answer": "True",
+      "explanation": "'Captain Marvel' grossed over $1.1 billion worldwide, the first female-led superhero film to pass the billion-dollar mark.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "'Captain Marvel' (2019) grossed over $1.1 billion worldwide, making it the first female-led superhero film to pass $1 billion.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The 2019 DC film 'Shazam!' was directed by James Wan.",
+      "correct_answer": "False",
+      "explanation": "'Shazam!' was directed by David F. Sandberg. James Wan directed DC's 'Aquaman' (2018).",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "The 2019 film 'Shazam!' was directed by David F. Sandberg.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The 2018 Marvel film 'Black Panther' won three Academy Awards.",
+      "correct_answer": "True",
+      "explanation": "'Black Panther' won Oscars for Best Costume Design, Best Production Design and Best Original Score.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "'Black Panther' (2018) won three Academy Awards: Best Costume Design, Best Production Design and Best Original Score.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Heath Ledger played the Joker in the 2008 film 'The Dark Knight'.",
+      "correct_answer": "True",
+      "explanation": "Heath Ledger played the Joker in Christopher Nolan's 'The Dark Knight' (2008) and won a posthumous Oscar for the role.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "Heath Ledger portrayed the Joker in Christopher Nolan's 2008 film 'The Dark Knight'.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Chris Evans played Steve Rogers in the 2011 film 'Captain America: The First Avenger'.",
+      "correct_answer": "True",
+      "explanation": "Chris Evans first played Steve Rogers, alias Captain America, in 'Captain America: The First Avenger' (2011).",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Chris Evans starred as Steve Rogers / Captain America in 'Captain America: The First Avenger' (2011).",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Joaquin Phoenix won the Academy Award for Best Actor for his role in the 2019 film 'Joker'.",
+      "correct_answer": "True",
+      "explanation": "Joaquin Phoenix won the Best Actor Oscar at the 2020 Academy Awards for playing Arthur Fleck in 'Joker'.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Joaquin Phoenix won the Academy Award for Best Actor for 'Joker' (2019).",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Christopher Reeve first played Superman in the film 'Superman', which was released in 1982.",
+      "correct_answer": "False",
+      "explanation": "'Superman', starring Christopher Reeve in the title role for the first time, was released in 1978, not 1982.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "Christopher Reeve first played Superman in 'Superman', released in 1978.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The 2019 Marvel film 'Captain Marvel' had its world premiere in Paris.",
+      "correct_answer": "False",
+      "explanation": "'Captain Marvel' premiered in London on February 27, 2019, not in Paris.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "'Captain Marvel' premiered in London on February 27, 2019.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "In the 2019 Marvel film 'Captain Marvel', Gemma Chan plays Carol Danvers' best friend Maria Rambeau.",
+      "correct_answer": "False",
+      "explanation": "Maria Rambeau is played by Lashana Lynch; Gemma Chan plays the Kree sniper Minn-Erva.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "In 'Captain Marvel' (2019), Lashana Lynch plays Maria Rambeau and Gemma Chan plays Minn-Erva.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Christian Bale played Bruce Wayne in the 2005 film 'Batman Begins'.",
+      "correct_answer": "True",
+      "explanation": "Christian Bale starred as Bruce Wayne / Batman in Christopher Nolan's 'Batman Begins' (2005).",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "Christian Bale played Bruce Wayne / Batman in the 2005 film 'Batman Begins'.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "In the 2018 Marvel film 'Avengers: Infinity War', the villain Thanos is played by Jason Momoa.",
+      "correct_answer": "False",
+      "explanation": "Thanos is played by Josh Brolin, while Jason Momoa is known for playing DC's Aquaman.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Josh Brolin played Thanos in the 2018 film 'Avengers: Infinity War'.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The 2017 Marvel film 'Thor: Ragnarok' was directed by Taika Waititi.",
+      "correct_answer": "True",
+      "explanation": "New Zealand filmmaker Taika Waititi directed 'Thor: Ragnarok', released in 2017.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "Taika Waititi directed the 2017 Marvel Studios film 'Thor: Ragnarok'.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The 2017 DC film 'Wonder Woman', starring Gal Gadot, was directed by Kathryn Bigelow.",
+      "correct_answer": "False",
+      "explanation": "The 2017 'Wonder Woman' film was directed by Patty Jenkins, not Kathryn Bigelow.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "Patty Jenkins directed the 2017 DC film 'Wonder Woman'.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Tim Burton's film 'Batman', starring Michael Keaton as the title hero, was released in 1992.",
+      "correct_answer": "False",
+      "explanation": "Tim Burton's 'Batman' came out in 1989; its sequel 'Batman Returns' was released in 1992.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "Tim Burton's 'Batman', starring Michael Keaton, was released in 1989.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The 2019 Marvel film 'Captain Marvel' borrowed elements from the 1971 'Kree–Skrull War' comic book storyline written by Roy Thomas.",
+      "correct_answer": "True",
+      "explanation": "The film's writers drew on Roy Thomas's 1971 'Kree–Skrull War' storyline, which pits the Kree against the shape-shifting Skrulls.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "'Captain Marvel' (2019) borrowed elements from Roy Thomas's 1971 'Kree–Skrull War' comic book storyline.",
+      "verification": "verified"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:15:31.499058",
+    "prompt": "أين يقع: معالم ومدن وأماكن مشهورة. مواقع المعالم والمدن الشهيرة. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "أين يقع: معالم ومدن وأماكن مشهورة",
+    "focus": "مواقع المعالم والمدن الشهيرة. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "أين_يقع",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 16,
+    "num_returned": 16,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "قائمة أفلام مبنية على أحداث حقيقية",
+        "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D8%A6%D9%85%D8%A9_%D8%A3%D9%81%D9%84%D8%A7%D9%85_%D9%85%D8%A8%D9%86%D9%8A%D8%A9_%D8%B9%D9%84%D9%89_%D8%A3%D8%AD%D8%AF%D8%A7%D8%AB_%D8%AD%D9%82%D9%8A%D9%82%D9%8A%D8%A9"
+      },
+      {
+        "title": "جبل راشمور",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AC%D8%A8%D9%84_%D8%B1%D8%A7%D8%B4%D9%85%D9%88%D8%B1"
+      },
+      {
+        "title": "أبطال الديجيتال (الجزء الأول)",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A3%D8%A8%D8%B7%D8%A7%D9%84_%D8%A7%D9%84%D8%AF%D9%8A%D8%AC%D9%8A%D8%AA%D8%A7%D9%84_(%D8%A7%D9%84%D8%AC%D8%B2%D8%A1_%D8%A7%D9%84%D8%A3%D9%88%D9%84)"
+      },
+      {
+        "title": "كونمينغ",
+        "url": "https://ar.wikipedia.org/wiki/%D9%83%D9%88%D9%86%D9%85%D9%8A%D9%86%D8%BA"
+      },
+      {
+        "title": "باتنة",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A8%D8%A7%D8%AA%D9%86%D8%A9"
+      },
+      {
+        "title": "هولندا",
+        "url": "https://ar.wikipedia.org/wiki/%D9%87%D9%88%D9%84%D9%86%D8%AF%D8%A7"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 17,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 16,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 16
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "يقع مدرج الكولوسيوم الأثري في مدينة روما الإيطالية.",
+      "correct_answer": "True",
+      "explanation": "الكولوسيوم مدرج روماني قديم يقع في قلب مدينة روما عاصمة إيطاليا.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "يقع الكولوسيوم في مدينة روما بإيطاليا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع مدينة البتراء الأثرية المنحوتة في الصخر الوردي في سوريا.",
+      "correct_answer": "False",
+      "explanation": "تقع البتراء في جنوب الأردن، لا في سوريا، وكانت عاصمة الأنباط.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "تقع مدينة البتراء الأثرية في الأردن.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع دار أوبرا سيدني الشهيرة في مدينة ملبورن الأسترالية.",
+      "correct_answer": "False",
+      "explanation": "تقع دار الأوبرا الشهيرة في مدينة سيدني على ميناء سيدني، لا في ملبورن.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "تقع دار أوبرا سيدني في مدينة سيدني بأستراليا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع جبل راشمور، المنحوتة فيه وجوه أربعة رؤساء أمريكيين، في ولاية داكوتا الجنوبية.",
+      "correct_answer": "True",
+      "explanation": "يقع جبل راشمور في منطقة بلاك هيلز قرب بلدة كيستون في ولاية داكوتا الجنوبية الأمريكية.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "يقع نصب جبل راشمور التذكاري في منطقة بلاك هيلز بولاية داكوتا الجنوبية في الولايات المتحدة.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع مدينة تمبكتو التاريخية، المشهورة بمساجدها ومخطوطاتها، في دولة النيجر.",
+      "correct_answer": "False",
+      "explanation": "تقع تمبكتو في دولة مالي قرب نهر النيجر، لا في دولة النيجر.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "تقع مدينة تمبكتو التاريخية في مالي.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع مدينة كونمينغ، عاصمة مقاطعة يونان الصينية، على الحافة الشمالية لبحيرة ديان.",
+      "correct_answer": "True",
+      "explanation": "تقع كونمينغ على هضبة يونان-قويتشو عند الحافة الشمالية لبحيرة ديان.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "تقع مدينة كونمينغ عاصمة مقاطعة يونان على الحافة الشمالية لبحيرة ديان.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع المسجد النبوي الشريف في المدينة المنورة.",
+      "correct_answer": "True",
+      "explanation": "المسجد النبوي هو المسجد الذي بناه النبي محمد ﷺ في المدينة المنورة بعد الهجرة.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "يقع المسجد النبوي في المدينة المنورة بالمملكة العربية السعودية.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع تمثال المسيح الفادي الشهير على قمة جبل كوركوفادو في مدينة بوينس آيرس.",
+      "correct_answer": "False",
+      "explanation": "تمثال المسيح الفادي يقع على جبل كوركوفادو في مدينة ريو دي جانيرو البرازيلية، لا في بوينس آيرس الأرجنتينية.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "يقع تمثال المسيح الفادي على قمة جبل كوركوفادو في ريو دي جانيرو بالبرازيل.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع الساحة الحمراء الشهيرة المجاورة لقصر الكرملين في مدينة سانت بطرسبرغ الروسية.",
+      "correct_answer": "False",
+      "explanation": "الساحة الحمراء والكرملين يقعان في قلب العاصمة الروسية موسكو.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "تقع الساحة الحمراء بجوار الكرملين في وسط موسكو.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع قلعة نويشفانشتاين الخيالية، التي بناها الملك لودفيغ الثاني، في ولاية بافاريا الألمانية.",
+      "correct_answer": "True",
+      "explanation": "قلعة نويشفانشتاين تقع في جنوب بافاريا بألمانيا قرب بلدة فوسن، وقد أمر ببنائها الملك البافاري لودفيغ الثاني.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "تقع قلعة نويشفانشتاين في ولاية بافاريا بألمانيا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع معبد بوروبودور البوذي الضخم في جزيرة جاوة الإندونيسية.",
+      "correct_answer": "True",
+      "explanation": "معبد بوروبودور يقع في وسط جزيرة جاوة بإندونيسيا، وهو من مواقع التراث العالمي لليونسكو.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "يقع معبد بوروبودور في مقاطعة جاوة الوسطى بإندونيسيا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع موقع موهينجو دارو الأثري، أحد أكبر مدن حضارة وادي السند، في الهند.",
+      "correct_answer": "False",
+      "explanation": "موهينجو دارو يقع في إقليم السند بباكستان، لا في الهند.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "يقع موقع موهينجو دارو الأثري في إقليم السند بباكستان.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع مجمع أبراج البيت، الذي يضم برج ساعة مكة الملكي، في مدينة مكة المكرمة بجوار المسجد الحرام.",
+      "correct_answer": "True",
+      "explanation": "شُيّد مجمع أبراج البيت ببرج ساعته الشهير ملاصقًا للمسجد الحرام في مكة المكرمة.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "يقع مجمع أبراج البيت وبرج ساعة مكة الملكي في مكة المكرمة بجوار المسجد الحرام.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع أطلال مدينة قرطاج الأثرية، عاصمة الفينيقيين في شمال أفريقيا، في الجزائر.",
+      "correct_answer": "False",
+      "explanation": "تقع آثار قرطاج في ضواحي العاصمة التونسية تونس، لا في الجزائر.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "تقع أطلال قرطاج الأثرية قرب مدينة تونس في تونس.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "يقع قصر فرساي الملكي الشهير في ضواحي مدينة ليون الفرنسية.",
+      "correct_answer": "False",
+      "explanation": "يقع قصر فرساي في مدينة فرساي جنوب غرب العاصمة باريس، لا قرب ليون.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "يقع قصر فرساي في مدينة فرساي قرب باريس في منطقة إيل دو فرانس.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تقع مدينة أفسس الأثرية، الشهيرة بمكتبة سلسوس، في اليونان.",
+      "correct_answer": "False",
+      "explanation": "تقع أفسس في غرب تركيا قرب بلدة سلجوق بمحافظة إزمير، لا في اليونان.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "تقع مدينة أفسس الأثرية في محافظة إزمير غرب تركيا.",
+      "verification": "verified"
+    }
+  ]
+}

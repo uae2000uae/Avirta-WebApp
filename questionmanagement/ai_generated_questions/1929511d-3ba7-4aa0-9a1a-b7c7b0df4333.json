@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:17:12.675518",
+    "prompt": "العلامات التجارية العالمية. تأسيس الشركات العالمية ومؤسسوها وبلدانها. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "العلامات التجارية العالمية",
+    "focus": "تأسيس الشركات العالمية ومؤسسوها وبلدانها. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "براندات_عالمية",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 12,
+    "num_returned": 12,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "إدارة العلامات التجارية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9_%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%85%D8%A7%D8%AA_%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9"
+      },
+      {
+        "title": "أمواج (علامة تجارية)",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A3%D9%85%D9%88%D8%A7%D8%AC_(%D8%B9%D9%84%D8%A7%D9%85%D8%A9_%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9)"
+      },
+      {
+        "title": "علامة تجارية",
+        "url": "https://ar.wikipedia.org/wiki/%D8%B9%D9%84%D8%A7%D9%85%D8%A9_%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9"
+      },
+      {
+        "title": "XXX (توضيح)",
+        "url": "https://ar.wikipedia.org/wiki/XXX_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)"
+      },
+      {
+        "title": "باناسونيك (علامة تجارية)",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A8%D8%A7%D9%86%D8%A7%D8%B3%D9%88%D9%86%D9%8A%D9%83_(%D8%B9%D9%84%D8%A7%D9%85%D8%A9_%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9)"
+      },
+      {
+        "title": "إل سي وايكيكي",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A5%D9%84_%D8%B3%D9%8A_%D9%88%D8%A7%D9%8A%D9%83%D9%8A%D9%83%D9%8A"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 12,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 12,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 12
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "تأسست شركة «نوكيا» المعروفة بصناعة الهواتف المحمولة في فنلندا.",
+      "correct_answer": "True",
+      "explanation": "تأسست نوكيا عام 1865 في فنلندا على يد فريدريك إيديستام، وبدأت بصناعة الورق.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "تأسست شركة نوكيا في فنلندا عام 1865.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "دار الأزياء الفاخرة «شانيل» أسستها المصممة الفرنسية كوكو شانيل.",
+      "correct_answer": "True",
+      "explanation": "أسست غابرييل «كوكو» شانيل الدار في فرنسا، وافتتحت أول متجر لها في باريس عام 1910.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "أسست المصممة الفرنسية كوكو شانيل دار الأزياء شانيل.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تأسست علامة الأزياء العالمية «زارا» في إيطاليا.",
+      "correct_answer": "False",
+      "explanation": "«زارا» علامة إسبانية أسسها أمانسيو أورتيغا عام 1975 في مدينة لا كورونيا بإسبانيا.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "تأسست زارا في إسبانيا عام 1975 على يد أمانسيو أورتيغا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أسس هنري فورد شركة «فورد» للسيارات في الولايات المتحدة عام 1923.",
+      "correct_answer": "False",
+      "explanation": "تأسست شركة فورد للسيارات عام 1903 وليس عام 1923.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "أسس هنري فورد شركة فورد للسيارات عام 1903.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أسس رودولف داسلر، شقيق مؤسس «أديداس»، شركة المنتجات الرياضية الألمانية «بوما».",
+      "correct_answer": "True",
+      "explanation": "بعد خلاف بين الشقيقين داسلر، أسس رودولف شركة «بوما» عام 1948 في مدينة هيرتسوغيناوراخ الألمانية.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "أسس رودولف داسلر، شقيق أدولف داسلر مؤسس أديداس، شركة بوما عام 1948.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أسس ويليام هيوليت وديفيد باكارد شركة «هيوليت-باكارد» (HP) في كاليفورنيا عام 1959.",
+      "correct_answer": "False",
+      "explanation": "تأسست شركة HP عام 1939 في مرآب بمدينة بالو ألتو في كاليفورنيا، وليس عام 1959.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "أسس ويليام هيوليت وديفيد باكارد شركة هيوليت-باكارد عام 1939 في بالو ألتو بكاليفورنيا.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تأسست شركة السيارات «هيونداي» في اليابان.",
+      "correct_answer": "False",
+      "explanation": "«هيونداي» شركة كورية جنوبية، وليست يابانية.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "Hyundai is a South Korean company founded in South Korea.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أسس مارك زوكربيرغ موقع «فيسبوك» عام 2004 حين كان طالبًا في جامعة هارفارد.",
+      "correct_answer": "True",
+      "explanation": "أطلق زوكربيرغ «فيسبوك» مع زملائه عام 2004 أثناء دراسته في جامعة هارفارد.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Mark Zuckerberg launched Facebook in 2004 while a student at Harvard University.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تأسست دار الأزياء الفاخرة «لويس فويتون» في إيطاليا.",
+      "correct_answer": "False",
+      "explanation": "أسس لويس فويتون داره في باريس بفرنسا عام 1854.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Louis Vuitton was founded in Paris, France, in 1854.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أسس فيروتشيو لامبورغيني شركة السيارات الإيطالية «لامبورغيني» عام 1963.",
+      "correct_answer": "True",
+      "explanation": "أسس فيروتشيو لامبورغيني شركته للسيارات الرياضية في إيطاليا عام 1963.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "Ferruccio Lamborghini founded Automobili Lamborghini in Italy in 1963.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أسس غوتشيو غوتشي دار الأزياء الإيطالية «غوتشي» في مدينة روما عام 1921.",
+      "correct_answer": "False",
+      "explanation": "تأسست «غوتشي» عام 1921 في مدينة فلورنسا، لا في روما.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "Guccio Gucci founded Gucci in Florence, Italy, in 1921.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أسس سويتشيرو هوندا شركة «هوندا» اليابانية عام 1948.",
+      "correct_answer": "True",
+      "explanation": "تأسست شركة هوندا موتور في اليابان عام 1948 على يد سويتشيرو هوندا.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "Soichiro Honda founded Honda Motor Co. in Japan in 1948.",
+      "verification": "verified"
+    }
+  ]
+}

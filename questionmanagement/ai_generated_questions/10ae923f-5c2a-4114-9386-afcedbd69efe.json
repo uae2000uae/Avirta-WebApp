@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:15:15.446603",
+    "prompt": "Jurassic Park and Jurassic World films. Facts about the films' characters, actors, dinosaurs and plots, each tied to a specific film. Make about half the statements false by changing one specific detail (year, name, number, place) so the error is clear-cut. One clear declarative statement, not a question",
+    "topic": "Jurassic Park and Jurassic World films",
+    "focus": "Facts about the films' characters, actors, dinosaurs and plots, each tied to a specific film. Make about half the statements false by changing one specific detail (year, name, number, place) so the error is clear-cut. One clear declarative statement, not a question.",
+    "category": "jurassic_park",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "english",
+    "include_explanations": true,
+    "num_requested": 12,
+    "num_returned": 12,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "Jurassic World Rebirth",
+        "url": "https://en.wikipedia.org/wiki/Jurassic_World_Rebirth"
+      },
+      {
+        "title": "Jurassic World Dominion",
+        "url": "https://en.wikipedia.org/wiki/Jurassic_World_Dominion"
+      },
+      {
+        "title": "Jurassic Park III",
+        "url": "https://en.wikipedia.org/wiki/Jurassic_Park_III"
+      },
+      {
+        "title": "Jurassic World: Fallen Kingdom",
+        "url": "https://en.wikipedia.org/wiki/Jurassic_World:_Fallen_Kingdom"
+      },
+      {
+        "title": "The Lost World: Jurassic Park",
+        "url": "https://en.wikipedia.org/wiki/The_Lost_World:_Jurassic_Park"
+      },
+      {
+        "title": "Jurassic World",
+        "url": "https://en.wikipedia.org/wiki/Jurassic_World"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 12,
+      "structure": 0,
+      "duplicate": 0,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 12,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [],
+    "num_questions": 12
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "In Jurassic World (2015), Bryce Dallas Howard plays the park's operations manager, Claire Dearing.",
+      "correct_answer": "True",
+      "explanation": "Bryce Dallas Howard plays Claire Dearing, who runs Jurassic World's operations, opposite Chris Pratt's Owen Grady.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "Bryce Dallas Howard plays Claire Dearing, the operations manager of the park in Jurassic World (2015).",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "In the original Jurassic Park (1993), the paleontologist Dr. Alan Grant is played by Jeff Goldblum.",
+      "correct_answer": "False",
+      "explanation": "Sam Neill plays Dr. Alan Grant, while Jeff Goldblum plays the mathematician Dr. Ian Malcolm.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "Sam Neill plays Dr. Alan Grant in Jurassic Park (1993).",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Steven Spielberg directed Jurassic Park III (2001).",
+      "correct_answer": "False",
+      "explanation": "Jurassic Park III was directed by Joe Johnston, and it was the first film in the franchise not directed by Spielberg.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Jurassic Park III (2001) was directed by Joe Johnston.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Jurassic World: Fallen Kingdom (2018) was directed by J. A. Bayona.",
+      "correct_answer": "True",
+      "explanation": "Spanish filmmaker J. A. Bayona directed Fallen Kingdom, taking over from Colin Trevorrow, who directed Jurassic World.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "J. A. Bayona directed Jurassic World: Fallen Kingdom (2018).",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Jurassic World Rebirth (2025), starring Scarlett Johansson, was directed by Gareth Edwards.",
+      "correct_answer": "True",
+      "explanation": "Gareth Edwards directed Jurassic World Rebirth from a script by David Koepp, with Scarlett Johansson in the lead.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "Jurassic World Rebirth (2025) was directed by Gareth Edwards and stars Scarlett Johansson.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "In Jurassic Park III (2001), the missing boy whom Paul and Amanda Kirby are searching for on Isla Sorna is named Billy.",
+      "correct_answer": "False",
+      "explanation": "The Kirbys' missing son is Eric, while Billy Brennan is Alan Grant's young assistant.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "In Jurassic Park III, Paul and Amanda Kirby search Isla Sorna for their son Eric Kirby.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "The original Jurassic Park film (1993) was based on a novel by Stephen King.",
+      "correct_answer": "False",
+      "explanation": "Jurassic Park (1993) was adapted from Michael Crichton's 1990 novel of the same name, not from a Stephen King book.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "The film Jurassic Park (1993) is based on the 1990 novel Jurassic Park by Michael Crichton.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Jurassic World (2015) was directed by Colin Trevorrow.",
+      "correct_answer": "True",
+      "explanation": "Colin Trevorrow directed Jurassic World (2015) and later returned to direct Jurassic World Dominion (2022).",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Colin Trevorrow directed the 2015 film Jurassic World.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "In the original Jurassic Park (1993), the paleobotanist Dr. Ellie Sattler is played by Laura Dern.",
+      "correct_answer": "True",
+      "explanation": "Laura Dern played Ellie Sattler in Jurassic Park (1993) and returned to the role in Jurassic Park III and Jurassic World Dominion.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "Laura Dern plays Dr. Ellie Sattler in Jurassic Park (1993).",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "In the original Jurassic Park (1993), park founder John Hammond is played by Anthony Hopkins.",
+      "correct_answer": "False",
+      "explanation": "John Hammond was played by Richard Attenborough, not Anthony Hopkins.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "Richard Attenborough plays John Hammond in Jurassic Park (1993).",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Jurassic World Dominion (2022) held its world premiere in Rio de Janeiro.",
+      "correct_answer": "False",
+      "explanation": "Jurassic World Dominion premiered in Mexico City on May 23, 2022, not in Rio de Janeiro.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "Jurassic World Dominion premiered in Mexico City on May 23, 2022.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "Jurassic World Rebirth (2025) was written by David Koepp, who also co-wrote the screenplay of the original Jurassic Park (1993).",
+      "correct_answer": "True",
+      "explanation": "David Koepp co-wrote Jurassic Park (1993) with Michael Crichton, wrote The Lost World (1997) and returned to write Jurassic World Rebirth.",
+      "points": 500,
+      "acceptable_answers": [],
+      "fact": "David Koepp wrote Jurassic World Rebirth (2025) and co-wrote the screenplay of Jurassic Park (1993).",
+      "verification": "verified"
+    }
+  ]
+}

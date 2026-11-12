@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T08:16:19.823282",
+    "prompt": "التاريخ المعاصر. أحداث وشخصيات القرن العشرين المؤرخة. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال",
+    "topic": "التاريخ المعاصر",
+    "focus": "أحداث وشخصيات القرن العشرين المؤرخة. اجعل نحو نصف العبارات خاطئة بتغيير تفصيل واحد محدد (سنة، اسم، رقم، مكان) بحيث يكون الخطأ قاطعًا لا خلافيًا. عبارة خبرية واحدة واضحة، لا سؤال.",
+    "category": "التاريخ_المعاصر",
+    "question_type": "true_false",
+    "difficulty": "mixed",
+    "language": "arabic",
+    "include_explanations": true,
+    "num_requested": 9,
+    "num_returned": 9,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": true,
+    "sources": [
+      {
+        "title": "التاريخ المعاصر",
+        "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B5%D8%B1"
+      },
+      {
+        "title": "تاريخ إسبانيا المعاصر",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A%D8%A7_%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B5%D8%B1"
+      },
+      {
+        "title": "متحف التاريخ المعاصر",
+        "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AA%D8%AD%D9%81_%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B5%D8%B1"
+      },
+      {
+        "title": "تاريخ السعودية المعاصر",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B5%D8%B1"
+      },
+      {
+        "title": "تاريخ الأمازيغ",
+        "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A7%D9%84%D8%A3%D9%85%D8%A7%D8%B2%D9%8A%D8%BA"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 11,
+      "structure": 0,
+      "duplicate": 1,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 9,
+      "corrected": 0,
+      "unverified": 0,
+      "calls_failed": 0
+    },
+    "dropped": [
+      {
+        "question": "أعلن الملك عبد العزيز آل سعود توحيد البلاد تحت اسم المملكة العربية السعودية عام 1945.",
+        "answer": "False",
+        "reason": "duplicate of: في أي عام أعلن الملك عبد العزيز آل سعود توحيد البلاد تحت اسم المملكة العربية الس (same wording)"
+      }
+    ],
+    "num_questions": 9
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "question": "تأسست جامعة الدول العربية في القاهرة عام 1945.",
+      "correct_answer": "True",
+      "explanation": "وُقّع ميثاق جامعة الدول العربية في القاهرة يوم 22 مارس 1945.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "تأسست جامعة الدول العربية في القاهرة في 22 مارس 1945.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أعلن الرئيس المصري أنور السادات تأميم قناة السويس عام 1956.",
+      "correct_answer": "False",
+      "explanation": "الرئيس جمال عبد الناصر هو من أعلن تأميم قناة السويس في 26 يوليو 1956.",
+      "points": 100,
+      "acceptable_answers": [],
+      "fact": "أعلن الرئيس جمال عبد الناصر تأميم شركة قناة السويس في 26 يوليو 1956.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "نالت الهند استقلالها عن بريطانيا عام 1947.",
+      "correct_answer": "True",
+      "explanation": "استقلت الهند عن الحكم البريطاني في 15 أغسطس 1947.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "نالت الهند استقلالها عن بريطانيا في 15 أغسطس 1947.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "قام رائد الفضاء السوفيتي يوري غاغارين بأول رحلة فضائية مأهولة في التاريخ عام 1957.",
+      "correct_answer": "False",
+      "explanation": "كانت رحلة غاغارين على متن فوستوك 1 في 12 أبريل 1961، أما عام 1957 فهو عام إطلاق القمر الصناعي سبوتنيك 1.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "قام يوري غاغارين بأول رحلة فضائية مأهولة في 12 أبريل 1961.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "تأسست منظمة الدول المصدرة للنفط (أوبك) عام 1960 في مؤتمر عُقد في مدينة بغداد.",
+      "correct_answer": "True",
+      "explanation": "أُسست أوبك في مؤتمر بغداد في سبتمبر 1960 بمشاركة العراق وإيران والكويت والسعودية وفنزويلا.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "تأسست منظمة أوبك في مؤتمر بغداد في سبتمبر 1960.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أُعلن توحيد المملكة العربية السعودية وتسميتها بهذا الاسم عام 1932.",
+      "correct_answer": "True",
+      "explanation": "أعلن الملك عبد العزيز آل سعود توحيد البلاد باسم المملكة العربية السعودية عام 1932.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "أُعلن توحيد المملكة العربية السعودية باسمها الحالي في 23 سبتمبر 1932.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "نالت دولة الكويت استقلالها عن بريطانيا عام 1971.",
+      "correct_answer": "False",
+      "explanation": "استقلت الكويت عام 1961 بإلغاء اتفاقية الحماية البريطانية الموقعة عام 1899.",
+      "points": 200,
+      "acceptable_answers": [],
+      "fact": "نالت الكويت استقلالها عن بريطانيا في 19 يونيو 1961.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "أعلن ماو تسي تونغ قيام جمهورية الصين الشعبية عام 1949.",
+      "correct_answer": "True",
+      "explanation": "أعلن ماو تسي تونغ قيام جمهورية الصين الشعبية في بكين في 1 أكتوبر 1949 بعد انتصار الشيوعيين في الحرب الأهلية.",
+      "points": 300,
+      "acceptable_answers": [],
+      "fact": "أُعلن قيام جمهورية الصين الشعبية في 1 أكتوبر 1949.",
+      "verification": "verified"
+    },
+    {
+      "type": "true_false",
+      "question": "عُقد مؤتمر باندونغ للدول الآسيوية والأفريقية في إندونيسيا عام 1961.",
+      "correct_answer": "False",
+      "explanation": "عُقد مؤتمر باندونغ عام 1955، أما عام 1961 فهو عام القمة الأولى لحركة عدم الانحياز في بلغراد.",
+      "points": 400,
+      "acceptable_answers": [],
+      "fact": "عُقد مؤتمر باندونغ الآسيوي الأفريقي في مدينة باندونغ الإندونيسية في أبريل 1955.",
+      "verification": "verified"
+    }
+  ]
+}
