@@ -1,0 +1,4 @@
+{"type": "answer_evaluated", "data": {"player_name": "P2", "evaluator": "P1", "category": "دول_عربية", "points": 800, "is_correct": true, "message": "The Host evaluated P2's answer as correct and earned 800 points"}, "timestamp": "2026-11-12T15:55:17.363298"}
+{"type": "turn_switch", "data": {"previous_player": "P2", "new_player": "P1", "message": "Turn switched from P2 to P1"}, "timestamp": "2026-11-12T15:55:21.196061"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "دول_عربية", "points": 200, "message": "P1 selected a 200-point question from دول_عربية"}, "timestamp": "2026-11-12T15:55:26.506374"}
+{"type": "answer_evaluated", "data": {"player_name": "P1", "evaluator": "P1", "category": "دول_عربية", "points": 200, "is_correct": true, "message": "The Host evaluated P1's answer as correct and earned 200 points"}, "timestamp": "2026-11-12T15:55:35.200811"}

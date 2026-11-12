@@ -1,0 +1,10 @@
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "P2", "message": "Turn switched from P1 to P2"}, "timestamp": "2026-11-12T16:02:05.213378"}
+{"type": "question_selected", "data": {"player_name": "P2", "category": "أين_يقع", "points": 300, "message": "P2 selected a 300-point question from أين_يقع"}, "timestamp": "2026-11-12T16:02:11.554951"}
+{"type": "answer_submitted", "data": {"player_name": "P2", "category": "أين_يقع", "points": 300, "is_correct": false, "message": "P2 answered incorrect and earned 0 points"}, "timestamp": "2026-11-12T16:02:18.695585"}
+{"type": "turn_switch", "data": {"previous_player": "P2", "new_player": "P1", "message": "Turn switched from P2 to P1"}, "timestamp": "2026-11-12T16:02:24.009088"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "أين_يقع", "points": 400, "message": "P1 selected a 400-point question from أين_يقع"}, "timestamp": "2026-11-12T16:02:27.877649"}
+{"type": "answer_evaluated", "data": {"player_name": "P1", "evaluator": "P1", "category": "أين_يقع", "points": 400, "is_correct": true, "message": "The Host evaluated P1's answer as correct and earned 400 points"}, "timestamp": "2026-11-12T16:02:34.885609"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "P2", "message": "Turn switched from P1 to P2"}, "timestamp": "2026-11-12T16:02:38.939912"}
+{"type": "question_selected", "data": {"player_name": "P2", "category": "أين_يقع", "points": 500, "message": "P2 selected a 500-point question from أين_يقع"}, "timestamp": "2026-11-12T16:02:42.786116"}
+{"type": "answer_evaluated", "data": {"player_name": "P2", "evaluator": "P1", "category": "أين_يقع", "points": 500, "is_correct": true, "message": "The Host evaluated P2's answer as correct and earned 500 points"}, "timestamp": "2026-11-12T16:02:46.753902"}
+{"type": "turn_switch", "data": {"previous_player": "P2", "new_player": "P1", "message": "Turn switched from P2 to P1"}, "timestamp": "2026-11-12T16:02:50.373733"}

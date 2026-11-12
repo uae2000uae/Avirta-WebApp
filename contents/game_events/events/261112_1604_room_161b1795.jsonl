@@ -1,0 +1,10 @@
+{"type": "turn_switch", "data": {"previous_player": "P2", "new_player": "P1", "message": "Turn switched from P2 to P1"}, "timestamp": "2026-11-12T16:04:03.079077"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "كلمات_قرآنية", "points": 300, "message": "P1 selected a 300-point question from كلمات_قرآنية"}, "timestamp": "2026-11-12T16:04:05.221215"}
+{"type": "answer_submitted", "data": {"player_name": "P1", "category": "كلمات_قرآنية", "points": 300, "is_correct": true, "message": "P1 answered correct and earned 300 points"}, "timestamp": "2026-11-12T16:04:12.455867"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "P2", "message": "Turn switched from P1 to P2"}, "timestamp": "2026-11-12T16:04:15.723497"}
+{"type": "question_selected", "data": {"player_name": "P2", "category": "كلمات_قرآنية", "points": 500, "message": "P2 selected a 500-point question from كلمات_قرآنية"}, "timestamp": "2026-11-12T16:04:32.956604"}
+{"type": "answer_submitted", "data": {"player_name": "P2", "category": "كلمات_قرآنية", "points": 500, "is_correct": true, "message": "P2 answered correct and earned 500 points"}, "timestamp": "2026-11-12T16:04:37.723608"}
+{"type": "turn_switch", "data": {"previous_player": "P2", "new_player": "P1", "message": "Turn switched from P2 to P1"}, "timestamp": "2026-11-12T16:04:40.802735"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "كلمات_قرآنية", "points": 400, "message": "P1 selected a 400-point question from كلمات_قرآنية"}, "timestamp": "2026-11-12T16:04:42.560278"}
+{"type": "answer_submitted", "data": {"player_name": "P1", "category": "كلمات_قرآنية", "points": 400, "is_correct": true, "message": "P1 answered correct and earned 400 points"}, "timestamp": "2026-11-12T16:04:46.620698"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "P2", "message": "Turn switched from P1 to P2"}, "timestamp": "2026-11-12T16:04:51.408107"}

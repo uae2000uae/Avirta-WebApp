@@ -1,0 +1,11 @@
+{"type": "question_selected", "data": {"player_name": "P1", "category": "أين_يقع", "points": 200, "message": "P1 selected a 200-point question from أين_يقع"}, "timestamp": "2026-11-12T16:03:00.781807"}
+{"type": "answer_evaluated", "data": {"player_name": "P1", "evaluator": "P1", "category": "أين_يقع", "points": 200, "is_correct": true, "message": "The Host evaluated P1's answer as correct and earned 200 points"}, "timestamp": "2026-11-12T16:03:06.145504"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "P2", "message": "Turn switched from P1 to P2"}, "timestamp": "2026-11-12T16:03:10.042637"}
+{"type": "question_selected", "data": {"player_name": "P2", "category": "أين_يقع", "points": 100, "message": "P2 selected a 100-point question from أين_يقع"}, "timestamp": "2026-11-12T16:03:12.173083"}
+{"type": "answer_evaluated", "data": {"player_name": "P2", "evaluator": "P1", "category": "أين_يقع", "points": 100, "is_correct": true, "message": "The Host evaluated P2's answer as correct and earned 100 points"}, "timestamp": "2026-11-12T16:03:21.758745"}
+{"type": "turn_switch", "data": {"previous_player": "P2", "new_player": "P1", "message": "Turn switched from P2 to P1"}, "timestamp": "2026-11-12T16:03:31.173443"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "كلمات_قرآنية", "points": 100, "message": "P1 selected a 100-point question from كلمات_قرآنية"}, "timestamp": "2026-11-12T16:03:39.966314"}
+{"type": "answer_submitted", "data": {"player_name": "P1", "category": "كلمات_قرآنية", "points": 100, "is_correct": true, "message": "P1 answered correct and earned 100 points"}, "timestamp": "2026-11-12T16:03:47.657715"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "P2", "message": "Turn switched from P1 to P2"}, "timestamp": "2026-11-12T16:03:52.216028"}
+{"type": "question_selected", "data": {"player_name": "P2", "category": "كلمات_قرآنية", "points": 200, "message": "P2 selected a 200-point question from كلمات_قرآنية"}, "timestamp": "2026-11-12T16:03:55.159677"}
+{"type": "answer_submitted", "data": {"player_name": "P2", "category": "كلمات_قرآنية", "points": 200, "is_correct": true, "message": "P2 answered correct and earned 200 points"}, "timestamp": "2026-11-12T16:03:58.684159"}
