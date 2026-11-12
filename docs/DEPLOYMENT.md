@@ -58,13 +58,29 @@ the Cloud Run service account needs **Secret Manager Secret Version Adder** on
 secret once yourself in the console). When running locally, that key goes to the
 untracked file `contents/admin_controls/.local_ai_keys.json` instead.
 
-## A deploy resets live games
+## Live games survive deploys
 
-`cloudbuild.yaml` pins the service to one instance (`--min-instances=1
---max-instances=1`, plus `--session-affinity`) because game rooms live in the
-instance's memory and local disk. Every deploy creates a new revision (a fresh
-container), so **any game in progress ends when a deploy goes live**. Push code
-changes when no one is playing.
+Every game room is saved to Firestore (database `avirta-state`, us-central1,
+collection `rooms`) after each request that changes it, and a new revision
+loads a room from there the first time a player asks for it. So a deploy or an
+instance restart no longer ends games in progress: players carry on where they
+were. The code is `contents/game_room/room_store.py`; Cloud Run turns it on with
+`ROOM_STORE=firestore` and `FIRESTORE_DATABASE=avirta-state` (set in
+`cloudbuild.yaml`). Locally and in tests there is no store and rooms stay in
+memory, as before.
+
+Rooms untouched for 12 hours are treated as finished, and ending a game deletes
+its document. If Firestore is unreachable the game keeps running from memory and
+the error is logged.
+
+The service is still pinned to one instance (`--min-instances=1
+--max-instances=1`, `--session-affinity`): each instance keeps its own copy of
+a room in memory, so two instances serving the same room at once would drift
+apart. During the minute a deploy overlaps the old and new revisions, a move
+made on the old one after the new one loaded the room can be lost.
+
+The project's `(default)` database is an older, unused Datastore-mode database
+in `nam5`; the app does not touch it.
 
 ## Syncing app data to GitHub
 
@@ -111,9 +127,8 @@ with an ETag `ABORTED` error). If access ever has to be granted again:
 gcloud run services add-iam-policy-binding avirta --region=us-central1 --member=allUsers --role=roles/run.invoker
 ```
 
-## Future: deploys without dropping games
+## Future: more than one instance
 
-Move game rooms to Firestore (see `datastore/firestore_backend.py`, and
-[STATE_MIGRATION_SCOPE.md](STATE_MIGRATION_SCOPE.md)) or Redis, and make the
-client retry on a transient "room not found". Then the single-instance pin in
-`cloudbuild.yaml` can be removed.
+To lift the single-instance pin, make Firestore the source of truth on every
+request (read the room at the start, write it with a transaction at the end)
+instead of the in-memory copy. See [STATE_MIGRATION_SCOPE.md](STATE_MIGRATION_SCOPE.md).

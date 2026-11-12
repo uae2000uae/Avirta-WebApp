@@ -244,8 +244,21 @@ question_bank.load_questions()
 # Add an admin user
 admin_setup.add_admin("admin", "ADMIN")
 
-# Dictionary to store active game rooms
-game_rooms = {}
+# Active game rooms. Behaves like a dict; on Cloud Run (ROOM_STORE=firestore)
+# every room a request changes is saved to Firestore and reloaded after a
+# restart or redeploy, so live games survive deploys.
+from contents.game_room.room_store import PersistentRooms, backend_from_env
+game_rooms = PersistentRooms(backend_from_env())
+
+
+@app.before_request
+def _rooms_begin_request():
+    game_rooms.begin_request()
+
+
+@app.teardown_request
+def _rooms_end_request(_exc=None):
+    game_rooms.end_request()
 
 # Create a centralized game status manager for real-time updates with persistence
 events_dir = os.path.join(os.path.dirname(__file__), 'contents', 'game_events')

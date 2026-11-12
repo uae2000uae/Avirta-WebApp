@@ -46,6 +46,9 @@ steps:
         "--max-instances=1",
         # Route a given client back to the same instance (belt-and-suspenders).
         "--session-affinity",
+        # Save live game rooms to Firestore (database "avirta-state") so a
+        # redeploy or restart does not end games in progress.
+        "--update-env-vars=ROOM_STORE=firestore,FIRESTORE_DATABASE=avirta-state",
         # SECRET_KEY signs session cookies; ADMIN_PASSWORD_HASH is the salted
         # hash of the admin password (never the password itself).
         "--set-secrets=OPENAI_API_KEY=OPENAI_API_KEY:latest,GITHUB_TOKEN=GITHUB_TOKEN:latest,ANTHROPIC_API_KEY=ANTHROPIC_API_KEY:latest,SECRET_KEY=SECRET_KEY:latest,ADMIN_PASSWORD_HASH=ADMIN_PASSWORD_HASH:latest"

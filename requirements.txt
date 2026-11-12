@@ -9,6 +9,8 @@ requests==2.31.0
 nltk==3.8.1
 
 google-cloud-secret-manager>=2.20.0
+# Live game rooms are saved here so games survive redeploys (ROOM_STORE=firestore)
+google-cloud-firestore>=2.16.0
 
 # Production WSGI server
 gunicorn>=22.0.0
