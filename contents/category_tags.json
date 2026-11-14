@@ -46,6 +46,7 @@
     "كلمات_قرآنية": ["arabic", "islamic", "language"],
     "مخترعون_ومكتشفون": ["arabic", "people", "science", "history"],
     "مشاهير_عرب": ["arabic", "people"],
-    "معلومات_عامة": ["arabic", "general"]
+    "معلومات_عامة": ["arabic", "general"],
+    "quads_and_bikes": ["sports", "cars"]
   }
 }

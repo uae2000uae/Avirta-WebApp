@@ -1,0 +1,568 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-14T14:21:37.725952",
+    "prompt": "quads and bikes. Production history , types of quads and atv , brands , engines , country origin , interesting facts about atv and bikes",
+    "topic": "quads and bikes",
+    "focus": "Production history , types of quads and atv , brands , engines , country origin , interesting facts about atv and bikes",
+    "category": "",
+    "question_type": "multiple_choice",
+    "difficulty": "mixed",
+    "language": "english",
+    "include_explanations": false,
+    "num_requested": 30,
+    "num_returned": 30,
+    "ai_option": "anthropic",
+    "model": "claude-opus-5-5",
+    "quality": "accurate",
+    "verified": false,
+    "sources": [
+      {
+        "title": "All-terrain vehicle",
+        "url": "https://en.wikipedia.org/wiki/All-terrain_vehicle"
+      },
+      {
+        "title": "2012 Desafio Litoral Rally",
+        "url": "https://en.wikipedia.org/wiki/2012_Desafio_Litoral_Rally"
+      },
+      {
+        "title": "2026 Dakar Rally",
+        "url": "https://en.wikipedia.org/wiki/2026_Dakar_Rally"
+      },
+      {
+        "title": "Dakar Rally",
+        "url": "https://en.wikipedia.org/wiki/Dakar_Rally"
+      },
+      {
+        "title": "2024 Dakar Rally",
+        "url": "https://en.wikipedia.org/wiki/2024_Dakar_Rally"
+      },
+      {
+        "title": "Marin Bikes",
+        "url": "https://en.wikipedia.org/wiki/Marin_Bikes"
+      }
+    ],
+    "generation_version": "v5_ai_engine",
+    "stats": {
+      "written": 35,
+      "structure": 0,
+      "duplicate": 5,
+      "wrong_type": 0,
+      "low_confidence": 0,
+      "fact_check_rejected": 0,
+      "verified": 0,
+      "corrected": 0,
+      "unverified": 30,
+      "calls_failed": 0
+    },
+    "dropped": [
+      {
+        "question": "How many wheels does a standard quad bike have?",
+        "answer": "Four",
+        "reason": "duplicate of: How many wheels does a standard car typically have? (same fact and answer)"
+      },
+      {
+        "question": "How many wheels does a standard quad bike have?",
+        "answer": "Four",
+        "reason": "duplicate of: How many wheels does a standard car typically have? (same fact and answer)"
+      },
+      {
+        "question": "How many wheels does a standard quad bike have?",
+        "answer": "Four",
+        "reason": "duplicate of: How many wheels does a standard car typically have? (same fact and answer)"
+      },
+      {
+        "question": "How many wheels does a standard quad bike have?",
+        "answer": "Four",
+        "reason": "duplicate of: How many wheels does a standard car typically have? (same fact and answer)"
+      },
+      {
+        "question": "How many wheels does a standard quad bike have?",
+        "answer": "Four",
+        "reason": "duplicate of: How many wheels does a standard car typically have? (same fact and answer)"
+      }
+    ],
+    "num_questions": 30
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "question": "Since 2020, the Dakar Rally, which includes bike and quad classes, has been held in which country?",
+      "correct_answer": "Saudi Arabia",
+      "explanation": "",
+      "points": 100,
+      "options": [
+        "United Arab Emirates",
+        "Morocco",
+        "Saudi Arabia",
+        "Egypt"
+      ],
+      "acceptable_answers": [],
+      "fact": "Since 2020, the Dakar Rally has been held in Saudi Arabia.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "The motorcycle manufacturer Ducati originates from which country?",
+      "correct_answer": "Italy",
+      "explanation": "",
+      "points": 100,
+      "options": [
+        "Germany",
+        "Italy",
+        "Spain",
+        "Japan"
+      ],
+      "acceptable_answers": [],
+      "fact": "Ducati is an Italian motorcycle manufacturer based in Bologna, Italy.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "In which US city was the motorcycle company Harley-Davidson founded in 1903?",
+      "correct_answer": "Milwaukee",
+      "explanation": "",
+      "points": 200,
+      "options": [
+        "Milwaukee",
+        "Cleveland",
+        "Chicago",
+        "Detroit"
+      ],
+      "acceptable_answers": [],
+      "fact": "Harley-Davidson was founded in 1903 in Milwaukee, Wisconsin.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "The off-road motorcycle and quad maker KTM is headquartered in which country?",
+      "correct_answer": "Austria",
+      "explanation": "",
+      "points": 300,
+      "options": [
+        "Austria",
+        "Switzerland",
+        "Sweden",
+        "Germany"
+      ],
+      "acceptable_answers": [],
+      "fact": "KTM is an Austrian manufacturer headquartered in Mattighofen, Austria.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which Japanese company introduced the US90, a three-wheeled all-terrain vehicle, in 1970?",
+      "correct_answer": "Honda",
+      "explanation": "",
+      "points": 400,
+      "options": [
+        "Yamaha",
+        "Honda",
+        "Kawasaki",
+        "Suzuki"
+      ],
+      "acceptable_answers": [],
+      "fact": "Honda introduced the US90 (later called the ATC90) three-wheeled all-terrain vehicle in 1970.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which manufacturer launched the QuadRunner LT125 in 1982, widely recognised as the first mass-produced four-wheeled ATV?",
+      "correct_answer": "Suzuki",
+      "explanation": "",
+      "points": 500,
+      "options": [
+        "Suzuki",
+        "Honda",
+        "Yamaha",
+        "Polaris"
+      ],
+      "acceptable_answers": [],
+      "fact": "Suzuki introduced the LT125 QuadRunner in 1982, regarded as the first mass-produced four-wheeled ATV.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "In the off-road vehicle world, what does the abbreviation ATV stand for?",
+      "correct_answer": "All-Terrain Vehicle",
+      "explanation": "",
+      "points": 200,
+      "options": [
+        "All-Terrain Vehicle",
+        "All-Track Velocity",
+        "Automatic Traction Vehicle",
+        "Advanced Trail Vehicle"
+      ],
+      "acceptable_answers": [],
+      "fact": "ATV stands for all-terrain vehicle.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "The first Paris–Dakar Rally, held in 1978–79, finished in the capital of which African country?",
+      "correct_answer": "Senegal",
+      "explanation": "",
+      "points": 200,
+      "options": [
+        "Mauritania",
+        "Morocco",
+        "Mali",
+        "Senegal"
+      ],
+      "acceptable_answers": [],
+      "fact": "The Dakar Rally began as a rally from Paris, France, to Dakar, the capital of Senegal.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Can-Am quads and side-by-sides are made by Bombardier Recreational Products, a company from which country?",
+      "correct_answer": "Canada",
+      "explanation": "",
+      "points": 300,
+      "options": [
+        "Austria",
+        "Sweden",
+        "United States",
+        "Canada"
+      ],
+      "acceptable_answers": [],
+      "fact": "Can-Am is a brand of Bombardier Recreational Products (BRP), a company headquartered in Valcourt, Quebec, Canada.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "In which year did a consent decree in the United States end the sale of new three-wheeled ATVs by major manufacturers?",
+      "correct_answer": "1988",
+      "explanation": "",
+      "points": 400,
+      "options": [
+        "1995",
+        "1988",
+        "1983",
+        "1978"
+      ],
+      "acceptable_answers": [],
+      "fact": "In 1988 the US Consumer Product Safety Commission and ATV manufacturers agreed a consent decree that ended the sale of new three-wheeled ATVs in the United States.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Built in 1885 by Gottlieb Daimler and Wilhelm Maybach, which vehicle is widely regarded as the first motorcycle powered by an internal combustion engine?",
+      "correct_answer": "Reitwagen",
+      "explanation": "",
+      "points": 500,
+      "options": [
+        "Reitwagen",
+        "Motorwagen",
+        "Draisine",
+        "Velocipede"
+      ],
+      "acceptable_answers": [],
+      "fact": "The Daimler Reitwagen, built in 1885 by Gottlieb Daimler and Wilhelm Maybach, is widely regarded as the first internal combustion motorcycle.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Kawasaki, the maker of the Ninja motorcycles and Brute Force ATVs, comes from which country?",
+      "correct_answer": "Japan",
+      "explanation": "",
+      "points": 100,
+      "options": [
+        "China",
+        "Japan",
+        "South Korea",
+        "Taiwan"
+      ],
+      "acceptable_answers": [],
+      "fact": "Kawasaki is a Japanese manufacturer of motorcycles and ATVs.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "The ATV and off-road vehicle maker Polaris is headquartered in which US state?",
+      "correct_answer": "Minnesota",
+      "explanation": "",
+      "points": 300,
+      "options": [
+        "Michigan",
+        "Wisconsin",
+        "Minnesota",
+        "Texas"
+      ],
+      "acceptable_answers": [],
+      "fact": "Polaris Inc. is headquartered in Medina, Minnesota.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "The famous Vespa scooter is produced by which Italian company?",
+      "correct_answer": "Piaggio",
+      "explanation": "",
+      "points": 300,
+      "options": [
+        "Aprilia",
+        "Piaggio",
+        "Benelli",
+        "Ducati"
+      ],
+      "acceptable_answers": [],
+      "fact": "Vespa scooters are manufactured by the Italian company Piaggio.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "The 2008 Dakar Rally, which included motorcycle and quad classes, was cancelled because of security threats in which country?",
+      "correct_answer": "Mauritania",
+      "explanation": "",
+      "points": 400,
+      "options": [
+        "Morocco",
+        "Mali",
+        "Mauritania",
+        "Algeria"
+      ],
+      "acceptable_answers": [],
+      "fact": "Security threats in Mauritania led to the cancellation of the 2008 Dakar Rally.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which Frenchman founded the Paris–Dakar Rally after getting lost in the Libyan desert during a motorcycle rally?",
+      "correct_answer": "Thierry Sabine",
+      "explanation": "",
+      "points": 500,
+      "options": [
+        "Jean-Claude Olivier",
+        "Thierry Sabine",
+        "Hubert Auriol",
+        "Cyril Neveu"
+      ],
+      "acceptable_answers": [],
+      "fact": "Thierry Sabine created the Paris–Dakar Rally, first held in 1978–79, after getting lost in the Libyan desert in 1977.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "BMW Motorrad motorcycles, such as the R 1250 GS adventure bike, come from which country?",
+      "correct_answer": "Germany",
+      "explanation": "",
+      "points": 100,
+      "options": [
+        "Germany",
+        "Italy",
+        "Austria",
+        "Sweden"
+      ],
+      "acceptable_answers": [],
+      "fact": "BMW Motorrad is the motorcycle brand of the German company BMW, which is headquartered in Munich.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "The motorcycle brand Royal Enfield began in Britain, but its parent company is now headquartered in which country?",
+      "correct_answer": "India",
+      "explanation": "",
+      "points": 200,
+      "options": [
+        "Indonesia",
+        "India",
+        "Malaysia",
+        "Thailand"
+      ],
+      "acceptable_answers": [],
+      "fact": "Royal Enfield is owned by the Indian company Eicher Motors and is headquartered in Chennai, India.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which Japanese motorcycle and ATV maker uses a logo of three crossed tuning forks, reflecting its origins in musical instruments?",
+      "correct_answer": "Yamaha",
+      "explanation": "",
+      "points": 200,
+      "options": [
+        "Kawasaki",
+        "Suzuki",
+        "Honda",
+        "Yamaha"
+      ],
+      "acceptable_answers": [],
+      "fact": "Yamaha's logo shows three crossed tuning forks because the company began as a maker of musical instruments.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Honda's three-wheeled off-road vehicles of the 1970s and 1980s were sold under the trademark \"ATC\". What did ATC stand for?",
+      "correct_answer": "All-Terrain Cycle",
+      "explanation": "",
+      "points": 400,
+      "options": [
+        "Auto Trail Cycle",
+        "All-Terrain Car",
+        "All-Terrain Cycle",
+        "All-Track Carrier"
+      ],
+      "acceptable_answers": [],
+      "fact": "Honda marketed its three-wheeled off-road vehicles as ATCs, short for All-Terrain Cycle.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "In 1935, T. E. Lawrence, known as \"Lawrence of Arabia\", died after crashing a motorcycle made by which British manufacturer?",
+      "correct_answer": "Brough Superior",
+      "explanation": "",
+      "points": 500,
+      "options": [
+        "Vincent",
+        "Norton",
+        "Triumph",
+        "Brough Superior"
+      ],
+      "acceptable_answers": [],
+      "fact": "T. E. Lawrence was fatally injured in 1935 while riding his Brough Superior SS100 motorcycle in Dorset, England.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What does the rider of a standard quad bike (ATV) use to steer it?",
+      "correct_answer": "Handlebars",
+      "explanation": "",
+      "points": 100,
+      "options": [
+        "A steering wheel",
+        "Handlebars",
+        "Foot pedals",
+        "A joystick"
+      ],
+      "acceptable_answers": [],
+      "fact": "By the ANSI definition, an ATV has a seat the operator straddles and handlebars for steering, similar to a motorcycle.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Off-road vehicles that are similar to ATVs but seat several people next to each other are commonly known by which abbreviation?",
+      "correct_answer": "UTV",
+      "explanation": "",
+      "points": 300,
+      "options": [
+        "LUV",
+        "UTV",
+        "SUV",
+        "MPV"
+      ],
+      "acceptable_answers": [],
+      "fact": "Multi-user off-road vehicles with side-by-side seating are called utility terrain vehicles (UTVs), or side-by-sides.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "The Husqvarna brand, which has made motorcycles since 1903, originated in which country?",
+      "correct_answer": "Sweden",
+      "explanation": "",
+      "points": 300,
+      "options": [
+        "Norway",
+        "Sweden",
+        "Finland",
+        "Denmark"
+      ],
+      "acceptable_answers": [],
+      "fact": "Husqvarna began producing motorcycles in Sweden in 1903.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "In 2012, the Italian motorcycle maker Ducati was acquired by which carmaker, through its Lamborghini subsidiary?",
+      "correct_answer": "Audi",
+      "explanation": "",
+      "points": 400,
+      "options": [
+        "Porsche",
+        "Audi",
+        "BMW",
+        "Fiat"
+      ],
+      "acceptable_answers": [],
+      "fact": "In 2012, Audi acquired Ducati through its subsidiary Lamborghini.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "The Yamaha Banshee sport quad, launched in 1987, used a two-stroke twin-cylinder engine derived from which Yamaha motorcycle?",
+      "correct_answer": "RZ350",
+      "explanation": "",
+      "points": 500,
+      "options": [
+        "RZ350",
+        "RD400",
+        "YZ250",
+        "TZR250"
+      ],
+      "acceptable_answers": [],
+      "fact": "The Yamaha Banshee 350 ATV was powered by a 347 cc two-stroke parallel-twin engine derived from the Yamaha RZ350 motorcycle.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Triumph, the motorcycle brand behind the Bonneville and the Speed Triple, comes from which country?",
+      "correct_answer": "United Kingdom",
+      "explanation": "",
+      "points": 100,
+      "options": [
+        "Germany",
+        "United Kingdom",
+        "United States",
+        "Italy"
+      ],
+      "acceptable_answers": [],
+      "fact": "Triumph Motorcycles is a British manufacturer based in Hinckley, England.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "From 2009 to 2019, the Dakar Rally, including its bike and quad classes, was held on which continent?",
+      "correct_answer": "South America",
+      "explanation": "",
+      "points": 200,
+      "options": [
+        "South America",
+        "Australia",
+        "Asia",
+        "Africa"
+      ],
+      "acceptable_answers": [],
+      "fact": "After the 2008 cancellation, the Dakar Rally was held in South America from 2009 to 2019.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which two-stroke Suzuki sport quad, introduced in 1987, earned the nickname 'Quadzilla'?",
+      "correct_answer": "LT500R",
+      "explanation": "",
+      "points": 400,
+      "options": [
+        "LT250R",
+        "LT500R",
+        "LT-Z400",
+        "LT80"
+      ],
+      "acceptable_answers": [],
+      "fact": "The Suzuki LT500R, a 500 cc two-stroke sport ATV launched in 1987, is famously nicknamed 'Quadzilla'.",
+      "verification": "unverified"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Which German motorcycle, first sold in 1894, is widely regarded as the first motorcycle to go into series production?",
+      "correct_answer": "Hildebrand & Wolfmüller",
+      "explanation": "",
+      "points": 500,
+      "options": [
+        "Hildebrand & Wolfmüller",
+        "Indian Single",
+        "Michaux-Perreaux",
+        "Daimler Reitwagen"
+      ],
+      "acceptable_answers": [],
+      "fact": "The Hildebrand & Wolfmüller of 1894 is widely regarded as the first series-production motorcycle.",
+      "verification": "unverified"
+    }
+  ]
+}

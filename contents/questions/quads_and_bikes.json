@@ -1,0 +1,572 @@
+[
+  {
+    "type": "multiple_choice",
+    "question": "Since 2020, the Dakar Rally, which includes bike and quad classes, has been held in which country?",
+    "correct_answer": "Saudi Arabia",
+    "explanation": "",
+    "points": 100,
+    "options": [
+      "United Arab Emirates",
+      "Morocco",
+      "Saudi Arabia",
+      "Egypt"
+    ],
+    "id": "Q0002560",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.489762",
+    "updated_at": "2026-11-14T14:22:45.489762",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The motorcycle manufacturer Ducati originates from which country?",
+    "correct_answer": "Italy",
+    "explanation": "",
+    "points": 100,
+    "options": [
+      "Germany",
+      "Italy",
+      "Spain",
+      "Japan"
+    ],
+    "id": "Q0002561",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.492286",
+    "updated_at": "2026-11-14T14:22:45.492286",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In which US city was the motorcycle company Harley-Davidson founded in 1903?",
+    "correct_answer": "Milwaukee",
+    "explanation": "",
+    "points": 200,
+    "options": [
+      "Milwaukee",
+      "Cleveland",
+      "Chicago",
+      "Detroit"
+    ],
+    "id": "Q0002562",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.494158",
+    "updated_at": "2026-11-14T14:22:45.494158",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The off-road motorcycle and quad maker KTM is headquartered in which country?",
+    "correct_answer": "Austria",
+    "explanation": "",
+    "points": 300,
+    "options": [
+      "Austria",
+      "Switzerland",
+      "Sweden",
+      "Germany"
+    ],
+    "id": "Q0002563",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.495830",
+    "updated_at": "2026-11-14T14:22:45.495830",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which Japanese company introduced the US90, a three-wheeled all-terrain vehicle, in 1970?",
+    "correct_answer": "Honda",
+    "explanation": "",
+    "points": 400,
+    "options": [
+      "Yamaha",
+      "Honda",
+      "Kawasaki",
+      "Suzuki"
+    ],
+    "id": "Q0002564",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.497797",
+    "updated_at": "2026-11-14T14:22:45.497797",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which manufacturer launched the QuadRunner LT125 in 1982, widely recognised as the first mass-produced four-wheeled ATV?",
+    "correct_answer": "Suzuki",
+    "explanation": "",
+    "points": 500,
+    "options": [
+      "Suzuki",
+      "Honda",
+      "Yamaha",
+      "Polaris"
+    ],
+    "id": "Q0002565",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.500782",
+    "updated_at": "2026-11-14T14:22:45.500782",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In the off-road vehicle world, what does the abbreviation ATV stand for?",
+    "correct_answer": "All-Terrain Vehicle",
+    "explanation": "",
+    "points": 200,
+    "options": [
+      "All-Terrain Vehicle",
+      "All-Track Velocity",
+      "Automatic Traction Vehicle",
+      "Advanced Trail Vehicle"
+    ],
+    "id": "Q0002566",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.503110",
+    "updated_at": "2026-11-14T14:22:45.503110",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The first Paris–Dakar Rally, held in 1978–79, finished in the capital of which African country?",
+    "correct_answer": "Senegal",
+    "explanation": "",
+    "points": 200,
+    "options": [
+      "Mauritania",
+      "Morocco",
+      "Mali",
+      "Senegal"
+    ],
+    "id": "Q0002567",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.505128",
+    "updated_at": "2026-11-14T14:22:45.505128",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Can-Am quads and side-by-sides are made by Bombardier Recreational Products, a company from which country?",
+    "correct_answer": "Canada",
+    "explanation": "",
+    "points": 300,
+    "options": [
+      "Austria",
+      "Sweden",
+      "United States",
+      "Canada"
+    ],
+    "id": "Q0002568",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.533578",
+    "updated_at": "2026-11-14T14:22:45.533578",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In which year did a consent decree in the United States end the sale of new three-wheeled ATVs by major manufacturers?",
+    "correct_answer": "1988",
+    "explanation": "",
+    "points": 400,
+    "options": [
+      "1995",
+      "1988",
+      "1983",
+      "1978"
+    ],
+    "id": "Q0002569",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.536100",
+    "updated_at": "2026-11-14T14:22:45.536100",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Built in 1885 by Gottlieb Daimler and Wilhelm Maybach, which vehicle is widely regarded as the first motorcycle powered by an internal combustion engine?",
+    "correct_answer": "Reitwagen",
+    "explanation": "",
+    "points": 500,
+    "options": [
+      "Reitwagen",
+      "Motorwagen",
+      "Draisine",
+      "Velocipede"
+    ],
+    "id": "Q0002570",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.538486",
+    "updated_at": "2026-11-14T14:22:45.538486",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Kawasaki, the maker of the Ninja motorcycles and Brute Force ATVs, comes from which country?",
+    "correct_answer": "Japan",
+    "explanation": "",
+    "points": 100,
+    "options": [
+      "China",
+      "Japan",
+      "South Korea",
+      "Taiwan"
+    ],
+    "id": "Q0002571",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.540658",
+    "updated_at": "2026-11-14T14:22:45.540658",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The ATV and off-road vehicle maker Polaris is headquartered in which US state?",
+    "correct_answer": "Minnesota",
+    "explanation": "",
+    "points": 300,
+    "options": [
+      "Michigan",
+      "Wisconsin",
+      "Minnesota",
+      "Texas"
+    ],
+    "id": "Q0002572",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.543534",
+    "updated_at": "2026-11-14T14:22:45.543534",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The famous Vespa scooter is produced by which Italian company?",
+    "correct_answer": "Piaggio",
+    "explanation": "",
+    "points": 300,
+    "options": [
+      "Aprilia",
+      "Piaggio",
+      "Benelli",
+      "Ducati"
+    ],
+    "id": "Q0002573",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.545941",
+    "updated_at": "2026-11-14T14:22:45.545941",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The 2008 Dakar Rally, which included motorcycle and quad classes, was cancelled because of security threats in which country?",
+    "correct_answer": "Mauritania",
+    "explanation": "",
+    "points": 400,
+    "options": [
+      "Morocco",
+      "Mali",
+      "Mauritania",
+      "Algeria"
+    ],
+    "id": "Q0002574",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.548164",
+    "updated_at": "2026-11-14T14:22:45.548164",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which Frenchman founded the Paris–Dakar Rally after getting lost in the Libyan desert during a motorcycle rally?",
+    "correct_answer": "Thierry Sabine",
+    "explanation": "",
+    "points": 500,
+    "options": [
+      "Jean-Claude Olivier",
+      "Thierry Sabine",
+      "Hubert Auriol",
+      "Cyril Neveu"
+    ],
+    "id": "Q0002575",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.550439",
+    "updated_at": "2026-11-14T14:22:45.550439",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "BMW Motorrad motorcycles, such as the R 1250 GS adventure bike, come from which country?",
+    "correct_answer": "Germany",
+    "explanation": "",
+    "points": 100,
+    "options": [
+      "Germany",
+      "Italy",
+      "Austria",
+      "Sweden"
+    ],
+    "id": "Q0002576",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.554512",
+    "updated_at": "2026-11-14T14:22:45.554512",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The motorcycle brand Royal Enfield began in Britain, but its parent company is now headquartered in which country?",
+    "correct_answer": "India",
+    "explanation": "",
+    "points": 200,
+    "options": [
+      "Indonesia",
+      "India",
+      "Malaysia",
+      "Thailand"
+    ],
+    "id": "Q0002577",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.557939",
+    "updated_at": "2026-11-14T14:22:45.557939",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which Japanese motorcycle and ATV maker uses a logo of three crossed tuning forks, reflecting its origins in musical instruments?",
+    "correct_answer": "Yamaha",
+    "explanation": "",
+    "points": 200,
+    "options": [
+      "Kawasaki",
+      "Suzuki",
+      "Honda",
+      "Yamaha"
+    ],
+    "id": "Q0002578",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.563810",
+    "updated_at": "2026-11-14T14:22:45.563810",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Honda's three-wheeled off-road vehicles of the 1970s and 1980s were sold under the trademark \"ATC\". What did ATC stand for?",
+    "correct_answer": "All-Terrain Cycle",
+    "explanation": "",
+    "points": 400,
+    "options": [
+      "Auto Trail Cycle",
+      "All-Terrain Car",
+      "All-Terrain Cycle",
+      "All-Track Carrier"
+    ],
+    "id": "Q0002579",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.566535",
+    "updated_at": "2026-11-14T14:22:45.566535",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In 1935, T. E. Lawrence, known as \"Lawrence of Arabia\", died after crashing a motorcycle made by which British manufacturer?",
+    "correct_answer": "Brough Superior",
+    "explanation": "",
+    "points": 500,
+    "options": [
+      "Vincent",
+      "Norton",
+      "Triumph",
+      "Brough Superior"
+    ],
+    "id": "Q0002580",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.569280",
+    "updated_at": "2026-11-14T14:22:45.569280",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "What does the rider of a standard quad bike (ATV) use to steer it?",
+    "correct_answer": "Handlebars",
+    "explanation": "",
+    "points": 100,
+    "options": [
+      "A steering wheel",
+      "Handlebars",
+      "Foot pedals",
+      "A joystick"
+    ],
+    "id": "Q0002581",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.571902",
+    "updated_at": "2026-11-14T14:22:45.571902",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Off-road vehicles that are similar to ATVs but seat several people next to each other are commonly known by which abbreviation?",
+    "correct_answer": "UTV",
+    "explanation": "",
+    "points": 300,
+    "options": [
+      "LUV",
+      "UTV",
+      "SUV",
+      "MPV"
+    ],
+    "id": "Q0002582",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.574643",
+    "updated_at": "2026-11-14T14:22:45.574643",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The Husqvarna brand, which has made motorcycles since 1903, originated in which country?",
+    "correct_answer": "Sweden",
+    "explanation": "",
+    "points": 300,
+    "options": [
+      "Norway",
+      "Sweden",
+      "Finland",
+      "Denmark"
+    ],
+    "id": "Q0002583",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.577410",
+    "updated_at": "2026-11-14T14:22:45.577410",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "In 2012, the Italian motorcycle maker Ducati was acquired by which carmaker, through its Lamborghini subsidiary?",
+    "correct_answer": "Audi",
+    "explanation": "",
+    "points": 400,
+    "options": [
+      "Porsche",
+      "Audi",
+      "BMW",
+      "Fiat"
+    ],
+    "id": "Q0002584",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.580308",
+    "updated_at": "2026-11-14T14:22:45.580308",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "The Yamaha Banshee sport quad, launched in 1987, used a two-stroke twin-cylinder engine derived from which Yamaha motorcycle?",
+    "correct_answer": "RZ350",
+    "explanation": "",
+    "points": 500,
+    "options": [
+      "RZ350",
+      "RD400",
+      "YZ250",
+      "TZR250"
+    ],
+    "id": "Q0002585",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.583114",
+    "updated_at": "2026-11-14T14:22:45.583114",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Triumph, the motorcycle brand behind the Bonneville and the Speed Triple, comes from which country?",
+    "correct_answer": "United Kingdom",
+    "explanation": "",
+    "points": 100,
+    "options": [
+      "Germany",
+      "United Kingdom",
+      "United States",
+      "Italy"
+    ],
+    "id": "Q0002586",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.586063",
+    "updated_at": "2026-11-14T14:22:45.586063",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "From 2009 to 2019, the Dakar Rally, including its bike and quad classes, was held on which continent?",
+    "correct_answer": "South America",
+    "explanation": "",
+    "points": 200,
+    "options": [
+      "South America",
+      "Australia",
+      "Asia",
+      "Africa"
+    ],
+    "id": "Q0002587",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.589022",
+    "updated_at": "2026-11-14T14:22:45.589022",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which two-stroke Suzuki sport quad, introduced in 1987, earned the nickname 'Quadzilla'?",
+    "correct_answer": "LT500R",
+    "explanation": "",
+    "points": 400,
+    "options": [
+      "LT250R",
+      "LT500R",
+      "LT-Z400",
+      "LT80"
+    ],
+    "id": "Q0002588",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.591868",
+    "updated_at": "2026-11-14T14:22:45.591868",
+    "active": true,
+    "use_count": 0
+  },
+  {
+    "type": "multiple_choice",
+    "question": "Which German motorcycle, first sold in 1894, is widely regarded as the first motorcycle to go into series production?",
+    "correct_answer": "Hildebrand & Wolfmüller",
+    "explanation": "",
+    "points": 500,
+    "options": [
+      "Hildebrand & Wolfmüller",
+      "Indian Single",
+      "Michaux-Perreaux",
+      "Daimler Reitwagen"
+    ],
+    "id": "Q0002589",
+    "category_id": "quads_and_bikes",
+    "created_at": "2026-11-14T14:22:45.595063",
+    "updated_at": "2026-11-14T14:22:45.595063",
+    "active": true,
+    "use_count": 0
+  }
+]
