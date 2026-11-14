@@ -1,0 +1,2 @@
+{"type": "game_started", "data": {"player_name": "Omar", "message": "Game started by Omar", "categories": ["quads_and_bikes", "cars", "أعلام_الدول", "الحرب_العالمية_الثانية"], "question_types": ["text", "multiple_choice", "true_false"], "players": ["Omar", "Shihab", "Moha"]}, "timestamp": "2026-11-14T14:24:38.342463"}
+{"type": "question_selected", "data": {"player_name": "Omar", "category": "quads_and_bikes", "points": 200, "message": "Omar selected a 200-point question from quads_and_bikes"}, "timestamp": "2026-11-14T14:24:49.766984"}

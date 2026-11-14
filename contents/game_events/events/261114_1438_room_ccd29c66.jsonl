@@ -1,0 +1,5 @@
+{"type": "turn_switch", "data": {"previous_player": "Omar", "new_player": "Shihab", "message": "Turn switched from Omar to Shihab"}, "timestamp": "2026-11-14T14:38:02.634348"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "cars", "points": 100, "message": "Shihab selected a 100-point question from cars"}, "timestamp": "2026-11-14T14:38:07.272651"}
+{"type": "answer_evaluated", "data": {"player_name": "Shihab", "evaluator": "Omar", "category": "cars", "points": 100, "is_correct": true, "message": "The Host evaluated Shihab's answer as correct and earned 100 points"}, "timestamp": "2026-11-14T14:38:15.643290"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Moha", "message": "Turn switched from Shihab to Moha"}, "timestamp": "2026-11-14T14:38:19.312383"}
+{"type": "game_ended", "data": {"player_name": "Omar", "message": "The game has been ended by the host (Omar)"}, "timestamp": "2026-11-14T14:38:34.321539"}

@@ -1,0 +1,5 @@
+{"type": "question_selected", "data": {"player_name": "Omar", "category": "cars", "points": 400, "message": "Omar selected a 400-point question from cars"}, "timestamp": "2026-11-14T14:36:05.520261"}
+{"type": "answer_evaluated", "data": {"player_name": "Omar", "evaluator": "Omar", "category": "cars", "points": 400, "is_correct": true, "message": "The Host evaluated Omar's answer as correct and earned 400 points"}, "timestamp": "2026-11-14T14:36:18.856098"}
+{"type": "turn_switch", "data": {"previous_player": "Omar", "new_player": "Shihab", "message": "Turn switched from Omar to Shihab"}, "timestamp": "2026-11-14T14:36:24.439940"}
+{"type": "tool_used", "data": {"player_name": "Omar", "tool_name": "double_points", "target_player": "Shihab", "message": "Omar activated Double Points for Shihab"}, "timestamp": "2026-11-14T14:36:27.487765"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "أعلام_الدول", "points": 400, "message": "Shihab selected a 400-point question from أعلام_الدول"}, "timestamp": "2026-11-14T14:36:31.116184"}

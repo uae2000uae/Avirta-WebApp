@@ -1,0 +1,5 @@
+{"type": "answer_submitted", "data": {"player_name": "Moha", "category": "أعلام_الدول", "points": 300, "is_correct": true, "message": "Moha answered correct and earned 300 points"}, "timestamp": "2026-11-14T14:26:01.442713"}
+{"type": "turn_switch", "data": {"previous_player": "Moha", "new_player": "Omar", "message": "Turn switched from Moha to Omar"}, "timestamp": "2026-11-14T14:26:04.829960"}
+{"type": "question_selected", "data": {"player_name": "Omar", "category": "quads_and_bikes", "points": 100, "message": "Omar selected a 100-point question from quads_and_bikes"}, "timestamp": "2026-11-14T14:26:07.367885"}
+{"type": "answer_submitted", "data": {"player_name": "Omar", "category": "quads_and_bikes", "points": 100, "is_correct": false, "message": "Omar answered incorrect and earned 0 points"}, "timestamp": "2026-11-14T14:26:38.972892"}
+{"type": "turn_switch", "data": {"previous_player": "Omar", "new_player": "Shihab", "message": "Turn switched from Omar to Shihab"}, "timestamp": "2026-11-14T14:26:51.961280"}

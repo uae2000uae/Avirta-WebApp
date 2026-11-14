@@ -1,0 +1,4 @@
+{"type": "turn_switch", "data": {"previous_player": "Moha", "new_player": "Omar", "message": "Turn switched from Moha to Omar"}, "timestamp": "2026-11-14T14:34:01.995430"}
+{"type": "question_selected", "data": {"player_name": "Omar", "category": "quads_and_bikes", "points": 500, "message": "Omar selected a 500-point question from quads_and_bikes"}, "timestamp": "2026-11-14T14:34:05.364615"}
+{"type": "answer_submitted", "data": {"player_name": "Omar", "category": "quads_and_bikes", "points": 500, "is_correct": false, "message": "Omar answered incorrect and earned 0 points"}, "timestamp": "2026-11-14T14:34:34.118830"}
+{"type": "turn_switch", "data": {"previous_player": "Omar", "new_player": "Shihab", "message": "Turn switched from Omar to Shihab"}, "timestamp": "2026-11-14T14:34:50.868250"}

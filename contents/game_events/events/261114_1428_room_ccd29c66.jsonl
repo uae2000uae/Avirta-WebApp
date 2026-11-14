@@ -1,0 +1,6 @@
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Moha", "message": "Turn switched from Shihab to Moha"}, "timestamp": "2026-11-14T14:28:00.791941"}
+{"type": "tool_used", "data": {"player_name": "Omar", "tool_name": "double_points", "target_player": "Moha", "message": "Omar activated Double Points for Moha"}, "timestamp": "2026-11-14T14:28:10.044168"}
+{"type": "question_selected", "data": {"player_name": "Moha", "category": "أعلام_الدول", "points": 800, "message": "Moha selected a 800-point question from أعلام_الدول"}, "timestamp": "2026-11-14T14:28:12.513837"}
+{"type": "answer_submitted", "data": {"player_name": "Moha", "category": "أعلام_الدول", "points": 800, "is_correct": false, "message": "Moha answered incorrect and earned 0 points"}, "timestamp": "2026-11-14T14:28:41.868007"}
+{"type": "turn_switch", "data": {"previous_player": "Moha", "new_player": "Omar", "message": "Turn switched from Moha to Omar"}, "timestamp": "2026-11-14T14:28:48.591133"}
+{"type": "question_selected", "data": {"player_name": "Omar", "category": "quads_and_bikes", "points": 300, "message": "Omar selected a 300-point question from quads_and_bikes"}, "timestamp": "2026-11-14T14:28:54.696145"}

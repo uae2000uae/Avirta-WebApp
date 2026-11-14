@@ -1,0 +1,3 @@
+{"type": "answer_submitted", "data": {"player_name": "Omar", "category": "quads_and_bikes", "points": 300, "is_correct": true, "message": "Omar answered correct and earned 300 points"}, "timestamp": "2026-11-14T14:29:10.463641"}
+{"type": "turn_switch", "data": {"previous_player": "Omar", "new_player": "Shihab", "message": "Turn switched from Omar to Shihab"}, "timestamp": "2026-11-14T14:29:17.926541"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "الحرب_العالمية_الثانية", "points": 500, "message": "Shihab selected a 500-point question from الحرب_العالمية_الثانية"}, "timestamp": "2026-11-14T14:29:28.008583"}
