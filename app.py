@@ -1704,7 +1704,12 @@ def question_bank_page():
     tag_defs = {t['id']: t for t in ctags.all_tags()}
     category_tags = ctags.category_tag_map()
     tag_usage = {tid: sum(1 for c in categories if tid in category_tags.get(c, [])) for tid in tag_defs}
-    return render_template('question_bank.html', categories=categories, stats=stats,
+
+    # Dashboard figures and charts (questionmanagement/bank_stats.py).
+    from questionmanagement.bank_stats import bank_dashboard
+    dash = bank_dashboard(question_bank.questions.values(), categories, category_tags, tag_defs,
+                          per_game=admin_setup.game_settings.get('questions_per_category', 10))
+    return render_template('question_bank.html', categories=categories, stats=stats, dash=dash,
                            tag_groups=ctags.tags_by_group(), tag_defs=tag_defs,
                            category_tags=category_tags, tag_usage=tag_usage)
 

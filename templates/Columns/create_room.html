@@ -16,17 +16,7 @@
             <label for="host_name">Host (player 1)</label>
             <input type="text" id="host_name" name="host_name" required placeholder="Player 1 (the host)" value="{{ prefill_host|default('') }}" autocomplete="nickname">
         </div>
-        <div class="form-group-inline">
-            <span class="field-label" id="players-label">More players <span class="muted">(optional)</span></span>
-            <div class="form-group-grid" role="group" aria-labelledby="players-label">
-                {% set pp = prefill_players|default([]) %}
-                {% for i in range(1, max_players) %}
-                <div class="form-group-equal-sm">
-                    <input type="text" id="player{{ i }}" name="additional_players" aria-label="Player {{ i+1 }}" placeholder="Player {{ i+1 }}" value="{{ pp[i-1] if pp|length >= i else '' }}">
-                </div>
-                {% endfor %}
-            </div>
-        </div>
+        {% include "_player_list.html" %}
       </fieldset>
 
       <fieldset class="form-step">

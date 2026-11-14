@@ -145,3 +145,22 @@ def test_ai_template_has_new_category_tags():
     # The AI save bar only renders with a generated batch, so check the template.
     with open(os.path.join(ROOT, "templates", "ai_question_generator.html"), encoding="utf-8") as fh:
         assert "new_category_tags" in fh.read()
+
+
+# ------------------------------------------------------------- player list
+def test_create_forms_start_with_add_player_not_fixed_boxes(client):
+    for url in ("/create_room", "/fastest/create_room"):
+        html = client.get(url).get_data(as_text=True)
+        assert "data-add-player" in html and "data-player-template" in html
+        # No pre-made empty boxes: only the template row has the field.
+        assert html.count('name="additional_players"') == 1, url
+
+
+def test_play_again_prefills_players_within_the_limit(client):
+    many = ",".join(f"P{i}" for i in range(2, 30))
+    html = client.get(f"/create_room?host=Sara&players={many}").get_data(as_text=True)
+    import app as app_module
+    limit = app_module.admin_setup.game_settings.get("max_players_per_room", 10)
+    # Host + (limit - 1) rows, plus the template row.
+    assert html.count('name="additional_players"') == (limit - 1) + 1
+    assert "disabled><i class=\"fas fa-user-plus\"" in html

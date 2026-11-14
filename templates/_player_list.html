@@ -1,0 +1,27 @@
+{# More players for the create-room forms (Columns, Fastest).
+   Starts empty (or with the "Play again" players); "Add player" adds a row
+   named "Player N", already selected so typing replaces it. The host is
+   player 1, so the list allows max_players - 1 more. Behaviour lives in
+   static/js/setup_form.js; the server also caps the count. #}
+{% set pp = (prefill_players|default([]))[:max_players - 1] %}
+<div class="form-group-inline player-list" data-player-list data-max-players="{{ max_players }}">
+    <span class="field-label" id="players-label">More players <span class="muted">(optional, up to {{ max_players }} including the host)</span></span>
+    <ol class="player-rows" role="list" aria-labelledby="players-label">
+        {% for name in pp %}
+        <li class="player-row">
+            <input type="text" name="additional_players" value="{{ name }}" aria-label="Player {{ loop.index + 1 }}" autocomplete="off">
+            <button type="button" class="player-remove" data-remove-player aria-label="Remove player {{ loop.index + 1 }}" title="Remove"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+        </li>
+        {% endfor %}
+    </ol>
+    <div class="player-add-row">
+        <button type="button" class="button secondary player-add" data-add-player{% if pp|length >= max_players - 1 %} disabled{% endif %}><i class="fas fa-user-plus" aria-hidden="true"></i> Add player</button>
+        <output class="player-count muted" aria-live="polite"><span data-player-count>{{ pp|length + 1 }}</span> / {{ max_players }} players</output>
+    </div>
+    <template data-player-template>
+        <li class="player-row">
+            <input type="text" name="additional_players" value="" autocomplete="off">
+            <button type="button" class="player-remove" data-remove-player title="Remove"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+        </li>
+    </template>
+</div>

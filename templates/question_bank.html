@@ -10,70 +10,155 @@
 <h1>Question Bank</h1>
 
 
-{% if stats %}
-<h3>Database Statistics</h3>
-<div class="stats-container">
-    <div class="stats-overview">
-        <div class="stat-card">
-            <h3>Total Questions</h3>
-            <p class="stat-value">{{ stats.total_questions }}</p>
+{% from "_charts.html" import hbars, columns, table_view, fmt %}
+{% set k = dash.kpis %}
+<section class="qb-dashboard" aria-labelledby="qb-dash-title">
+    <h2 class="qb-section-title" id="qb-dash-title">At a glance</h2>
+
+    {# One hero figure, then supporting tiles. #}
+    <div class="qb-kpis">
+        <div class="qb-hero">
+            <span class="qb-kpi-label">Questions in the bank</span>
+            <span class="qb-hero-value">{{ fmt(k.total) }}</span>
+            <span class="qb-kpi-sub">{{ k.categories }} categories · about {{ k.avg_per_category }} each</span>
         </div>
-        <div class="stat-card">
-            <h3>Active Questions</h3>
-            <p class="stat-value">{{ stats.active_questions }}</p>
+        <div class="qb-kpi">
+            <span class="qb-kpi-label">Times played</span>
+            <span class="qb-kpi-value">{{ fmt(k.total_plays) }}</span>
+            <span class="qb-kpi-sub">{{ k.avg_plays }} per question on average</span>
         </div>
-        <div class="stat-card">
-            <h3>Categories</h3>
-            <p class="stat-value">{{ stats.total_categories }}</p>
+        <div class="qb-kpi">
+            <span class="qb-kpi-label">Never played</span>
+            <span class="qb-kpi-value">{{ fmt(k.never_played) }}</span>
+            <span class="qb-kpi-sub">{{ '%g'|format(k.never_played_pct) }}% of the bank is still fresh</span>
         </div>
-        <div class="stat-card">
-            <h3>Total Uses</h3>
-            <p class="stat-value">{{ stats.total_uses }}</p>
+        <div class="qb-kpi">
+            <span class="qb-kpi-label">Low on fresh questions</span>
+            <span class="qb-kpi-value">{{ dash.categories.low|length }}</span>
+            <span class="qb-kpi-sub">categories with fewer than {{ dash.per_game }} unplayed</span>
+        </div>
+        <div class="qb-kpi">
+            <span class="qb-kpi-label">Reported</span>
+            <span class="qb-kpi-value">{{ fmt(k.reported) }}</span>
+            <span class="qb-kpi-sub">{% if session.get('admin_authenticated') %}<a href="{{ url_for('reported_questions') }}">Review reports</a>{% else %}questions flagged by players{% endif %}</span>
+        </div>
+        <div class="qb-kpi">
+            <span class="qb-kpi-label">Added in the last 30 days</span>
+            <span class="qb-kpi-value">{{ fmt(k.added_30d) }}</span>
+            <span class="qb-kpi-sub">new questions</span>
+        </div>
+        <div class="qb-kpi">
+            <span class="qb-kpi-label">With an explanation</span>
+            <span class="qb-kpi-value">{{ '%g'|format(k.explained_pct) }}%</span>
+            <span class="qb-kpi-sub">{{ fmt(k.active) }} of {{ fmt(k.total) }} questions active</span>
         </div>
     </div>
 
-    <div class="stats-details">
-        <div class="stat-section">
-            <h3>Points Distribution</h3>
-            <table class="stats-table">
-                <tr>
-                    <th>Points</th>
-                    <th>Count</th>
-                </tr>
-                {% for points, count in stats.points_distribution.items() %}
-                <tr>
-                    <td>{{ points }}</td>
-                    <td>{{ count }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+    {# Fresh vs played per category: the one two-series chart (legend + direct labels). #}
+    {% set c = dash.categories %}
+    <figure class="chart-card chart-wide" aria-labelledby="qb-fresh-title">
+        <figcaption>
+            <h3 class="chart-title" id="qb-fresh-title">{{ c.title }}</h3>
+            <p class="chart-sub">A game takes {{ dash.per_game }} questions from each category it uses. Sorted by fewest unplayed first.</p>
+            <ul class="chart-legend" aria-label="Legend">
+                <li><span class="key key-1" aria-hidden="true"></span>Never played</li>
+                <li><span class="key key-2" aria-hidden="true"></span>Played</li>
+            </ul>
+        </figcaption>
+        <div class="sbars" role="list">
+            {% for r in c.rows %}
+            {% set wf = (100 * r.fresh / c.max) if c.max else 0 %}
+            {% set wp = (100 * r.played / c.max) if c.max else 0 %}
+            <div class="sbar-row{% if r.low %} is-low{% endif %}" role="listitem" tabindex="0"
+                 data-tip="{{ r.name }}: {{ r.fresh }} never played, {{ r.played }} played ({{ r.total }} total){% if r.low %} · low{% endif %}">
+                <span class="hbar-label" dir="auto">{{ r.name }}</span>
+                <span class="hbar-track">
+                    <span class="sbar-seg seg-1" style="--w: {{ '%.2f'|format(wf) }}%"></span><span class="sbar-seg seg-2" style="--w: {{ '%.2f'|format(wp) }}%"></span>
+                    <span class="hbar-value">{{ r.fresh }} <span class="muted">/ {{ r.total }}</span>{% if r.low %} <span class="low-flag"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Low</span>{% endif %}</span>
+                </span>
+            </div>
+            {% endfor %}
         </div>
+        {{ table_view(c.title, c.rows, [('Category', 'name'), ('Never played', 'fresh'), ('Played', 'played'), ('Total', 'total'), ('Times played', 'plays'), ('Share of plays (%)', 'usage_pct')]) }}
+    </figure>
 
-        <div class="stat-section">
-            <h3>Question Types</h3>
-            <table class="stats-table">
-                <tr>
-                    <th>Type</th>
-                    <th>Count</th>
-                </tr>
-                {% for type, count in stats.question_types.items() %}
-                <tr>
-                    <td>{{ type }}</td>
-                    <td>{{ count }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+    <div class="chart-grid">
+        {{ columns('qb-plays', dash.plays.title, 'How many times each question has been asked in a game.', dash.plays.rows, dash.plays.max, 'questions', 'Times played') }}
+        {{ columns('qb-points', dash.points.title, 'Questions at each point value.', dash.points.rows, dash.points.max, 'questions', 'Points') }}
+        {{ hbars('qb-types', dash.types.title, 'Questions by answer format.', dash.types.rows, dash.types.max, 'questions', [('Share (%)', 'pct')]) }}
+        {{ hbars('qb-tags', 'Questions by tag', 'A question counts once for every tag its category has. Language tags first, then topics by size.', dash.tags.rows, dash.tags.max, 'questions', [('Categories', 'categories')]) }}
+        <div class="chart-wide-slot">
+        {{ columns('qb-months', dash.months.title, 'Questions added each month, by creation date.', dash.months.rows, dash.months.max, 'questions', 'Month added', False) }}
         </div>
     </div>
+</section>
+
+{# Two tabs below the dashboard. #category-tags opens the second one. #}
+{% set untagged_n = categories.keys()|reject('in', category_tags)|list|length %}
+<div class="qb-tabs">
+    <div class="tab-nav" role="tablist" aria-label="Question bank sections">
+        <button type="button" class="tab-button active" role="tab" id="qb-tab-categories" aria-controls="qb-panel-categories" aria-selected="true">Categories <span class="tab-count">{{ categories|length }}</span></button>
+        {% if session.get('admin_authenticated') %}
+        <button type="button" class="tab-button" role="tab" id="qb-tab-tags" aria-controls="category-tags" aria-selected="false" tabindex="-1">Category tags <span class="tab-count">{{ tag_defs|length }}</span>{% if untagged_n %}<span class="tab-alert" title="{{ untagged_n }} untagged categories"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><span class="visually-hidden"> {{ untagged_n }} untagged</span></span>{% endif %}</button>
+        {% endif %}
+    </div>
+    <div class="tab-pane active" role="tabpanel" id="qb-panel-categories" aria-labelledby="qb-tab-categories" tabindex="0">
+<div class="categories-list">
+    {% if categories %}
+        <div class="category-grid">
+            {% for category_id, category in categories.items() %}
+                <div class="category-card">
+                    <div class="category-header">
+                      <h3>{{ category.name }}</h3>
+                        {% if session.get('admin_authenticated') %}
+                        <div class="category-actions-icons">
+                            <a href="{{ url_for('edit_category', category_id=category_id) }}" class="edit-icon" title="Edit Category">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#" class="delete-icon" title="Delete Category" data-id="{{ category_id }}" onclick="confirmDelete(this); return false;">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+							</div>
+                        {% endif %}
+                    </div>
+                    <p>ID: {{ category_id }}</p>
+                    {% if session.get('admin_authenticated') %}
+                    <ul class="tag-pills" aria-label="Tags">
+                        {% for tid in category_tags.get(category_id, []) %}
+                        <li class="tag-pill{% if tag_defs[tid].group == 'language' %} is-language{% endif %}">{{ tag_defs[tid].en }}</li>
+                        {% else %}
+                        <li class="tag-pill is-missing"><a href="{{ url_for('edit_category', category_id=category_id) }}">No tags: add some</a></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <p class="question-count">Questions: {{ category.question_count }}</p>
+                    <p class="question-count">Usage: {{ category.usage_percentage }}%</p>
+                    <div class="category-actions">
+                        {% if session.get('admin_authenticated') %}
+                        <a href="{{ url_for('view_questions', category_id=category_id) }}" class="button">Questions</a>
+                        <div class="dropdown">
+                            <button class="button dropdown-toggle">Export</button>
+                            <div class="dropdown-menu">
+                                <a href="{{ url_for('export_questions', category_id=category_id, format='csv') }}">CSV</a>
+                                <a href="{{ url_for('export_questions', category_id=category_id, format='xlsx') }}">Excel</a>
+                                <a href="{{ url_for('export_questions', category_id=category_id, format='json') }}">JSON</a>
+                            </div>
+                        </div>
+                        {% else %}{% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No questions found. Please add or import new questions</p>
+    {% endif %}
 </div>
-{% endif %}
-
-
-{% if session.get('admin_authenticated') %}
+    </div>
+    {% if session.get('admin_authenticated') %}
+    <div class="tab-pane" role="tabpanel" id="category-tags" aria-labelledby="qb-tab-tags" tabindex="0">
 {# Filter tags shown as chips on the create-room pages. Each category's tags
    are set on its card (Edit) or when a new category is added. #}
-<section class="content-section tag-admin" id="category-tags">
-    <h3>Category tags | <span lang="ar" dir="rtl">وسوم الفئات</span></h3>
+<section class="tag-admin">
     <p class="muted">Players filter categories with these tags when they create a game. Language tags (English, Arabic) and topic tags combine: a category can have several. Set a category's tags with the edit button on its card.</p>
     {% set untagged = categories.keys()|reject('in', category_tags)|list %}
     {% if untagged %}
@@ -126,59 +211,10 @@
         <button type="submit">Add tag</button>
     </form>
 </section>
-{% endif %}
-
-<h3>Categories</h3>
-<div class="categories-list">
-    {% if categories %}
-        <div class="category-grid">
-            {% for category_id, category in categories.items() %}
-                <div class="category-card">
-                    <div class="category-header">
-                      <h3>{{ category.name }}</h3>
-                        {% if session.get('admin_authenticated') %}
-                        <div class="category-actions-icons">
-                            <a href="{{ url_for('edit_category', category_id=category_id) }}" class="edit-icon" title="Edit Category">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="#" class="delete-icon" title="Delete Category" data-id="{{ category_id }}" onclick="confirmDelete(this); return false;">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-							</div>
-                        {% endif %}
-                    </div>
-                    <p>ID: {{ category_id }}</p>
-                    {% if session.get('admin_authenticated') %}
-                    <ul class="tag-pills" aria-label="Tags">
-                        {% for tid in category_tags.get(category_id, []) %}
-                        <li class="tag-pill{% if tag_defs[tid].group == 'language' %} is-language{% endif %}">{{ tag_defs[tid].en }}</li>
-                        {% else %}
-                        <li class="tag-pill is-missing"><a href="{{ url_for('edit_category', category_id=category_id) }}">No tags: add some</a></li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <p class="question-count">Questions: {{ category.question_count }}</p>
-                    <p class="question-count">Usage: {{ category.usage_percentage }}%</p>
-                    <div class="category-actions">
-                        {% if session.get('admin_authenticated') %}
-                        <a href="{{ url_for('view_questions', category_id=category_id) }}" class="button">Questions</a>
-                        <div class="dropdown">
-                            <button class="button dropdown-toggle">Export</button>
-                            <div class="dropdown-menu">
-                                <a href="{{ url_for('export_questions', category_id=category_id, format='csv') }}">CSV</a>
-                                <a href="{{ url_for('export_questions', category_id=category_id, format='xlsx') }}">Excel</a>
-                                <a href="{{ url_for('export_questions', category_id=category_id, format='json') }}">JSON</a>
-                            </div>
-                        </div>
-                        {% else %}{% endif %}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>No questions found. Please add or import new questions</p>
+    </div>
     {% endif %}
 </div>
+<script src="{{ url_for('static', filename='js/charts.js') }}" defer></script>
 
 {% if session.get('download_file') %}
 <script>

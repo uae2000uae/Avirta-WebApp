@@ -1,0 +1,70 @@
+{# Small HTML/CSS charts for admin dashboards (no chart library).
+   Rules: thin marks (<= 24px), 4px rounded data end, square at the baseline,
+   2px surface gap between stacked parts, text in text tokens (never the
+   series colour), one series = no legend box, two series = legend + direct
+   labels. Every mark row is a hover/focus target with a tooltip
+   (static/js/charts.js) and every chart has a table view.
+   Values are data: always auto-escaped, never |safe. #}
+
+{% macro fmt(n) -%}{{ "{:,}".format(n) if n is number else n }}{%- endmacro %}
+
+{# rows: list of dicts; cols: [(heading, key)] #}
+{% macro table_view(caption, rows, cols) -%}
+<details class="chart-table">
+    <summary>Show as table</summary>
+    <table class="data-table">
+        <caption class="visually-hidden">{{ caption }}</caption>
+        <thead><tr>{% for h, k in cols %}<th scope="col">{{ h }}</th>{% endfor %}</tr></thead>
+        <tbody>
+        {% for r in rows %}<tr>{% for h, k in cols %}<td{% if not loop.first %} class="num"{% endif %} dir="auto">{{ fmt(r[k]) }}</td>{% endfor %}</tr>{% endfor %}
+        </tbody>
+    </table>
+</details>
+{%- endmacro %}
+
+{# Horizontal bars, one series. rows: [{label, value, ...}] #}
+{% macro hbars(id, title, subtitle, rows, max, unit='questions', extra_cols=[]) -%}
+<figure class="chart-card" aria-labelledby="{{ id }}-title">
+    <figcaption>
+        <h3 class="chart-title" id="{{ id }}-title">{{ title }}</h3>
+        {% if subtitle %}<p class="chart-sub">{{ subtitle }}</p>{% endif %}
+    </figcaption>
+    <div class="hbars" role="list">
+        {% for r in rows %}
+        {% set w = (100 * r.value / max) if max else 0 %}
+        <div class="hbar-row" role="listitem" tabindex="0" data-tip="{{ r.label }}: {{ fmt(r.value) }} {{ unit }}{% if r.tip %} · {{ r.tip }}{% endif %}">
+            <span class="hbar-label" dir="auto">{{ r.label }}</span>
+            <span class="hbar-track"><span class="hbar-bar" style="--w: {{ '%.2f'|format(w) }}%"></span><span class="hbar-value">{{ fmt(r.value) }}</span></span>
+        </div>
+        {% endfor %}
+    </div>
+    {{ table_view(title, rows, [('Name', 'label'), (unit|capitalize, 'value')] + extra_cols) }}
+</figure>
+{%- endmacro %}
+
+{# Vertical columns, one series. rows: [{label, value, short?, year?}].
+   label_all: print every value on its cap; otherwise only the largest (the
+   rest live in the tooltip and the table). #}
+{% macro columns(id, title, subtitle, rows, max, unit='questions', x_title='Group', label_all=True) -%}
+{% set top = (rows|map(attribute='value')|max) if rows else 0 %}
+<figure class="chart-card" aria-labelledby="{{ id }}-title">
+    <figcaption>
+        <h3 class="chart-title" id="{{ id }}-title">{{ title }}</h3>
+        {% if subtitle %}<p class="chart-sub">{{ subtitle }}</p>{% endif %}
+    </figcaption>
+    <div class="cols{% if rows|length > 10 %} cols-dense{% endif %}" role="list">
+        {% for r in rows %}
+        {% set h = (100 * r.value / max) if max else 0 %}
+        <div class="col" role="listitem" tabindex="0" data-tip="{{ r.name or r.label }}: {{ fmt(r.value) }} {{ unit }}" style="--h: {{ '%.2f'|format(h) }}%">
+            <span class="col-plot">
+                {% if label_all or (r.value == top and r.value > 0) %}<span class="col-value">{{ fmt(r.value) }}</span>{% endif %}
+                <span class="col-bar"></span>
+            </span>
+            <span class="col-label">{{ r.short or r.label }}{% if r.year is defined and (loop.first or r.short == 'Jan') %}<span class="col-year">{{ r.year }}</span>{% endif %}</span>
+        </div>
+        {% endfor %}
+    </div>
+    <p class="chart-axis-title">{{ x_title }}</p>
+    {{ table_view(title, rows, [(x_title, 'label'), (unit|capitalize, 'value')]) }}
+</figure>
+{%- endmacro %}
