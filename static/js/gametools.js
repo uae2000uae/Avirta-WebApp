@@ -47,27 +47,23 @@ window.avirtaUpdatePlayerTools = window.updatePlayerTools = function(data) {
             if (!toolsToUse) {
                 // Tool was already used, disable it
                 doublePointsButton.setAttribute('disabled', 'disabled');
-                doublePointsButton.style.opacity = '0.5';
-                doublePointsButton.style.cursor = 'not-allowed';
-                doublePointsButton.title = 'This tool has already been used';
+                doublePointsButton.classList.add('is-used');
+                doublePointsButton.title = 'Already used this game';
             } else {
                 // Enable button for host
                 doublePointsButton.removeAttribute('disabled');
-                doublePointsButton.style.opacity = '1';
-                doublePointsButton.style.cursor = 'pointer';
+                doublePointsButton.classList.remove('is-used');
                 doublePointsButton.title = 'Double the points for the current player';
             }
         } else {
             // Regular player logic - only check if tool has been used
             if (!data.player_tools.double_points) {
                 doublePointsButton.setAttribute('disabled', 'disabled');
-                doublePointsButton.style.opacity = '0.5';
-                doublePointsButton.style.cursor = 'not-allowed';
-                doublePointsButton.title = 'This tool has already been used';
+                doublePointsButton.classList.add('is-used');
+                doublePointsButton.title = 'Already used this game';
             } else {
                 doublePointsButton.removeAttribute('disabled');
-                doublePointsButton.style.opacity = '1';
-                doublePointsButton.style.cursor = 'pointer';
+                doublePointsButton.classList.remove('is-used');
                 doublePointsButton.title = 'Double the points for your next question';
             }
         }
@@ -88,27 +84,23 @@ window.avirtaUpdatePlayerTools = window.updatePlayerTools = function(data) {
             if (!toolsToUse) {
                 // Tool was already used, disable it
                 changeQuestionButton.setAttribute('disabled', 'disabled');
-                changeQuestionButton.style.opacity = '0.5';
-                changeQuestionButton.style.cursor = 'not-allowed';
-                changeQuestionButton.title = 'This tool has already been used';
+                changeQuestionButton.classList.add('is-used');
+                changeQuestionButton.title = 'Already used this game';
             } else {
                 // Enable button for host
                 changeQuestionButton.removeAttribute('disabled');
-                changeQuestionButton.style.opacity = '1';
-                changeQuestionButton.style.cursor = 'pointer';
+                changeQuestionButton.classList.remove('is-used');
                 changeQuestionButton.title = 'Change the question for the current player';
             }
         } else {
             // Regular player logic - only check if tool has been used
             if (!data.player_tools.change_question) {
                 changeQuestionButton.setAttribute('disabled', 'disabled');
-                changeQuestionButton.style.opacity = '0.5';
-                changeQuestionButton.style.cursor = 'not-allowed';
-                changeQuestionButton.title = 'This tool has already been used';
+                changeQuestionButton.classList.add('is-used');
+                changeQuestionButton.title = 'Already used this game';
             } else {
                 changeQuestionButton.removeAttribute('disabled');
-                changeQuestionButton.style.opacity = '1';
-                changeQuestionButton.style.cursor = 'pointer';
+                changeQuestionButton.classList.remove('is-used');
                 changeQuestionButton.title = 'Change to a different question';
             }
         }
@@ -129,8 +121,7 @@ function setupDoublePointsButton() {
 
             // Disable the button to prevent multiple clicks
             doublePointsBtn.disabled = true;
-            doublePointsBtn.style.opacity = '0.5';
-            doublePointsBtn.style.cursor = 'not-allowed';
+            doublePointsBtn.classList.add('is-used');
 
             // Get the current player from the page
             const gameRoomSection = document.querySelector('.page-section');
@@ -171,14 +162,12 @@ function setupDoublePointsButton() {
 
                     // Disable the button permanently as the tool has been used
                     doublePointsBtn.disabled = true;
-                    doublePointsBtn.style.opacity = '0.3';
-                    doublePointsBtn.style.cursor = 'not-allowed';
-                    doublePointsBtn.title = 'This tool has already been used';
+                    doublePointsBtn.classList.add('is-used');
+                    doublePointsBtn.title = 'Already used this game';
                 } else {
                     // Re-enable the button if there was an error
                     doublePointsBtn.disabled = false;
-                    doublePointsBtn.style.opacity = '1';
-                    doublePointsBtn.style.cursor = 'pointer';
+                    doublePointsBtn.classList.remove('is-used');
 
                     // Show error message
                     if (typeof showModal === 'function') {
@@ -193,8 +182,7 @@ function setupDoublePointsButton() {
 
                 // Re-enable the button if there was an error
                 doublePointsBtn.disabled = false;
-                doublePointsBtn.style.opacity = '1';
-                doublePointsBtn.style.cursor = 'pointer';
+                doublePointsBtn.classList.remove('is-used');
 
                 if (typeof showModal === 'function') {
                     showModal('Error using Double Points tool.');
@@ -245,8 +233,7 @@ function setupChangeQuestionButton() {
 
             // Disable the button to prevent multiple clicks
             button.disabled = true;
-            button.style.opacity = '0.5';
-            button.style.cursor = 'not-allowed';
+            button.classList.add('is-used');
 
             // Get the tool_name from the nearest input or use default
             const container = button.closest('.form-actions');
@@ -300,8 +287,7 @@ function setupChangeQuestionButton() {
 
                     // Re-enable the button if there was an error
                     button.disabled = false;
-                    button.style.opacity = '1';
-                    button.style.cursor = 'pointer';
+                    button.classList.remove('is-used');
                     if (typeof showModal === 'function') {
                         showModal('Could not change question: ' + (data.message || ''));
                     } else {
@@ -319,8 +305,7 @@ function setupChangeQuestionButton() {
 
                 // Re-enable the button if there was an error
                 button.disabled = false;
-                button.style.opacity = '1';
-                button.style.cursor = 'pointer';
+                button.classList.remove('is-used');
                 if (typeof showModal === 'function') {
                     showModal('Error using Change Question tool.');
                 } else {

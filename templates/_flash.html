@@ -1,0 +1,19 @@
+{# Flash messages, shared by base.html and gamebase.html.
+   Kind: error / warning / success / info (anything uncategorised is info, never
+   "success"). Errors stay until dismissed; the rest leave after a few seconds
+   (timed in ui.js, not by an animation delay, so reduced motion keeps them). #}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                {% if category in ('error', 'warning', 'success') %}{% set kind = category %}
+                {% elif category == 'result-correct' %}{% set kind = 'success' %}
+                {% else %}{% set kind = 'info' %}{% endif %}
+                <div class="flash-message {{ kind }}" role="{{ 'alert' if kind == 'error' else 'status' }}" data-kind="{{ kind }}">
+                    <span class="flash-text" dir="auto">{{ message }}</span>
+                    <button type="button" class="flash-close" aria-label="Dismiss message">&times;</button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}

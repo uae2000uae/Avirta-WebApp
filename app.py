@@ -496,20 +496,42 @@ def create_room():
     max_players = admin_setup.game_settings.get('max_players_per_room', 10)
     # Get the maximum number of categories per room from admin settings
     max_categories = admin_setup.game_settings.get('max_categories_per_room', 7)
-    return render_template('Columns/create_room.html', categories=categories, max_players=max_players, max_categories=max_categories)
+    # "Play again" links pre-fill the same players: ?host=Name&players=A,B,C
+    prefill_host = (request.args.get('host') or '').strip()
+    prefill_players = [p.strip() for p in (request.args.get('players') or '').split(',') if p.strip()]
+    # Filter tags for the category picker (contents/category_tags.json).
+    from questionmanagement.category_tags import category_tag_filters
+    tag_groups, category_tags = category_tag_filters(list(categories))
+    return render_template('Columns/create_room.html', categories=categories, max_players=max_players,
+                           max_categories=max_categories, prefill_host=prefill_host,
+                           prefill_players=prefill_players,
+                           tag_groups=tag_groups, category_tags=category_tags)
 
 
 
 @app.route('/join_room', methods=['GET', 'POST'])
 def join_room():
-    """Join an existing game room."""
-    if request.method == 'POST':
-        room_id = request.form.get('room_id')
-        player_name = request.form.get('player_name')
+    """Join an existing game room.
 
-        if not room_id or not player_name:
-            flash('Please fill in all fields.')
-            return redirect(url_for('join_room'))
+    Problems are shown inline next to the field and the form keeps what the
+    player typed, so a typo in the Room ID never costs them their name too.
+    An invite link (/join_room?room=<id>) pre-fills the Room ID.
+    """
+    def show_form(room_id='', player_name='', errors=None):
+        return render_template('Columns/join_room.html', room_id=room_id,
+                               player_name=player_name, errors=errors or {})
+
+    if request.method == 'POST':
+        room_id = (request.form.get('room_id') or '').strip()
+        player_name = (request.form.get('player_name') or '').strip()
+
+        errors = {}
+        if not room_id:
+            errors['room_id'] = ('Enter the Room ID from the host.', 'أدخل رقم الغرفة من المضيف.')
+        if not player_name:
+            errors['player_name'] = ('Enter your name.', 'أدخل اسمك.')
+        if errors:
+            return show_form(room_id, player_name, errors)
 
         # Check if the room exists in memory
         if room_id not in game_rooms:
@@ -519,8 +541,8 @@ def join_room():
                 # Add it to the in-memory dictionary
                 game_rooms[room_id] = game_room
             else:
-                flash('Game room not found.')
-                return redirect(url_for('join_room'))
+                return show_form(room_id, player_name, {
+                    'room_id': ('No game has this Room ID. Check it with the host.', 'لا توجد لعبة بهذا الرقم. تحقق منه مع المضيف.')})
 
         # Add the player to the room
         game_room = game_rooms[room_id]
@@ -530,14 +552,14 @@ def join_room():
 
         # Check if the room is already at maximum capacity
         if len(game_room.players) >= max_players:
-            flash(f'Game room is full. Maximum number of players ({max_players}) reached.')
-            return redirect(url_for('join_room'))
+            return show_form(room_id, player_name, {
+                'room_id': (f'This game is full ({max_players} players).', 'هذه اللعبة ممتلئة.')})
 
         success = game_room.add_player(player_name)
 
         if not success:
-            flash('<span class="error">Could not join the game room. You might already be in it.</span>', 'error')
-            return redirect(url_for('join_room'))
+            return show_form(room_id, player_name, {
+                'player_name': ('That name is already in this game. Pick another name.', 'هذا الاسم موجود في اللعبة. اختر اسماً آخر.')})
 
         # Store the room ID and player name in the session
         session['room_id'] = room_id
@@ -554,20 +576,20 @@ def join_room():
 
         return redirect(url_for('joined_room', room_id=room_id))
 
-    # GET request
-    return render_template('Columns/join_room.html')
+    # GET request: an invite link carries the Room ID.
+    return show_form(room_id=(request.args.get('room') or '').strip())
 
 @app.route('/joined_room/<room_id>')
 def joined_room(room_id):
     """View a joined game room without the questions grid."""
     # Check if the room exists
     if room_id not in game_rooms:
-        flash('Game room not found.')
+        flash('Game room not found.', 'error')
         return redirect(url_for('index'))
 
     # Check if the player is in the session
     if 'player_name' not in session:
-        flash('Please join the game first.')
+        flash('Please join the game first.', 'error')
         return redirect(url_for('join_room'))
 
     # Get the game room and player name
@@ -576,7 +598,7 @@ def joined_room(room_id):
 
     # Check if the player is in the room
     if player_name not in game_room.players:
-        flash('You are not in this game room.')
+        flash('You are not in this game room.', 'error')
         return redirect(url_for('join_room'))
 
     # Get the current player (whose turn it is)
@@ -613,17 +635,21 @@ def joined_room(room_id):
         leaderboard=leaderboard
     )
 
-@app.route('/end_game/<room_id>')
+@app.route('/end_game/<room_id>', methods=['POST'])
 def end_game(room_id):
-    """End a game and return to the home page."""
+    """End a game and return to the home page.
+
+    POST only: ending wipes the board for everyone, so it must come from a
+    confirmed form submit, never a link (or a browser prefetching one).
+    """
     # Check if the room exists
     if room_id not in game_rooms:
-        flash('Game room not found.')
+        flash('Game room not found.', 'error')
         return redirect(url_for('index'))
 
     # Check if the player is in the session
     if 'player_name' not in session:
-        flash('Please join the game first.')
+        flash('Please join the game first.', 'error')
         return redirect(url_for('index'))
 
     # Get the game room and player name
@@ -642,7 +668,7 @@ def end_game(room_id):
 
     # If we have a participants list, validate membership
     if participants and player_name not in participants:
-        flash('You are not in this game room.')
+        flash('You are not in this game room.', 'error')
         return redirect(url_for('index'))
 
     # Determine host permission in a mode-agnostic way
@@ -660,7 +686,7 @@ def end_game(room_id):
         is_host_ok = (team_a is None) or (player_name == team_a)
 
     if not is_host_ok:
-        flash('Only the host can end the game.')
+        flash('Only the host can end the game.', 'error')
         return redirect(url_for('index'))
 
 
@@ -689,7 +715,7 @@ def end_game(room_id):
     session.pop('room_id', None)
     session.pop('player_name', None)
 
-    flash('You have ended the game.')
+    flash('You have ended the game.', 'success')
     return redirect(url_for('index'))
 
 @app.route('/leave_game/<room_id>')
@@ -738,7 +764,7 @@ def leave_game(room_id):
     session.pop('room_id', None)
     session.pop('player_name', None)
 
-    flash('You have left the game room.')
+    flash('You have left the game room.', 'success')
     return redirect(url_for('index'))
 
 @app.route('/game_room/<room_id>')
@@ -1023,15 +1049,15 @@ def evaluate_answer():
     acting_player = session.get('acting_player')
 
     if not room_id or not player_name:
-        flash('Please join a game first.')
+        flash('Please join a game first.', 'error')
         return redirect(url_for('index'))
 
     if room_id not in game_rooms:
-        flash('Game room not found.')
+        flash('Game room not found.', 'error')
         return redirect(url_for('index'))
 
     if 'current_question' not in session:
-        flash('No question selected.')
+        flash('No question selected.', 'error')
         return redirect(url_for('game_room', room_id=room_id))
 
     game_room = game_rooms[room_id]
@@ -1235,7 +1261,8 @@ def leaderboard(room_id):
         template,
         room_id=room_id,
         leaderboard=leaderboard,
-        room=game_room
+        room=game_room,
+        is_host=bool(session.get('player_name')) and game_room.is_host(session.get('player_name'))
     )
 
 @app.route('/reported_questions')
@@ -1368,7 +1395,7 @@ def edit_reported_question(report_id):
             # Reload question_bank to get the updated questions
             question_bank.load_questions()
 
-            flash('Question updated successfully.')
+            flash('Question updated successfully.', 'success')
 
             # Handle different actions
             if action == 'save_next':
@@ -1673,7 +1700,38 @@ def question_bank_page():
     # Sort the points distribution
     stats['points_distribution'] = dict(sorted(stats['points_distribution'].items()))
 
-    return render_template('question_bank.html', categories=categories, stats=stats)
+    from questionmanagement import category_tags as ctags
+    tag_defs = {t['id']: t for t in ctags.all_tags()}
+    category_tags = ctags.category_tag_map()
+    tag_usage = {tid: sum(1 for c in categories if tid in category_tags.get(c, [])) for tid in tag_defs}
+    return render_template('question_bank.html', categories=categories, stats=stats,
+                           tag_groups=ctags.tags_by_group(), tag_defs=tag_defs,
+                           category_tags=category_tags, tag_usage=tag_usage)
+
+
+@app.route('/question_bank/tags', methods=['POST'])
+def manage_category_tags():
+    """Add, rename or delete a filter tag (Question Bank > Category tags)."""
+    if not session.get('admin_authenticated', False):
+        flash('You must be logged in as an admin to access this page.', 'error')
+        return redirect(url_for('admin_controls'))
+    from questionmanagement import category_tags as ctags
+    action = request.form.get('action')
+    tag_id = (request.form.get('tag_id') or '').strip() or None
+    if action == 'delete' and tag_id:
+        hit = ctags.delete_tag(tag_id)
+        flash(f'Tag deleted. It was removed from {hit} categor{"y" if hit == 1 else "ies"}.', 'success')
+    elif action in ('add', 'update'):
+        ok, msg, _ = ctags.save_tag(request.form.get('en'), request.form.get('ar'),
+                                    request.form.get('group'), tag_id if action == 'update' else None)
+        flash(msg, 'success' if ok else 'error')
+        if not ok:
+            return redirect(url_for('question_bank_page') + '#category-tags')
+    else:
+        flash('Unknown tag action.', 'error')
+        return redirect(url_for('question_bank_page') + '#category-tags')
+    _request_github_sync('category tags updated')
+    return redirect(url_for('question_bank_page') + '#category-tags')
 
 @app.route('/edit_category/<category_id>', methods=['GET', 'POST'])
 def edit_category(category_id):
@@ -1686,6 +1744,8 @@ def edit_category(category_id):
         name = request.form.get('name')
         description = request.form.get('description')
         new_category_id = request.form.get('category_id')
+        from questionmanagement import category_tags as ctags
+        chosen_tags = request.form.getlist('tags')
 
         # Update the category
         update_data = {
@@ -1720,6 +1780,10 @@ def edit_category(category_id):
                     # Delete the old category
                     category_manager.delete_category(category_id)
 
+                    # Filter tags follow the category to its new id.
+                    ctags.rename_category(category_id, new_category_id)
+                    ctags.set_category_tags(new_category_id, chosen_tags)
+
                     # Remove any duplicate questions that might have been created
                     question_uploader.remove_duplicate_questions()
 
@@ -1730,7 +1794,7 @@ def edit_category(category_id):
                     except Exception:
                         pass
 
-                    flash('Category updated successfully with new ID!')
+                    flash('Category updated successfully with new ID!', 'success')
                     return redirect(url_for('question_bank_page'))
                 else:
                     flash('Failed to update category ID. ID may already be in use.', 'error')
@@ -1740,9 +1804,10 @@ def edit_category(category_id):
         else:
             # Just update the existing category
             success = category_manager.update_category(category_id, **update_data)
+            ctags.set_category_tags(category_id, chosen_tags)
 
             if success:
-                flash('Category updated successfully!')
+                flash('Category updated successfully!', 'success')
                 # Best-effort auto-push
                 try:
                     from contents.admin_controls.github_integration import push_all_amended_questions_async
@@ -1760,14 +1825,17 @@ def edit_category(category_id):
         flash('Category not found.', 'error')
         return redirect(url_for('question_bank_page'))
 
-    return render_template('edit_category.html', category_id=category_id, category=category)
+    from questionmanagement import category_tags as ctags
+    return render_template('edit_category.html', category_id=category_id, category=category,
+                           tag_groups=ctags.tags_by_group(),
+                           selected_tags=ctags.category_tag_map().get(category_id, []))
 
 @app.route('/question_bank/view/<category_id>')
 def view_questions(category_id):
     """View questions in a specific category."""
     # Check if user is authenticated as admin
     if not session.get('admin_authenticated', False):
-        flash('You must be logged in as an admin to access this page.')
+        flash('You must be logged in as an admin to access this page.', 'error')
         return redirect(url_for('admin_controls'))
     # Reload questions from disk to ensure we have the latest data
     question_bank.load_questions()
@@ -1847,7 +1915,7 @@ def delete_question(question_id):
     if success:
         # Reload question_bank to reflect the changes
         question_bank.load_questions()
-        flash('Question deleted successfully.')
+        flash('Question deleted successfully.', 'success')
         # Best-effort auto-push
         try:
             from contents.admin_controls.github_integration import push_all_amended_questions_async
@@ -1874,7 +1942,9 @@ def delete_category_questions(category_id):
     if success:
         # Reload question_bank to reflect the changes
         question_bank.load_questions()
-        flash(f'Successfully deleted {count} questions from the category.')
+        from questionmanagement.category_tags import remove_category as _untag
+        _untag(category_id)
+        flash(f'Successfully deleted {count} questions from the category.', 'success')
         # Best-effort auto-push
         try:
             from contents.admin_controls.github_integration import push_all_amended_questions_async
@@ -1962,7 +2032,7 @@ def add_question_page():
             # Reload question_bank to get the updated questions
             question_bank.load_questions()
 
-            flash('Question updated successfully!')
+            flash('Question updated successfully!', 'success')
         else:
             # Add a new question
             # Add the question to the question bank
@@ -1977,7 +2047,7 @@ def add_question_page():
             # Reload question_bank to get the updated questions
             question_bank.load_questions()
 
-            flash('Question added successfully!')
+            flash('Question added successfully!', 'success')
 
         # Best-effort auto-push for both add and edit
         try:
@@ -2038,6 +2108,10 @@ def bulk_import_page():
             create_categories = True
 
             try:
+                # Categories that exist before the import; any others are new.
+                question_bank.load_questions()
+                before = set(question_bank.categories)
+
                 # Import the questions
                 import_stats = bulk_import.import_from_file(file_path, default_category, create_categories)
 
@@ -2057,6 +2131,17 @@ def bulk_import_page():
                 # Reload question_bank to get the updated questions
                 question_bank.load_questions()
 
+                # Tag the categories this file created (chosen on the import form).
+                new_tags = request.form.getlist('new_category_tags')
+                new_categories = [c for c in question_bank.categories if c not in before]
+                if new_categories:
+                    from questionmanagement.category_tags import set_category_tags
+                    for cid in new_categories:
+                        set_category_tags(cid, new_tags)
+                    if not new_tags:
+                        flash(f'New categories have no tags yet: {", ".join(new_categories)}. '
+                              'Add them under Question Bank so players can filter them.', 'warning')
+
                 # Remove the temporary file
                 os.remove(file_path)
 
@@ -2067,7 +2152,7 @@ def bulk_import_page():
                 except Exception:
                     pass
 
-                flash(f'Successfully imported {import_stats["successful"]} questions. Failed: {import_stats["failed"]}')
+                flash(f'Successfully imported {import_stats["successful"]} questions. Failed: {import_stats["failed"]}', 'success')
                 return redirect(url_for('admin_controls'))
 
             except Exception as e:
@@ -2075,7 +2160,8 @@ def bulk_import_page():
                 return redirect(request.url)
 
     categories = get_categories_with_questions()
-    return render_template('bulk_import.html', categories=categories)
+    from questionmanagement.category_tags import tags_by_group
+    return render_template('bulk_import.html', categories=categories, tag_groups=tags_by_group())
 
 @app.route('/export_template/<format>')
 def export_template_route(format):
@@ -2304,7 +2390,7 @@ def admin_controls():
         # Handle logout
         if action == 'logout':
             session['admin_authenticated'] = False
-            flash('You have been logged out.')
+            flash('You have been logged out.', 'success')
             return redirect(url_for('index'))
 
         # Handle general settings update
@@ -2327,7 +2413,7 @@ def admin_controls():
 
                     admin_setup.update_game_setting(setting_name, value)
 
-            flash('Game settings updated successfully.')
+            flash('Game settings updated successfully.', 'success')
 
         # Handle login
         else:
@@ -2342,7 +2428,7 @@ def admin_controls():
                 session['admin_authenticated'] = True
                 admin_setup.record_stat('logins')
                 admin_setup.log_event("Admin user logged in", level='SUCCESS', category='AUTH')
-                flash('Login successful.')
+                flash('Login successful.', 'success')
                 return redirect(url_for('admin_controls'))
             else:
                 login_error = login_message
@@ -2406,6 +2492,12 @@ def _sync_alert_audience():
 @app.context_processor
 def _inject_sync_alert_flag():
     return {'show_sync_alerts': _sync_alert_audience()}
+
+
+@app.context_processor
+def _inject_current_year():
+    # Footer copyright year, so it never goes stale.
+    return {'current_year': datetime.now().year}
 
 
 @app.route('/api/sync/alerts', methods=['GET'])

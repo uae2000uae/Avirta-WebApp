@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_tag_picker.html" import tag_picker %}
 
 {% block title %}Bulk Import Questions - Avirta{% endblock %}
 
@@ -28,6 +29,11 @@
             <input type="file" id="file" name="file" accept=".csv,.xlsx,.xls" required>
             <small>Accepted formats: CSV, Excel (.xlsx, .xls)</small>
         </div>
+        <fieldset class="form-step tag-fieldset">
+            <legend>Tags for new categories</legend>
+            <p class="muted">Categories in this file that don't exist yet get these filter tags. Existing categories keep theirs. You can change them later in Question Bank.</p>
+            {{ tag_picker(tag_groups, selected=[], name='new_category_tags', id_prefix='import-tag') }}
+        </fieldset>
 <div class="form-actions">
       <button type="submit" class="button">Import Questions</button>
         </div>

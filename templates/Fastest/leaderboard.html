@@ -1,6 +1,5 @@
-<link href="../static/css/style.css" rel="stylesheet" type="text/css">
-<link href="../../static/css/style.css" rel="stylesheet" type="text/css">
 {% extends "gamebase.html" %}
+{% from "_bi.html" import bi, end_game_form %}
 
 {% block title %}Avirta - Who is the fastest - Scores{% endblock %}
 
@@ -8,9 +7,9 @@
 <div class="leaderboard-section" data-final="{{ 'true' if room.is_board_completed() else 'false' }}">
     <div class="leaderboard-header">
         {% if room.is_board_completed() %}
-            <h2>Final Scores | النتائج النهائية</h2>
+            <h1 class="leaderboard-title">{{ bi('Final Scores', 'النتائج النهائية') }}</h1>
         {% else %}
-            <h2>Current Scores | النتائج الحالية</h2>
+            <h1 class="leaderboard-title">{{ bi('Current Scores', 'النتائج الحالية') }}</h1>
         {% endif %}
     </div>
 
@@ -20,9 +19,9 @@
             <table class="leaderboard-table">
                 <thead>
                     <tr>
-                        <th>Rank | الترتيب</th>
-                        <th>Player | اللاعب</th>
-                        <th>Score | النتيجة</th>
+                        <th>{{ bi('Rank', 'الترتيب') }}</th>
+                        <th>{{ bi('Player', 'اللاعب') }}</th>
+                        <th>{{ bi('Score', 'النتيجة') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +36,7 @@
             </table>
         {% else %}
             <div class="no-scores">
-                <p>No scores yet. | لا توجد نتائج بعد.</p>
+                <p>{{ bi('No scores yet.', 'لا توجد نتائج بعد.') }}</p>
             </div>
         {% endif %}
     </div>
@@ -45,21 +44,22 @@
     {% if is_host and not room.is_board_completed() %}
         <form action="{{ url_for('fastest_next_question') }}" method="post" class="form-actions clear">
             <input type="hidden" name="room_id" value="{{ room.room_id }}">
-            <button type="submit" class="button">Next Question | السؤال التالي</button>
+            <button type="submit" class="button">{{ bi('Next Question', 'السؤال التالي') }}</button>
         </form>
     {% endif %}
 
     {% if not is_host and not room.is_board_completed() %}
         {# The host moves on with Next Question; other players need a way back. #}
         <div class="form-actions">
-            <a href="{{ url_for('fastest_play', room_id=room.room_id) }}" class="button">Back to game | العودة إلى اللعبة</a>
+            <a href="{{ url_for('fastest_play', room_id=room.room_id) }}" class="button">{{ bi('Back to game', 'العودة إلى اللعبة') }}</a>
         </div>
     {% endif %}
 
     {% if room.is_board_completed() %}
         <div class="form-actions clear center">
-            <p class="text-center"><strong>Game Over! All questions have been answered.<br>انتهت اللعبة! تمت الإجابة على جميع الأسئلة.</strong></p>
-            <a href="{{ url_for('end_game', room_id=room.room_id) }}" class="button large">End Game | إنهاء اللعبة</a>
+            <p class="text-center"><strong>Game Over! All questions have been answered.<br><span lang="ar" dir="rtl">انتهت اللعبة! تمت الإجابة على جميع الأسئلة.</span></strong></p>
+            {% if is_host %}<a href="{{ url_for('fastest_create_room', host=room.host, players=(room.players|reject('equalto', room.host)|join(','))) }}" class="button large">{{ bi('Play again', 'العب مرة أخرى') }}</a>{% endif %}
+            {{ end_game_form(room.room_id) }}
         </div>
     {% endif %}
 </div>

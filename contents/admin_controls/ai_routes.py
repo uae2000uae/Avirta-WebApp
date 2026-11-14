@@ -17,6 +17,7 @@ from questionmanagement.ai_engine import batches, checks, config, keys, service
 from questionmanagement.ai_engine import generator as ai_generator
 from questionmanagement.ai_engine import validator as ai_validator
 from questionmanagement.ai_engine.client import AIError
+from questionmanagement.category_tags import set_category_tags, tags_by_group
 
 
 def register_ai_routes(app, *, admin_setup, question_bank, category_manager, question_uploader,
@@ -172,6 +173,7 @@ def register_ai_routes(app, *, admin_setup, question_bank, category_manager, que
             batch_id=batch_id if questions else None,
             ai=ai_state(),
             admin_setup=admin_setup,
+            tag_groups=tags_by_group(),
         )
 
     @app.route("/api/ai/generate", methods=["POST"], endpoint="ai_generate_start")
@@ -232,6 +234,9 @@ def register_ai_routes(app, *, admin_setup, question_bank, category_manager, que
             category_id = "_".join(new_name.lower().split())
             if not category_manager.get_category(category_id):
                 category_manager.add_category(category_id, new_name)
+            # Filter tags chosen next to the new category name.
+            if not set_category_tags(category_id, request.form.getlist("new_category_tags")):
+                flash(f"'{new_name}' has no filter tags yet. Add them under Question Bank so players can find it.", "warning")
         else:
             flash("Choose a category or enter a new category name.", "error")
             return redirect(url_for("ai_question_generator", batch_id=batch_id))

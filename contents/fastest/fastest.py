@@ -126,7 +126,16 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
         max_players = admin_setup.game_settings.get('max_players_per_room', 10)
         # Get the maximum number of categories per room from admin settings
         max_categories = admin_setup.game_settings.get('max_categories_per_room', 7)
-        return render_template('Fastest/create_room.html', categories=categories, max_players=max_players, max_categories=max_categories)
+        # "Play again" links pre-fill the same players: ?host=Name&players=A,B,C
+        prefill_host = (request.args.get('host') or '').strip()
+        prefill_players = [p.strip() for p in (request.args.get('players') or '').split(',') if p.strip()]
+        # Filter tags for the category picker (contents/category_tags.json).
+        from questionmanagement.category_tags import category_tag_filters
+        tag_groups, category_tags = category_tag_filters(list(categories))
+        return render_template('Fastest/create_room.html', categories=categories, max_players=max_players,
+                               max_categories=max_categories, prefill_host=prefill_host,
+                               prefill_players=prefill_players,
+                               tag_groups=tag_groups, category_tags=category_tags)
 
     def get_categories_with_questions():
         """Helper: derive categories dynamically from loaded questions (dict of id -> info).
@@ -200,7 +209,7 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
 
         # Check if the room exists
         if room_id not in game_rooms:
-            flash('Game room not found.')
+            flash('Game room not found.', 'error')
             return redirect(url_for('index'))
 
         # Get the game room
@@ -209,7 +218,7 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
         # Check if the player is the host
         player_name = session.get('player_name')
         if not player_name or player_name != game_room.host:
-            flash('Only the host can reveal questions.')
+            flash('Only the host can reveal questions.', 'error')
             return redirect(url_for('fastest_play', room_id=room_id))
 
         # Reveal the question
@@ -235,7 +244,7 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
 
         # Check if the room exists
         if room_id not in game_rooms:
-            flash('Game room not found.')
+            flash('Game room not found.', 'error')
             return redirect(url_for('index'))
 
         # Get the game room
@@ -244,7 +253,7 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
         # Check if the player is the host
         player_name = session.get('player_name')
         if not player_name or player_name != game_room.host:
-            flash('Only the host can reveal answers.')
+            flash('Only the host can reveal answers.', 'error')
             return redirect(url_for('fastest_play', room_id=room_id))
 
         # Reveal the answer
@@ -271,7 +280,7 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
 
         # Check if the room exists
         if room_id not in game_rooms:
-            flash('Game room not found.')
+            flash('Game room not found.', 'error')
             return redirect(url_for('index'))
 
         # Get the game room
@@ -280,7 +289,7 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
         # Check if the current player is the host
         current_player = session.get('player_name')
         if not current_player or current_player != game_room.host:
-            flash('Only the host can award points.')
+            flash('Only the host can award points.', 'error')
             return redirect(url_for('fastest_play', room_id=room_id))
 
         # Award points to the player
@@ -308,7 +317,7 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
 
         # Check if the room exists
         if room_id not in game_rooms:
-            flash('Game room not found.')
+            flash('Game room not found.', 'error')
             return redirect(url_for('index'))
 
         # Get the game room
@@ -317,7 +326,7 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
         # Check if the player is the host
         player_name = session.get('player_name')
         if not player_name or player_name != game_room.host:
-            flash('Only the host can move to the next question.')
+            flash('Only the host can move to the next question.', 'error')
             return redirect(url_for('fastest_play', room_id=room_id))
 
         # Prevent advancing if the board is already completed (server-side safety)
@@ -357,7 +366,7 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
                 # Add it to the in-memory dictionary
                 game_rooms[room_id] = game_room
             else:
-                flash('Game room not found.')
+                flash('Game room not found.', 'error')
                 return redirect(url_for('index'))
 
         # Get the game room
@@ -366,7 +375,7 @@ def register_fastest_routes(app, game_rooms, game_status_manager, question_uploa
         # Check if the player is in the room
         player_name = session.get('player_name')
         if not player_name or player_name not in game_room.players:
-            flash('You are not a player in this room.')
+            flash('You are not a player in this room.', 'error')
             return redirect(url_for('index'))
 
         # Check if the player is the host

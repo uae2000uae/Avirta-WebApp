@@ -197,6 +197,142 @@
     }).observe(el, { childList: true, characterData: true, subtree: true });
   }
 
+  /* Fastest: a bar under the countdown drains with it, and screen readers
+   * hear the time only at 10 and 5 seconds (not every tick). */
+  function watchTimerBar(el) {
+    var bar = document.querySelector('.timer-bar');
+    var fill = bar && bar.querySelector('.timer-bar-fill');
+    var say = document.querySelector('[data-timer-announcer]');
+    var max = parseInt(el.textContent, 10) || 15;
+    function paint() {
+      var n = parseInt(el.textContent, 10);
+      if (isNaN(n)) return;
+      if (n > max) max = n;                         // timer restarted higher
+      if (fill) fill.style.transform = 'scaleX(' + Math.max(0, n / max) + ')';
+      if (bar) bar.classList.toggle('is-low', n <= 5);
+      if (say && (n === 10 || n === 5)) say.textContent = n + ' seconds left';
+      if (say && n === 0) say.textContent = 'Time is up';
+    }
+    paint();
+    new MutationObserver(paint).observe(el, { childList: true, characterData: true, subtree: true });
+  }
+
+  /* ------------------------------------------------ flash messages */
+  /* Errors stay until dismissed; other messages leave after a few seconds.
+   * Timed here (not with an animation delay) so prefers-reduced-motion
+   * never makes them vanish instantly. Hover or focus pauses the timer. */
+  function initFlashes() {
+    document.querySelectorAll('.flash-message').forEach(function (msg) {
+      var timer = null;
+      function leave() {
+        if (!msg.isConnected) return;
+        msg.classList.add('is-leaving');
+        setTimeout(function () { msg.remove(); }, reduceMotion ? 0 : 340);
+      }
+      function arm() { if (msg.dataset.kind !== 'error') timer = setTimeout(leave, 6000); }
+      function disarm() { clearTimeout(timer); }
+      var close = msg.querySelector('.flash-close');
+      if (close) close.addEventListener('click', leave);
+      msg.addEventListener('mouseenter', disarm);
+      msg.addEventListener('mouseleave', arm);
+      msg.addEventListener('focusin', disarm);
+      msg.addEventListener('focusout', arm);
+      arm();
+    });
+  }
+
+  /* ------------------------------------------------ confirm dialog */
+  /* Any <form data-confirm="..."> asks first, in a real modal dialog with
+   * Cancel focused, so one stray tap can't wipe a game. */
+  function confirmDialog(form, onYes) {
+    var opener = document.activeElement;
+    var wrap = document.createElement('div');
+    wrap.className = 'modal confirm-dialog';
+    wrap.style.display = 'block';
+    var titleId = 'confirm-title-' + Date.now();
+    wrap.innerHTML =
+      '<div class="modal-content" role="alertdialog" aria-modal="true" aria-labelledby="' + titleId + '">' +
+        '<h2 class="confirm-title" id="' + titleId + '"></h2>' +
+        '<p class="confirm-en"></p><p class="confirm-ar" lang="ar" dir="rtl"></p>' +
+        '<div class="form-actions">' +
+          '<button type="button" class="button secondary" data-confirm-no>Cancel | <span lang="ar" dir="rtl">إلغاء</span></button>' +
+          '<button type="button" class="button red-button" data-confirm-yes></button>' +
+        '</div>' +
+      '</div>';
+    var okEn = form.getAttribute('data-confirm-ok') || 'Confirm';
+    var okAr = form.getAttribute('data-confirm-ok-ar');
+    wrap.querySelector('.confirm-title').textContent = okEn + '?';
+    wrap.querySelector('.confirm-en').textContent = form.getAttribute('data-confirm');
+    var ar = wrap.querySelector('.confirm-ar');
+    if (form.getAttribute('data-confirm-ar')) ar.textContent = form.getAttribute('data-confirm-ar'); else ar.remove();
+    var yes = wrap.querySelector('[data-confirm-yes]');
+    yes.textContent = okEn;
+    if (okAr) {
+      var s = document.createElement('span'); s.lang = 'ar'; s.dir = 'rtl'; s.textContent = okAr;
+      yes.appendChild(document.createTextNode(' | ')); yes.appendChild(s);
+    }
+    var no = wrap.querySelector('[data-confirm-no]');
+    function close() {
+      document.removeEventListener('keydown', onKey, true);
+      wrap.remove();
+      if (opener && opener.focus) opener.focus();
+    }
+    function onKey(e) {
+      if (e.key === 'Escape') { e.preventDefault(); close(); }
+      if (e.key === 'Tab') {                       // keep focus inside the dialog
+        e.preventDefault();
+        (document.activeElement === no ? yes : no).focus();
+      }
+    }
+    no.addEventListener('click', close);
+    yes.addEventListener('click', function () { yes.disabled = true; onYes(); });
+    wrap.addEventListener('click', function (e) { if (e.target === wrap) close(); });
+    document.addEventListener('keydown', onKey, true);
+    document.body.appendChild(wrap);
+    no.focus();
+  }
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (!form || !form.hasAttribute || !form.hasAttribute('data-confirm') || form.dataset.confirmed) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    confirmDialog(form, function () {
+      form.dataset.confirmed = '1';
+      HTMLFormElement.prototype.submit.call(form);   // csrf.js already added the token on load
+    });
+  }, true);
+
+  /* Display settings menu: close on an outside click or Escape. */
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('details.settings-menu[open]').forEach(function (d) {
+      if (!d.contains(e.target)) d.open = false;
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('details.settings-menu[open]').forEach(function (d) {
+      d.open = false; var s = d.querySelector('summary'); if (s) s.focus();
+    });
+  });
+
+  /* ------------------------------------------------- invite links */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('[data-invite]');
+    if (!btn) return;
+    var url = btn.getAttribute('data-invite');
+    var label = btn.innerHTML;
+    function done(text) {
+      btn.classList.add('is-copied');
+      btn.textContent = text;
+      setTimeout(function () { btn.classList.remove('is-copied'); btn.innerHTML = label; }, 2200);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(function () { done('Link copied'); }, function () { window.prompt('Copy this invite link:', url); });
+    } else {
+      window.prompt('Copy this invite link:', url);
+    }
+  });
+
   /* --------------------------------------------- phone landscape fit */
   var fitQuery = window.matchMedia && matchMedia('(orientation: landscape) and (max-height: 500px)');
   var MIN_FIT = 0.6;
@@ -224,7 +360,24 @@
   function init() {
     paintThemeButtons();
     paintSoundButtons();
+    initFlashes();
     var path = location.pathname;
+
+    // Pages that reload on every turn: fill their status line after load so
+    // screen readers announce it (e.g. "It is Sara's turn.").
+    document.querySelectorAll('[data-announce]').forEach(function (el) {
+      setTimeout(function () { el.textContent = el.getAttribute('data-announce'); }, 400);
+    });
+
+    // Remember a player's name between visits (join form).
+    document.querySelectorAll('input[data-remember]').forEach(function (input) {
+      var key = input.getAttribute('data-remember');
+      if (!input.value) { var v = store.get(key); if (v) input.value = v; }
+      if (input.form) input.form.addEventListener('submit', function () { if (input.value.trim()) store.set(key, input.value.trim()); });
+    });
+
+    var fastestTimer = document.getElementById('timer');
+    if (fastestTimer && document.querySelector('.timer-bar')) watchTimerBar(fastestTimer);
 
     // Phone landscape: keep the whole game on screen.
     if (document.body.classList.contains('game')) {

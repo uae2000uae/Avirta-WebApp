@@ -45,6 +45,7 @@ SYNC_GLOBS = [
     "questionmanagement/ai_generated_questions/*.json",
     "contents/admin_controls/game_settings.json",
     "contents/admin_controls/saved_api_settings.json",
+    "contents/category_tags.json",
 ]
 NEVER_SYNC = {".local_ai_keys.json"}
 

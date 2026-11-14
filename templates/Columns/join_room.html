@@ -1,28 +1,38 @@
 {% extends "base.html" %}
+{% from "_bi.html" import bi %}
 
 {% block title %}Avirta - Join Room{% endblock %}
 
 {% block content %}
 <div class="join-room-section">
-    <h2>Join a Game Room</h2>
-    <p>Enter the Room ID provided by the host and your name to join an existing game room.</p>
+    <h1 class="page-title">Join a game</h1>
+    <p class="muted">Enter the Room ID from the host, or open the invite link they shared.</p>
 
-    <form action="{{ url_for('join_room') }}" method="post">
-        <div class="form-group">
-            <label for="room_id">Room ID:</label>
-            <input type="text" id="room_id" name="room_id" required placeholder="Enter the Room ID">
+    {% set errors = errors|default({}) %}
+    {# novalidate: the server checks the fields and answers inline, keeping what was typed. #}
+    <form action="{{ url_for('join_room') }}" method="post" class="join-form" novalidate>
+        <div class="field{% if errors.room_id %} has-error{% endif %}">
+            <label for="room_id">Room ID</label>
+            <input type="text" id="room_id" name="room_id" required placeholder="e.g. 4cb4ce8c"
+                   value="{{ room_id|default('') }}" autocomplete="off" autocapitalize="off" spellcheck="false"
+                   {% if errors.room_id %}aria-invalid="true" aria-describedby="room_id-error"{% endif %}
+                   {% if errors.room_id or not room_id %}autofocus{% endif %}>
+            {% if errors.room_id %}<p class="field-error" id="room_id-error" >{{ bi(errors.room_id[0], errors.room_id[1]) }}</p>{% endif %}
         </div>
 
-        <div class="form-group">
-            <label for="player_name">Your Name:</label>
-            <input type="text" id="player_name" name="player_name" required placeholder="Enter your name">
+        <div class="field{% if errors.player_name %} has-error{% endif %}">
+            <label for="player_name">Your name</label>
+            <input type="text" id="player_name" name="player_name" required placeholder="Enter your name"
+                   value="{{ player_name|default('') }}" autocomplete="nickname" data-remember="avirta-player-name"
+                   {% if errors.player_name %}aria-invalid="true" aria-describedby="player_name-error"{% endif %}
+                   {% if (errors.player_name and not errors.room_id) or (room_id and not errors.room_id) %}autofocus{% endif %}>
+            {% if errors.player_name %}<p class="field-error" id="player_name-error" >{{ bi(errors.player_name[0], errors.player_name[1]) }}</p>{% endif %}
         </div>
 
         <div class="form-actions">
             <button type="submit">Join Room</button>
-            <button class="button secondary"><a href="{{ url_for('index') }}" class="text-clear">Cancel</a></button>
+            <a href="{{ url_for('index') }}" class="button secondary">Cancel</a>
         </div>
     </form>
 </div>
-
 {% endblock %}

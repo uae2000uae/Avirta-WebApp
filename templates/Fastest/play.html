@@ -1,6 +1,5 @@
-<link href="../static/css/style.css" rel="stylesheet" type="text/css">
-<link href="../../static/css/style.css" rel="stylesheet" type="text/css">
 {% extends "gamebase.html" %}
+{% from "_bi.html" import bi, end_game_form %}
 
 {% block extra_head %}
     <script src="{{ url_for('static', filename='js/livestatus.js') }}"></script>
@@ -12,7 +11,8 @@
     <!-- Room header and game info, in one compact strip -->
     <div class="fastest-head">
         <h1 class="text-nomargin">{{ room.name }}</h1>
-        <p class="fastest-meta"><strong>Host:</strong> {{ room.host }} · <strong>Room ID:</strong> <span>{{ room.room_id }}</span></p>
+        <p class="fastest-meta"><strong>Host:</strong> {{ room.host }} · <strong>Room ID:</strong> <span>{{ room.room_id }}</span>
+            <button type="button" class="invite-btn" data-invite="{{ url_for('join_room', room=room.room_id, _external=True) }}" title="Copy a link that opens the join page with this Room ID filled in"><i class="fas fa-link" aria-hidden="true"></i> Copy invite link</button></p>
     </div>
     <div class="fastest-info">
         <span class="fastest-chip"><strong>Question:</strong> {{ stats.current_question_number }} / {{ stats.total_questions }}</span>
@@ -34,14 +34,14 @@
                 </div>
             {% elif current_question.type == 'true_false' %}
                 <div class="form-options">
-                    <div class="button-no-hover">True or False? | صــح أم خطــأ؟</div>
+                    <div class="button-no-hover">{{ bi('True or False?', 'صح أم خطأ؟') }}</div>
                 </div>
             {% endif %}
         {% else %}
             {% if is_host %}
                 <form action="{{ url_for('fastest_reveal_question') }}" method="post" class="form-actions">
                     <input type="hidden" name="room_id" value="{{ room.room_id }}">
-                    <button type="submit" class="button">Reveal Question | أظهـــر الســــؤال</button>
+                    <button type="submit" class="button">{{ bi('Reveal Question', 'أظهر السؤال') }}</button>
                 </form>
             {% endif %}
         {% endif %}
@@ -50,15 +50,18 @@
             {% if current_question and stats.answer_revealed %}
                 <div class="fastest-answer" dir="{% if current_question.correct_answer|is_arabic %}rtl{% else %}ltr{% endif %}">
                     <h2 class="text-center">{{ current_question.correct_answer }}</h2>
-                    <button id="report-btn" class="report-button" title="Report question | الإبلاغ عن السؤال"><i class="fas fa-flag"></i></button>
+                    <button type="button" id="report-btn" class="report-button" aria-label="Report this question" title="Report question | الإبلاغ عن السؤال"><i class="fas fa-flag" aria-hidden="true"></i></button>
                 </div>
             {% else %}
                 {% if is_host and stats.question_revealed and not stats.answer_revealed %}
                     <div class="fastest-timer-row">
-                        <div class="timer-container"><p>Time remaining:</p><h4><span id="timer">15</span></h4><p dir=rtl>الوقت المتبقي :</p></div>
+                        <div class="timer-container"><p>Time remaining:</p><h4><span id="timer">15</span></h4><p lang="ar" dir="rtl">الوقت المتبقي :</p></div>
+                        {# Drains with the countdown; announced only at 10 and 5 seconds. #}
+                        <div class="timer-bar" aria-hidden="true"><span class="timer-bar-fill"></span></div>
+                        <p class="visually-hidden" role="status" data-timer-announcer></p>
                         <form action="{{ url_for('fastest_reveal_answer') }}" method="post" class="form-actions">
                             <input type="hidden" name="room_id" value="{{ room.room_id }}">
-                            <button type="submit" class="button">Reveal Answer | أظهــر الجـــواب</button>
+                            <button type="submit" class="button">{{ bi('Reveal Answer', 'أظهر الجواب') }}</button>
                         </form>
                     </div>
                 {% endif %}
@@ -68,17 +71,17 @@
 
 {% if current_question %}
 <!-- Report Modal for Fastest -->
-<div id="report-modal" class="modal">
+<div id="report-modal" class="modal" role="dialog" aria-modal="true" aria-label="Report question">
     <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <button type="button" class="close-modal" aria-label="Close">&times;</button>
         <p>Would you like to report this question for review?</p>
-        <p dir="rtl">هل تريد الإبلاغ عن هذا السؤال للمراجعة؟</p>
+        <p lang="ar" dir="rtl">هل تريد الإبلاغ عن هذا السؤال للمراجعة؟</p>
         <form action="{{ url_for('report_question') }}" method="post" class="form-actions">
             <input type="hidden" name="question_id" value="{{ current_question.id }}">
             <input type="hidden" name="room_id" value="{{ room.room_id }}">
             <input type="hidden" name="is_correct" value="False">
-            <button type="submit" class="button confirm-report">Yes | نعـم</button>
-            <button type="button" class="button cancel-report">No | إلغاء</button>
+            <button type="submit" class="button confirm-report">{{ bi('Yes', 'نعم') }}</button>
+            <button type="button" class="button cancel-report">{{ bi('No', 'إلغاء') }}</button>
         </form>
     </div>
 </div>
@@ -87,7 +90,7 @@
     <!-- Who answered first -->
     {% if current_question and stats.answer_revealed %}
     <div class="section fastest-players">
-        <h4 class="text-center">Who answered correctly first? | مــــن أول مــن جـــاوب صــــح ؟</h4>
+        <h2 class="text-center h4-like" role="status">{{ bi('Who answered correctly first?', 'من أول من جاوب صح؟') }}</h2>
         <div class="form-group-inline-grid">
             {% for player in room.players %}
                 <form action="{{ url_for('fastest_award_points') }}" method="post" class="form-group">
@@ -101,15 +104,15 @@
         </div>
         <form action="{{ url_for('fastest_next_question') }}" method="post" class="form-actions clear">
             <input type="hidden" name="room_id" value="{{ room.room_id }}">
-            <button type="submit" class="delete-button no-one-button" data-sfx="noAnswer" {% if not is_host or not stats.answer_revealed %}disabled{% endif %}>No one | لا أحــد</button>
+            <button type="submit" class="delete-button no-one-button" data-sfx="noAnswer" {% if not is_host or not stats.answer_revealed %}disabled{% endif %}>{{ bi('No one', 'لا أحد') }}</button>
         </form>
     </div>
     {% endif %}
 
     <!-- Navigation -->
     <div class="form-actions fastest-nav">
-        <a href="{{ url_for('fastest_leaderboard', room_id=room.room_id) }}" class="button">Leaderboard | عرض النتائج</a>
-        <a href="{{ url_for('end_game', room_id=room.room_id) }}" class="button red-button">End Game | إنهاء اللعبة</a>
+        <a href="{{ url_for('fastest_leaderboard', room_id=room.room_id) }}" class="button">{{ bi('Leaderboard', 'عرض النتائج') }}</a>
+        {{ end_game_form(room.room_id) }}
     </div>
 </div>
 {% endblock %}
@@ -169,7 +172,7 @@
                     const content = modal.querySelector('.modal-content');
                     const oldHTML = content.innerHTML;
                     if (success) {
-                        content.innerHTML = '<div class="info-text" style="text-align:center;">' +
+                        content.innerHTML = '<div class="info-text ta-center">' +
                             (data.message || 'Question reported successfully. Thank you!') +
                             '</div>';
                         setTimeout(function() {

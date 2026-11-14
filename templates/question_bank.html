@@ -68,6 +68,66 @@
 </div>
 {% endif %}
 
+
+{% if session.get('admin_authenticated') %}
+{# Filter tags shown as chips on the create-room pages. Each category's tags
+   are set on its card (Edit) or when a new category is added. #}
+<section class="content-section tag-admin" id="category-tags">
+    <h3>Category tags | <span lang="ar" dir="rtl">وسوم الفئات</span></h3>
+    <p class="muted">Players filter categories with these tags when they create a game. Language tags (English, Arabic) and topic tags combine: a category can have several. Set a category's tags with the edit button on its card.</p>
+    {% set untagged = categories.keys()|reject('in', category_tags)|list %}
+    {% if untagged %}
+    <p class="tag-warning" role="status"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
+        {{ untagged|length }} categor{{ 'y has' if untagged|length == 1 else 'ies have' }} no tags and only show under "Other":
+        {% for cid in untagged %}<a href="{{ url_for('edit_category', category_id=cid) }}" dir="auto">{{ categories[cid].name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+    </p>
+    {% endif %}
+
+    <div class="tag-list">
+        <div class="tag-row tag-row-head" aria-hidden="true">
+            <span>English</span><span>Arabic</span><span>Group</span><span>Used by</span><span></span>
+        </div>
+        {% for group in tag_groups %}{% for tag in group.tags %}
+        <div class="tag-row">
+            <form method="post" action="{{ url_for('manage_category_tags') }}" class="tag-row-form">
+                <input type="hidden" name="action" value="update">
+                <input type="hidden" name="tag_id" value="{{ tag.id }}">
+                <input type="text" name="en" value="{{ tag.en }}" aria-label="English name of {{ tag.en }}" required>
+                <input type="text" name="ar" value="{{ tag.ar }}" aria-label="Arabic name of {{ tag.en }}" lang="ar" dir="rtl" required>
+                <select name="group" aria-label="Group of {{ tag.en }}">
+                    <option value="topic"{% if tag.group == 'topic' %} selected{% endif %}>Topic</option>
+                    <option value="language"{% if tag.group == 'language' %} selected{% endif %}>Language</option>
+                </select>
+                <span class="tag-usage" title="Categories with this tag">{% set n = tag_usage.get(tag.id, 0) %}{{ n }}<span class="tag-usage-unit"> categor{{ 'y' if n == 1 else 'ies' }}</span></span>
+                <span class="tag-actions">
+                    <button type="submit" class="button secondary">Save</button>
+                </span>
+            </form>
+            <form method="post" action="{{ url_for('manage_category_tags') }}" class="inline-form"
+                  {% set n = tag_usage.get(tag.id, 0) %}data-confirm="Delete the tag &quot;{{ tag.en }}&quot;? It is removed from {{ n }} categor{{ 'y' if n == 1 else 'ies' }}."
+                  data-confirm-ok="Delete tag" data-confirm-ok-ar="حذف الوسم">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="tag_id" value="{{ tag.id }}">
+                <button type="submit" class="button delete-button tag-delete" aria-label="Delete tag {{ tag.en }}" title="Delete tag"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
+            </form>
+        </div>
+        {% endfor %}{% endfor %}
+    </div>
+
+    <form method="post" action="{{ url_for('manage_category_tags') }}" class="tag-add-form">
+        <input type="hidden" name="action" value="add">
+        <span class="field-label">Add a tag</span>
+        <input type="text" name="en" placeholder="English name" aria-label="New tag, English name" required>
+        <input type="text" name="ar" placeholder="الاسم بالعربية" aria-label="New tag, Arabic name" lang="ar" dir="rtl" required>
+        <select name="group" aria-label="New tag group">
+            <option value="topic" selected>Topic</option>
+            <option value="language">Language</option>
+        </select>
+        <button type="submit">Add tag</button>
+    </form>
+</section>
+{% endif %}
+
 <h3>Categories</h3>
 <div class="categories-list">
     {% if categories %}
@@ -88,6 +148,15 @@
                         {% endif %}
                     </div>
                     <p>ID: {{ category_id }}</p>
+                    {% if session.get('admin_authenticated') %}
+                    <ul class="tag-pills" aria-label="Tags">
+                        {% for tid in category_tags.get(category_id, []) %}
+                        <li class="tag-pill{% if tag_defs[tid].group == 'language' %} is-language{% endif %}">{{ tag_defs[tid].en }}</li>
+                        {% else %}
+                        <li class="tag-pill is-missing"><a href="{{ url_for('edit_category', category_id=category_id) }}">No tags: add some</a></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                     <p class="question-count">Questions: {{ category.question_count }}</p>
                     <p class="question-count">Usage: {{ category.usage_percentage }}%</p>
                     <div class="category-actions">

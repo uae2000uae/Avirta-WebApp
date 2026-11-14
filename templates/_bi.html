@@ -1,0 +1,22 @@
+{# Bilingual label: English, a quiet separator, then the Arabic marked with
+   lang/dir so screen readers switch voice and the text shapes correctly.
+   It stays on one line so [frozen] game buttons keep their size.
+   Use: {% from "_bi.html" import bi %} ... {{ bi('Leaderboard', 'النتائج') }} #}
+{% macro bi(en, ar) -%}
+<span class="bi"><span class="bi-en">{{ en }}</span><span class="bi-sep" aria-hidden="true">|</span><span class="bi-ar" lang="ar" dir="rtl">{{ ar }}</span></span>
+{%- endmacro %}
+
+{# Two-line variant for roomy site-page buttons: English first, Arabic below. #}
+{% macro bi_stack(en, ar) -%}
+<span class="bi bi-stack"><span class="bi-en">{{ en }}</span><span class="bi-ar" lang="ar" dir="rtl">{{ ar }}</span></span>
+{%- endmacro %}
+
+{# Destructive "End Game" action: a POST form that ui.js confirms first. #}
+{% macro end_game_form(room_id, extra_class='button red-button') -%}
+<form action="{{ url_for('end_game', room_id=room_id) }}" method="post" class="inline-form"
+      data-confirm="End this game for everyone? The board and scores are cleared and this cannot be undone."
+      data-confirm-ar="إنهاء هذه اللعبة للجميع؟ سيتم مسح اللوحة والنتائج ولا يمكن التراجع."
+      data-confirm-ok="End Game" data-confirm-ok-ar="إنهاء اللعبة">
+    <button type="submit" class="{{ extra_class }}">{{ bi('End Game', 'إنهاء اللعبة') }}</button>
+</form>
+{%- endmacro %}

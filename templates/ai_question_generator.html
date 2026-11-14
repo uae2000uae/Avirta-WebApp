@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_tag_picker.html" import tag_picker %}
 
 {% block title %}AI Question Generator - Avirta{% endblock %}
 
@@ -246,7 +247,11 @@
                     <option value="{{ cid }}" {% if metadata and metadata.category == cid %}selected{% endif %}>{{ c.name }} ({{ c.question_count }})</option>
                     {% endfor %}
                 </select>
-                <span id="new-category-wrap" class="ai-save-target"><input type="text" name="new_category" id="new_category" placeholder="New category name" aria-label="New category name" dir="auto" value="{{ metadata.topic if metadata and not metadata.category else '' }}"></span>
+                <div id="new-category-wrap" class="ai-save-target"><input type="text" name="new_category" id="new_category" placeholder="New category name" aria-label="New category name" dir="auto" value="{{ metadata.topic if metadata and not metadata.category else '' }}">
+                    <div class="ai-new-tags">
+                        <span class="muted">Filter tags for the new category</span>
+                        {{ tag_picker(tag_groups|default([]), selected=[], name='new_category_tags', id_prefix='ai-tag') }}
+                    </div></div>
                 <button type="submit" class="ai-btn"><i class="fas fa-floppy-disk"></i> Add selected to the bank</button>
             </div>
         </div>

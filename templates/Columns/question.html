@@ -1,5 +1,5 @@
-<link href="../static/css/style.css" rel="stylesheet" type="text/css">
 {% extends "gamebase.html" %}
+{% from "_bi.html" import bi %}
 
 {% block title %}Avirta - Question{% endblock %}
 
@@ -7,8 +7,13 @@
 {% block content %}
 <div class="page-section">
     <div class="question-header">
-        <h2>Question</h2>
-        <p>Category: <span class="category-badge">{{ question.category_id|capitalize }}</span> | Points: <span class="points-badge">{{ question.points }}</span>{% if question.doubled %} (Doubled!){% endif %}</p>
+        <h1 class="visually-hidden">Question</h1>
+        {# One row of chips instead of "Category: X | Points: Y (Doubled!)". #}
+        <ul class="question-chips" aria-label="Question details">
+            <li class="q-chip" dir="auto"><span class="visually-hidden">Category: </span>{{ question.category_id|replace('_', ' ')|title }}</li>
+            <li class="q-chip q-chip-points"><span class="visually-hidden">Points: </span>{{ question.points }}</li>
+            {% if question.doubled %}<li class="q-chip q-chip-double" title="Double points">&times;2<span class="visually-hidden"> double points</span></li>{% endif %}
+        </ul>
         {% if acting_player %}
             <div> 
                 <p class="green-box">You are answering on behalf of: <strong>{{ acting_player }}</strong></p>
@@ -21,16 +26,16 @@
 
         {% if question.type == 'text' %}
             <div class=form-container>
-                <button type="button" id="show-answer-btn" onclick="showAnswer()">Show Answer إظهار الجواب</button>
-                <div id="answer-section" style="display: none; width: 100%;">
+                <button type="button" id="show-answer-btn" onclick="showAnswer()">{{ bi('Show Answer', 'إظهار الجواب') }}</button>
+                <div id="answer-section" class="answer-section" hidden>
                     <div class="form-group">
                         <div class="answer-text" dir="{% if question.correct_answer|is_arabic %}rtl{% else %}ltr{% endif %}"><h2 class="text-center">{{ question.correct_answer }}</h2></div>
                     </div>
                     <div>
 						<form action="{{ url_for('evaluate_answer') }}" method="post" class="form-actions clear">
 							<input type="hidden" name="acting_player" value="{{ acting_player }}">
-							<button type="submit" name="evaluation" value="correct" class="success-button">Right answer إجابة صحيحة</button>
-							<button type="submit" name="evaluation" value="incorrect" class="delete-button">Wrong answer إجابـة خطـأ</button>
+							<button type="submit" name="evaluation" value="correct" class="success-button" aria-keyshortcuts="R" title="Shortcut: R"><i class="fas fa-check" aria-hidden="true"></i> {{ bi('Right answer', 'إجابة صحيحة') }}</button>
+							<button type="submit" name="evaluation" value="incorrect" class="delete-button" aria-keyshortcuts="W" title="Shortcut: W"><i class="fas fa-xmark" aria-hidden="true"></i> {{ bi('Wrong answer', 'إجابة خطأ') }}</button>
 						</form>
                     </div>
                 </div>
@@ -47,20 +52,18 @@
                     </div>
                 {% elif question.type == 'true_false' %}
                     <div class="form-group-grid3">
-                        <button type="button" class="option-button" onclick="submitAnswer('true')">True | صحيح</button>
-                        <button type="button" class="option-button" onclick="submitAnswer('false')">False | خطــأ</button>
+                        <button type="button" class="option-button" onclick="submitAnswer('true')">{{ bi('True', 'صحيح') }}</button>
+                        <button type="button" class="option-button" onclick="submitAnswer('false')">{{ bi('False', 'خطأ') }}</button>
                     </div>
                 {% endif %}
             </form>
-            <div class="form-actions" style="display: none;">
-                <button type="submit">Submit Answer تسجيل الإجابة</button>
-            </div>
 	{% endif %}
 			<br>
             <form id= "change-question-form" action="{{ url_for('use_tool') }}" method="post" class="form-actions clear">
                 <input type="hidden" name="tool_name" value="change_question">
                 <input type="hidden" name="acting_player" value="{{ current_player }}">
-				<button type="submit" id="change-question-btn" class="button" {% if not player_tools or not player_tools.change_question %}disabled="disabled" style="opacity: 0.5; cursor: not-allowed;" title="This tool has already been used"{% endif %}>Change Question | غيــّـــر الســـــؤال</button>
+				{% set cq_used = not player_tools or not player_tools.change_question %}
+				<button type="submit" id="change-question-btn" class="button{% if cq_used %} is-used{% endif %}" {% if cq_used %}disabled="disabled" title="Already used this game"{% endif %}>{{ bi('Change Question', 'غيّر السؤال') }}{% if cq_used %}<span class="visually-hidden"> (already used)</span>{% endif %}</button>
             </form>
 
     </div>
@@ -73,7 +76,15 @@
         // The answer is out: stop the countdown so it no longer runs or ticks.
         if (window.stopQuestionTimer) window.stopQuestionTimer();
         document.getElementById('show-answer-btn').style.display = 'none';
-        document.getElementById('answer-section').style.display = 'block';
+        document.getElementById('answer-section').hidden = false;
+        // Host shortcuts once the answer is showing: R = right, W = wrong.
+        document.addEventListener('keydown', function onKey(e) {
+            if (e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test((e.target || {}).tagName)) return;
+            const k = e.key.toLowerCase();
+            const btn = k === 'r' ? document.querySelector('button[value="correct"]')
+                      : k === 'w' ? document.querySelector('button[value="incorrect"]') : null;
+            if (btn) { e.preventDefault(); document.removeEventListener('keydown', onKey); btn.click(); }
+        });
         document.getElementById('change-question-form').style.display = 'none';
     }
 </script>

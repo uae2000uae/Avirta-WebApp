@@ -4,41 +4,40 @@
 
 {% block content %}
 <div class="page-section">
-  <h2>Create Two-Team The Hive</h2>
+  <h1 class="page-title">Create a two-team "The Hive" game</h1>
 
   {% if session.error_modal %}
-    <div class="flash-message error">{{ session.error_modal|safe }}</div>
+    <div class="form-alert" role="alert">{{ session.error_modal|safe }}</div>
     {% set _ = session.pop('error_modal', None) %}
   {% endif %}
 
-  <form method="post" action="{{ url_for('hex_create_room') }}" class="form-group-xx">
-    <div class="form-group-equal-md">
-      <label class="form-label" for="room_name">Room Name</label>
-      <input id="room_name" type="text" name="room_name" required />
-    </div>
-
-    <div class="form-group-inline">
-      <div class="form-group-equal-sm">
-        <label class="form-label" for="team_a">Team Blue Name</label>
-        <input id="team_a" type="text" name="team_a" required />
+  {# Same layout as the other setup forms: labels above, equal-width fields. #}
+  <form method="post" action="{{ url_for('hex_create_room') }}" class="form-group-xx setup-form">
+    <fieldset class="form-step">
+      <legend><span class="step-num">1</span> Room and teams</legend>
+      <div class="form-group-equal-md">
+        <label for="room_name">Room name</label>
+        <input id="room_name" type="text" name="room_name" required placeholder="Game room title">
       </div>
       <div class="form-group-equal-sm">
-        <label class="form-label" for="team_b">Team Red Name</label>
-        <input id="team_b" type="text" name="team_b" required />
+        <label for="team_a"><span class="team-dot team-dot-a" aria-hidden="true"></span>Blue team name</label>
+        <input id="team_a" type="text" name="team_a" required placeholder="Blue team">
       </div>
-    </div>
-
-    <div class="form-group-inline">
-      <label>Select Point Values to Include</label>
       <div class="form-group-equal-sm">
+        <label for="team_b"><span class="team-dot team-dot-b" aria-hidden="true"></span>Red team name</label>
+        <input id="team_b" type="text" name="team_b" required placeholder="Red team">
+      </div>
+    </fieldset>
+
+    <fieldset class="form-step">
+      <legend><span class="step-num">2</span> Point values</legend>
+      <div class="chip-group">
         {% for pv in default_points %}
-          <div class="category-checkbox">
-            <input type="checkbox" name="point_values" id="pv_{{ pv }}" value="{{ pv }}" checked />
-            <label for="pv_{{ pv }}">{{ pv }}</label>
-          </div>
+          <input type="checkbox" class="chip-input" name="point_values" id="pv_{{ pv }}" value="{{ pv }}" checked>
+          <label class="chip" for="pv_{{ pv }}">{{ pv }}</label>
         {% endfor %}
       </div>
-    </div>
+    </fieldset>
 
     <div class="form-actions">
       <button type="submit">Create Game</button>

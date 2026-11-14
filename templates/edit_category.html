@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_tag_picker.html" import tag_picker %}
 
 {% block title %}Edit Category - Avirta{% endblock %}
 
@@ -22,9 +23,15 @@
         <textarea id="description" name="description" rows="3">{{ category.description }}</textarea>
     </div>
 
+    <fieldset class="form-step tag-fieldset">
+        <legend>Filter tags</legend>
+        <p class="muted">Players use these to find this category when they create a game. Pick a language and one or more topics.</p>
+        {{ tag_picker(tag_groups, selected=selected_tags, name='tags', id_prefix='edit-tag') }}
+    </fieldset>
+
     <div class="form-actions">
         <button type="submit" class="button">Save Changes</button>
-        <button class="button secondary"><a href="{{ url_for('question_bank_page') }}" class="text-clear">Cancel</a></button>
+        <a href="{{ url_for('question_bank_page') }}" class="button secondary">Cancel</a>
 		 <button class="button delete-button"><a href="#" onclick="confirmDeleteQuestions('{{ category_id }}'); return false;" class="text-clear">Delete All Questions</a>
     </div>
 </form>

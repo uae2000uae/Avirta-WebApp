@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="font-size: -1;">
+<html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYNK9VZ6B6"></script>
@@ -80,17 +80,9 @@
     <header class="game-header">
         <div class="header-tools">{% include "_header_tools.html" %}</div>
     </header>
-    <div class="container">
+    <div class="container" id="main">
         <!-- Flash messages section -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="flash-messages">
-                    {% for category, message in messages %}
-                        <div class="flash-message {% if category == 'error' %}error{% elif category == 'success' %}success{% elif category == 'result-correct' %}result-correct{% else %}success{% endif %}">{{ message }}</div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
+        {% include "_flash.html" %}
 
         <!-- Main content block -->
         {% block content %}{% endblock %}

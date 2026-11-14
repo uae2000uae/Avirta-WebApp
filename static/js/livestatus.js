@@ -22,6 +22,7 @@ function showGameEndedFlashAndRedirect() {
     flashContainer.className = 'flash-messages';
     const flashMessage = document.createElement('div');
     flashMessage.className = 'flash-message error';
+    flashMessage.setAttribute('role', 'alert');
     flashMessage.textContent = 'The game has been ended by the host.';
     flashContainer.appendChild(flashMessage);
 

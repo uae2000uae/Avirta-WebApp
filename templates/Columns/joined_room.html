@@ -1,5 +1,5 @@
-<link href="../static/css/style.css" rel="stylesheet" type="text/css">
 {% extends "gamebase.html" %}
+{% from "_bi.html" import bi %}
 
 {% block extra_head %}
     <script src="{{ url_for('static', filename='js/livestatus.js') }}"></script>
@@ -9,17 +9,17 @@
 {% block content %}
 <div class="page-section" data-room-id="{{ room.room_id }}" data-player-name="{{ player_name }}" data-is-host="{{ is_host|default('false')|lower }}">
   <div class="room-header">
-    <h2 class="text-center">{{ room.name }}</h2>
+    <h1 class="text-center">{{ room.name }}</h1>
 	  <p class="text-center"><strong>Host:</strong> {{ room.host }} | <strong>Room ID: </strong><span>{{ room.room_id }} | </span><strong> Players:</strong> {{ room.players|join(', ') }}</p>
   </div>
   <div class="section">
     <div>
       <p class="blue-box">Your Name: <span><strong>{{ player_name }}</strong></span> | Current Turn: <span><strong class="red-badge">{{ current_player }}</strong></span></p>
-      <p class="turn-indicator">{% if current_player == player_name %}It's your turn!{% else %}It's {{ current_player }}'s turn...{% endif %}</p>
+      <p class="turn-indicator" role="status">{% if current_player == player_name %}It's your turn!{% else %}It's {{ current_player }}'s turn...{% endif %}</p>
     </div>
     <div class="form-actions">
-      <button id="double-points-btn" class="dp tool-btn {% if not player_tools.double_points %}disabled-button{% endif %}" {% if not player_tools.double_points %}disabled="disabled"{% endif %}>
-        Double Points | مضاعفة النقاط
+      <button id="double-points-btn" class="dp tool-btn{% if not player_tools.double_points %} is-used{% endif %}" {% if not player_tools.double_points %}disabled="disabled" title="Already used this game"{% endif %}>
+        {{ bi('Double Points', 'مضاعفة النقاط') }}{% if not player_tools.double_points %}<span class="visually-hidden"> (already used)</span>{% endif %}
       </button>
     </div>
   </div>
@@ -28,7 +28,7 @@
   <div class="section">
     <p><em>Game Status...</em></p>
     <div class="status-container">
-      <div id="status-updates" class="status-updates">
+      <div id="status-updates" class="status-updates" aria-live="polite">
         <p class="status-message">Waiting for game updates...</p>
       </div>
     </div>
@@ -37,16 +37,16 @@
   <!-- Leaderboard Section -->
   <div class="leaderboard-section">
     <div class="leaderboard-header">
-      <h3>Leaderboard | النتـــائـــج</h3>
+      <h2 class="h3-like">{{ bi('Leaderboard', 'النتائج') }}</h2>
     </div>
 
     <div class="leaderboard-display">
       <table class="leaderboard-table">
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>Player</th>
-            <th>Score</th>
+            <th>{{ bi('Rank', 'الترتيب') }}</th>
+            <th>{{ bi('Player', 'اللاعب') }}</th>
+            <th>{{ bi('Score', 'النتيجة') }}</th>
           </tr>
         </thead>
         <tbody id="leaderboard-body">
@@ -69,7 +69,7 @@
   </div>
 
   <div class="game-actions">
-    <a href="{{ url_for('leave_game', room_id=room.room_id) }}" class="button">Leave Game | مغادرة اللعبة</a>
+    <a href="{{ url_for('leave_game', room_id=room.room_id) }}" class="button">{{ bi('Leave Game', 'مغادرة اللعبة') }}</a>
   </div>
 </div> <!-- End of page-section -->
 {% endblock %}

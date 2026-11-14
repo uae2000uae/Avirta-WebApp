@@ -1,22 +1,35 @@
 {% extends "base.html" %}
+{% from "_bi.html" import bi, bi_stack %}
 
 {% block title %}Avirta - Home{% endblock %}
 
 {% block content %}
+    <h1 class="visually-hidden">Avirta: quiz games to play together</h1>
+
+    {# Most visitors are guests with a Room ID, so joining comes first. #}
+    <a href="{{ url_for('join_room') }}" class="join-bar">
+        <i class="fas fa-right-to-bracket join-bar-icon" aria-hidden="true"></i>
+        <span class="join-bar-label">{{ bi('Join a game', 'انضم إلى لعبة') }}</span>
+        <span class="join-bar-hint">Got a Room ID from the host?</span>
+    </a>
+
+    <h2 class="home-subhead">{{ bi('Host a new game', 'ابدأ لعبة جديدة') }}</h2>
+    {# Each card is one link, so the whole card is the tap target. #}
     <div class="features">
-        <div class="feature">
-            <a href="{{ url_for('create_room') }}" class="button">Knowledge Columns<br>أعمدة المعرفة</a>
-            <p>Start your own game room and invite friends to join. Select up to 7 categories for your game.</p>
-		</div>
-        <div class="feature">
-            <a href="{{ url_for('fastest_create_room') }}" class="button">Who is the fastest<br>من الأسرع</a>
-            <p>Start a "Who is the fastest" game where players compete to answer questions the fastest.</p>
-		</div>
-        <div class="feature">
-            <a href="{{ url_for('hex_create_room') }}" class="button">The Hive<br>الخلية</a>
-            <p>Create a two-team The Hive board game room.</p>
-        </div>
-	</div>
-        <div class="feature"> <a href="{{ url_for('join_room') }}" class="button">Join An Active Game | انضم إلى لعبة فعالة</a>
-		</div>
+        <a class="feature" href="{{ url_for('create_room') }}">
+            <span class="feature-icon" aria-hidden="true"><i class="fas fa-table-columns"></i></span>
+            <span class="button">{{ bi_stack('Knowledge Columns', 'أعمدة المعرفة') }}</span>
+            <p>Take turns picking questions from a board of up to 7 categories. Tools like Double Points add a twist.</p>
+        </a>
+        <a class="feature" href="{{ url_for('fastest_create_room') }}">
+            <span class="feature-icon" aria-hidden="true"><i class="fas fa-bolt"></i></span>
+            <span class="button">{{ bi_stack('Who is the fastest', 'من الأسرع') }}</span>
+            <p>The host reveals a question and awards the points to whoever answers correctly first.</p>
+        </a>
+        <a class="feature" href="{{ url_for('hex_create_room') }}">
+            <span class="feature-icon" aria-hidden="true"><i class="fas fa-circle-nodes"></i></span>
+            <span class="button">{{ bi_stack('The Hive', 'الخلية') }}</span>
+            <p>Two teams claim hexagons by answering questions. The first team to link its two sides wins.</p>
+        </a>
+    </div>
 {% endblock %}

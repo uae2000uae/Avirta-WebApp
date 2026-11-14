@@ -1,5 +1,5 @@
-<link href="../static/css/style.css" rel="stylesheet" type="text/css">
 {% extends "gamebase.html" %}
+{% from "_bi.html" import bi, end_game_form %}
 
 {% block extra_head %}
     <script src="{{ url_for('static', filename='js/livestatus.js') }}"></script>
@@ -9,7 +9,9 @@
 {% block content %}
 <div class="page-section" data-room-id="{{ room.room_id }}" data-player-name="{{ player_name }}" data-is-host="{{ is_host|default('false')|lower }}" data-board-completed="{{ room.is_board_completed()|lower }}">
     <h1 class="text-center text-nomargin">{{ room.name }}</h1>
-	<p class="text-center"><strong>Host: </strong>{{ room.host }} | <strong>Room ID: </strong><span>{{ room.room_id }}</span></p>
+	<p class="text-center"><strong>Host: </strong>{{ room.host }} | <strong>Room ID: </strong><span>{{ room.room_id }}</span>
+	  <button type="button" class="invite-btn" data-invite="{{ url_for('join_room', room=room.room_id, _external=True) }}" title="Copy a link that opens the join page with this Room ID filled in"><i class="fas fa-link" aria-hidden="true"></i> Copy invite link</button></p>
+	<p class="visually-hidden" role="status" data-announce="It is {{ current_player }}'s turn."></p>
   <div class="section">
     <div><p class="blue-box"><strong>Current Turn: </strong><span></span>
 		  {% for player in room.players %}
@@ -26,8 +28,8 @@
 		<form action="{{ url_for('use_tool') }}" method="post" class="form-actions clear">
 		  <input type="hidden" name="tool_name" value="double_points" class="form-actions">
 		  <div>
-			<button type="submit" id="double-points-btn" class="dp tool-btn" {% if not player_tools.double_points %}disabled="disabled" style="opacity: 0.3; cursor: not-allowed;" title="This tool has already been used"{% endif %}>
-			  Double Points | ضعف النقاط
+			<button type="submit" id="double-points-btn" class="dp tool-btn{% if not player_tools.double_points %} is-used{% endif %}" {% if not player_tools.double_points %}disabled="disabled" title="Already used this game"{% endif %}>
+			  {{ bi('Double Points', 'ضعف النقاط') }}{% if not player_tools.double_points %}<span class="visually-hidden"> (already used)</span>{% endif %}
 			</button>
 		  </div>
 		</form>
@@ -70,22 +72,28 @@
     {% else %}
       <div>
         <form action="{{ url_for('reset_game') }}" method="post" class="form-actions clear">
-          <input type="hidden" name="room_id" value="{{ room.room_id }}"><p>No questions available | لا توجد أسئلة في النظام</p>
+          <input type="hidden" name="room_id" value="{{ room.room_id }}"><p>{{ bi('No questions available', 'لا توجد أسئلة في النظام') }}</p>
         </form>
       </div>
     {% endif %}
   </div>
 
   <div class="form-actions"> 
-    <a href="{{ url_for('leaderboard', room_id=room.room_id) }}" class="button">Leaderboard | عــرض النتائــج</a>
-    <a href="{{ url_for('end_game', room_id=room.room_id) }}" class="button red-button">End Game | إنهاء اللعبة</a>
+    <a href="{{ url_for('leaderboard', room_id=room.room_id) }}" class="button">{{ bi('Leaderboard', 'عرض النتائج') }}</a>
+    {{ end_game_form(room.room_id) }}
   </div>
 
   {% if room.is_board_completed() %}
-    <div>
-      <form action="{{ url_for('reset_game') }}" method="post" class="form-actions clear">
-        <input type="hidden" name="room_id" value="{{ room.room_id }}"><p>Game Ended | انتهت اللعبة</p>
-		</form>
+    {# Board finished: point everyone at the results and offer a rematch. #}
+    <div class="game-over-card" role="status">
+      <i class="fas fa-trophy" aria-hidden="true"></i>
+      <p class="game-over-title">{{ bi('All questions answered', 'تمت الإجابة على جميع الأسئلة') }}</p>
+      <div class="form-actions">
+        <a href="{{ url_for('leaderboard', room_id=room.room_id) }}" class="button large">{{ bi('See the winner', 'عرض الفائز') }}</a>
+        {% if is_host %}
+        <a href="{{ url_for('create_room', host=room.host, players=(room.players|reject('equalto', room.host)|join(','))) }}" class="button">{{ bi('Play again', 'العب مرة أخرى') }}</a>
+        {% endif %}
+      </div>
     </div>
   {% endif %}
 </div> <!-- End of game-room-section -->
@@ -195,12 +203,12 @@ function showGameOverModal() {
     closeButton.title = 'Close';
 
     const messageElement = document.createElement('p');
-    messageElement.innerHTML = 'Game Over! All questions have been answered.<br><span dir="rtl">انتهت اللعبة! تمت الإجابة على جميع الأسئلة.</span>';
+    messageElement.innerHTML = 'Game Over! All questions have been answered.<br><span lang="ar" dir="rtl">انتهت اللعبة! تمت الإجابة على جميع الأسئلة.</span>';
 
     const leaderboardButton = document.createElement('a');
     leaderboardButton.href = "{{ url_for('leaderboard', room_id=room.room_id) }}";
     leaderboardButton.className = 'button';
-    leaderboardButton.textContent = 'Go to Leaderboard | عــرض النتائــج';
+    leaderboardButton.textContent = 'Go to Leaderboard | عرض النتائج';
 
     // Assemble the modal
     modalContent.appendChild(closeButton);

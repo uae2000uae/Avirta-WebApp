@@ -1,16 +1,16 @@
 
-<link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="screen">
 {% extends "gamebase.html" %}
+{% from "_bi.html" import bi, end_game_form %}
 
 {% block title %}{{ room.name }} - The Hive{% endblock %}
 
 
 {% block content %}
 <div id="hex_root" data-color-a="{{ room.team_colors[room.team_a] }}" data-color-b="{{ room.team_colors[room.team_b] }}" data-team-a="{{ room.team_a }}" data-team-b="{{ room.team_b }}">
-  <div style="text-align: center; margin-bottom: 20px;">
-    <h2>{{ room.name }} - {{ room.team_a }} vs {{ room.team_b }}</h2>
+  <div class="hive-title">
+    <h1 class="h2-like">{{ room.name }} - {{ room.team_a }} vs {{ room.team_b }}</h1>
   </div>
-  <center><p>Turn: <strong id="turn">{{ room.current_team_turn }}</strong></p></center>
+  <p class="hive-turn" role="status" aria-live="polite">Turn: <strong id="turn">{{ room.current_team_turn }}</strong></p>
   <div class="game-container">
 
     <div class="game-board-section">
@@ -48,7 +48,7 @@
         <div class="side-edge-2"></div>
       </div>
       <div id="board" class="board"> {% for cell in room.grid %}
-        <div class="cell" data-index="{{ cell.id }}">{{ cell.points }}</div>
+        <div class="cell" data-index="{{ cell.id }}" role="button" tabindex="0" aria-label="{{ cell.points }} points">{{ cell.points }}</div>
         {% endfor %} </div>
               <div class="board-edge">
         <div class="bottom-edge"></div>
@@ -60,19 +60,19 @@
     </div>
 
     <div class="question-section">
-      <h3>Question | السـؤال</h3>
-      <center>
-	  	<p id="question_text">Select a cell to load a question<br>اختر خلية لعرض السؤال</p>
-	  	<div id="options_container" style="display:none;"></div>
-		<div id="next_container" style="display:none; text-align:center; align-self: center">
-		   <div id="feedback" style="align-content: center; min-height: 24px; margin: 10px 0;"></div>
-		   <button id="next_button" class="answer-option">Next | التالي</button>
+      <h2 class="h3-like">{{ bi('Question', 'السؤال') }}</h2>
+      <div class="hive-question">
+	  	<p id="question_text" aria-live="polite">Select a cell to load a question<br><span lang="ar" dir="rtl">اختر خلية لعرض السؤال</span></p>
+	  	<div id="options_container" hidden></div>
+		<div id="next_container" hidden>
+		   <div id="feedback" role="status"></div>
+		   <button type="button" id="next_button" class="answer-option">{{ bi('Next', 'التالي') }}</button>
 		</div>
-	  </center>
+	  </div>
     </div>
   </div>
-	  <div style="margin-top: 20px; text-align: center;">
-	   <button id="end_game_button" class="answer-option" style="background: var(--error-color); width: auto; padding: 0px 10px;">End Game | إنهاء اللعبة</button>
+	  <div class="hive-end">
+	   {{ end_game_form(room.room_id, 'answer-option hive-end-btn') }}
 	</div>
 </div>
 {% endblock %}
@@ -81,6 +81,7 @@
 <script>
   const roomId = "{{ room.room_id }}";
   let currentCellIndex = null;
+  let lastCell = null;
 
   function refreshBoard(state) {
     const board = document.getElementById('board');
@@ -152,6 +153,10 @@
         cell.style.background = 'var(--primary-color2-dark)';
       }
       cell.textContent = c.points;
+      // Tell screen readers who owns the cell; owned cells can't be picked.
+      const owner = c.state === teamA ? teamA : c.state === teamB ? teamB : '';
+      cell.setAttribute('aria-label', c.points + ' points' + (owner ? ', claimed by ' + owner : ''));
+      cell.setAttribute('aria-disabled', owner ? 'true' : 'false');
     }
 
     if (state.winner) showWinner(state.winner);
@@ -182,13 +187,13 @@
     overlay.innerHTML =
       '<div class="winner-banner">' +
         '<div class="winner-trophy" aria-hidden="true"><i class="fas fa-trophy"></i></div>' +
-        '<div class="winner-label">Winner | الفائز</div>' +
+        '<div class="winner-label">Winner | <span lang="ar" dir="rtl">الفائز</span></div>' +
         '<div class="winner-name" id="hive-win-name" dir="auto"></div>' +
         '<div class="winner-score"><span class="hive-win-swatch" aria-hidden="true"></span>' +
           '<span class="winner-unit"></span></div>' +
         '<div class="form-actions">' +
-          '<button type="button" class="button" data-act="board">See the board | عرض اللوحة</button>' +
-          '<button type="button" class="button red-button" data-act="end">End Game | إنهاء اللعبة</button>' +
+          '<button type="button" class="button" data-act="board">See the board | <span lang="ar" dir="rtl">عرض اللوحة</span></button>' +
+          '<button type="button" class="button red-button" data-act="end">End Game | <span lang="ar" dir="rtl">إنهاء اللعبة</span></button>' +
         '</div>' +
       '</div>';
     overlay.querySelector('.winner-name').textContent = w.team;
@@ -220,6 +225,7 @@
     if (document.getElementById('hex_root').classList.contains('hive-won')) return;
     const idx = parseInt(e.target.dataset.index);
     if (isNaN(idx)) return;
+    lastCell = e.target;
 
     fetch("{{ url_for('hex_select_cell') }}", {
       method: 'POST',
@@ -243,11 +249,11 @@
     const container = document.getElementById('options_container');
     container.innerHTML = '';
     if (!options || options.length === 0) {
-      container.style.display = 'none';
+      container.hidden = true;
       return;
     }
 
-    container.style.display = '';
+    container.hidden = false;
     options.forEach((opt, i) => {
       const btn = document.createElement('button');
       btn.className = 'answer-option';
@@ -280,15 +286,15 @@
 
       if (data.correct) {
         btn.classList.add('correct');
-        fb.textContent = 'Correct ! صحيــح';
+        fb.textContent = 'Correct! | صحيح';
       } else {
         btn.classList.add('wrong');
-        fb.textContent = 'Incorrect | خطـــــأ';
+        fb.textContent = 'Incorrect | خطأ';
         const correctBtn = buttons.find(b => b.textContent === data.correct_answer);
         if (correctBtn) correctBtn.classList.add('correct');
       }
 
-      document.getElementById('next_container').style.display = 'block';
+      document.getElementById('next_container').hidden = false;
 
       if (data.correct && data.winner) {
         setTimeout(() => {
@@ -305,23 +311,28 @@
       .then(r => r.json()).then(state => refreshBoard(state));
 
     document.getElementById('question_text').textContent = 'Select a cell to load a question | اختر خلية لعرض السؤال';
-    document.getElementById('options_container').style.display = 'none';
+    if (lastCell && lastCell.isConnected) lastCell.focus();   // back to where the player was
+    document.getElementById('options_container').hidden = true;
     document.getElementById('options_container').innerHTML = '';
-    document.getElementById('next_container').style.display = 'none';
+    document.getElementById('next_container').hidden = true;
     document.getElementById('feedback').textContent = '';
   }
 
+  // Ending is a confirmed POST (the form's data-confirm dialog in ui.js).
   function handleEndGameClick() {
-    const confirmMessage = 'Are you sure you want to end this game? This action cannot be undone.\n\nهل أنت متأكد من إنهاء هذه اللعبة؟ لا يمكن التراجع عن هذا الإجراء.';
-    if (confirm(confirmMessage)) {
-      window.location.href = `{{ url_for('end_game', room_id='__RID__') }}`.replace('__RID__', roomId);
-    }
+    const form = document.querySelector('.hive-end form');
+    if (form) form.requestSubmit ? form.requestSubmit() : form.querySelector('button').click();
   }
 
   // Event listeners
-  document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', selectCell));
+  document.querySelectorAll('.cell').forEach(cell => {
+    cell.addEventListener('click', selectCell);
+    // role="button" cells: Enter or Space picks the cell, like a real button.
+    cell.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCell(e); }
+    });
+  });
   document.getElementById('next_button').addEventListener('click', handleNextClick);
-  document.getElementById('end_game_button').addEventListener('click', handleEndGameClick);
 
   // Initialize board and glow on page load
   fetch(`{{ url_for('hex_game_updates', room_id='__RID__') }}`.replace('__RID__', roomId))

@@ -1,12 +1,12 @@
-<link href="../static/css/style.css" rel="stylesheet" type="text/css">
 {% extends "gamebase.html" %}
+{% from "_bi.html" import bi, end_game_form %}
 
 {% block title %}Avirta - Leaderboard{% endblock %}
 
 {% block content %}
 <div class="leaderboard-section" data-final="{{ 'true' if room.is_board_completed() else 'false' }}">
     <div class="leaderboard-header">
-        <h2>Leaderboard | النتـــــائـــــج</h2>
+        <h1 class="leaderboard-title">{{ bi('Leaderboard', 'النتائج') }}</h1>
     </div>
 
     <div class="leaderboard-display">
@@ -15,9 +15,9 @@
             <table class="leaderboard-table">
                 <thead>
                     <tr>
-                        <th>Rank | الترتيب</th>
-                        <th>Player | اللاعب</th>
-                        <th>Score | النتيجة</th>
+                        <th>{{ bi('Rank', 'الترتيب') }}</th>
+                        <th>{{ bi('Player', 'اللاعب') }}</th>
+                        <th>{{ bi('Score', 'النتيجة') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,14 +38,14 @@
     </div>
   {% if room.is_board_completed() %}
     <div>
-      	<form class="form-actions clear center">
-		<input type="hidden" name="room_id" value="{{ room.room_id }}"><a href="{{ url_for('end_game', room_id=room.room_id) }}" class="button large">End Game | إنهاء اللعبة</a>
-
-		</form>
+      <div class="form-actions center">
+        {% if is_host %}<a href="{{ url_for('create_room', host=room.host, players=(room.players|reject('equalto', room.host)|join(','))) }}" class="button large">{{ bi('Play again', 'العب مرة أخرى') }}</a>{% endif %}
+        {{ end_game_form(room.room_id) }}
+      </div>
     </div>
   {% endif %}
     <div class="form-actions">
-        <a href="{{ url_for('game_room', room_id=room_id) }}" class="button">Return to Game Board</a>
+        <a href="{{ url_for('game_room', room_id=room_id) }}" class="button">{{ bi('Return to Game Board', 'العودة إلى اللوحة') }}</a>
 
     </div>
 </div>

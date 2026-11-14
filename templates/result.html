@@ -1,5 +1,5 @@
-<link href="../static/css/style.css" rel="stylesheet" type="text/css">
 {% extends "gamebase.html" %}
+{% from "_bi.html" import bi %}
 
 {% block extra_head %}
     <script src="{{ url_for('static', filename='js/livestatus.js') }}"></script>
@@ -9,13 +9,13 @@
 <div class="result-section">
 <div class="result-display">
       {% if is_correct %}
-          <div class="result correct zoomin">
-                <div class="result-icon">Correct ✓ صــــــح</div>
+          <div class="result correct zoomin" role="status">
+                <h1 class="result-icon"><span aria-hidden="true">✓</span> {{ bi('Correct', 'صح') }}</h1>
                 <p>Great job, {{ current_player }}!</p>
             </div>
         {% else %}
-            <div class="result incorrect zoomin">
-                <div class="result-icon">Wrong ✗ خـطـــــأ</div>
+            <div class="result incorrect zoomin" role="status">
+                <h1 class="result-icon"><span aria-hidden="true">✗</span> {{ bi('Wrong', 'خطأ') }}</h1>
                 <p>Sorry, {{ current_player }}.</p>
             </div>
         {% endif %}
@@ -28,20 +28,20 @@
             {% endif %}
             {% if current_question %}
             <div>
-                <button id="report-btn" class="report-button"><i class="fas fa-flag"></i></button>
+                <button type="button" id="report-btn" class="report-button" aria-label="Report this question" title="Report question | الإبلاغ عن السؤال"><i class="fas fa-flag" aria-hidden="true"></i></button>
             </div>
             {% endif %}
 
         </div><br>
-<div class="form-actions"> <a href="{{ url_for('game_room', room_id=room_id) }}" class="button" id="return-to-game">Return to Game Board</a> </div>
+<div class="form-actions"> <a href="{{ url_for('game_room', room_id=room_id) }}" class="button" id="return-to-game">{{ bi('Return to Game Board', 'العودة إلى اللوحة') }}</a> </div>
         <br>
-        <h3>Current Scores | النتائج الحالية</h3>
+        <h2 class="h3-like">{{ bi('Current Scores', 'النتائج الحالية') }}</h2>
         <div class="leaderboard-display">
 			<table class="leaderboard-table">
 				<thead>
 						<tr>
-						  <th>Player | اللاعب</th>
-						  <th>Score | النتيجة</th>
+						  <th>{{ bi('Player', 'اللاعب') }}</th>
+						  <th>{{ bi('Score', 'النتيجة') }}</th>
 						</tr>
 				</thead>
 				<tbody>              
@@ -119,7 +119,7 @@
                     const content = modal.querySelector('.modal-content');
                     const oldHTML = content.innerHTML;
                     if (success) {
-                        content.innerHTML = '<div class="info-text" style="text-align:center;">' +
+                        content.innerHTML = '<div class="info-text ta-center">' +
                             (data.message || 'Question reported successfully. Thank you!') +
                             '</div>';
                         setTimeout(function() {
@@ -155,16 +155,16 @@
 </script>
 
 <!-- Floating message box for report confirmation -->
-<div id="report-modal" class="modal">
+<div id="report-modal" class="modal" role="dialog" aria-modal="true" aria-label="Report question">
     <div class="modal-content">
-        <span class="close-modal">&times;</span>
-		<p>Would you like to report this question for review?</p><p dir="rtl">هل تريد الإبلاغ عن هذا السؤال للمراجعة؟</p>
+        <button type="button" class="close-modal" aria-label="Close">&times;</button>
+		<p>Would you like to report this question for review?</p><p lang="ar" dir="rtl">هل تريد الإبلاغ عن هذا السؤال للمراجعة؟</p>
         <form action="{{ url_for('report_question') }}" method="post" class="form-actions">
             <input type="hidden" name="question_id" value="{{ current_question.id if current_question else '' }}">
             <input type="hidden" name="room_id" value="{{ room_id }}">
             <input type="hidden" name="is_correct" value="{{ is_correct }}">
-            <button type="submit" class="button confirm-report">Yes | نعـم</button>
-            <button type="button" class="button cancel-report">No | إلغاء</button>
+            <button type="submit" class="button confirm-report">{{ bi('Yes', 'نعم') }}</button>
+            <button type="button" class="button cancel-report">{{ bi('No', 'إلغاء') }}</button>
         </form>
     </div>
 </div>

@@ -1,6 +1,7 @@
 {# Winner spotlight for the final results. Expects `leaderboard` as a list of
    (player, score) pairs sorted by score, highest first. Ties share the win;
    nothing is shown when nobody scored. #}
+{% from "_bi.html" import bi %}
 {% if leaderboard %}
   {% set top = leaderboard[0][1] %}
   {% if top and top > 0 %}
@@ -8,10 +9,10 @@
     <div class="winner-banner" role="status" aria-live="polite">
       <div class="winner-trophy" aria-hidden="true"><i class="fas fa-trophy"></i></div>
       <div class="winner-label">
-        {% if winners|length > 1 %}Shared win | تعادل على الفوز{% else %}Winner | الفائز{% endif %}
+        {% if winners|length > 1 %}{{ bi('Shared win', 'تعادل على الفوز') }}{% else %}{{ bi('Winner', 'الفائز') }}{% endif %}
       </div>
       <div class="winner-name" dir="auto">{{ winners | join(' & ') }}</div>
-      <div class="winner-score"><span class="winner-points" data-count="{{ top }}">{{ top }}</span> <span class="winner-unit">points | نقطة</span></div>
+      <div class="winner-score"><span class="winner-points" data-count="{{ top }}">{{ top }}</span> <span class="winner-unit">{{ bi('points', 'نقطة') }}</span></div>
     </div>
   {% endif %}
 {% endif %}

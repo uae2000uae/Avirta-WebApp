@@ -1,0 +1,30 @@
+{# Category picker shared by the create-room forms.
+   Tag chips filter the grid (tags come from contents/category_tags.json).
+   Within a group (Language, Topic) chips widen the filter; across groups
+   they narrow it. Ticked categories always stay visible. Tags are only
+   data on each tile (data-tags); they are never shown on the tiles. #}
+{% from "_bi.html" import bi %}
+<fieldset class="form-step">
+    <legend><span class="step-num">3</span> Categories</legend>
+    <div class="category-toolbar">
+        <div class="tag-filter" role="group" aria-label="Filter categories by tag">
+            <button type="button" class="tag-chip" data-tag="" aria-pressed="true">{{ bi('All', 'الكل') }}</button>
+            {% for group in tag_groups|default([]) %}
+                <span class="tag-divider" aria-hidden="true"></span>
+                {% for tag in group.tags %}
+                <button type="button" class="tag-chip" data-tag="{{ tag.id }}" data-group="{{ group.id }}" aria-pressed="false">{{ bi(tag.en, tag.ar) if tag.ar else tag.en }}</button>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <output class="category-count" aria-live="polite"><strong data-count>0</strong> / {{ max_categories }} selected</output>
+    </div>
+    <div class="categories-grid" id="category-grid">
+        {% for category_id, category in categories.items() %}
+        <div class="category-checkbox" data-tags="{{ (category_tags|default({})).get(category_id, [])|join(' ') }}">
+            <input type="checkbox" id="category_{{ category_id }}" name="categories" value="{{ category_id }}">
+            <label for="category_{{ category_id }}" class="text-center" dir="auto">{{ category.name }}</label>
+        </div>
+        {% endfor %}
+    </div>
+    <p class="category-empty muted" hidden>No category has all the chosen tags. | <span lang="ar" dir="rtl">لا توجد فئة تطابق كل الوسوم المختارة.</span></p>
+</fieldset>

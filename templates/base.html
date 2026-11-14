@@ -28,16 +28,24 @@
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body class="site">
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
         <a class="brand" href="{{ url_for('index') }}" aria-label="Avirta home"><img class="logo-on-dark" src="/static/images/logovtext.png" width="71.5" height="83.8" alt="Avirta"/><img class="logo-on-light" src="/static/images/logovtext-light.png" width="71.5" height="83.8" alt="Avirta"/></a>
-        <div class="timestamp-info" id="commit-timestamp-info">Last commit: Loading...</div>
+        {# Build info is for admins only; players never need it. #}
+        {% if session.get('admin_authenticated') %}<div class="timestamp-info" id="commit-timestamp-info">Last commit: Loading...</div>{% endif %}
         <div class="header-tools">
             {% include "_header_tools.html" %}
-            <div class="zoom-controls" role="group" aria-label="Zoom">
-                <span class="zoom-label">Zoom</span>
-                <button id="zoomOutControl" type="button" class="icon-btn" title="Zoom out 10%" aria-label="Zoom out">&minus;</button>
-                <button id="zoomInControl" type="button" class="icon-btn" title="Zoom in 10%" aria-label="Zoom in">+</button>
-            </div>
+            <details class="settings-menu">
+                <summary class="icon-btn" title="Display settings" aria-label="Display settings"><i class="fas fa-sliders" aria-hidden="true"></i></summary>
+                <div class="settings-panel">
+                    <div class="zoom-controls" role="group" aria-label="Text size">
+                        <span class="zoom-label">Text size</span>
+                        <button id="zoomOutControl" type="button" class="icon-btn" title="Smaller (10%)" aria-label="Make everything smaller">&minus;</button>
+                        <output id="zoomValue" class="zoom-value" aria-live="polite">100%</output>
+                        <button id="zoomInControl" type="button" class="icon-btn" title="Larger (10%)" aria-label="Make everything larger">+</button>
+                    </div>
+                </div>
+            </details>
             <div class="admin-login-container">
             {% if session.get('admin_authenticated') %}
                 <a href="{{ url_for('admin_controls') }}" class="button">Admin Controls</a>
@@ -72,23 +80,15 @@
 
 
     <div class="container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="flash-messages">
-                    {% for category, message in messages %}
-                        <div class="flash-message {% if category == 'error' %}error{% elif category == 'success' %}success{% elif category == 'result-correct' %}result-correct{% else %}success{% endif %}">{{ message }}</div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
+        {% include "_flash.html" %}
 
-        <main>
+        <main id="main">
             {% block content %}{% endblock %}
         </main>
     </div>
 
     <footer>
-      <p>© 2025 Avirta. All rights reserved.</p>
+      <p>© {{ current_year }} Avirta. All rights reserved.</p>
 </footer>
 
 <script>
@@ -137,6 +137,8 @@
                 body.style.transformOrigin = '0 0';
                 body.style.width = (100 / scale) + '%';
             }
+            const readout = document.getElementById('zoomValue');
+            if (readout) readout.textContent = Math.round(scale * 100) + '%';
             return scale;
         }
         function readZoom() {

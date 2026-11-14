@@ -194,14 +194,8 @@ function setupFormValidation() {
  * Handle flash messages
  */
 function setupFlashMessages() {
-    const flashMessages = document.querySelectorAll('.flash-message');
-
-    // Remove flash messages after animation completes (5 seconds)
-    flashMessages.forEach(message => {
-        setTimeout(() => {
-            message.remove();
-        }, 5000); // 5 seconds
-    });
+    // Timing now lives in ui.js (initFlashes): errors stay until dismissed,
+    // other messages leave after a few seconds. Nothing to do here.
 }
 
 /**

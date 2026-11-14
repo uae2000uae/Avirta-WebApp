@@ -1,0 +1,21 @@
+{# Tag checkboxes for admin forms (Edit Category, AI "New category", Bulk import).
+   Use: {% from "_tag_picker.html" import tag_picker %}
+        {{ tag_picker(tag_groups, selected=['arabic'], name='tags') }}
+   tag_groups comes from questionmanagement.category_tags.tags_by_group(). #}
+{% macro tag_picker(tag_groups, selected=[], name='tags', id_prefix='tag') -%}
+<div class="tag-picker">
+    {% for group in tag_groups %}
+    <div class="tag-picker-group" role="group" aria-labelledby="{{ id_prefix }}-{{ group.id }}-label">
+        <span class="field-label" id="{{ id_prefix }}-{{ group.id }}-label">{{ group.en }} | <span lang="ar" dir="rtl">{{ group.ar }}</span></span>
+        <div class="chip-group">
+            {% for tag in group.tags %}
+            <input type="checkbox" class="chip-input" id="{{ id_prefix }}-{{ tag.id }}" name="{{ name }}" value="{{ tag.id }}"{% if tag.id in selected %} checked{% endif %}>
+            <label class="chip" for="{{ id_prefix }}-{{ tag.id }}">{{ tag.en }} | <span lang="ar" dir="rtl">{{ tag.ar }}</span></label>
+            {% else %}
+            <span class="muted">No tags yet. Add them under Admin &gt; Question Bank.</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{%- endmacro %}

@@ -28,7 +28,7 @@ def handle_error(is_ajax, message, redirect_url=None):
     if is_ajax:
         return jsonify({'success': False, 'message': message})
 
-    flash(message)
+    flash(message, 'error')
 
     return redirect(redirect_url) if redirect_url else None
 

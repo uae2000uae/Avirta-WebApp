@@ -4,62 +4,53 @@
 
 {% block content %}
 <div class="page-section">
-    <h2>Create a "Knowledge Columns" Game Board</h2>
-  <form action="{{ url_for('create_room') }}" method="post" class="form-group-xx" data-max-categories="{{ max_categories }}">
+    <h1 class="page-title">Create a "Knowledge Columns" game</h1>
+  <form action="{{ url_for('create_room') }}" method="post" class="form-group-xx setup-form" data-max-categories="{{ max_categories }}">
+      <fieldset class="form-step">
+        <legend><span class="step-num">1</span> Room and players</legend>
         <div class="form-group-equal-md">
-            <label for="room_name">Room Name:</label>
+            <label for="room_name">Room name</label>
             <input type="text" id="room_name" name="room_name" required placeholder="Game room title">
         </div>
         <div class="form-group-equal-sm">
-            <label for="host_name">Host (Player 1):</label>
-            <input type="text" id="host_name" name="host_name" required placeholder="Player 1 (the host)">
+            <label for="host_name">Host (player 1)</label>
+            <input type="text" id="host_name" name="host_name" required placeholder="Player 1 (the host)" value="{{ prefill_host|default('') }}" autocomplete="nickname">
         </div>
         <div class="form-group-inline">
-            <label>Additional Players:</label>
-            <div class="form-group-grid">
+            <span class="field-label" id="players-label">More players <span class="muted">(optional)</span></span>
+            <div class="form-group-grid" role="group" aria-labelledby="players-label">
+                {% set pp = prefill_players|default([]) %}
                 {% for i in range(1, max_players) %}
                 <div class="form-group-equal-sm">
-                    <input type="text" id="player{{ i }}" name="additional_players" placeholder="Player {{ i+1 }} (optional)">
+                    <input type="text" id="player{{ i }}" name="additional_players" aria-label="Player {{ i+1 }}" placeholder="Player {{ i+1 }}" value="{{ pp[i-1] if pp|length >= i else '' }}">
                 </div>
                 {% endfor %}
             </div>
         </div>
-        <div class="form-group-inline">
-          <label>Select Question Types:</label>
-          <div class="form-group-equal-sm">
-            <div class=category-checkbox>
-              <input type="checkbox" id="type_text" name="question_types" value="text" checked>
-              <label for="type_text">Text</label>
-            </div>
-            <div class=category-checkbox>
-              <input type="checkbox" id="type_multiple_choice" name="question_types" value="multiple_choice" checked>
-              <label for="type_multiple_choice">Multiple Choice</label>
-            </div>
-            <div class=category-checkbox>
-              <input type="checkbox" id="type_true_false" name="question_types" value="true_false" checked>
-              <label for="type_true_false">True/False</label>
-            </div>
-          </div>
-        </div>
-        <div class="form-group-inline">
-          <label>Select Categories (up to {{ max_categories }}):</label>
-            <div class="categories-grid">
-                {% for category_id, category in categories.items() %}
+      </fieldset>
 
-                <div class="category-checkbox">
-                    <input type="checkbox" id="category_{{ category_id }}" name="categories" value="{{ category_id }}">
-                    <label for="category_{{ category_id }}" class="text-center">{{ category.name }}</label>
-                </div>
-                {% endfor %}
-            </div>
+      <fieldset class="form-step">
+        <legend><span class="step-num">2</span> Question types</legend>
+        <div class="chip-group">
+            <input type="checkbox" class="chip-input" id="type_text" name="question_types" value="text" checked>
+            <label class="chip" for="type_text">Text</label>
+            <input type="checkbox" class="chip-input" id="type_multiple_choice" name="question_types" value="multiple_choice" checked>
+            <label class="chip" for="type_multiple_choice">Multiple choice</label>
+            <input type="checkbox" class="chip-input" id="type_true_false" name="question_types" value="true_false" checked>
+            <label class="chip" for="type_true_false">True / False</label>
         </div>
-<div class="form-actions">
-      <button type="submit">Create Room</button>
-            <button class="button secondary"><a class="text-clear" href="{{ url_for('index') }}">Cancel</a></button>
+      </fieldset>
+
+      {% include "_category_picker.html" %}
+
+        <div class="form-actions">
+            <button type="submit">Create Room</button>
+            <a class="button secondary" href="{{ url_for('index') }}">Cancel</a>
         </div>
     </form>
 </div>
 
+<script src="{{ url_for('static', filename='js/setup_form.js') }}" defer></script>
 <script>
 (function() {
   function getSelectedValues(name) {
@@ -97,6 +88,8 @@
             }
           }
         });
+        // Availability can untick categories: re-apply the limit and the counter.
+        enforceMaxCategories();
       })
       .catch(() => { /* ignore errors; keep current state */ });
   }
@@ -107,6 +100,7 @@
     const max = parseInt(form.getAttribute('data-max-categories')) || 7;
     const selected = Array.from(document.querySelectorAll('input[name="categories"]:checked'));
     const unchecked = Array.from(document.querySelectorAll('input[name="categories"]:not(:checked)'));
+    if (window.AvirtaSetup) window.AvirtaSetup.refresh(form);
     if (selected.length >= max) {
       unchecked.forEach(cb => { cb.disabled = true; });
     } else {
