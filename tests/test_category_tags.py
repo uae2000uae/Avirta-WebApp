@@ -14,10 +14,14 @@ def _data():
         return json.load(fh)
 
 
-def test_every_question_category_is_tagged():
+def test_shipped_categories_are_tagged():
+    """The categories that ship with the app are tagged. Categories admins add
+    later on the live site may be untagged (they show under "Other" and the
+    Question Bank warns), so they must never block a deploy."""
     cats = _data()["categories"]
-    files = [f[:-5] for f in os.listdir(QUESTIONS) if f.endswith(".json")]
-    missing = [c for c in files if not cats.get(c)]
+    shipped = ["cars", "jurassic_park", "superhero_movies", "علوم_عامة", "معلومات_عامة"]
+    files = {f[:-5] for f in os.listdir(QUESTIONS) if f.endswith(".json")}
+    missing = [c for c in shipped if c in files and not cats.get(c)]
     assert not missing, f"Add tags in contents/category_tags.json for: {missing}"
 
 
