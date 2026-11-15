@@ -93,6 +93,9 @@
     const teamB = root.dataset.teamB;
 
     turn.textContent = state.current_team_turn;
+    // The pulse follows the team whose turn it is; once a team wins it stays
+    // on the winner's colour.
+    const glowTeam = state.winner ? state.winner.team : state.current_team_turn;
 
     // Update team color bar
     const teamASection = document.getElementById('team-a-section');
@@ -104,9 +107,9 @@
     teamASection.classList.remove('active-glow');
     teamBSection.classList.remove('active-glow');
 
-    if (state.current_team_turn === teamA) {
+    if (glowTeam === teamA) {
       teamASection.classList.add('active-glow');
-    } else if (state.current_team_turn === teamB) {
+    } else if (glowTeam === teamB) {
       teamBSection.classList.add('active-glow');
     }
 
@@ -128,12 +131,12 @@
     [...sideBarsR].forEach(el => { el.style.backgroundColor = colorB; el.classList.remove('active-glow'); });
 
     // Glow assignment based on current turn
-    if (state.current_team_turn === teamA) {
+    if (glowTeam === teamA) {
       [...topEdges].forEach(el => el.classList.add('active-glow'));
       [...bottomEdges].forEach(el => el.classList.add('active-glow'));
       [...topEdgesEnd].forEach(el => el.classList.add('active-glow'));
       [...bottomEdgesEnd].forEach(el => el.classList.add('active-glow'));
-    } else if (state.current_team_turn === teamB) {
+    } else if (glowTeam === teamB) {
       [...sideBarsL].forEach(el => el.classList.add('active-glow'));
       [...sideBarsR].forEach(el => el.classList.add('active-glow'));
     }
@@ -157,6 +160,8 @@
       const owner = c.state === teamA ? teamA : c.state === teamB ? teamB : '';
       cell.setAttribute('aria-label', c.points + ' points' + (owner ? ', claimed by ' + owner : ''));
       cell.setAttribute('aria-disabled', owner ? 'true' : 'false');
+      // Claimed cells pulse together with their team's edges.
+      cell.classList.toggle('active-glow', !!owner && owner === glowTeam);
     }
 
     if (state.winner) showWinner(state.winner);
@@ -179,6 +184,20 @@
     if (winnerShown) return;
     winnerShown = true;
 
+    // First time: the winning path lights up for 3 seconds before the popup.
+    // After a reload the popup opens straight away.
+    let first = true;
+    try { first = !sessionStorage.getItem('avirta-hive-won:' + roomId); sessionStorage.setItem('avirta-hive-won:' + roomId, '1'); } catch (e) {}
+    const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (first) {
+      root.classList.add('hive-winning');
+      setTimeout(() => { root.classList.remove('hive-winning'); openWinnerPopup(w, true); }, reduce ? 1200 : 3000);
+    } else {
+      openWinnerPopup(w, false);
+    }
+  }
+
+  function openWinnerPopup(w, celebrate) {
     const overlay = document.createElement('div');
     overlay.className = 'hive-win';
     overlay.setAttribute('role', 'dialog');
@@ -211,12 +230,10 @@
     overlay.querySelector('[data-act="board"]').focus();
 
     // Sound and confetti once per room, even across reloads.
-    let first = true;
-    try { first = !sessionStorage.getItem('avirta-hive-won:' + roomId); sessionStorage.setItem('avirta-hive-won:' + roomId, '1'); } catch (e) {}
-    if (first) {
+    if (celebrate) {
       setTimeout(() => {
         if (window.AvirtaSFX) AvirtaSFX.play('win');
-        if (window.AvirtaUI) AvirtaUI.confetti();
+        if (window.AvirtaUI) (AvirtaUI.celebrate || AvirtaUI.confetti)();
       }, 250);
     }
   }

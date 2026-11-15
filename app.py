@@ -274,7 +274,7 @@ set_game_status_manager(game_status_manager)
 set_stats_sink(admin_setup)
 
 # Register The Hive routes in a separate module to keep app.py clean
-register_hive_routes(app, game_rooms, game_status_manager, question_uploader, add_game_event)
+register_hive_routes(app, game_rooms, game_status_manager, question_uploader, add_game_event, admin_setup)
 
 # Register Fastest game routes in a separate module to keep app.py clean
 register_fastest_routes(app, game_rooms, game_status_manager, question_uploader, add_game_event, admin_setup)
@@ -715,7 +715,6 @@ def end_game(room_id):
     session.pop('room_id', None)
     session.pop('player_name', None)
 
-    flash('You have ended the game.', 'success')
     return redirect(url_for('index'))
 
 @app.route('/leave_game/<room_id>')

@@ -83,16 +83,17 @@
     var rule = SUBMIT_SOUNDS.find(function (r) {
       return r.action.test(form.action) && (!r.submitter || (e.submitter && e.submitter.matches(r.submitter)));
     });
-    if (!rule || !window.AvirtaSFX || window.AvirtaSFX.isMuted()) return;
+    if (!rule) return;
     e.preventDefault();
     form.dataset.sfxSent = '1';
-    sfx(rule.sound);
+    if (e.submitter) e.submitter.classList.add('is-picked');
+    if (window.AvirtaSFX && !window.AvirtaSFX.isMuted()) sfx(rule.sound);
     if (e.submitter && e.submitter.name) {       // keep the clicked button's value
       var hidden = document.createElement('input');
       hidden.type = 'hidden'; hidden.name = e.submitter.name; hidden.value = e.submitter.value;
       form.appendChild(hidden);
     }
-    setTimeout(function () { HTMLFormElement.prototype.submit.call(form); }, 420);
+    setTimeout(function () { HTMLFormElement.prototype.submit.call(form); }, reduceMotion ? 120 : 420);
   }, true);
 
   /* -------------------------------------------------------------- motion */
@@ -145,8 +146,12 @@
   }
 
   /* Brief two-colour confetti on a non-interactive canvas overlay. */
-  function confetti() {
+  function confetti(opts) {
     if (reduceMotion || document.visibilityState !== 'visible') return;
+    opts = opts || {};
+    if (opts.bursts > 1) {                       // a second, softer shower from the top
+      setTimeout(function () { confetti({ from: 'top' }); }, 700);
+    }
     var cs = getComputedStyle(html);
     var colours = [cs.getPropertyValue('--confetti-1').trim() || '#d9b26a', cs.getPropertyValue('--confetti-2').trim() || '#b8863b'];
     var canvas = document.createElement('canvas');
@@ -157,9 +162,16 @@
     document.body.appendChild(canvas);
     var g = canvas.getContext('2d'); g.scale(dpr, dpr);
     var bits = [];
-    for (var k = 0; k < 90; k++) {
+    var fromTop = opts.from === 'top';
+    for (var k = 0; k < (fromTop ? 70 : 90); k++) {
       var fromLeft = k % 2 === 0;
-      bits.push({
+      bits.push(fromTop ? {
+        x: W * (0.15 + Math.random() * 0.7), y: -10 - Math.random() * H * 0.2,
+        vx: (Math.random() - 0.5) * 2, vy: 1 + Math.random() * 2,
+        w: 5 + Math.random() * 5, h: 3 + Math.random() * 4,
+        r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.3,
+        c: colours[k % 2]
+      } : {
         x: fromLeft ? W * 0.18 : W * 0.82, y: H * 0.42,
         vx: (fromLeft ? 1 : -1) * (2 + Math.random() * 5), vy: -6 - Math.random() * 7,
         w: 5 + Math.random() * 5, h: 3 + Math.random() * 4,
@@ -167,7 +179,7 @@
         c: colours[k % 2]
       });
     }
-    var t0 = performance.now(), dur = 1800;
+    var t0 = performance.now(), dur = fromTop ? 2400 : 1800;
     function frame(now) {
       var t = now - t0;
       g.clearRect(0, 0, W, H);
@@ -333,6 +345,36 @@
     }
   });
 
+  /* ------------------------------------------------------- brand */
+  /* The logo makes a full turn and the confetti bursts twice for a win. */
+  function celebrate() {
+    if (reduceMotion || document.visibilityState !== 'visible') return;
+    document.querySelectorAll('.brand-mark').forEach(function (m) {
+      m.classList.remove('is-celebrating'); void m.offsetWidth; m.classList.add('is-celebrating');
+      setTimeout(function () { m.classList.remove('is-celebrating'); }, 1400);
+    });
+    confetti({ bursts: 2 });
+  }
+
+  /* While the next page loads, the logo turns (only for real navigations:
+   * not new tabs, downloads, in-page links or cancelled clicks/submits). */
+  function markNavigating() { html.classList.add('is-navigating'); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (a.target && a.target !== '_self') return;
+    if (a.hasAttribute('download')) return;
+    var url;
+    try { url = new URL(a.href, location.href); } catch (err) { return; }
+    if (url.origin !== location.origin || (url.pathname === location.pathname && url.hash)) return;
+    setTimeout(function () { if (!e.defaultPrevented) markNavigating(); }, 0);
+  });
+  document.addEventListener('submit', function (e) {
+    setTimeout(function () { if (!e.defaultPrevented || (e.target && e.target.dataset.sfxSent)) markNavigating(); }, 0);
+  });
+  // Coming back with the Back button restores the page as it was left.
+  window.addEventListener('pageshow', function () { html.classList.remove('is-navigating'); });
+
   /* --------------------------------------------- phone landscape fit */
   var fitQuery = window.matchMedia && matchMedia('(orientation: landscape) and (max-height: 500px)');
   var MIN_FIT = 0.6;
@@ -361,6 +403,12 @@
     paintThemeButtons();
     paintSoundButtons();
     initFlashes();
+
+    // The logo draws itself in once per visit (not on every page).
+    if (!reduceMotion && store.once('avirta-brand-intro')) {
+      html.classList.add('brand-intro');
+      setTimeout(function () { html.classList.remove('brand-intro'); }, 1200);
+    }
     var path = location.pathname;
 
     // Pages that reload on every turn: fill their status line after load so
@@ -476,7 +524,7 @@
       if (winnerPoints) setTimeout(function () { countUp(winnerPoints); }, 300);
       var section = document.querySelector('[data-final="true"]');
       if (section && store.once('avirta-win:' + path)) {
-        setTimeout(function () { sfx('win'); confetti(); }, 250);
+        setTimeout(function () { sfx('win'); celebrate(); }, 250);
       }
     }
 
@@ -491,5 +539,5 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 
-  window.AvirtaUI = { cascade: cascade, sweep: sweep, confetti: confetti, countUp: countUp, fit: fitStage, setTheme: setTheme };
+  window.AvirtaUI = { cascade: cascade, sweep: sweep, confetti: confetti, celebrate: celebrate, countUp: countUp, fit: fitStage, setTheme: setTheme };
 })();

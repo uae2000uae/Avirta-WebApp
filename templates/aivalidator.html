@@ -6,26 +6,22 @@
 {% set s = ai.active_summary %}
 {% set key = ai['keys'][s.option] %}
 <div class="ai-page" id="ai-validator">
-    <div class="ai-hero">
-        <div class="ai-hero-glow" aria-hidden="true"></div>
-        <div class="ai-hero-top">
-            <div class="ai-topnav" role="navigation" aria-label="AI tools">
-                <a href="{{ url_for('admin_controls') }}" class="ai-btn secondary small"><i class="fas fa-arrow-left"></i> Admin</a>
-                <a href="{{ url_for('ai_question_generator') }}" class="ai-btn secondary small"><i class="fas fa-wand-magic-sparkles"></i> Generator</a>
-            </div>
-            <div class="ai-onair {{ 'is-live' if key.configured else 'is-idle' }}" role="status">
-                <span class="ai-onair-label"><span class="ai-dot" aria-hidden="true"></span>{{ 'On air' if key.configured else ('Key missing' if key.managed else 'No key') }}</span>
-                <span><strong>{{ s.label }}</strong> <span class="ai-sep">·</span> {{ s.model or 'no model' }} <span class="ai-sep">·</span> {{ ai.catalog.quality_profiles[s.quality].label }}</span>
-                <a class="ai-link" href="{{ url_for('admin_controls') }}" onclick="localStorage.setItem('adminActiveTab','api-settings')">Change</a>
-            </div>
+    {# Same page head as the other admin pages: back button, title, one line. #}
+    <div class="back-navigation ai-pagehead">
+        <a href="{{ url_for('admin_controls') }}" class="button"><i class="fas fa-arrow-left"></i> Back to Admin Controls</a>
+        <nav class="ai-topnav" aria-label="AI tools">
+            <a href="{{ url_for('ai_question_generator') }}" class="button"><i class="fas fa-wand-magic-sparkles"></i> AI Question Generator</a>
+        </nav>
+    </div>
+    <div class="ai-titlebar">
+        <div>
+            <h1 class="page-title">AI Question Validator</h1>
+            <p class="ai-lede">The AI fact-checks existing questions, fixes errors and weak wording, and finds duplicates. Nothing changes until you approve it.</p>
         </div>
-        <div class="ai-hero-body">
-            <img class="ai-hero-logo" src="{{ url_for('static', filename='images/favicon.png') }}" alt="" width="72" height="72">
-            <div>
-                <span class="ai-eyebrow">Control room · Judges' panel</span>
-                <h1>AI Question Validator</h1>
-                <p>The judges fact-check existing questions, fix errors and weak wording, and spot duplicates. Nothing changes until you approve it.</p>
-            </div>
+        <div class="ai-onair {{ 'is-live' if key.configured else 'is-idle' }}" role="status">
+            <span class="ai-onair-label"><span class="ai-dot" aria-hidden="true"></span>{{ 'Active AI' if key.configured else ('Key missing' if key.managed else 'No key') }}</span>
+            <span><strong>{{ s.label }}</strong> <span class="ai-sep">·</span> {{ s.model or 'no model' }} <span class="ai-sep">·</span> {{ ai.catalog.quality_profiles[s.quality].label }}</span>
+            <a class="ai-link" href="{{ url_for('admin_controls') }}#api-settings" onclick="localStorage.setItem('adminActiveTab','api-settings')">Change</a>
         </div>
     </div>
 
@@ -70,7 +66,7 @@
         </section>
 
         <section class="ai-card" aria-labelledby="val-step2">
-            <h3 id="val-step2"><span class="ai-step">2</span> What the judges check</h3>
+            <h3 id="val-step2"><span class="ai-step">2</span> What to check</h3>
             <div class="ai-grid-3">
                 <label class="ai-toggle"><input type="checkbox" id="opt-blind" checked>
                     <span><strong>Independent blind answer</strong><span class="ai-muted">The AI first answers each question without the key; disagreements get extra scrutiny. Recommended.</span></span></label>
@@ -95,7 +91,6 @@
         <div class="ai-stage-main">
             <div class="ai-ring" id="val-ring" aria-hidden="true"><span class="ai-ring-num" id="val-ring-num">0%</span></div>
             <div class="ai-stage-text">
-                <span class="ai-eyebrow">The judges are deliberating</span>
                 <h3 id="val-progress-title">Reviewing…</h3>
                 <p class="ai-muted" id="val-progress-stage"></p>
                 <span class="ai-muted" id="val-progress-model"></span>
@@ -108,7 +103,7 @@
     <div id="val-results" class="ai-stack ai-hidden">
         <section class="ai-card" aria-labelledby="val-step3">
             <div class="ai-card-head">
-                <h3 id="val-step3"><span class="ai-step">3</span> The verdicts</h3>
+                <h3 id="val-step3"><span class="ai-step">3</span> Results</h3>
                 <button type="button" class="ai-btn secondary small" id="val-new"><i class="fas fa-rotate-left"></i> New review</button>
             </div>
             <div class="ai-filters" id="val-filters" role="toolbar" aria-label="Filter results"></div>

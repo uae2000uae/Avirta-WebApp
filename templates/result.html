@@ -10,12 +10,12 @@
 <div class="result-display">
       {% if is_correct %}
           <div class="result correct zoomin" role="status">
-                <h1 class="result-icon"><span aria-hidden="true">✓</span> {{ bi('Correct', 'صح') }}</h1>
+                <h1 class="result-icon"><svg class="result-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.8l4.6 4.6L19.5 7" style="--len: 22"/></svg> {{ bi('Correct', 'صح') }}</h1>
                 <p>Great job, {{ current_player }}!</p>
             </div>
         {% else %}
             <div class="result incorrect zoomin" role="status">
-                <h1 class="result-icon"><span aria-hidden="true">✗</span> {{ bi('Wrong', 'خطأ') }}</h1>
+                <h1 class="result-icon"><svg class="result-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12" style="--len: 17"/><path d="M18 6L6 18" style="--len: 17"/></svg> {{ bi('Wrong', 'خطأ') }}</h1>
                 <p>Sorry, {{ current_player }}.</p>
             </div>
         {% endif %}

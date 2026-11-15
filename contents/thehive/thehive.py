@@ -10,10 +10,14 @@ from __future__ import annotations
 from flask import render_template, request, redirect, url_for, session, flash, jsonify
 
 # Import game room class local to the Hive game
-from contents.thehive.hex_game_room import HexGameRoom
+from contents.thehive.hex_game_room import HexGameRoom, hive_question_fits
+from questionmanagement.category_tags import category_tag_filters, categories_matching_tags
+
+BOARD_CELLS = 25
 
 
-def register_hive_routes(app, game_rooms, game_status_manager, question_uploader, add_game_event):
+def register_hive_routes(app, game_rooms, game_status_manager, question_uploader, add_game_event,
+                         admin_setup=None):
     """Register The Hive (Hex) game routes on the given Flask app.
 
     Args:
@@ -22,7 +26,32 @@ def register_hive_routes(app, game_rooms, game_status_manager, question_uploader
         game_status_manager: Persistence and events manager with load/persist APIs.
         question_uploader: QuestionUploader instance for fetching questions.
         add_game_event (callable): Function to append a game event.
+        admin_setup: kept for symmetry with the other games; optional.
     """
+
+    def category_ids():
+        try:
+            question_uploader.load_questions()
+        except Exception:
+            pass
+        return sorted({q.get('category_id', 'general') for q in getattr(question_uploader, 'questions', {}).values()})
+
+    def pool_size(points, categories):
+        n = 0
+        for q in getattr(question_uploader, 'questions', {}).values():
+            if not hive_question_fits(q, categories):
+                continue
+            try:
+                if int(q.get('points') or 0) in points:
+                    n += 1
+            except (TypeError, ValueError):
+                pass
+        return n
+
+    def render_form():
+        tag_groups, _ = category_tag_filters(category_ids())
+        return render_template('thehive/create_room.html', default_points=[100, 200, 300, 400, 500],
+                               tag_groups=tag_groups, board_cells=BOARD_CELLS)
 
     @app.route('/hex/create_room', methods=['GET', 'POST'])
     def hex_create_room():
@@ -51,6 +80,17 @@ def register_hive_routes(app, game_rooms, game_status_manager, question_uploader
                     except Exception:
                         point_values = []
 
+            # Questions come from every category the chosen tags allow
+            # (no tags = every category); always multiple choice.
+            tags = request.form.getlist('tags')
+            categories = categories_matching_tags(category_ids(), tags) if tags else []
+            if not point_values:
+                session['error_modal'] = 'Choose at least one point value.'
+                return redirect(url_for('hex_create_room'))
+            if tags and not categories:
+                session['error_modal'] = 'No category has all the chosen tags. Choose different tags.'
+                return redirect(url_for('hex_create_room'))
+
             # Create a new room id if not supplied
             import uuid
             if not room_id:
@@ -60,13 +100,20 @@ def register_hive_routes(app, game_rooms, game_status_manager, question_uploader
             display_name = room_name or f"{team_a} vs {team_b}"
 
             # Create the Hex game room (expects team_b and no unsupported kwargs)
-            hex_room = HexGameRoom(room_id, display_name, team_a, team_b, point_values=point_values)
+            hex_room = HexGameRoom(room_id, display_name, team_a, team_b, point_values=point_values,
+                                   categories=categories, tags=tags)
 
             # Create the board; if not enough questions, show details
+            try:
+                question_uploader.load_questions()
+            except Exception:
+                pass
             success, enough_questions, error_details = hex_room.create_board(question_uploader)
             if not success:
-                flash('Failed to create Hive game board. Please try different settings.', 'error')
-                return redirect(url_for('index'))
+                session['error_modal'] = (
+                    (error_details or {}).get('overall_message', 'Not enough questions for these settings.')
+                    + ' Choose more tags or point values and try again.')
+                return redirect(url_for('hex_create_room'))
 
             # Store in-memory and persist
             game_rooms[room_id] = hex_room
@@ -83,13 +130,28 @@ def register_hive_routes(app, game_rooms, game_status_manager, question_uploader
                 'message': f'The Hive game started: {team_a} vs {team_b}',
                 'teams': [team_a, team_b],
                 'point_values': point_values,
+                'tags': tags,
+                'categories': categories,
             })
 
             return redirect(url_for('hex_play', room_id=room_id))
 
-        # GET: Provide default point choices
-        default_points = [100, 200, 300, 400, 500]
-        return render_template('thehive/create_room.html', default_points=default_points)
+        return render_form()
+
+    @app.route('/api/hex/pool')
+    def hex_pool():
+        """How many questions the chosen points and tags give the board
+        (it needs 25), and how many categories that covers."""
+        try:
+            points = {int(x) for x in request.args.get('point_values', '').split(',') if x.strip()}
+        except ValueError:
+            points = set()
+        tags = [t for t in request.args.get('tags', '').split(',') if t]
+        all_ids = category_ids()
+        categories = categories_matching_tags(all_ids, tags) if tags else all_ids
+        count = pool_size(points, set(categories)) if categories else 0
+        return jsonify({'count': count, 'board_cells': BOARD_CELLS,
+                        'categories': len(categories), 'enough': count >= BOARD_CELLS})
 
     @app.route('/hex/play/<room_id>')
     def hex_play(room_id):

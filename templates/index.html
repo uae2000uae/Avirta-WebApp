@@ -15,7 +15,7 @@
 
     <h2 class="home-subhead">{{ bi('Host a new game', 'ابدأ لعبة جديدة') }}</h2>
     {# Each card is one link, so the whole card is the tap target. #}
-    <div class="features">
+    <div class="features-frame"><div class="features">
         <a class="feature" href="{{ url_for('create_room') }}">
             <span class="feature-icon" aria-hidden="true"><i class="fas fa-table-columns"></i></span>
             <span class="button">{{ bi_stack('Knowledge Columns', 'أعمدة المعرفة') }}</span>
@@ -31,5 +31,5 @@
             <span class="button">{{ bi_stack('The Hive', 'الخلية') }}</span>
             <p>Two teams claim hexagons by answering questions. The first team to link its two sides wins.</p>
         </a>
-    </div>
+    </div></div>
 {% endblock %}

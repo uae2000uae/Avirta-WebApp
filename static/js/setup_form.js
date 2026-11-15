@@ -31,16 +31,20 @@
     return groups;
   }
 
+  function matchesTags(tile, groups) {
+    var tags = (tile.getAttribute('data-tags') || '').split(/\s+/);
+    return Object.keys(groups).every(function (g) {
+      return groups[g].some(function (t) { return tags.indexOf(t) !== -1; });
+    });
+  }
+
   function applyFilter(form) {
     var groups = activeByGroup(form);
     var names = Object.keys(groups);
     var shown = 0;
     form.querySelectorAll('.categories-grid .category-checkbox').forEach(function (tile) {
-      var tags = (tile.getAttribute('data-tags') || '').split(/\s+/);
       var ticked = tile.querySelector('input:checked');
-      var match = names.every(function (g) {
-        return groups[g].some(function (t) { return tags.indexOf(t) !== -1; });
-      });
+      var match = matchesTags(tile, groups);
       var visible = match || !!ticked;
       tile.classList.toggle('is-filtered-out', !visible);
       if (match) shown++;
@@ -51,22 +55,50 @@
     if (empty) empty.hidden = shown > 0;
   }
 
+  /* "Pick at random": replaces the current picks with as many random
+   * categories as allowed (up to the max), chosen only from those the tag
+   * chips show and the question filters leave available. */
+  function pickRandom(form) {
+    var max = parseInt(form.getAttribute('data-max-categories'), 10) || 7;
+    var groups = activeByGroup(form);
+    var boxes = Array.prototype.slice.call(form.querySelectorAll('.categories-grid input[name="categories"]'));
+    var pool = boxes.filter(function (cb) {
+      var label = form.querySelector('label[for="' + cb.id + '"]');
+      return !(label && label.classList.contains('disabled')) && matchesTags(cb.closest('.category-checkbox'), groups);
+    });
+    for (var i = pool.length - 1; i > 0; i--) {         // Fisher-Yates shuffle
+      var j = Math.floor(Math.random() * (i + 1)), t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+    }
+    var chosen = pool.slice(0, max);
+    boxes.forEach(function (cb) { cb.checked = false; });
+    chosen.forEach(function (cb) {
+      cb.disabled = false; cb.checked = true;
+      var tile = cb.closest('.category-checkbox');
+      tile.classList.remove('is-picked'); void tile.offsetWidth; tile.classList.add('is-picked');
+    });
+    // One change event lets the page re-apply the limit and the counter.
+    var target = chosen[0] || boxes[0];
+    if (target) target.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
   function init() {
     var form = document.querySelector('form[data-max-categories]');
     if (!form) return;
     form.addEventListener('change', function (e) {
       if (e.target && e.target.name === 'categories') { refresh(form); applyFilter(form); }
     });
-    form.querySelectorAll('.tag-chip').forEach(function (chip) {
+    form.querySelectorAll('.tag-filter .tag-chip').forEach(function (chip) {
       chip.addEventListener('click', function () {
         if (!chip.getAttribute('data-tag')) {          // "All": clear every tag
-          form.querySelectorAll('.tag-chip').forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+          form.querySelectorAll('.tag-filter .tag-chip').forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
         } else {
           chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
         }
         applyFilter(form);
       });
     });
+    var random = form.querySelector('[data-random-categories]');
+    if (random) random.addEventListener('click', function () { pickRandom(form); });
     refresh(form);
     applyFilter(form);
   }

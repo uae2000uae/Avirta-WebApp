@@ -44,6 +44,7 @@
     --raised: #efe9dd;
     --line: #ddd4c3;
     --line-strong: #8d8473;           /* form-control edges: >= 3:1 on surface and raised */
+    --logo-ink: #1b2733;              /* wordmark colour (light mode) */
     --chart-1: #946823;               /* charts: primary series (validated vs --surface) */
     --chart-2: #2a6cc0;               /* charts: second series */
     --line-hi: #ffffff;
@@ -52,7 +53,9 @@
     --accent-1: #946823;
     --accent-2: #7a521a;
     --accent-ink: #8a5d1c;            /* brass for text on page/surface */
-    --on-accent: #fffaf0;
+    --grad-1: #d6ac62;                /* primary gradient: lighter brass in light mode */
+    --grad-2: #bb8c42;
+    --on-accent: #1f1607;             /* dark text on the light brass gradient (>= 5.9:1) */
     --tint: rgb(148 104 35 / .08);
     --tint-2: rgb(148 104 35 / .16);
     --success: #2f7a55;
@@ -67,7 +70,7 @@
     --sweep: rgb(176 126 46 / .28);
 
     /* derived */
-    --accent: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    --accent: linear-gradient(135deg, var(--grad-1), var(--grad-2));
     --hairline: linear-gradient(90deg, transparent, var(--accent-1) 50%, transparent);
     --edge-hi: linear-gradient(var(--line-hi), var(--line-hi)) 0 1px / 100% 1px no-repeat;
     --veil: linear-gradient(var(--tint), var(--tint));
@@ -121,6 +124,7 @@
     --raised: #1b2c3c;
     --line: #2a3d50;
     --line-strong: #6a7f94;           /* form-control edges: >= 3:1 on surface and raised */
+    --logo-ink: #ffffff;              /* dark-mode logo: white wordmark on the dark background */
     --chart-1: #b8863b;               /* charts: own dark steps, validated vs dark --surface */
     --chart-2: #3f86e0;
     --line-hi: #33495e;
@@ -129,6 +133,8 @@
     --accent-1: #d9b26a;
     --accent-2: #b8863b;
     --accent-ink: #d9b26a;
+    --grad-1: var(--accent-1);
+    --grad-2: var(--accent-2);
     --on-accent: #1a1206;
     --tint: rgb(217 178 106 / .08);
     --tint-2: rgb(217 178 106 / .16);
@@ -215,8 +221,22 @@ footer p { margin: 0; }
     gap: var(--s-2);
     padding: var(--s-1) var(--s-4);
 }
-.site-header .brand { grid-column: 2; display: block; line-height: 0; }
-.site-header .brand img { display: block; }
+/* Brand: ribbon mark + wordmark mask. Stacked on wide screens, side by side
+   on phones; the mark scales with the header instead of a fixed bitmap. */
+.site-header .brand {
+    grid-column: 2; display: inline-flex; flex-direction: column; align-items: center; gap: 4px;
+    line-height: 0; text-decoration: none; border-radius: var(--r-4);
+}
+.brand-mark { display: block; width: auto; height: clamp(40px, 6vw, 56px); aspect-ratio: 256 / 241; }
+.brand-word {
+    display: block; width: clamp(60px, 8vw, 76px); aspect-ratio: 360 / 74;
+    background-color: var(--logo-ink);
+    -webkit-mask: url("../images/logo-wordmark.png") center / contain no-repeat;
+            mask: url("../images/logo-wordmark.png") center / contain no-repeat;
+}
+/* Game bar: a small decorative mark at the start of the 32px bar. */
+.game-brand { position: absolute; top: 4px; inset-inline-start: 10px; line-height: 0; }
+.game-brand .brand-mark { height: 24px; }
 :root[data-theme="dark"] .logo-on-light, :root:not([data-theme="dark"]) .logo-on-dark { display: none !important; }
 .timestamp-info {
     grid-column: 1;
@@ -253,8 +273,9 @@ footer p { margin: 0; }
 
 @media (max-width: 640px) {
     .site-header { grid-template-columns: auto 1fr; padding: var(--s-1) var(--s-2); }
-    .site-header .brand { grid-column: 1; grid-row: 1 / span 2; }
-    .site-header .brand img { width: 52px; height: auto; }
+    .site-header .brand { grid-column: 1; grid-row: 1 / span 2; flex-direction: row; gap: 8px; }
+    .site-header .brand .brand-mark { height: 36px; }
+    .site-header .brand .brand-word { width: 64px; }
     .timestamp-info { grid-column: 2; grid-row: 2; justify-self: end; max-width: 100%; }
     .header-tools { grid-column: 2; }
     .zoom-controls .zoom-label { display: none; }
@@ -918,7 +939,19 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 .progress-bar.is-error { background: var(--danger); }
 
 /* Home page */
-.features { display: flex; flex-wrap: wrap; gap: var(--s-4); margin: var(--s-5) 0; }
+/* Home game cards: an equal grid, so a card that wraps keeps the same size
+   (and the same height); a lone card on the last row sits centred. */
+.features-frame { container-type: inline-size; margin: var(--s-5) 0; }
+.features { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 1fr; gap: var(--s-4); }
+.features > .feature { grid-column: span 2; }
+@container (max-width: 719px) {
+    .features { grid-template-columns: repeat(4, 1fr); }
+    .features > .feature:last-child:nth-child(odd) { grid-column: 2 / span 2; }
+}
+@container (max-width: 459px) {
+    .features { grid-template-columns: 1fr; }
+    .features > .feature, .features > .feature:last-child:nth-child(odd) { grid-column: auto; }
+}
 .feature {
     flex: 1 1 220px;
     padding: var(--s-4);
@@ -937,7 +970,10 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 .features + .feature .button { color: var(--text); background: var(--raised); outline-color: var(--line); }
 .features + .feature .button:hover { background: var(--veil), var(--raised); outline-color: var(--accent-1); }
 
-/* 6. AI STUDIO PAGES (Admin > API Settings, AI Generator, AI Validator) ----- */
+/* 6. AI PAGES (Admin > API Settings, AI Generator, AI Validator) ----------
+   Built from the same parts as the rest of the site: back button + page
+   title, numbered steps (.step-num look), pill chips (.chip look), checkbox
+   tiles (.category-checkbox look), 4px buttons. No eyebrows or all-caps. */
 .ai-page {
     --ai-control-h: 42px;
     --ai-footer-h: max(25px, 2vh);
@@ -946,7 +982,7 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
     gap: var(--s-4);
     color: var(--text);
     font-size: 1rem;
-    line-height: 1.5;
+    line-height: 1.6;          /* same as body */
     text-align: start;
 }
 #ai-generator, #ai-validator { max-width: 1140px; width: 100%; margin-inline: auto; }
@@ -954,7 +990,7 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 
 .ai-page h1, .ai-page h2, .ai-page h3, .ai-page h4 { margin: 0; padding: 0; border: 0; color: var(--text); text-align: start; line-height: 1.25; }
 .ai-page h1 { font-size: var(--fs-7); }
-.ai-page h2 { font-size: var(--fs-6); }
+.ai-page h2 { font-size: 1.5rem; }      /* same as the other admin tabs' h2 */
 .ai-page h3 { display: flex; align-items: center; gap: var(--s-2); font-size: var(--fs-4); }
 .ai-page h4 { font-size: var(--fs-3); }
 .ai-page p { margin: 0; }
@@ -972,27 +1008,15 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 .ai-error { font-size: var(--fs-2); font-weight: bold; color: var(--danger); }
 .ai-error:empty { display: none; }
 
-/* Hero */
-.ai-hero {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-4);
-    padding: var(--s-4) var(--s-4) var(--s-5);
-    border-radius: var(--r-6);
-    background: var(--hairline) bottom / 100% 1px no-repeat, var(--edge-hi), var(--surface);
-    outline: 1px solid var(--line);
-    outline-offset: -1px;
-}
-.ai-hero-glow { display: none; }
-.ai-hero-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2); }
-.ai-hero-body { display: flex; align-items: center; gap: var(--s-4); }
-.ai-hero-body > div { display: flex; flex-direction: column; gap: var(--s-1); min-width: 0; }
-.ai-hero-body p { max-width: 62ch; color: var(--muted); }
-.ai-hero-logo { flex: none; width: 64px; height: 64px; padding: 8px; box-sizing: border-box; border-radius: var(--r-6); background: var(--raised); outline: 1px solid var(--line); outline-offset: -1px; }
-.ai-eyebrow { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--fs-1); font-weight: bold; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); }
-.ai-eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--accent-1); }
+/* Page head (same pattern as Question Bank: back button, then the title) */
+.ai-pagehead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2); }
 .ai-topnav { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.ai-topnav .button { display: inline-flex; align-items: center; gap: var(--s-1); }
+.ai-titlebar { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--s-2) var(--s-4); }
+.ai-titlebar > div:first-child { display: flex; flex: 1 1 360px; flex-direction: column; gap: var(--s-1); min-width: 0; }
+.ai-page .page-title { margin: 0; font-size: var(--fs-6); }
+.ai-page .ai-lede { max-width: 70ch; color: var(--muted); }
+.ai-eyebrow { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--fs-2); font-weight: bold; color: var(--accent-ink); }
 
 /* Status pill */
 .ai-onair {
@@ -1012,8 +1036,8 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 }
 .ai-onair:empty { display: none; }
 .ai-onair.is-idle { --ai-dot: var(--accent-1); }
-.ai-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ai-dot, var(--success)); animation: soft-blink 2.4s var(--ease) infinite; }
-.ai-onair-label { font-size: var(--fs-1); font-weight: bold; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.ai-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ai-dot, var(--success)); }
+.ai-onair-label { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-2); font-weight: bold; color: var(--text); }
 .ai-onair strong { font-weight: bold; }
 .ai-sep { color: var(--muted); }
 
@@ -1033,22 +1057,21 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 .ai-card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2) var(--s-3); }
 .ai-card-head > div:first-child { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .ai-card-foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); padding-top: var(--s-4); border-top: 1px solid var(--line); }
-.ai-step {
+.ai-step {            /* same as .step-num on the create-room forms */
     display: inline-grid;
     place-items: center;
     flex: none;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    border-radius: var(--r-pill);
     font-size: var(--fs-2);
-    font-weight: bold;
-    color: var(--accent-ink);
-    outline: 1px solid var(--accent-1);
-    outline-offset: -1px;
+    font-weight: normal;
+    color: var(--on-accent);
+    background: var(--accent);
 }
 .ai-section { display: flex; flex-direction: column; gap: var(--s-3); padding-top: var(--s-4); border-top: 1px solid var(--line); }
 .ai-section:first-child { padding-top: 0; border-top: 0; }
-.ai-section-title { font-size: var(--fs-1); font-weight: bold; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.ai-section-title { font-size: var(--fs-3); font-weight: bold; color: var(--text); }
 
 /* Grids */
 .ai-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: var(--s-3); }
@@ -1059,7 +1082,7 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 
 /* Fields */
 .ai-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.ai-field > label, .ai-label { display: block; font-size: var(--fs-2); font-weight: bold; color: var(--text); }
+.ai-field > label, .ai-label { display: block; font-size: var(--fs-3); font-weight: lighter; color: var(--text); }
 .ai-label .ai-muted, .ai-field > label .ai-muted { font-weight: normal; }
 .ai-page :is(input[type=text], input[type=password], input[type=number], input[type=url], input[type=search], select, textarea) {
     min-height: var(--ai-control-h);
@@ -1070,7 +1093,7 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 .ai-page select:not([multiple]) { height: var(--ai-control-h); padding-block: 0; cursor: pointer; }
 .ai-page textarea { min-height: 70px; }
 .ai-page input[type=file] { padding: var(--s-3); }
-.ai-page input.ai-headline { min-height: 56px; font-size: var(--fs-5); font-weight: bold; }
+.ai-page input.ai-headline { font-size: var(--fs-3); }
 .ai-inline { display: flex; flex-wrap: wrap; align-items: stretch; gap: var(--s-2); }
 .ai-inline > input { flex: 1 1 240px; min-width: 0; }
 .ai-inline > .ai-btn { flex: none; }
@@ -1083,13 +1106,13 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
     justify-content: center;
     gap: 8px;
     min-height: var(--ai-control-h);
-    padding: 0 20px;
+    padding: 0 16px;
     box-sizing: border-box;
     border: 0;
-    border-radius: var(--r-pill);
+    border-radius: var(--r-2);
     font: inherit;
     font-size: var(--fs-3);
-    font-weight: bold;
+    font-weight: normal;
     line-height: 1.2;
     white-space: nowrap;
     text-decoration: none;
@@ -1106,7 +1129,7 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 .ai-page .ai-btn.danger:hover { background: var(--danger-tint); }
 .ai-page .ai-btn.small { min-height: 34px; padding: 0 14px; font-size: var(--fs-2); }
 .ai-page .ai-btn.icon { width: 34px; padding: 0; }
-.ai-page .ai-btn.big { min-height: 50px; padding: 0 28px; font-size: var(--fs-4); }
+.ai-page .ai-btn.big { min-height: 44px; padding: 0 22px; }
 .ai-page .ai-btn:disabled, .ai-page .ai-btn[disabled] { opacity: .45; cursor: not-allowed; }
 .ai-page .ai-link {
     display: inline-flex;
@@ -1157,7 +1180,7 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
     line-height: 1.5;
     color: var(--text);
     background: var(--raised);
-    border-inline-start: 3px solid var(--accent-1);
+    border-inline-start: 4px solid var(--accent-1);
 }
 .ai-status.ok { background: var(--success-tint); border-inline-start-color: var(--success); }
 .ai-status.warn { background: var(--tint-2); border-inline-start-color: var(--accent-1); }
@@ -1182,8 +1205,8 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
     flex-direction: column;
     align-items: center;
     gap: var(--s-2);
-    min-height: 200px;
-    padding: var(--s-5) var(--s-3) var(--s-4);
+    min-height: 170px;
+    padding: var(--s-4) var(--s-3);
     box-sizing: border-box;
     border-radius: var(--r-6);
     font: inherit;
@@ -1197,8 +1220,7 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 }
 .ai-page .ai-option:hover { outline-color: var(--accent-1); background: var(--veil), var(--raised); }
 .ai-page .ai-option.is-selected { outline: 2px solid var(--accent-1); outline-offset: -2px; background: var(--veil-2), var(--raised); }
-.ai-page .ai-option.is-live::after { content: ""; position: absolute; inset-inline: 30%; bottom: 10px; height: 2px; border-radius: 2px; background: var(--accent); }
-.ai-podium-icon { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; font-size: 1.6rem; color: var(--accent-ink); outline: 1px solid var(--accent-1); outline-offset: -1px; }
+.ai-podium-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; font-size: 1.3rem; color: var(--accent-ink); background: var(--surface); outline: 1px solid var(--line); outline-offset: -1px; }
 .ai-option-title { font-size: var(--fs-4); font-weight: bold; line-height: 1.25; }
 .ai-option-sub { font-size: var(--fs-2); color: var(--muted); overflow-wrap: anywhere; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
 .ai-active-flag {
@@ -1228,7 +1250,7 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 /* Choice chips (.ai-seg), point tiles (.ai-board), quality cards (.ai-dials) */
 .ai-seg, .ai-board, .ai-dials { gap: var(--s-2); }
 .ai-seg { display: flex; flex-wrap: wrap; }
-.ai-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(104px, 100%), 1fr)); }
+.ai-board { display: flex; flex-wrap: wrap; }
 .ai-dials { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr)); }
 .ai-seg > input, .ai-board > input, .ai-dials > input, .ai-decide > input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .ai-seg > label, .ai-board > label, .ai-dials > label {
@@ -1243,23 +1265,24 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
     user-select: none;
     transition: outline-color var(--t-1) var(--ease), background-color var(--t-1) var(--ease);
 }
-.ai-seg > label { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; min-width: 48px; padding: 0 16px; font-weight: bold; white-space: nowrap; }
-.ai-board > label { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 80px; padding: 12px 8px 10px; text-align: center; }
-.ai-board > label b { font-size: var(--fs-6); line-height: 1.05; color: var(--accent-ink); }
-.ai-board > label small { font-size: var(--fs-1); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.ai-seg > label, .ai-board > label {
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--s-1);
+    min-height: 36px; padding: 6px 14px; border-radius: var(--r-pill); white-space: nowrap;
+    outline-color: var(--line-strong);
+}
+.ai-board > label b { font-weight: bold; }
+.ai-board > label small { font-size: inherit; }
+.ai-board > label small::before { content: "· "; }
 .ai-dials > label { display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-3); }
 .ai-seg > label:hover, .ai-board > label:hover, .ai-dials > label:hover { outline-color: var(--accent-1); background: var(--veil), var(--raised); }
-.ai-seg > input:checked + label, .ai-board > input:checked + label, .ai-dials > input:checked + label {
-    outline: 2px solid var(--accent-1);
-    outline-offset: -2px;
-    background: var(--veil-2), var(--raised);
-}
-.ai-seg > input:checked + label { color: var(--on-accent); background: var(--accent); }
-.ai-seg > input[type=checkbox] + label::before { content: ""; width: 14px; height: 14px; box-sizing: border-box; border-radius: var(--r-1); border: 1px solid currentColor; opacity: .7; }
-.ai-seg > input[type=checkbox]:checked + label::before { content: "\f00c"; display: grid; place-items: center; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: .6rem; opacity: 1; }
+.ai-dials > input:checked + label { outline-color: var(--accent-1); background: var(--veil-2), var(--raised); }
+.ai-seg > input:checked + label, .ai-board > input:checked + label { color: var(--on-accent); background: var(--accent); outline: 1px solid transparent; outline-offset: -1px; }
+/* The tick shows on chosen chips, as on the create-room chips. */
+.ai-seg > label::before, .ai-board > label::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: .75em; display: none; }
+.ai-seg > input:checked + label::before, .ai-board > input:checked + label::before { display: inline; }
 .ai-seg > input:focus-visible + label, .ai-board > input:focus-visible + label, .ai-dials > input:focus-visible + label, .ai-decide > input:focus-visible + label { outline: 2px solid var(--accent-1); outline-offset: 2px; }
 .ai-seg > input:disabled + label { opacity: .5; cursor: not-allowed; }
-.ai-seg.big > label { min-width: 56px; min-height: 54px; padding: 0 14px; font-size: var(--fs-5); }
+.ai-seg.big > label { min-width: 48px; }
 .ai-dial-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
 .ai-dial-title { font-weight: bold; font-size: var(--fs-3); }
 .ai-dials small { display: block; font-size: var(--fs-2); line-height: 1.4; color: var(--muted); }
@@ -1274,19 +1297,18 @@ input[type="file"] { border-style: dashed; cursor: pointer; }
 .ai-meter.speed .ai-meter-bar[data-n="3"] > i:nth-child(-n+3) { background: var(--muted); }
 
 /* Switch toggle */
-.ai-page .ai-toggle { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: var(--r-4); background: var(--raised); outline: 1px solid var(--line); outline-offset: -1px; cursor: pointer; }
-.ai-page .ai-toggle:hover, .ai-page .ai-toggle:has(input:checked) { outline-color: var(--accent-1); }
-.ai-page .ai-toggle > input { appearance: none; -webkit-appearance: none; position: relative; flex: none; width: 40px; height: 24px; margin: 0; border-radius: var(--r-pill); background: var(--line); cursor: pointer; transition: background-color var(--t-2) var(--ease); }
-.ai-page .ai-toggle > input::after { content: ""; position: absolute; top: 3px; inset-inline-start: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--surface); transition: inset-inline-start var(--t-2) var(--ease); }
-.ai-page .ai-toggle > input:checked { background: var(--accent); }
-.ai-page .ai-toggle > input:checked::after { inset-inline-start: 19px; }
+/* Checkbox tiles, same look as the category tiles on the create-room forms */
+.ai-page .ai-toggle { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border-radius: var(--r-2); background: var(--raised); outline: 1px solid var(--line-strong); outline-offset: -1px; cursor: pointer; transition: outline-color var(--t-1) var(--ease), background-color var(--t-1) var(--ease); }
+.ai-page .ai-toggle:hover { outline-color: var(--accent-1); }
+.ai-page .ai-toggle:has(input:checked) { outline-color: var(--accent-1); background: var(--veil-2), var(--raised); }
+.ai-page .ai-toggle > input { flex: none; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent-2); cursor: pointer; }
 .ai-toggle > span { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .ai-toggle > span strong { font-weight: bold; }
 .ai-toggle > span .ai-muted { font-size: var(--fs-2); line-height: 1.45; }
 
 /* Advanced drawer */
-details.ai-advanced { border-radius: var(--r-4); outline: 1px dashed var(--line); outline-offset: -1px; }
-details.ai-advanced[open] { outline-style: solid; background: var(--raised); }
+details.ai-advanced { border-radius: var(--r-4); outline: 1px solid var(--line); outline-offset: -1px; }
+details.ai-advanced[open] { background: var(--raised); }
 details.ai-advanced > summary { display: flex; align-items: center; gap: var(--s-2); min-height: 46px; padding: 0 var(--s-3); border-radius: var(--r-4); font-weight: bold; list-style: none; cursor: pointer; }
 details.ai-advanced > summary::-webkit-details-marker { display: none; }
 details.ai-advanced > summary::after { content: "\f078"; margin-inline-start: auto; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: .75rem; color: var(--muted); transition: transform var(--t-2) var(--ease); }
@@ -1391,11 +1413,11 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 .ai-cat-tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); }
 .ai-cat-tools > .ai-field { flex: 1 1 240px; }
 .ai-cat-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 8px; max-height: 360px; overflow: auto; padding: 4px 2px; box-sizing: border-box; }
-.ai-page .ai-cat-list label { display: flex; align-items: center; gap: var(--s-2); min-height: 42px; padding: 0 12px; border-radius: var(--r-4); background: var(--raised); outline: 1px solid var(--line); outline-offset: -1px; cursor: pointer; }
+.ai-page .ai-cat-list label { display: flex; align-items: center; gap: var(--s-2); min-height: 42px; padding: 0 12px; border-radius: var(--r-2); background: var(--raised); outline: 1px solid var(--line-strong); outline-offset: -1px; cursor: pointer; }
 .ai-page .ai-cat-list label:hover { outline-color: var(--accent-1); }
 .ai-page .ai-cat-list label:has(input:checked) { outline-color: var(--accent-1); background: var(--veil-2), var(--raised); }
-.ai-cat-list input { flex: none; width: 18px; height: 18px; margin: 0; }
-.ai-cat-list .ai-cat-name { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: bold; }
+.ai-cat-list input { flex: none; width: 18px; height: 18px; margin: 0; accent-color: var(--accent-2); }
+.ai-cat-list .ai-cat-name { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .ai-cat-list .ai-muted { flex: none; padding: 1px 8px; border-radius: var(--r-pill); font-size: var(--fs-1); font-variant-numeric: tabular-nums; color: var(--text); background: var(--surface); }
 
 /* Tables (presets, dropped questions) */
@@ -1430,6 +1452,51 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 .ai-page .ai-sticky-bar input[type=text] { width: 200px; }
 #selected-count, #val-selection { font-size: var(--fs-2); font-weight: bold; }
 
+/* Type: the same scale as the rest of the site. Body text, labels, hints and
+   descriptions are all 16px (the site has no 14px secondary text in forms);
+   only small badges stay at 14px. */
+.ai-page :is(.ai-hint, .ai-muted, .ai-toggle > span .ai-muted, .ai-dials small, .ai-onair,
+             .ai-q-fact, .ai-option-sub, .ai-steps > span, .ai-table .ai-row-meta,
+             .ai-keyrow-text) {
+    font-size: var(--fs-3);
+    line-height: 1.6;
+}
+#selected-count, #val-selection { font-size: var(--fs-3); }
+.ai-page :is(.ai-hint, .ai-muted, .ai-toggle > span .ai-muted, .ai-dials small) { font-weight: lighter; }
+.ai-page .ai-label .ai-muted, .ai-page .ai-field > label .ai-muted { font-size: inherit; }
+.ai-page :is(.ai-badge, .ai-stamp, .ai-active-flag, .ai-editing) { font-size: var(--fs-2); }
+.ai-page .ai-cat-list label .ai-muted { font-size: var(--fs-2); }   /* count badges */
+.ai-page .ai-option-sub { font-family: inherit; }
+.ai-page :is(input, select, textarea) { font-size: var(--fs-3); line-height: 1.6; }
+.ai-page .ai-q-question textarea { font-size: var(--fs-4); }
+.ai-page .ai-btn { line-height: 1.6; }
+
+/* Readable text on brass. Chosen tiles (ticked checks, the selected AI card,
+   the chosen quality) are tinted brass, so their descriptions use the main
+   text colour; muted grey on that tint was too faint. Chosen chips are solid
+   brass, so everything inside them uses the on-brass colour. */
+.ai-page :is(.ai-toggle:has(input:checked), .ai-option.is-selected, .ai-dials > input:checked + label, .ai-cat-list label:has(input:checked))
+    :is(.ai-muted, small, .ai-option-sub, .ai-meter, .ai-hint) { color: var(--text); }
+.ai-page :is(.ai-seg, .ai-board) > input:checked + label :is(small, b, i, span) { color: inherit; opacity: 1; }
+.ai-board > label small { color: inherit; }
+
+/* Disabled buttons: a clear "not available" look instead of faded brass
+   (fading made the dark text look grey on pale yellow). Same everywhere. */
+.ai-page .ai-btn:disabled, .ai-page .ai-btn[disabled],
+.setup-form .form-actions button[type="submit"]:disabled {
+    opacity: 1;
+    color: var(--muted);
+    background: var(--raised);
+    outline: 1px dashed var(--line-strong);
+    outline-offset: -1px;
+}
+
+.ai-page :is(.ai-stamp, .ai-active-flag, .ai-editing, .ai-meter, .ai-q-points label, .ai-diff h4, .ai-kv > b) {
+    letter-spacing: normal;
+    text-transform: none;
+}
+.ai-page :is(.ai-meter, .ai-q-points label, .ai-diff h4, .ai-kv > b) { font-size: var(--fs-2); }
+
 @media (max-width: 760px) {
     .ai-diff { grid-template-columns: 1fr; }
     .ai-diff-arrow { height: 36px; }
@@ -1438,12 +1505,8 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 }
 @media (max-width: 640px) {
     .ai-page { gap: var(--s-3); }
-    .ai-hero { padding: var(--s-3); }
-    .ai-hero-body { align-items: flex-start; gap: var(--s-3); }
-    .ai-hero-logo { width: 44px; height: 44px; padding: 6px; }
-    .ai-onair { width: 100%; border-radius: var(--r-6); }
-    .ai-topnav, .ai-decide { width: 100%; }
-    .ai-topnav .ai-btn { flex: 1 1 auto; padding: 0 10px; }
+    .ai-onair { width: 100%; border-radius: var(--r-4); }
+    .ai-decide { width: 100%; }
     .ai-card { padding: var(--s-3); gap: var(--s-3); }
     .ai-q { padding: var(--s-3); }
     #api-settings.tab-pane { padding-inline: 0; }
@@ -1455,9 +1518,6 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
     .ai-page .ai-option > .ai-option-title { flex: 1 1 140px; }
     .ai-page .ai-option > .ai-option-sub { flex: 1 1 100%; }
     .ai-radio { top: auto; bottom: 22px; inset-inline: auto 16px; }
-    .ai-board { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .ai-board > label { min-height: 70px; }
-    .ai-board > label b { font-size: var(--fs-5); }
     .ai-ring { width: 88px; height: 88px; }
     .ai-ring-num { font-size: var(--fs-5); }
     .ai-decide { margin-inline-start: 0; }
@@ -1536,7 +1596,7 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 .question-button:disabled { color: var(--muted); background: var(--raised); outline-color: var(--line); cursor: default; }
 /* Double points: available questions turn green, in regular weight. */
 .question-button.doubled:not(:disabled) {
-    color: var(--on-accent);
+    color: var(--on-status);
     background: var(--success);
     outline: 1px solid var(--success);
     animation: doubled-pulse 1.4s var(--ease) infinite;
@@ -1766,8 +1826,14 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 /* The Hive: a team linked its edges. Brightness and opacity only, so no cell
    moves or changes shape. */
 #hex_root.hive-won .cell { cursor: default; }
-#hex_root.hive-won .cell:not(.win-path) { opacity: .4; transition: opacity var(--t-3) var(--ease); }
-#hex_root .cell.win-path { animation: hive-path 700ms var(--ease) calc(var(--i, 0) * 110ms) 4 alternate both; }
+#hex_root.hive-won .cell:not(.win-path):not(.active-glow) { opacity: .4; transition: opacity var(--t-3) var(--ease); }
+/* The winning path lights up cell by cell for about 3 seconds (the popup
+   waits for it), then keeps pulsing in the winner's colour. */
+#hex_root .cell.win-path {
+    animation: hive-path 650ms var(--ease) calc(var(--i, 0) * 90ms) 4 alternate both,
+               turn-pulse 1.6s var(--ease) 3s infinite;
+}
+#hex_root.hive-winning .cell.active-glow:not(.win-path) { animation-duration: .8s; }
 @keyframes hive-path { to { filter: brightness(1.5) saturate(1.15); } }
 #hex_root .team-section.team-won { outline: 2px solid var(--accent-1); outline-offset: 2px; }
 .hive-win {
@@ -1781,6 +1847,21 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 .hive-win-swatch { width: 14px; height: 14px; border-radius: 50%; outline: 1px solid var(--line); }
 .hive-win .form-actions { margin-top: var(--s-4); flex-wrap: wrap; }
 
+/* Depth without shadows: each cell gets a lit top and shaded bottom, plus an
+   inner bevel (a smaller hexagon whose light runs the other way). Both sit
+   under the number (the cell's clip-path makes its own stacking context). */
+#hex_root .cell::before, #hex_root .cell::after { content: ""; position: absolute; z-index: -1; pointer-events: none; }
+#hex_root .cell::before {
+    inset: 0;
+    background:
+        radial-gradient(120% 80% at 32% 14%, rgb(255 255 255 / .32), transparent 58%),
+        linear-gradient(180deg, transparent 40%, rgb(0 0 0 / .26));
+}
+#hex_root .cell::after {
+    inset: 5px 4px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: linear-gradient(170deg, rgb(0 0 0 / .14), transparent 45%, rgb(255 255 255 / .14));
+}
 #hex_root .cell:hover, #hex_root .cell:active { background-image: linear-gradient(rgb(255 255 255 / .22), rgb(255 255 255 / .22)) !important; }
 #hex_root .cell:nth-child(n+6):nth-child(-n+10),
 #hex_root .cell:nth-child(n+16):nth-child(-n+20) { transform: translateX(14px); margin-top: -15px; }
@@ -1863,6 +1944,14 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 #hex_root .side-edge-barL, #hex_root .side-edge-barR { position: relative; width: 31px; height: 268px; cursor: none; }
 #hex_root .side-edge-barL { transform: translateX(43px) translateY(13px); background: darkred; clip-path: polygon(54% 4.8%, 100% 8.5%, 100% 91.5%, 50% 95%, 0% 91.5%, 0% 8.5%); }
 #hex_root .side-edge-barR { transform: translateX(-18px) translateY(13px); background: red; clip-path: polygon(100% 0.5%, 100% 0%, 100% 100%, 100% 99.5%, 0% 93%, 0% 7%); }
+/* The team edges and the team bar get the same light, so the board reads as
+   one raised piece. */
+#hex_root .top-edge, #hex_root .top-edge-end, #hex_root .bottom-edge, #hex_root .bottom-edge-end,
+#hex_root .team-section {
+    background-image: linear-gradient(180deg, rgb(255 255 255 / .24), transparent 55%, rgb(0 0 0 / .2));
+}
+#hex_root .side-edge-barL { background-image: linear-gradient(90deg, rgb(0 0 0 / .22), transparent 50%, rgb(255 255 255 / .2)); }
+#hex_root .side-edge-barR { background-image: linear-gradient(90deg, rgb(255 255 255 / .2), transparent 50%, rgb(0 0 0 / .22)); }
 #hex_root .side-edge-1, #hex_root .side-edge-2 {
     position: relative;
     width: 58px;
@@ -1963,7 +2052,7 @@ button.close-modal:hover { background: none; }
 .join-bar-label { font-size: var(--fs-5); font-weight: bold; }
 .join-bar-hint { color: var(--muted); font-size: var(--fs-2); }
 .home-subhead { margin: var(--s-5) 0 0; text-align: center; font-size: var(--fs-4); color: var(--muted); font-weight: normal; }
-.home-subhead + .features { margin-top: var(--s-3); }
+.home-subhead + .features-frame { margin-top: var(--s-3); }
 a.feature { display: block; color: var(--text); text-decoration: none; }
 a.feature:focus-visible { outline: 2px solid var(--accent-1); outline-offset: 2px; }
 a.feature:hover .button { background: var(--veil-2), var(--accent); }
@@ -2005,6 +2094,11 @@ a.feature:hover .button { background: var(--veil-2), var(--accent); }
 .tag-chip[aria-pressed="true"] { color: var(--on-accent); background: var(--accent); outline-color: transparent; }
 .tag-chip[aria-pressed="true"]:hover { background: var(--veil-2), var(--accent); }
 .tag-divider { width: 1px; height: 18px; background: var(--line); }
+.hive-pool { margin: 0; }
+.hive-pool.is-short { color: var(--danger); }
+.category-pick-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2) var(--s-3); flex-basis: 100%; }
+.random-pick .fa-shuffle { margin-inline-end: 4px; }
+.category-checkbox.is-picked { animation: option-pop 420ms var(--ease) 1; }
 .category-count { font-variant-numeric: tabular-nums; color: var(--muted); }
 .category-count strong { color: var(--text); }
 .category-count.is-full strong { color: var(--accent-ink); }
@@ -2255,7 +2349,82 @@ a.feature:hover .button { background: var(--veil-2), var(--accent); }
 .count-up > .count-up-value { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--accent-ink); font-weight: bold; }
 .confetti-layer { position: fixed; inset: 0; z-index: 3000; width: 100vw; height: 100vh; pointer-events: none; }
 
+/* 8.1 Brand motion. The mark has four-fold symmetry, so a half turn
+   lands exactly where it started: it makes a half turn on hover, while a page loads,
+   on page transitions, and a full turn for a win. */
+@keyframes brand-in { from { opacity: .4; transform: rotate(-180deg) scale(.86); } }
+@keyframes word-in { from { opacity: .4; clip-path: inset(0 50% 0 50%); } to { clip-path: inset(0 0 0 0); } }
+@keyframes half-turn { from { transform: rotate(-180deg); } }
+@keyframes brand-spin { to { transform: rotate(360deg); } }
+@keyframes brand-celebrate { 0% { transform: rotate(0) scale(1); } 60% { transform: rotate(380deg) scale(1.12); } 100% { transform: rotate(360deg) scale(1); } }
+.brand-mark { transition: transform 600ms var(--ease); transform-origin: 50% 50%; }
+.brand:hover .brand-mark, .brand:focus-visible .brand-mark { transform: rotate(180deg); }
+.brand-intro .brand .brand-mark { animation: brand-in 760ms var(--ease) backwards; }
+.brand-intro .brand .brand-word { animation: word-in 640ms var(--ease) 220ms backwards; }
+/* While the next page loads (ui.js sets .is-navigating on a real navigation). */
+.is-navigating .brand-mark { animation: brand-spin 1100ms cubic-bezier(.45, 0, .55, 1) infinite; }
+.is-navigating main, .is-navigating body.game > .container { opacity: .72; transition: opacity var(--t-2) var(--ease); }
+.brand-mark.is-celebrating { animation: brand-celebrate 1300ms var(--ease) 1; }
+
+/* 8.2 Page transitions (cross-document View Transitions; browsers without
+   them keep the simple page-in). The logo stays put and makes a half turn. */
+@view-transition { navigation: auto; }
+.brand-mark { view-transition-name: brand-mark; }
+::view-transition-old(root) { animation: vt-out 160ms var(--ease) both; }
+::view-transition-new(root) { animation: vt-in 300ms var(--ease) both; }
+::view-transition-old(brand-mark) { animation: none; opacity: 0; }
+::view-transition-new(brand-mark) { animation: half-turn 640ms var(--ease) both; }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-6px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(8px); } }
+
+/* Game screens: titles settle in (transform only, so frozen geometry holds). */
+@keyframes title-in { from { opacity: .4; transform: translateY(-6px); } }
+body.game h1, body.game .fastest-head, body.game .leaderboard-header { animation: title-in 420ms var(--ease) backwards; }
+
+/* 8.3 Answer feedback. Correct: the card lifts, a check draws itself and a
+   ring breathes out once. Wrong: a short, small shake and the cross draws. */
+@keyframes result-lift { 0% { transform: scale(.94); } 55% { transform: scale(1.03); } 100% { transform: scale(1); } }
+@keyframes result-shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-7px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(2px); } }
+@keyframes ring-out { from { opacity: .9; transform: scale(.98); } to { opacity: 0; transform: scale(1.08); } }
+@keyframes draw { from { stroke-dashoffset: var(--len, 30); } to { stroke-dashoffset: 0; } }
+.result { position: relative; }
+.result.correct .result-icon { animation: result-lift 560ms var(--ease) 80ms backwards; }
+.result.correct::after {
+    content: ""; position: absolute; inset: -2px; border-radius: inherit; pointer-events: none;
+    border: 2px solid var(--success); opacity: 0; animation: ring-out 900ms ease-out 260ms 1;
+}
+.result.incorrect { animation: result-shake 460ms ease-in-out 120ms 1; }
+.result-glyph { display: inline-block; width: .9em; height: .9em; vertical-align: -.08em; overflow: visible; }
+.result-glyph path { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: var(--len, 30); animation: draw 420ms var(--ease) 220ms backwards; }
+.result-glyph path + path { animation-delay: 380ms; }
+/* The Hive: the picked option answers the same way. */
+@keyframes option-pop { 0% { transform: scale(1); } 45% { transform: scale(1.06); } 100% { transform: scale(1); } }
+#hex_root .answer-option.correct { animation: option-pop 460ms var(--ease) 1; }
+#hex_root .answer-option.wrong { animation: result-shake 420ms ease-in-out 1; }
+#hex_root #feedback:not(:empty) { animation: title-in 320ms var(--ease) backwards; }
+/* Who is the fastest: the chosen player lights up before the page moves on. */
+.player-button.is-picked { color: var(--on-status); background: var(--success); outline-color: transparent; animation: option-pop 420ms var(--ease) 1; }
+.no-one-button.is-picked { animation: result-shake 380ms ease-in-out 1; }
+
+/* 8.4 Winning: rays turn slowly behind the trophy (twice, then rest), the
+   trophy springs in, the logo makes a full turn and confetti bursts twice. */
+@keyframes rays-turn { from { transform: translate(-50%, -50%) rotate(0); opacity: .9; } to { transform: translate(-50%, -50%) rotate(180deg); opacity: .45; } }
+@keyframes trophy-spring { 0% { opacity: .35; transform: translateY(14px) scale(.6) rotate(-14deg); } 60% { opacity: 1; transform: translateY(-4px) scale(1.12) rotate(4deg); } 100% { transform: none; } }
+.winner-banner::after {
+    content: ""; position: absolute; top: 58px; left: 50%; z-index: -1; width: 340px; height: 340px; pointer-events: none;
+    background: repeating-conic-gradient(from 0deg, var(--tint-2) 0deg 7deg, transparent 7deg 22.5deg);
+    -webkit-mask: radial-gradient(circle, #000 0, #000 22%, transparent 68%);
+            mask: radial-gradient(circle, #000 0, #000 22%, transparent 68%);
+    transform: translate(-50%, -50%);
+    animation: rays-turn 9s linear 400ms 2 alternate both;
+}
+.winner-trophy { animation: trophy-spring 820ms var(--ease) 120ms backwards; }
+
+
 @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+    .brand-mark { transition: none; }
     *, *::before, *::after {
         animation-duration: 1ms !important;
         animation-iteration-count: 1 !important;

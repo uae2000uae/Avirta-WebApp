@@ -78,6 +78,8 @@
 </head>
 <body class="game">
     <header class="game-header">
+        {# Small mark in the 32px game bar: decorative, so no accidental exits mid-game. #}
+        <span class="game-brand" aria-hidden="true"><img class="brand-mark" src="{{ url_for('static', filename='images/logo-mark.png') }}" width="256" height="241" alt=""></span>
         <div class="header-tools">{% include "_header_tools.html" %}</div>
     </header>
     <div class="container" id="main">

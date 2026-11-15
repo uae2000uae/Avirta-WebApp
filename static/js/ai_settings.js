@@ -52,7 +52,7 @@
     const pill = $("ai-active-summary");
     pill.className = "ai-onair " + (k.configured ? "is-live" : "is-idle");
     pill.innerHTML =
-      '<span class="ai-onair-label"><span class="ai-dot" aria-hidden="true"></span>' + (k.configured ? "On air" : (k.managed ? "Key missing" : "No key")) + "</span>" +
+      '<span class="ai-onair-label"><span class="ai-dot" aria-hidden="true"></span>' + (k.configured ? "Active AI" : (k.managed ? "Key missing" : "No key")) + "</span>" +
       "<span><strong>" + esc(s.label) + "</strong> <span class='ai-sep'>·</span> " + esc(s.model || "no model") +
       " <span class='ai-sep'>·</span> " + esc(q ? q.label : s.quality) + "</span>";
   }
@@ -78,12 +78,12 @@
         ? (cfg.base_url ? esc(cfg.base_url.replace(/^https?:\/\//, "")) : "Any OpenAI- or Anthropic-format service")
         : esc(cfg.model);
       btn.innerHTML =
-        (state.config.active === oid ? '<span class="ai-active-flag"><span class="ai-dot" aria-hidden="true"></span> On air</span>' : "") +
+        (state.config.active === oid ? '<span class="ai-active-flag"><i class="fas fa-check" aria-hidden="true"></i> Active</span>' : "") +
         '<span class="ai-radio" aria-hidden="true"></span>' +
         '<span class="ai-podium-icon" aria-hidden="true"><i class="fas ' + ICONS[oid] + '"></i></span>' +
         '<span class="ai-option-title">' + esc(meta.label) + "</span>" +
         '<span class="ai-option-sub">' + subtitle + "</span>" + keyBadge(state.keys[oid]) +
-        '<span class="ai-editing">Editing below</span>';
+        '<span class="ai-editing">Editing</span>';
       btn.addEventListener("click", () => { selected = oid; renderAll(); });
       wrap.appendChild(btn);
     });
@@ -96,7 +96,7 @@
     const k = state.keys[oid];
     $("ai-detail-title").textContent = "Configure " + meta.label;
     $("ai-detail-badge").innerHTML = state.config.active === oid
-      ? '<span class="ai-badge solid"><i class="fas fa-tower-broadcast"></i> On air</span>'
+      ? '<span class="ai-badge solid"><i class="fas fa-check"></i> Active</span>'
       : '<span class="ai-badge info">Off air</span>';
 
     // Key: ChatGPT and Claude keys live in Google Cloud Secret Manager (read-only here);

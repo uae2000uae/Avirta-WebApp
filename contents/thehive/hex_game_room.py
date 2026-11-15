@@ -7,6 +7,18 @@ from questionmanagement.categories_questions.question_uploader import QuestionUp
 from questionmanagement.question_bank import question_bank, increment_use_count
 
 
+def hive_question_fits(q: Dict[str, Any], categories=None) -> bool:
+    """True when a question can go on a Hive board (points are checked
+    separately): active, multiple choice with options, and in one of the
+    categories (none given = any). Shared by the board and the create form's
+    question count so both agree."""
+    if not q.get('active', True) or q.get('type') != 'multiple_choice' or not q.get('options'):
+        return False
+    if categories and (q.get('category_id') or q.get('category') or 'general') not in categories:
+        return False
+    return True
+
+
 def _norm(s: Any) -> str:
     """Unicode-aware normalization for robust matching.
 
@@ -48,7 +60,9 @@ class HexGameRoom:
 
     def __init__(self, room_id: str, name: str, team_a: str, team_b: str,
                  point_values: Optional[List[int]] = None,
-                 allowed_question_types: Optional[List[str]] = None):
+                 allowed_question_types: Optional[List[str]] = None,
+                 categories: Optional[List[str]] = None,
+                 tags: Optional[List[str]] = None):
         self.room_id = room_id
         self.name = name
         self.team_a = team_a
@@ -61,6 +75,10 @@ class HexGameRoom:
         self.point_values = sorted(point_values or [100, 200, 300, 400, 500])
         # Only multiple_choice questions are allowed for Hex game.
         self.allowed_question_types = ["multiple_choice"]
+        # Categories to draw from (from the tags chosen when creating the
+        # room); empty means every category.
+        self.categories = list(categories or [])
+        self.tags = list(tags or [])
 
         # 5x5 hex grid; store cells as list of dicts for simplicity
         # Each cell: {
@@ -121,9 +139,9 @@ class HexGameRoom:
         # question_uploader stores JSON files under contents/questions. Iterate loaded questions.
         # question_uploader.load_questions() should have been called by route before create_board.
         storage = getattr(question_uploader, 'questions', {})
+        categories = set(getattr(self, 'categories', None) or [])   # older saved rooms lack it
         for _qid, q in storage.items():
-            # Accept only multiple-choice questions
-            if q.get('type') not in self.allowed_question_types:
+            if not hive_question_fits(q, categories):
                 continue
             # Points filter (support various key names: 'points' or 'score')
             pts = q.get('points') or q.get('score') or q.get('value')

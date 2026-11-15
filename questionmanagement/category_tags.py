@@ -129,6 +129,22 @@ def category_tag_filters(category_ids, path=None):
     return groups, tags_by_category
 
 
+def categories_matching_tags(category_ids, selected_tags, path=None):
+    """Categories the chosen tags allow, with the create-room chip rule:
+    tags in the same group (Language, Topic) widen the choice (any of them),
+    different groups narrow it (every group must match). No tags = all."""
+    groups, by_cat = category_tag_filters(category_ids, path=path)
+    group_of = {t["id"]: g["id"] for g in groups for t in g["tags"]}
+    chosen = {}
+    for t in selected_tags or []:
+        if t in group_of:
+            chosen.setdefault(group_of[t], set()).add(t)
+    if not chosen:
+        return list(category_ids)
+    return [cid for cid in category_ids
+            if all(set(by_cat.get(cid, [])) & tags for tags in chosen.values())]
+
+
 # ------------------------------------------------------------------ editing
 def set_category_tags(category_id, tag_ids, path=None):
     """Replace a category's tags. Unknown ids are ignored; none = untagged."""

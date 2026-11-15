@@ -16,7 +16,13 @@
                 {% endfor %}
             {% endfor %}
         </div>
-        <output class="category-count" aria-live="polite"><strong data-count>0</strong> / {{ max_categories }} selected</output>
+        <div class="category-pick-bar">
+            <output class="category-count" aria-live="polite"><strong data-count>0</strong> / {{ max_categories }} selected</output>
+            <button type="button" class="tag-chip random-pick" data-random-categories
+                    title="Tick {{ max_categories }} random categories from the ones the filters allow (replaces your current picks)">
+                <i class="fas fa-shuffle" aria-hidden="true"></i> {{ bi('Random', 'عشوائي') }}
+            </button>
+        </div>
     </div>
     <div class="categories-grid" id="category-grid">
         {% for category_id, category in categories.items() %}

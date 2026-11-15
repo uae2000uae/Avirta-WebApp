@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_bi.html" import bi %}
 
 {% block title %}Create The Hive{% endblock %}
 
@@ -11,8 +12,9 @@
     {% set _ = session.pop('error_modal', None) %}
   {% endif %}
 
-  {# Same layout as the other setup forms: labels above, equal-width fields. #}
-  <form method="post" action="{{ url_for('hex_create_room') }}" class="form-group-xx setup-form">
+  {# Same layout as the other setup forms. Questions are always multiple
+     choice; they come from every category the chosen tags allow. #}
+  <form method="post" action="{{ url_for('hex_create_room') }}" class="form-group-xx setup-form" data-hive-form>
     <fieldset class="form-step">
       <legend><span class="step-num">1</span> Room and teams</legend>
       <div class="form-group-equal-md">
@@ -39,10 +41,68 @@
       </div>
     </fieldset>
 
+    {# Tag chips: same rule as the other games' filter. Tags in one group
+       (Language, Topic) widen the choice, different groups narrow it. #}
+    <fieldset class="form-step">
+      <legend><span class="step-num">3</span> Topics</legend>
+      {% for group in tag_groups %}
+      <div class="chip-group" role="group" aria-label="{{ 'Language' if group.id == 'language' else 'Topic' }}">
+        {% for tag in group.tags %}
+          <input type="checkbox" class="chip-input" name="tags" id="tag_{{ tag.id }}" value="{{ tag.id }}">
+          <label class="chip" for="tag_{{ tag.id }}">{{ bi(tag.en, tag.ar) if tag.ar else tag.en }}</label>
+        {% endfor %}
+      </div>
+      {% endfor %}
+      <p class="field-hint hive-pool" aria-live="polite">No tag chosen: questions come from every category. | <span lang="ar" dir="rtl">بلا وسوم: الأسئلة من كل الفئات.</span></p>
+    </fieldset>
+
     <div class="form-actions">
       <button type="submit">Create Game</button>
       <a href="{{ url_for('index') }}" class="button secondary">Cancel</a>
     </div>
   </form>
 </div>
+
+<script>
+(function () {
+  const BOARD = {{ board_cells|default(25) }};
+  const form = document.querySelector('form[data-hive-form]');
+  const hint = form.querySelector('.hive-pool');
+  const submit = form.querySelector('button[type="submit"]');
+  const values = (name) => Array.from(form.querySelectorAll('input[name="' + name + '"]:checked')).map(n => n.value);
+
+  function say(en, ar, short) {
+    hint.classList.toggle('is-short', short);
+    submit.disabled = short;
+    hint.textContent = en + ' | ';
+    const s = document.createElement('span');
+    s.lang = 'ar'; s.dir = 'rtl'; s.textContent = ar;
+    hint.append(s);
+  }
+
+  // The board needs 25 questions from the categories the tags allow.
+  // Only the latest request counts (quick clicks can answer out of order).
+  let latest = 0;
+  function update() {
+    const ticket = ++latest;
+    const tags = values('tags');
+    const params = new URLSearchParams({ point_values: values('point_values').join(','), tags: tags.join(',') });
+    fetch('/api/hex/pool?' + params.toString())
+      .then(r => r.json())
+      .then(d => {
+        if (ticket !== latest) return;
+        if (!d.categories) return say('No category has all the chosen tags. Choose different tags.', 'لا توجد فئة تطابق كل الوسوم المختارة.', true);
+        if (!d.enough) return say('Only ' + d.count + ' matching questions; the board needs ' + BOARD + '. Choose more tags or point values.', 'الأسئلة غير كافية للوحة.', true);
+        const where = tags.length ? d.categories + (d.categories === 1 ? ' category' : ' categories') : 'every category';
+        say(d.count + ' questions from ' + where + '.', tags.length ? 'أسئلة كافية من الفئات المطابقة.' : 'الأسئلة من كل الفئات.', false);
+      })
+      .catch(() => {});
+  }
+
+  form.addEventListener('change', (e) => {
+    if (e.target.name === 'tags' || e.target.name === 'point_values') update();
+  });
+  update();
+})();
+</script>
 {% endblock %}

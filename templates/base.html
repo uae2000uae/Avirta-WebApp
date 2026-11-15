@@ -30,7 +30,12 @@
 <body class="site">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-        <a class="brand" href="{{ url_for('index') }}" aria-label="Avirta home"><img class="logo-on-dark" src="/static/images/logovtext.png" width="71.5" height="83.8" alt="Avirta"/><img class="logo-on-light" src="/static/images/logovtext-light.png" width="71.5" height="83.8" alt="Avirta"/></a>
+        {# One logo for both modes: the ribbon mark (gaps show the page colour) and
+           a wordmark mask painted with --logo-ink (white in dark mode). #}
+        <a class="brand" href="{{ url_for('index') }}" aria-label="Avirta home">
+            <img class="brand-mark" src="{{ url_for('static', filename='images/logo-mark.png') }}" width="256" height="241" alt="">
+            <span class="brand-word" aria-hidden="true"></span>
+        </a>
         {# Build info is for admins only; players never need it. #}
         {% if session.get('admin_authenticated') %}<div class="timestamp-info" id="commit-timestamp-info">Last commit: Loading...</div>{% endif %}
         <div class="header-tools">

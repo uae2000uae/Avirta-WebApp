@@ -92,23 +92,17 @@
             <!-- API Settings Tab -->
             <div id="api-settings" class="tab-pane">
                 <div class="inner-section ai-page" id="ai-settings">
-                    <div class="ai-hero">
-                        <div class="ai-hero-glow" aria-hidden="true"></div>
-                        <div class="ai-hero-top">
-                            <span class="ai-eyebrow">Control room · Studio AI</span>
-                            <div class="ai-onair" id="ai-active-summary" aria-live="polite"></div>
+                    {# Same heading pattern as the other tabs (Game Settings, ...). #}
+                    <div class="ai-titlebar">
+                        <div>
+                            <h2>AI Settings</h2>
+                            <p class="ai-lede">Choose the AI that writes and fact-checks your questions. Avirta adjusts the request settings for each task automatically.</p>
                         </div>
-                        <div class="ai-hero-body">
-                            <img class="ai-hero-logo" src="{{ url_for('static', filename='images/favicon.png') }}" alt="" width="72" height="72">
-                            <div>
-                                <h2>AI Settings</h2>
-                                <p>Pick the AI that writes and fact-checks your questions. Avirta tunes the request settings for each task automatically.</p>
-                            </div>
-                        </div>
+                        <div class="ai-onair" id="ai-active-summary" aria-live="polite"></div>
                     </div>
 
                     <section class="ai-card" aria-labelledby="ai-choose-title">
-                        <h3 id="ai-choose-title"><span class="ai-step">1</span> Choose your contestant</h3>
+                        <h3 id="ai-choose-title"><span class="ai-step">1</span> Choose the AI</h3>
                         <div class="ai-podiums" id="ai-option-cards" role="radiogroup" aria-label="AI option"></div>
                     </section>
 
@@ -171,7 +165,7 @@
                             <div class="ai-dials" id="ai-quality" role="radiogroup" aria-labelledby="ai-quality-label"></div>
 
                             <details class="ai-advanced">
-                                <summary>Advanced drawer <span class="ai-muted">(optional overrides)</span></summary>
+                                <summary>Advanced settings <span class="ai-muted">(optional)</span></summary>
                                 <div class="ai-advanced-body">
                                     <div class="ai-grid-4">
                                         <div class="ai-field">
@@ -199,7 +193,7 @@
                         </div>
 
                         <div class="ai-card-foot">
-                            <button type="button" class="ai-btn big" id="ai-save-activate"><i class="fas fa-tower-broadcast"></i> Save and put on air</button>
+                            <button type="button" class="ai-btn big" id="ai-save-activate"><i class="fas fa-check"></i> Save and use this AI</button>
                             <button type="button" class="ai-btn secondary" id="ai-save"><i class="fas fa-floppy-disk"></i> Save</button>
                             <button type="button" class="ai-btn secondary" id="ai-test"><i class="fas fa-plug"></i> Test connection</button>
                         </div>
