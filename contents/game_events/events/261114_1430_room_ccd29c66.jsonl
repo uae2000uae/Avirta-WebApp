@@ -1,0 +1,6 @@
+{"type": "answer_evaluated", "data": {"player_name": "Shihab", "evaluator": "Omar", "category": "الحرب_العالمية_الثانية", "points": 500, "is_correct": false, "message": "The Host evaluated Shihab's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-14T14:30:03.340472"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Moha", "message": "Turn switched from Shihab to Moha"}, "timestamp": "2026-11-14T14:30:09.618234"}
+{"type": "question_selected", "data": {"player_name": "Moha", "category": "أعلام_الدول", "points": 500, "message": "Moha selected a 500-point question from أعلام_الدول"}, "timestamp": "2026-11-14T14:30:13.628357"}
+{"type": "answer_submitted", "data": {"player_name": "Moha", "category": "أعلام_الدول", "points": 500, "is_correct": false, "message": "Moha answered incorrect and earned 0 points"}, "timestamp": "2026-11-14T14:30:44.432637"}
+{"type": "turn_switch", "data": {"previous_player": "Moha", "new_player": "Omar", "message": "Turn switched from Moha to Omar"}, "timestamp": "2026-11-14T14:30:50.614071"}
+{"type": "question_selected", "data": {"player_name": "Omar", "category": "quads_and_bikes", "points": 400, "message": "Omar selected a 400-point question from quads_and_bikes"}, "timestamp": "2026-11-14T14:30:54.000458"}

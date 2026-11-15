@@ -1,0 +1,7 @@
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "الحرب_العالمية_الثانية", "points": 300, "message": "Shihab selected a 300-point question from الحرب_العالمية_الثانية"}, "timestamp": "2026-11-14T14:35:04.105022"}
+{"type": "answer_evaluated", "data": {"player_name": "Shihab", "evaluator": "Omar", "category": "الحرب_العالمية_الثانية", "points": 300, "is_correct": false, "message": "The Host evaluated Shihab's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-14T14:35:20.334310"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Moha", "message": "Turn switched from Shihab to Moha"}, "timestamp": "2026-11-14T14:35:28.203402"}
+{"type": "question_selected", "data": {"player_name": "Moha", "category": "cars", "points": 500, "message": "Moha selected a 500-point question from cars"}, "timestamp": "2026-11-14T14:35:33.965824"}
+{"type": "answer_submitted", "data": {"player_name": "Moha", "category": "cars", "points": 500, "is_correct": true, "message": "Moha answered correct and earned 500 points"}, "timestamp": "2026-11-14T14:35:46.689661"}
+{"type": "turn_switch", "data": {"previous_player": "Moha", "new_player": "Omar", "message": "Turn switched from Moha to Omar"}, "timestamp": "2026-11-14T14:35:51.614969"}
+{"type": "tool_used", "data": {"player_name": "Omar", "tool_name": "double_points", "target_player": "Omar", "message": "Omar activated Double Points"}, "timestamp": "2026-11-14T14:35:56.880548"}

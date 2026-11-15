@@ -1,0 +1,7 @@
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "أعلام_الدول", "points": 400, "is_correct": false, "message": "Shihab answered incorrect and earned 0 points"}, "timestamp": "2026-11-14T14:37:00.394840"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Moha", "message": "Turn switched from Shihab to Moha"}, "timestamp": "2026-11-14T14:37:16.234279"}
+{"type": "question_selected", "data": {"player_name": "Moha", "category": "أعلام_الدول", "points": 100, "message": "Moha selected a 100-point question from أعلام_الدول"}, "timestamp": "2026-11-14T14:37:22.682959"}
+{"type": "answer_submitted", "data": {"player_name": "Moha", "category": "أعلام_الدول", "points": 100, "is_correct": false, "message": "Moha answered incorrect and earned 0 points"}, "timestamp": "2026-11-14T14:37:33.202614"}
+{"type": "turn_switch", "data": {"previous_player": "Moha", "new_player": "Omar", "message": "Turn switched from Moha to Omar"}, "timestamp": "2026-11-14T14:37:36.347089"}
+{"type": "question_selected", "data": {"player_name": "Omar", "category": "الحرب_العالمية_الثانية", "points": 100, "message": "Omar selected a 100-point question from الحرب_العالمية_الثانية"}, "timestamp": "2026-11-14T14:37:40.221901"}
+{"type": "answer_evaluated", "data": {"player_name": "Omar", "evaluator": "Omar", "category": "الحرب_العالمية_الثانية", "points": 100, "is_correct": true, "message": "The Host evaluated Omar's answer as correct and earned 100 points"}, "timestamp": "2026-11-14T14:37:58.050451"}

@@ -1,0 +1,2 @@
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "cars", "points": 400, "message": "Shihab selected a 400-point question from cars"}, "timestamp": "2026-11-14T14:27:27.787861"}
+{"type": "answer_evaluated", "data": {"player_name": "Shihab", "evaluator": "Omar", "category": "cars", "points": 400, "is_correct": true, "message": "The Host evaluated Shihab's answer as correct and earned 400 points"}, "timestamp": "2026-11-14T14:27:53.042037"}

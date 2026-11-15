@@ -1,0 +1,4 @@
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "الحرب_العالمية_الثانية", "points": 200, "is_correct": true, "message": "Shihab answered correct and earned 200 points"}, "timestamp": "2026-11-14T14:33:11.888740"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Moha", "message": "Turn switched from Shihab to Moha"}, "timestamp": "2026-11-14T14:33:17.166122"}
+{"type": "question_selected", "data": {"player_name": "Moha", "category": "الحرب_العالمية_الثانية", "points": 400, "message": "Moha selected a 400-point question from الحرب_العالمية_الثانية"}, "timestamp": "2026-11-14T14:33:31.153268"}
+{"type": "answer_submitted", "data": {"player_name": "Moha", "category": "الحرب_العالمية_الثانية", "points": 400, "is_correct": false, "message": "Moha answered incorrect and earned 0 points"}, "timestamp": "2026-11-14T14:33:54.245098"}

@@ -1,0 +1,1 @@
+{"type": "game_started", "data": {"player_name": "Omar", "message": "Who is the fastest game started by Omar", "categories": ["cars", "jurassic_park", "superhero_movies", "أعلام_الدول", "القرآن_الكريم"], "point_values": [300, 200, 100], "question_types": ["text", "multiple_choice"], "players": ["Omar", "Noha", "Shihab", "Hammad"]}, "timestamp": "2026-11-15T14:41:05.388724"}

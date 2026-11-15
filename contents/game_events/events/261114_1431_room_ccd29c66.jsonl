@@ -1,0 +1,2 @@
+{"type": "answer_submitted", "data": {"player_name": "Omar", "category": "quads_and_bikes", "points": 400, "is_correct": false, "message": "Omar answered incorrect and earned 0 points"}, "timestamp": "2026-11-14T14:31:16.248595"}
+{"type": "turn_switch", "data": {"previous_player": "Omar", "new_player": "Shihab", "message": "Turn switched from Omar to Shihab"}, "timestamp": "2026-11-14T14:31:24.052346"}
