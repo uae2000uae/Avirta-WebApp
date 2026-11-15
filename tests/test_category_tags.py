@@ -25,14 +25,21 @@ def test_shipped_categories_are_tagged():
     assert not missing, f"Add tags in contents/category_tags.json for: {missing}"
 
 
+SHIPPED = ["cars", "jurassic_park", "superhero_movies", "علوم_عامة", "معلومات_عامة"]
+
+
 def test_tags_are_defined_and_have_a_language():
+    """Every tag used must exist. Shipped categories need a language tag;
+    categories admins add on the live site may lack one (they still show
+    under their topic), so that must never block a deploy."""
     data = _data()
     defs = data["tags"]
     for cid, tags in data["categories"].items():
         assert tags, cid
         for t in tags:
             assert t in defs, f"{cid}: unknown tag {t!r}"
-        assert any(defs[t]["group"] == "language" for t in tags), f"{cid}: needs English or Arabic"
+        if cid in SHIPPED:
+            assert any(defs[t]["group"] == "language" for t in tags), f"{cid}: needs English or Arabic"
     for tid, d in defs.items():
         assert d.get("en") and d.get("ar") and d.get("group") in ("language", "topic"), tid
 
