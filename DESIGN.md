@@ -99,7 +99,7 @@ One family: **Cairo**, which covers Latin and Arabic. Regular (400) for text, Bo
 | `success-tint` | `rgba(47, 122, 85, 0.12)` | `rgba(95, 179, 138, 0.14)` | Background of success messages; text on it stays text. |
 | `danger-tint` | `rgba(180, 69, 59, 0.12)` | `rgba(217, 119, 108, 0.14)` | Background of error messages and form alerts; text on it stays text. |
 | `overlay` | `rgba(27, 39, 51, 0.45)` | `rgba(4, 8, 12, 0.62)` | Backdrop behind dialogs and the winner popup. |
-| `tile` | `#8f6220` | `#8f6220` | Unclaimed Hive cell. Same in both themes; white numbers on it. |
+| `tile` | `--accent` | `--accent` | Unclaimed Hive cell: the primary button brass gradient (`grad-1` → `grad-2`), numbers in `on-accent`. |
 | `team-a` | `#1f77b4` | `#1f77b4` | Hive Blue team: claimed cells, top and bottom edges, the team dot. Fixed in both themes (set in hex_game_room.py). |
 | `team-b` | `#d62728` | `#d62728` | Hive Red team: claimed cells, side edges, the team dot. Fixed in both themes. |
 | `confetti-1` | `#b07e2e` | `#d9b26a` | Win confetti, first colour. |
@@ -273,7 +273,7 @@ Source: `.badge`, `.ai-badge`, `.ai-stamp` in static/css/style.css.
 
 A Hive board cell: a hexagon with a point value, lit from the top-left for depth.
 
-- Unclaimed: `tile`. Claimed: `team-a` (Blue) or `team-b` (Red). White bold numbers.
+- Unclaimed: `tile` (the primary button brass) with `on-accent` numbers. Claimed: `team-a` (Blue) or `team-b` (Red) with white numbers. Bold numbers.
 - Depth uses gradient layers (a light top, a shaded bottom), never shadows. The current team's cells pulse with its edges; on a win the winner's colour holds.
 - Game geometry is frozen: change colours only.
 

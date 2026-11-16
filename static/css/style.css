@@ -64,7 +64,7 @@
     --success-tint: rgb(47 122 85 / .12);
     --danger-tint: rgb(180 69 59 / .12);
     --overlay: rgb(27 39 51 / .45);
-    --tile: #8f6220;                  /* unclaimed hive cell */
+    --tile: var(--accent);            /* unclaimed hive cell: the primary button brass */
     --confetti-1: #b07e2e;
     --confetti-2: #8f6220;
     --sweep: rgb(176 126 46 / .28);
@@ -144,7 +144,6 @@
     --success-tint: rgb(95 179 138 / .14);
     --danger-tint: rgb(217 119 108 / .14);
     --overlay: rgb(4 8 12 / .62);
-    --tile: #8f6220;
     --confetti-1: #d9b26a;
     --confetti-2: #b8863b;
     --sweep: rgb(217 178 106 / .22);
@@ -1901,6 +1900,9 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 #hex_root .hive-question { text-align: center; }
 #hex_root #next_container { align-self: center; text-align: center; }
 #hex_root .hive-end { margin-top: 20px; text-align: center; }
+/* Unclaimed cells wear the primary button brass, with its dark text. */
+#hex_root .cell[aria-disabled="false"] { color: var(--on-accent); }
+#hex_root .cell[aria-disabled="false"]:hover, #hex_root .cell[aria-disabled="false"]:active { background-image: linear-gradient(rgb(255 255 255 / .22), rgb(255 255 255 / .22)), var(--accent) !important; }
 #hex_root .cell:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
 #hex_root .cell[aria-disabled="true"] { cursor: default; }
 @media (max-width: 700px) {

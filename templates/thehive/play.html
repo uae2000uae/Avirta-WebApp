@@ -173,9 +173,15 @@
     const root = document.getElementById('hex_root');
     const cells = document.querySelectorAll('#board .cell');
     root.classList.add('hive-won');
+    // The light runs along the path; a top-to-bottom win sweeps row by row
+    // from the top edge down, so cells in the same row light together.
+    const rowSweep = w.edges === 'top-bottom';
     (w.path || []).forEach((idx, n) => {
       const cell = cells[idx];
-      if (cell) { cell.classList.add('win-path'); cell.style.setProperty('--i', n); }
+      if (cell) {
+        cell.classList.add('win-path');
+        cell.style.setProperty('--i', rowSweep ? Math.floor(idx / 5) * 2 : n);
+      }
     });
     const winSection = w.team === root.dataset.teamA ? 'team-a-section' : 'team-b-section';
     document.getElementById(winSection)?.classList.add('team-won');
