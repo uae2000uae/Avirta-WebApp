@@ -1,0 +1,7 @@
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:37:01.471287"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "cars", "points": 100, "message": "Player 3 selected a 100-point question from cars"}, "timestamp": "2026-11-18T15:37:17.506535"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 3", "evaluator": "P1", "category": "cars", "points": 100, "is_correct": true, "message": "The Host evaluated Player 3's answer as correct and earned 100 points"}, "timestamp": "2026-11-18T15:37:31.842059"}
+{"type": "turn_switch", "data": {"previous_player": "Player 3", "new_player": "P1", "message": "Turn switched from Player 3 to P1"}, "timestamp": "2026-11-18T15:37:34.913365"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "جسم_الإنسان", "points": 100, "message": "P1 selected a 100-point question from جسم_الإنسان"}, "timestamp": "2026-11-18T15:37:38.714693"}
+{"type": "answer_evaluated", "data": {"player_name": "P1", "evaluator": "P1", "category": "جسم_الإنسان", "points": 100, "is_correct": true, "message": "The Host evaluated P1's answer as correct and earned 100 points"}, "timestamp": "2026-11-18T15:37:52.635334"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "Player 2", "message": "Turn switched from P1 to Player 2"}, "timestamp": "2026-11-18T15:37:56.112491"}

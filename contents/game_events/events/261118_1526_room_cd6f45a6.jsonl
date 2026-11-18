@@ -1,0 +1,5 @@
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "جغرافيا", "points": 500, "message": "Player 2 selected a 500-point question from جغرافيا"}, "timestamp": "2026-11-18T15:26:06.198150"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 2", "evaluator": "P1", "category": "جغرافيا", "points": 500, "is_correct": true, "message": "The Host evaluated Player 2's answer as correct and earned 500 points"}, "timestamp": "2026-11-18T15:26:22.559511"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:26:26.038678"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "تاريخ_الإمارات", "points": 200, "message": "Player 3 selected a 200-point question from تاريخ_الإمارات"}, "timestamp": "2026-11-18T15:26:38.431178"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 3", "evaluator": "P1", "category": "تاريخ_الإمارات", "points": 200, "is_correct": true, "message": "The Host evaluated Player 3's answer as correct and earned 200 points"}, "timestamp": "2026-11-18T15:26:56.879333"}

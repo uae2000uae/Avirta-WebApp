@@ -1,0 +1,5 @@
+{"type": "tool_used", "data": {"player_name": "Player 1", "tool_name": "double_points", "target_player": "Player 1", "message": "Player 1 activated Double Points"}, "timestamp": "2026-11-18T15:43:01.367208"}
+{"type": "question_selected", "data": {"player_name": "Player 1", "category": "القرآن_الكريم", "points": 800, "message": "Player 1 selected a 800-point question from القرآن_الكريم"}, "timestamp": "2026-11-18T15:43:04.487917"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 1", "evaluator": "Player 1", "category": "القرآن_الكريم", "points": 800, "is_correct": false, "message": "The Host evaluated Player 1's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-18T15:43:20.779369"}
+{"type": "turn_switch", "data": {"previous_player": "Player 1", "new_player": "Player 2", "message": "Turn switched from Player 1 to Player 2"}, "timestamp": "2026-11-18T15:43:24.222255"}
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "تاريخ_كوارث_طبيعية", "points": 500, "message": "Player 2 selected a 500-point question from تاريخ_كوارث_طبيعية"}, "timestamp": "2026-11-18T15:43:48.005473"}

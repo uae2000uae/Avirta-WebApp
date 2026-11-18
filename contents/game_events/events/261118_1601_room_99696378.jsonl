@@ -1,0 +1,4 @@
+{"type": "tool_used", "data": {"player_name": "Player 1", "tool_name": "change_question", "category": "رياضة", "points": 400, "target_player": "Player 3", "message": "Player 1 used Change Question for Player 3"}, "timestamp": "2026-11-18T16:01:16.240391"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 3", "evaluator": "Player 1", "category": "رياضة", "points": 400, "is_correct": false, "message": "The Host evaluated Player 3's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-18T16:01:40.552976"}
+{"type": "turn_switch", "data": {"previous_player": "Player 3", "new_player": "Player 1", "message": "Turn switched from Player 3 to Player 1"}, "timestamp": "2026-11-18T16:01:44.292139"}
+{"type": "question_selected", "data": {"player_name": "Player 1", "category": "النحو", "points": 200, "message": "Player 1 selected a 200-point question from النحو"}, "timestamp": "2026-11-18T16:01:48.494312"}

@@ -1,0 +1,4 @@
+{"type": "question_selected", "data": {"player_name": "P1", "category": "jurassic_park", "points": 200, "message": "P1 selected a 200-point question from jurassic_park"}, "timestamp": "2026-11-18T15:21:06.866441"}
+{"type": "answer_evaluated", "data": {"player_name": "P1", "evaluator": "P1", "category": "jurassic_park", "points": 200, "is_correct": true, "message": "The Host evaluated P1's answer as correct and earned 200 points"}, "timestamp": "2026-11-18T15:21:24.286729"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "Player 2", "message": "Turn switched from P1 to Player 2"}, "timestamp": "2026-11-18T15:21:27.547954"}
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "القرآن_الكريم", "points": 400, "message": "Player 2 selected a 400-point question from القرآن_الكريم"}, "timestamp": "2026-11-18T15:21:33.610718"}

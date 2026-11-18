@@ -1,0 +1,6 @@
+{"type": "answer_evaluated", "data": {"player_name": "Player 2", "evaluator": "P1", "category": "أعلام_الدول", "points": 300, "is_correct": true, "message": "The Host evaluated Player 2's answer as correct and earned 300 points"}, "timestamp": "2026-11-18T15:34:00.896639"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:34:04.070760"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "أعلام_الدول", "points": 200, "message": "Player 3 selected a 200-point question from أعلام_الدول"}, "timestamp": "2026-11-18T15:34:13.089683"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 3", "evaluator": "P1", "category": "أعلام_الدول", "points": 200, "is_correct": true, "message": "The Host evaluated Player 3's answer as correct and earned 200 points"}, "timestamp": "2026-11-18T15:34:29.084982"}
+{"type": "turn_switch", "data": {"previous_player": "Player 3", "new_player": "P1", "message": "Turn switched from Player 3 to P1"}, "timestamp": "2026-11-18T15:34:32.340471"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "جسم_الإنسان", "points": 500, "message": "P1 selected a 500-point question from جسم_الإنسان"}, "timestamp": "2026-11-18T15:34:38.588858"}

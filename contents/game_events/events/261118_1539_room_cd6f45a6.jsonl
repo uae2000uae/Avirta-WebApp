@@ -1,0 +1,6 @@
+{"type": "answer_evaluated", "data": {"player_name": "Player 2", "evaluator": "P1", "category": "jurassic_park", "points": 400, "is_correct": false, "message": "The Host evaluated Player 2's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-18T15:39:08.832968"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:39:12.123775"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "jurassic_park", "points": 300, "message": "Player 3 selected a 300-point question from jurassic_park"}, "timestamp": "2026-11-18T15:39:20.895136"}
+{"type": "answer_submitted", "data": {"player_name": "Player 3", "category": "jurassic_park", "points": 300, "is_correct": false, "message": "Player 3 answered incorrect and earned 0 points"}, "timestamp": "2026-11-18T15:39:40.067339"}
+{"type": "turn_switch", "data": {"previous_player": "Player 3", "new_player": "P1", "message": "Turn switched from Player 3 to P1"}, "timestamp": "2026-11-18T15:39:43.433631"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "jurassic_park", "points": 100, "message": "P1 selected a 100-point question from jurassic_park"}, "timestamp": "2026-11-18T15:39:48.958248"}
