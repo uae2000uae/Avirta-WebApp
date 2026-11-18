@@ -1,0 +1,2 @@
+{"type": "game_started", "data": {"player_name": "P1", "message": "Game started by P1", "categories": ["cars", "jurassic_park", "أعلام_الدول", "القرآن_الكريم", "تاريخ_الإمارات", "جسم_الإنسان", "جغرافيا"], "question_types": ["text", "multiple_choice"], "players": ["P1", "Player 2", "Player 3"]}, "timestamp": "2026-11-18T15:18:04.967402"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "القرآن_الكريم", "points": 500, "message": "P1 selected a 500-point question from القرآن_الكريم"}, "timestamp": "2026-11-18T15:18:59.784358"}
