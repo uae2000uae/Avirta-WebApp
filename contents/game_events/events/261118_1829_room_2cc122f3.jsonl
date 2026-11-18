@@ -1,0 +1,2 @@
+{"type": "game_started", "data": {"player_name": "P1", "message": "Game started by P1", "categories": ["superhero_movies", "الاقتصاد_العالمي", "الفيزياء", "جسم_الإنسان", "دول_عربية", "عالم_الحيوان", "مخترعون_ومكتشفون"], "question_types": ["text", "multiple_choice"], "players": ["P1"]}, "timestamp": "2026-11-18T18:29:14.257437"}
+{"type": "game_ended", "data": {"player_name": "P1", "message": "The game has been ended by the host (P1)"}, "timestamp": "2026-11-18T18:29:20.851917"}
