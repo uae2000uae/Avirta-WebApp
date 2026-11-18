@@ -943,7 +943,17 @@ def question(room_id):
     # Ensure player_tools has the expected structure for the template
     # The template expects player_tools.change_question to be a boolean
     if not player_tools:
-        player_tools = {"change_question": False, "double_points": False}
+        player_tools = {"change_question": False, "double_points": False, "extend_time": False}
+
+    # Pull the Question: one button per other player, from the question screen
+    # (the host's, or the current player's). Each player can pull once per game.
+    pulled_by = question.get('pulled_by')
+    pull_players = []
+    if is_host or player_name == current_player:
+        pull_players = [
+            {'name': p, 'available': game_room.get_player_tools(p).get('pull_question', False)}
+            for p in game_room.players if p != current_player
+        ]
 
     # Get the default time limit from admin settings
     default_time_limit = admin_setup.game_settings.get('default_time_limit', 30)
@@ -957,7 +967,9 @@ def question(room_id):
         acting_player=acting_player,
         is_host=is_host,
         player_tools=player_tools,
-        current_player=current_player
+        current_player=current_player,
+        pulled_by=pulled_by,
+        pull_players=pull_players
     ))
 
     # Set cookie with default time limit
@@ -996,6 +1008,10 @@ def answer_question():
     # If acting_player is provided and player_name is the host, use acting_player
     if acting_player and game_room.is_host(player_name) and acting_player in game_room.players:
         effective_player = acting_player
+
+    # A pulled question is answered by (and credited to) the player who pulled it.
+    if question.get('pulled_by') in game_room.players:
+        effective_player = question['pulled_by']
 
     # Create a question manager if it doesn't exist for this room
     if 'question_manager' not in game_room.__dict__:
@@ -1072,6 +1088,10 @@ def evaluate_answer():
     # If acting_player is provided and player_name is the host, use acting_player
     if acting_player and game_room.is_host(player_name) and acting_player in game_room.players:
         effective_player = acting_player
+
+    # A pulled question is answered by (and credited to) the player who pulled it.
+    if question.get('pulled_by') in game_room.players:
+        effective_player = question['pulled_by']
 
     # Create a question manager if it doesn't exist for this room
     if 'question_manager' not in game_room.__dict__:
@@ -1157,6 +1177,8 @@ def result(room_id):
         correct_answer=correct_answer,
         question_text=question_text,
         current_player=game_room.current_player,
+        # Who answered: the puller if the question was pulled.
+        answerer=(current_question or {}).get('pulled_by') or game_room.current_player,
         current_question=current_question
     )
 

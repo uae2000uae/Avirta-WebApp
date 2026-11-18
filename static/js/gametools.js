@@ -4,6 +4,8 @@
  * This script handles:
  * 1. Double Points tool - Doubles the points for the next question
  * 2. Change Question tool - Changes the current question to a new one
+ * 3. Extend Time tool - Adds 15 seconds to the question timer
+ * 4. Pull the Question tool - Another player takes over the current question
  * 
  * These tools can be used by players during the game to enhance their gameplay experience.
  */
@@ -22,6 +24,10 @@ function initializeGameTools() {
 
     // Set up Change Question button in question.html
     setupChangeQuestionButton();
+
+    // Set up Extend Time and Pull the Question in question.html
+    setupExtendTimeButton();
+    setupPullQuestionButtons();
 
     // Set up polling for tool usage events
     setupToolEventPolling();
@@ -105,6 +111,98 @@ window.avirtaUpdatePlayerTools = window.updatePlayerTools = function(data) {
             }
         }
     }
+
+    // Update Extend Time button (only on question page)
+    const extendTimeButton = document.getElementById('extend-time-btn');
+    if (extendTimeButton && data.player_tools && data.player_tools.extend_time !== undefined) {
+        const available = (data.is_host && data.current_player_tools && data.current_player !== data.player_name)
+            ? data.current_player_tools.extend_time
+            : data.player_tools.extend_time;
+        if (available === false) markToolUsed(extendTimeButton);
+    }
+}
+
+/**
+ * POST a tool request to /use_tool and resolve with the JSON reply.
+ */
+function postTool(fields) {
+    return fetch('/use_tool', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: new URLSearchParams(fields)
+    }).then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    });
+}
+
+function showToolError(message) {
+    if (typeof showModal === 'function') showModal(message); else alert(message);
+}
+
+function markToolUsed(button) {
+    button.disabled = true;
+    button.classList.add('is-used');
+    button.title = 'Already used this game';
+}
+
+/**
+ * Set up Extend Time button (question page): +15s for the current player, once per game.
+ */
+function setupExtendTimeButton() {
+    const button = document.getElementById('extend-time-btn');
+    if (!button) return;
+    button.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (button.disabled) return;
+        markToolUsed(button);
+        postTool({ tool_name: 'extend_time' })
+            .then(data => {
+                if (!data.success) throw new Error(data.message || 'Could not extend time.');
+                if (window.extendQuestionTimer) window.extendQuestionTimer(data.seconds || 15);
+            })
+            .catch(error => {
+                console.error('Error using Extend Time tool:', error);
+                // Already used on the server: keep it crossed out; otherwise allow a retry.
+                if (!/already/i.test(error.message)) {
+                    button.disabled = false;
+                    button.classList.remove('is-used');
+                    button.title = 'Add 15 seconds to the timer';
+                }
+                showToolError(error.message || 'Error using Extend Time tool.');
+            });
+    });
+}
+
+/**
+ * Set up Pull the Question buttons (question page): one per other player,
+ * each player can pull once per game. The page reloads with the puller answering.
+ */
+function setupPullQuestionButtons() {
+    const form = document.getElementById('pull-question-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const button = e.submitter;
+        if (!button || button.disabled) return;
+        const puller = button.value;
+        form.querySelectorAll('button').forEach(b => { b.disabled = true; });
+        postTool({ tool_name: 'pull_question', puller: puller })
+            .then(data => {
+                if (!data.success) throw new Error(data.message || 'Could not pull the question.');
+                window.location.href = data.redirect || window.location.href;
+            })
+            .catch(error => {
+                console.error('Error using Pull the Question tool:', error);
+                form.querySelectorAll('button').forEach(b => {
+                    if (!b.classList.contains('is-used')) b.disabled = false;
+                });
+                showToolError(error.message || 'Error using Pull the Question tool.');
+            });
+    });
 }
 
 /**
@@ -236,7 +334,7 @@ function setupChangeQuestionButton() {
             button.classList.add('is-used');
 
             // Get the tool_name from the nearest input or use default
-            const container = button.closest('.form-actions');
+            const container = button.closest('form');
             const toolNameInput = container ? container.querySelector('input[name="tool_name"]') : null;
             const toolName = toolNameInput ? toolNameInput.value : 'change_question';
 

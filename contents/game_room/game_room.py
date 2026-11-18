@@ -279,6 +279,25 @@ class GameRoom:
             question_uploader
         )
 
+    def use_extend_time(self, player_name, acting_player=None):
+        """ Use "Extend Time" for the player whose turn it is (host may act for them). """
+        if player_name not in self.players:
+            return {"success": False, "message": "Player not found in this room."}
+        effective_player = acting_player if acting_player and self.is_host(
+            player_name) and acting_player in self.players else player_name
+        return GameTools.use_extend_time(self.player_tools, effective_player, self.current_player, self.question_active)
+
+    def use_pull_question(self, player_name, puller, already_pulled_by=None):
+        """
+        Use "Pull the Question" for `puller`. Requested from the screen
+        showing the question, so by the host or the player whose turn it is.
+        """
+        if player_name not in self.players:
+            return {"success": False, "message": "Player not found in this room."}
+        if not (self.is_host(player_name) or player_name == self.current_player):
+            return {"success": False, "message": "Only the host or the current player's screen can do this."}
+        return GameTools.use_pull_question(self.player_tools, puller, self.current_player,
+                                           self.players, self.question_active, already_pulled_by)
 
     def has_tool_available(self, player_name, tool_name):
         """

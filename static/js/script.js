@@ -94,6 +94,26 @@ function setupQuestionTimer() {
             timerDisplay.classList.add('timer-stopped');
         }
     };
+    // Extend Time tool: add seconds to a running countdown, with a floating
+    // "+N" badge. Returns false once the countdown has stopped or run out.
+    window.extendQuestionTimer = function (seconds) {
+        if (!timerInterval || timeLeft <= 0) return false;
+        timeLeft += seconds;
+        document.getElementById('time-left').textContent = timeLeft;
+        const badge = document.createElement('span');
+        badge.className = 'timer-bonus';
+        badge.setAttribute('aria-hidden', 'true');
+        badge.textContent = `+${seconds}`;
+        // Rise from the seconds count itself.
+        const count = document.getElementById('time-left');
+        badge.style.left = `${count.offsetLeft + count.offsetWidth / 2}px`;
+        timerDisplay.appendChild(badge);
+        badge.addEventListener('animationend', () => badge.remove());
+        timerDisplay.classList.remove('timer-extended');
+        void timerDisplay.offsetWidth; // restart the flash if used again
+        timerDisplay.classList.add('timer-extended');
+        return true;
+    };
     timerInterval = setInterval(function() {
         timeLeft--;
         document.getElementById('time-left').textContent = timeLeft;
