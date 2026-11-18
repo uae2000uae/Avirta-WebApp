@@ -179,8 +179,9 @@ class GitHubIntegration:
     def _url(self, path: str) -> str:
         return f"{self.api_url}/repos/{self.repo}/{path.lstrip('/')}"
 
-    def _get(self, path: str) -> requests.Response:
-        return requests.get(self._url(path), headers=self._headers, timeout=_REQUEST_TIMEOUT)
+    def _get(self, path: str, timeout: Optional[float] = None) -> requests.Response:
+        return requests.get(self._url(path), headers=self._headers,
+                            timeout=timeout or _REQUEST_TIMEOUT)
 
     def _post(self, path: str, payload: dict) -> requests.Response:
         return requests.post(self._url(path), headers=self._headers, json=payload,

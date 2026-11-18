@@ -126,11 +126,12 @@ def _read_all(root: str) -> Dict[str, bytes]:
     return data
 
 
-# Data files as this process found them when it started (path -> blob sha),
-# per project folder. A deploy ships a copy of every data file as of build
-# time; another revision may update those files on GitHub afterwards (for
-# example its own usage ledger). Pushing our untouched, older copies would
-# undo those updates, so only files this process created or changed are synced.
+# The last version of each data file that this process knows matches GitHub
+# (path -> blob sha), per project folder. It starts as the copy shipped with
+# the deploy, and moves forward when github_pull.py downloads a newer copy or
+# a sync pushes ours. Another revision may update files on GitHub at any time
+# (for example its own usage ledger). Pushing our untouched, older copies would
+# undo those updates, so only files this process changed since are synced.
 _baselines: Dict[str, Dict[str, str]] = {}
 
 
@@ -142,8 +143,22 @@ def capture_baseline(root: Optional[str] = None) -> None:
         _baselines.setdefault(root, shas)
 
 
+def known_remote_sha(rel: str, root: Optional[str] = None) -> Optional[str]:
+    """Blob sha of the last version of ``rel`` known to match GitHub."""
+    root = os.path.abspath(root or _repo_root())
+    with _lock:
+        return _baselines.get(root, {}).get(rel)
+
+
+def remember_remote_sha(rel: str, sha: str, root: Optional[str] = None) -> None:
+    """Record that GitHub holds this version of ``rel`` (after a pull or push)."""
+    root = os.path.abspath(root or _repo_root())
+    with _lock:
+        _baselines.setdefault(root, {})[rel] = sha
+
+
 def _changed_here(rel: str, data: bytes, root: str) -> bool:
-    """True if this process created or changed the file since it started."""
+    """True if this process changed the file since it last matched GitHub."""
     base = _baselines.get(os.path.abspath(root))
     if base is None:
         return True          # no baseline recorded: treat every file as ours
@@ -184,6 +199,8 @@ def sync_once(reasons: List[str], gh: Optional[GitHubIntegration] = None,
         remote = {e["path"]: e["sha"] for e in r.json().get("tree", []) if e.get("type") == "blob"}
 
         changed = [p for p, data in local.items() if remote.get(p) != _blob_sha(data)]
+        for p in set(local) - set(changed):
+            remember_remote_sha(p, remote[p], root)
         if not changed:
             return True, f"Already up to date ({len(local)} data files checked).", 0
 
@@ -217,6 +234,10 @@ def sync_once(reasons: List[str], gh: Optional[GitHubIntegration] = None,
             return False, "The branch moved on GitHub while syncing (will retry).", 0
         if not ur.ok:
             return False, f"Could not update the branch (HTTP {ur.status_code}).", 0
+        # GitHub now holds these versions: later edits on GitHub to the same
+        # files can be pulled again (see github_pull.py).
+        for rel in changed:
+            remember_remote_sha(rel, _blob_sha(local[rel]), root)
         return True, f"Synced {len(changed)} file(s) to {gh.repo}@{gh.branch} ({cr.json()['sha'][:7]}).", len(changed)
     except requests.RequestException as exc:
         return False, f"Network error talking to GitHub: {type(exc).__name__}.", 0
