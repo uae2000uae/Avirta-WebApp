@@ -1,0 +1,2 @@
+{"type": "answer_submitted", "data": {"player_name": "Player 1", "category": "رياضيات", "points": 500, "is_correct": true, "message": "Player 1 answered correct and earned 500 points"}, "timestamp": "2026-11-18T15:48:04.315201"}
+{"type": "turn_switch", "data": {"previous_player": "Player 1", "new_player": "Player 2", "message": "Turn switched from Player 1 to Player 2"}, "timestamp": "2026-11-18T15:48:53.116732"}

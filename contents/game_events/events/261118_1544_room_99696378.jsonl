@@ -1,0 +1,6 @@
+{"type": "answer_submitted", "data": {"player_name": "Player 2", "category": "تاريخ_كوارث_طبيعية", "points": 500, "is_correct": false, "message": "Player 2 answered incorrect and earned 0 points"}, "timestamp": "2026-11-18T15:44:05.088265"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:44:08.864977"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "القرآن_الكريم", "points": 300, "message": "Player 3 selected a 300-point question from القرآن_الكريم"}, "timestamp": "2026-11-18T15:44:34.916562"}
+{"type": "answer_submitted", "data": {"player_name": "Player 3", "category": "القرآن_الكريم", "points": 300, "is_correct": true, "message": "Player 3 answered correct and earned 300 points"}, "timestamp": "2026-11-18T15:44:48.996818"}
+{"type": "turn_switch", "data": {"previous_player": "Player 3", "new_player": "Player 1", "message": "Turn switched from Player 3 to Player 1"}, "timestamp": "2026-11-18T15:44:52.483681"}
+{"type": "question_selected", "data": {"player_name": "Player 1", "category": "دول_عربية", "points": 400, "message": "Player 1 selected a 400-point question from دول_عربية"}, "timestamp": "2026-11-18T15:44:59.758618"}

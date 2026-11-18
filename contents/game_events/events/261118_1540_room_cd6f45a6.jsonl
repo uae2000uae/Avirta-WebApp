@@ -1,0 +1,6 @@
+{"type": "tool_used", "data": {"player_name": "P1", "tool_name": "change_question", "category": "jurassic_park", "points": 100, "target_player": null, "message": "P1 used Change Question to get a new question"}, "timestamp": "2026-11-18T15:40:06.596662"}
+{"type": "answer_submitted", "data": {"player_name": "P1", "category": "jurassic_park", "points": 100, "is_correct": false, "message": "P1 answered incorrect and earned 0 points"}, "timestamp": "2026-11-18T15:40:24.949773"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "Player 2", "message": "Turn switched from P1 to Player 2"}, "timestamp": "2026-11-18T15:40:34.487871"}
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "jurassic_park", "points": 100, "message": "Player 2 selected a 100-point question from jurassic_park"}, "timestamp": "2026-11-18T15:40:38.822078"}
+{"type": "answer_submitted", "data": {"player_name": "Player 2", "category": "jurassic_park", "points": 100, "is_correct": true, "message": "Player 2 answered correct and earned 100 points"}, "timestamp": "2026-11-18T15:40:51.325981"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:40:55.740037"}

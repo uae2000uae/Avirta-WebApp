@@ -1,0 +1,6 @@
+{"type": "answer_submitted", "data": {"player_name": "Player 1", "category": "النحو", "points": 200, "is_correct": true, "message": "Player 1 answered correct and earned 200 points"}, "timestamp": "2026-11-18T16:02:04.575628"}
+{"type": "turn_switch", "data": {"previous_player": "Player 1", "new_player": "Player 2", "message": "Turn switched from Player 1 to Player 2"}, "timestamp": "2026-11-18T16:02:10.114638"}
+{"type": "tool_used", "data": {"player_name": "Player 1", "tool_name": "double_points", "target_player": "Player 2", "message": "Player 1 activated Double Points for Player 2"}, "timestamp": "2026-11-18T16:02:14.913567"}
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "النحو", "points": 200, "message": "Player 2 selected a 200-point question from النحو"}, "timestamp": "2026-11-18T16:02:17.524502"}
+{"type": "answer_submitted", "data": {"player_name": "Player 2", "category": "النحو", "points": 200, "is_correct": true, "message": "Player 2 answered correct and earned 200 points"}, "timestamp": "2026-11-18T16:02:41.545896"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T16:02:44.723122"}

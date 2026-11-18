@@ -1823,9 +1823,40 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 }
 .report-button:hover { color: var(--danger); border-color: var(--danger); background: var(--danger-tint); }
 
-/* 7.3 Result */
-.result-section { margin-bottom: 10px; }
-.result-display { align-content: center; padding: var(--s-4); text-align: center; }
+/* 7.3 Result: a popup over the board after each answer (Columns/_answer_popup.html).
+   Compact: never taller than the screen; a long explanation scrolls inside. */
+.answer-popup {
+    position: fixed; inset: 0; z-index: 1200;
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--s-3);
+    background: var(--overlay);
+    animation: fade-in var(--t-2) var(--ease);
+}
+.answer-card {
+    display: flex; flex-direction: column; gap: var(--s-2);
+    width: min(100%, 460px);
+    max-height: calc(100dvh - 2 * var(--s-3));
+    padding: var(--s-4);
+    border-radius: var(--r-6);
+    text-align: center;
+    color: var(--text);
+    background: var(--hairline) top / 100% 1px no-repeat, var(--surface);
+    outline: 1px solid var(--line);
+    outline-offset: -1px;
+    animation: modal-in var(--t-3) var(--ease);
+}
+.answer-card .result { margin: 0 0 var(--s-1); padding: var(--s-2) var(--s-3); flex-shrink: 0; }
+.answer-card .result-icon { margin: 0; font-size: var(--fs-6); font-weight: bold; }
+.answer-card .result p { margin: 0; }
+.answer-card p { margin: 0; }
+.answer-question { color: var(--muted); line-height: 1.5; }
+.answer-correct { font-size: var(--fs-5); font-weight: bold; line-height: 1.3; color: var(--text); }
+.answer-why { min-height: 0; overflow-y: auto; font-size: var(--fs-3); font-style: italic; line-height: 1.5; color: var(--muted); }
+.answer-actions { display: flex; align-items: center; justify-content: center; gap: var(--s-2); margin-top: var(--s-1); flex-shrink: 0; }
+.answer-actions .report-button { margin: 0; min-height: 40px; }
+.answer-actions .report-button:disabled { opacity: .5; cursor: default; }
+#report-modal { z-index: 1250; }
+.report-note { margin-top: var(--s-2) !important; }
 .result {
     margin-left: 15%;
     margin-right: 15%;

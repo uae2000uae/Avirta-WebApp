@@ -1,0 +1,5 @@
+{"type": "answer_submitted", "data": {"player_name": "Player 3", "category": "القرآن_الكريم", "points": 100, "is_correct": true, "message": "Player 3 answered correct and earned 100 points"}, "timestamp": "2026-11-18T15:25:06.372121"}
+{"type": "turn_switch", "data": {"previous_player": "Player 3", "new_player": "P1", "message": "Turn switched from Player 3 to P1"}, "timestamp": "2026-11-18T15:25:10.674849"}
+{"type": "question_selected", "data": {"player_name": "P1", "category": "جسم_الإنسان", "points": 300, "message": "P1 selected a 300-point question from جسم_الإنسان"}, "timestamp": "2026-11-18T15:25:34.145729"}
+{"type": "answer_evaluated", "data": {"player_name": "P1", "evaluator": "P1", "category": "جسم_الإنسان", "points": 300, "is_correct": true, "message": "The Host evaluated P1's answer as correct and earned 300 points"}, "timestamp": "2026-11-18T15:25:49.910350"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "Player 2", "message": "Turn switched from P1 to Player 2"}, "timestamp": "2026-11-18T15:25:54.119217"}
