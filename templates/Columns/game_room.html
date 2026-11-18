@@ -13,30 +13,27 @@
 	  <button type="button" class="invite-btn" data-invite="{{ url_for('join_room', room=room.room_id, _external=True) }}" title="Copy a link that opens the join page with this Room ID filled in"><i class="fas fa-link" aria-hidden="true"></i> Copy invite link</button></p>
 	<p class="visually-hidden" role="status" data-announce="It is {{ current_player }}'s turn."></p>
   <div class="section">
-    <div><p class="blue-box"><strong>Current Turn: </strong><span></span>
-		  {% for player in room.players %}
-			{% if player == current_player %}
-			  <span class="button">{{ player }}</span>
-			{% else %}
-			  <text class="button secondary">{{ player }}</text>
-			{% endif %}
-			{% if not loop.last %}{% endif %}
-		  {% endfor %}
-		</p>
+    {# The current turn card, with the Double Points tool outside it at the far right. #}
+    <div class="turn-row">
+      <p class="blue-box turn-players"><strong>Current Turn: </strong>
+        {% for player in room.players %}
+          {% if player == current_player %}
+            <span class="button">{{ player }}</span>
+          {% else %}
+            <span class="button secondary">{{ player }}</span>
+          {% endif %}
+        {% endfor %}
+      </p>
+      <form action="{{ url_for('use_tool') }}" method="post" class="turn-tool">
+        <input type="hidden" name="tool_name" value="double_points">
+        <div class="tool">
+          <button type="submit" id="double-points-btn" class="dp tool-btn tool-icon{% if not player_tools.double_points %} is-used{% endif %}" aria-label="Double Points{% if not player_tools.double_points %} (already used){% endif %}" title="{% if not player_tools.double_points %}Already used this game{% else %}Double the points for the next question{% endif %}" {% if not player_tools.double_points %}disabled="disabled"{% endif %}>
+            <i class="fas fa-angles-up" aria-hidden="true"></i>
+          </button>
+          <span class="tool-caption" aria-hidden="true">{{ bi_stack('Double points', 'ضعف النقاط') }}</span>
+        </div>
+      </form>
     </div>
-
-		<form action="{{ url_for('use_tool') }}" method="post" class="form-actions clear">
-		  <input type="hidden" name="tool_name" value="double_points" class="form-actions">
-		  <div>
-			<div class="tool">
-			  <button type="submit" id="double-points-btn" class="dp tool-btn tool-icon{% if not player_tools.double_points %} is-used{% endif %}" aria-label="Double Points{% if not player_tools.double_points %} (already used){% endif %}" title="{% if not player_tools.double_points %}Already used this game{% else %}Double the points for the next question{% endif %}" {% if not player_tools.double_points %}disabled="disabled"{% endif %}>
-			    <i class="fas fa-angles-up" aria-hidden="true"></i>
-			  </button>
-			  <span class="tool-caption" aria-hidden="true">{{ bi_stack('Double points', 'ضعف النقاط') }}</span>
-			</div>
-		  </div>
-		</form>
-
   </div>
 
   <div class="game-board-section">

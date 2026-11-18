@@ -188,6 +188,7 @@ header {                                                     /* [frozen] */
 
 .container {                                                 /* [frozen] */
     width: 90%;
+    max-width: calc(100% - 2 * var(--s-4));  /* phones: 90% plus padding would spill past the screen */
     margin: 0 auto;
     padding: var(--s-4);
 }
@@ -1593,6 +1594,16 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 }
 .question-button:hover, .question-button:active { outline-color: var(--accent-1); background: var(--veil-2), var(--accent); }
 .question-button:disabled { color: var(--muted); background: var(--raised); outline-color: var(--line); cursor: default; }
+/* Phones: up to 7 columns share the screen width instead of scrolling sideways.
+   Desktop sizes above are unchanged. */
+@media (max-width: 640px) {
+    .game-board { gap: 3px; }
+    .category { min-width: 0; }
+    .category-header-grid { height: auto; min-height: 40px; max-height: none; padding: 4px 2px; font-size: 10px; line-height: 1.2; overflow-wrap: break-word; hyphens: auto; }
+    .question-list { padding: 3px 1px; }
+    .question-box { padding: 4px 1px; }
+    .question-button { font-size: 14px; }
+}
 /* Double points: available questions turn green, in regular weight. */
 .question-button.doubled:not(:disabled) {
     color: var(--on-status);
@@ -1605,6 +1616,10 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 
 /* Turn and tools */
 .dp, .tool-btn { cursor: pointer; }
+/* Current turn card on the left; Double Points sits outside it at the far right. */
+.turn-row { display: flex; align-items: center; gap: var(--s-3); }
+.turn-row .turn-players { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-1); flex: 1 1 auto; min-width: 0; }
+.turn-row .turn-tool { display: block; flex: 0 0 auto; margin: 0; padding: 0; background: none; outline: none; }
 .turn-indicator { margin-top: var(--s-1); font-style: italic; color: var(--muted); }
 .your-turn { color: var(--success); }
 .game-actions { display: flex; justify-content: center; gap: var(--s-1); margin-top: var(--s-4); }
@@ -2005,10 +2020,29 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 #hex_root .cell[aria-disabled="false"]:hover, #hex_root .cell[aria-disabled="false"]:active { background-image: linear-gradient(rgb(255 255 255 / .22), rgb(255 255 255 / .22)), var(--accent) !important; }
 #hex_root .cell:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
 #hex_root .cell[aria-disabled="true"] { cursor: default; }
-@media (max-width: 700px) {
+@media (max-width: 700px) and (orientation: portrait) {
     #hex_root .game-container { flex-direction: column; align-items: center; }
-    #hex_root .question-section { width: auto; }
+    #hex_root .question-section { width: auto; max-width: 100%; min-width: min(280px, 100%); box-sizing: border-box; }
 }
+/* Phones held sideways: the board and the question stay side by side. */
+@media (max-width: 700px) and (orientation: landscape) {
+    #hex_root .game-container { flex-wrap: nowrap; gap: var(--s-3); }
+    #hex_root .question-section { flex: 1 1 0; min-width: 0; }
+    #hex_root #options_container { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    #hex_root #options_container .answer-option { width: auto; margin: 0; }
+}
+/* Small phones: shrink the whole board evenly. Scaling keeps every cell's
+   shape and position; the negative margins hand back the space it no longer
+   needs, so the board stays centred. */
+@media (max-width: 360px) {
+    #hex_root .game-board-section {
+        --hive-scale: .86;
+        transform: translateY(-20px) scale(var(--hive-scale));
+        transform-origin: 50% 0;
+        margin: 10px calc(-150px * (1 - var(--hive-scale))) calc(-270px * (1 - var(--hive-scale)));
+    }
+}
+@media (max-width: 330px) { #hex_root .game-board-section { --hive-scale: .8; } }
 #hex_root .board-edge {
     display: grid;
     grid-template-columns: repeat(5, 52px);
