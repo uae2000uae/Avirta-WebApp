@@ -1,0 +1,5 @@
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "دول_عربية", "points": 400, "message": "Player 2 selected a 400-point question from دول_عربية"}, "timestamp": "2026-11-18T18:32:06.681398"}
+{"type": "tool_used", "data": {"player_name": "1", "tool_name": "change_question", "category": "دول_عربية", "points": 400, "target_player": "Player 2", "message": "1 used Change Question for Player 2"}, "timestamp": "2026-11-18T18:32:20.614518"}
+{"type": "tool_used", "data": {"player_name": "1", "tool_name": "extend_time", "target_player": "Player 2", "seconds": 15, "message": "Player 2 used Extend Time (+15s)"}, "timestamp": "2026-11-18T18:32:46.446542"}
+{"type": "answer_submitted", "data": {"player_name": "Player 2", "category": "دول_عربية", "points": 400, "is_correct": false, "message": "Player 2 answered incorrect and earned 0 points"}, "timestamp": "2026-11-18T18:32:53.831771"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T18:32:53.832400"}

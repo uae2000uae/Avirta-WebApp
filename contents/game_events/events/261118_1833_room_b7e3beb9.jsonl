@@ -1,0 +1,4 @@
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "تاريخ_الإمارات", "points": 100, "message": "Player 3 selected a 100-point question from تاريخ_الإمارات"}, "timestamp": "2026-11-18T18:33:01.727470"}
+{"type": "answer_submitted", "data": {"player_name": "Player 3", "category": "تاريخ_الإمارات", "points": 100, "is_correct": false, "message": "Player 3 answered incorrect and earned 0 points"}, "timestamp": "2026-11-18T18:33:08.361677"}
+{"type": "turn_switch", "data": {"previous_player": "Player 3", "new_player": "1", "message": "Turn switched from Player 3 to 1"}, "timestamp": "2026-11-18T18:33:08.362299"}
+{"type": "question_selected", "data": {"player_name": "1", "category": "رياضيات", "points": 500, "message": "1 selected a 500-point question from رياضيات"}, "timestamp": "2026-11-18T18:33:41.393205"}
