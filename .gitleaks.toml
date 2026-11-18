@@ -2,20 +2,29 @@
 # - We keep default rules from Gitleaks, and add a small allowlist to avoid false positives
 # - Placeholders and redacted tokens are allowed
 # - We also ignore some paths that are not part of the runtime and may contain examples/placeholder strings
+#
+# Regexes use TOML literal strings ('...') so backslashes reach Gitleaks unchanged.
+# In basic strings ("...") a sequence like \* is an invalid TOML escape and the
+# whole config fails to load.
 
-[allowlist]
+[extend]
+# Without this, a custom config replaces the built-in rule set and nothing is detected.
+useDefault = true
+
+[[allowlists]]
+description = "Placeholder values and paths that never hold real secrets"
 # Common placeholder values permitted in repo
 regexes = [
-  "SET_IN_ENV",
-  "sk-\*\*\*REDACTED\*\*\*",
-  "ghp_\*\*\*REDACTED\*\*\*",
+  'SET_IN_ENV',
+  'sk-\*\*\*REDACTED\*\*\*',
+  'ghp_\*\*\*REDACTED\*\*\*',
 ]
 # Ignore files that are already excluded from the container/runtime or contain docs
 paths = [
-  "^docs/",
-  "^tests/",
-  "^\.idea/",
-  "^\.junie/",
-  "^contents/admin_controls/game_settings\.json$",
-  "^contents/admin_controls/saved_api_settings\.json$",
+  '^docs/',
+  '^tests/',
+  '^\.idea/',
+  '^\.junie/',
+  '^contents/admin_controls/game_settings\.json$',
+  '^contents/admin_controls/saved_api_settings\.json$',
 ]
