@@ -169,6 +169,63 @@ def list_ledger_files(directory: Optional[str] = None) -> List[str]:
     return out
 
 
+def _parse_counts(raw: object) -> Dict[str, int]:
+    out: Dict[str, int] = {}
+    if isinstance(raw, dict):
+        for k, v in raw.items():
+            try:
+                out[str(k)] = int(v)
+            except (TypeError, ValueError):
+                continue
+    return out
+
+
+def merge_ledger_file(filename: str, remote_data: bytes,
+                      directory: Optional[str] = None) -> bytes:
+    """Merge a ledger downloaded from GitHub into the local copy of the same file.
+
+    Ledgers only grow, so the correct merge keeps the larger count of each
+    question. Returns the merged file contents as written to disk.
+    """
+    global _ledger
+    try:
+        remote = _parse_counts(json.loads(remote_data.decode("utf-8")))
+    except (ValueError, UnicodeDecodeError):
+        remote = {}
+    d = directory or usage_dir()
+    path = os.path.join(d, os.path.basename(filename))
+    with _LOCK:
+        # This server's own ledger is also held in memory: merge there too.
+        # (Before the first play there is no in-memory copy, so the disk is enough.)
+        own = bool(_INSTANCE_ID) and os.path.abspath(path) == os.path.abspath(
+            os.path.join(usage_dir(), _ledger_filename()))
+        if own:
+            local = dict(_load_this_ledger())
+        else:
+            local = {}
+            if os.path.isfile(path):
+                try:
+                    with open(path, "r", encoding="utf-8") as fh:
+                        local = _parse_counts(json.load(fh))
+                except (OSError, ValueError):
+                    local = {}
+        merged = dict(local)
+        for qid, n in remote.items():
+            if n > merged.get(qid, 0):
+                merged[qid] = n
+        if own:
+            _ledger = merged
+            _save_this_ledger()
+        else:
+            os.makedirs(d, exist_ok=True)
+            tmp = f"{path}.tmp"
+            with open(tmp, "w", encoding="utf-8") as fh:
+                json.dump(merged, fh, ensure_ascii=False, sort_keys=True, indent=0)
+            os.replace(tmp, path)
+        with open(path, "rb") as fh:
+            return fh.read()
+
+
 def get_totals() -> Dict[str, int]:
     """Sum usage across ALL ledger files -> {question_id: total_uses}."""
     totals: Dict[str, int] = {}

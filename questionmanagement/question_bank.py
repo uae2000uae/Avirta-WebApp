@@ -212,6 +212,14 @@ class QuestionBank:
         Returns:
             int: Number of questions loaded
         """
+        # First bring in data committed to GitHub since this server started
+        # (questions, other servers' usage ledgers) - see github_pull.py.
+        try:
+            from contents.admin_controls.github_pull import refresh
+            refresh()
+        except Exception as e:
+            print(f"GitHub data refresh skipped: {e}")
+
         count = 0
         # Clear existing questions and categories to prevent duplicates
         self.questions = {}

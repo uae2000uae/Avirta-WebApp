@@ -34,6 +34,7 @@ This document defines the core specifications, design guidelines, and system cod
    - [PRJ-015: Modal Handling and User Interface Messaging](#prj-015-modal-handling-and-user-interface-messaging)
 6. [Version Control & GitHub Integration Rules](#6-version-control--github-integration-rules)
    - [PRJ-016: GitHub Integration & Auto-Sync of Question Data](#prj-016-github-integration--auto-sync-of-question-data)
+   - [PRJ-017: GitHub Data Is Live in Every Session](#prj-017-github-data-is-live-in-every-session)
 
 ---
 
@@ -561,8 +562,33 @@ This document defines the core specifications, design guidelines, and system cod
   5. This Trigger Map must be updated whenever a call site is added or removed.
   6. Every commit this module makes carries a `[skip ci]` token so question-data syncs never trigger a Cloud Run redeploy — defense-in-depth alongside the Cloud Build `ignoredFiles` filter for `contents/questions/**`. The native full-source push (`git_push_helper.py`) intentionally omits it so code pushes still deploy.
   7. `use_count` is NOT stored via whole-file replace. It lives in per-instance grow-only ledgers under `datastore/usage/` (`usage_<INSTANCE_ID>.json`); each instance writes only its own file (conflict-free), and effective `use_count` = file base + sum of all ledgers (applied in memory by `QuestionBank.load_questions`). Increments go through `usage_ledger.increment()`; question files no longer churn on play. `datastore/usage/**` is in the trigger `ignoredFiles`. An optional single-writer `usage_ledger.rollup_into_question_files()` folds ledgers back into the question files and compacts them.
+  8. Pushing is only half of the sync: because data commits carry `[skip ci]`, a running server never gets them by redeploy. Reading them back is required by [PRJ-017](#prj-017-github-data-is-live-in-every-session).
 * **Rationale**:
   * The token-based REST API works on Cloud Run, where the `git` binary and credentials are unavailable.
   * A single, independent module keeps the integration testable and callable from anywhere in the app.
   * Best-effort auto-sync keeps the repository current without risking the user-facing request path.
   * Note: game end/reset (first two rows) fire on the normal game flow, so question files sync frequently on a live instance — restrict to admin/editing routes if that volume is undesirable.
+
+### PRJ-017: GitHub Data Is Live in Every Session
+
+* **Rule**: GitHub is the permanent store of Avirta's runtime data. Any data update committed to GitHub — by the app's own sync, by another server, or by a person editing the repository — must take effect in every ongoing session and every new session without a redeploy or restart. A server must never select questions from data older than what GitHub holds. The deploy-time copy of the data files is only a starting point, never the source of truth.
+* **Problem this prevents**: A Cloud Run container starts from the files as they were when it was deployed. Data syncs are committed with `[skip ci]`, so they never redeploy. Without a pull, a container that restarts (instance recycling, a crash, a new revision) falls back to the deploy-time usage ledgers and question files: questions played since then look unplayed and are dealt again in the next game, and edits made on GitHub never reach players. (Seen in `datastore/usage/`: two ledgers from the same revision, e.g. `usage_avirta-01197-rfs_*`, each counting plays the other could not see.)
+* **Examples**:
+  * **Valid**: A question edited on GitHub during a game is used by the next board created on the live server.
+  * **Valid**: After a container restart, the questions played before the restart are still counted as played (other ledgers are pulled from GitHub at startup).
+  * **Valid**: A usage ledger that changed both here and on GitHub is merged by keeping the larger count per question.
+  * **Invalid**: Reading question data or use counts only from the files shipped with the deploy.
+  * **Invalid**: Caching question data in memory across games without reloading it through `load_questions()`.
+  * **Invalid**: Overwriting a newer GitHub copy with this server's older, untouched copy (the sync pushes only files changed here since they last matched GitHub).
+* **Implementation Requirements**:
+  1. `contents/admin_controls/github_pull.py` → `refresh()` brings GitHub's data into the server. It covers `contents/questions/*.json`, `datastore/usage/*.json`, `questionmanagement/reported_questions/*.json` and `contents/category_tags.json` (`PULL_GLOBS`). Add new runtime data that the app reads to `PULL_GLOBS` as well as to `SYNC_GLOBS` in `github_sync.py`.
+  2. `refresh()` runs at the start of every `QuestionUploader.load_questions()` and `QuestionBank.load_questions()` — so at startup and before every new board in every game mode. Any new code path that selects questions must load them through `load_questions()` first.
+  3. Per file: same as GitHub → nothing; usage ledger → grow-only merge (max per question); unchanged here since it last matched GitHub → replace with GitHub's copy; changed here and on GitHub → keep ours (the next sync pushes it) and log `GITHUB_PULL_CONFLICT`. A file deleted on this server is not brought back. Files are written atomically.
+  4. `github_sync` keeps, per file, the last version known to match GitHub (`known_remote_sha` / `remember_remote_sha`). A pull and a successful push both move it forward. A sync pushes only files that differ from it.
+  5. It must never break or noticeably slow a request: it never raises, uses an 8-second timeout per GitHub call, checks GitHub at most once every `GITHUB_PULL_INTERVAL` seconds (default 20), and costs one API call when the branch has not moved.
+  6. Switch: `GITHUB_PULL=1/0`. Default on when running on Cloud Run (`K_SERVICE` set), off elsewhere so local checkouts and tests are never rewritten.
+  7. Tests: `tests/test_github_pull.py`.
+* **Rationale**:
+  * Players must not see the same questions again just because the server restarted.
+  * Edits made on GitHub are the admin's intent and must reach live games immediately.
+  * Grow-only ledgers make the merge lossless, so pulling and pushing can run at any time without losing a play.
