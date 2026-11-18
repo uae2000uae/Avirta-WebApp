@@ -1,0 +1,1 @@
+{"type": "game_started", "data": {"player_name": "Player 1", "message": "Game started by Player 1", "categories": ["القرآن_الكريم", "النحو", "تاريخ_كوارث_طبيعية", "دول_عربية", "رياضة", "رياضيات", "مشاهير_عرب"], "question_types": ["text", "multiple_choice"], "players": ["Player 1", "Player 2", "Player 3"]}, "timestamp": "2026-11-18T15:42:37.544423"}

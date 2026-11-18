@@ -1,0 +1,5 @@
+{"type": "turn_switch", "data": {"previous_player": "Player 1", "new_player": "Player 2", "message": "Turn switched from Player 1 to Player 2"}, "timestamp": "2026-11-18T16:00:01.902074"}
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "تاريخ_كوارث_طبيعية", "points": 400, "message": "Player 2 selected a 400-point question from تاريخ_كوارث_طبيعية"}, "timestamp": "2026-11-18T16:00:14.691825"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 2", "evaluator": "Player 1", "category": "تاريخ_كوارث_طبيعية", "points": 400, "is_correct": false, "message": "The Host evaluated Player 2's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-18T16:00:48.493146"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T16:00:51.658120"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "رياضة", "points": 400, "message": "Player 3 selected a 400-point question from رياضة"}, "timestamp": "2026-11-18T16:00:59.246672"}

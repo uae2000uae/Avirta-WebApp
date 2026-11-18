@@ -1,0 +1,5 @@
+{"type": "turn_switch", "data": {"previous_player": "Player 3", "new_player": "Player 1", "message": "Turn switched from Player 3 to Player 1"}, "timestamp": "2026-11-18T15:52:02.154047"}
+{"type": "question_selected", "data": {"player_name": "Player 1", "category": "النحو", "points": 500, "message": "Player 1 selected a 500-point question from النحو"}, "timestamp": "2026-11-18T15:52:14.127943"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 1", "evaluator": "Player 1", "category": "النحو", "points": 500, "is_correct": true, "message": "The Host evaluated Player 1's answer as correct and earned 500 points"}, "timestamp": "2026-11-18T15:52:37.004424"}
+{"type": "turn_switch", "data": {"previous_player": "Player 1", "new_player": "Player 2", "message": "Turn switched from Player 1 to Player 2"}, "timestamp": "2026-11-18T15:52:40.878497"}
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "رياضيات", "points": 100, "message": "Player 2 selected a 100-point question from رياضيات"}, "timestamp": "2026-11-18T15:52:51.653200"}

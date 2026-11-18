@@ -1,0 +1,6 @@
+{"type": "answer_evaluated", "data": {"player_name": "P1", "evaluator": "P1", "category": "جسم_الإنسان", "points": 500, "is_correct": false, "message": "The Host evaluated P1's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-18T15:35:04.002290"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "Player 2", "message": "Turn switched from P1 to Player 2"}, "timestamp": "2026-11-18T15:35:07.146497"}
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "جغرافيا", "points": 100, "message": "Player 2 selected a 100-point question from جغرافيا"}, "timestamp": "2026-11-18T15:35:24.969419"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 2", "evaluator": "P1", "category": "جغرافيا", "points": 100, "is_correct": true, "message": "The Host evaluated Player 2's answer as correct and earned 100 points"}, "timestamp": "2026-11-18T15:35:32.132845"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:35:35.035653"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "جسم_الإنسان", "points": 200, "message": "Player 3 selected a 200-point question from جسم_الإنسان"}, "timestamp": "2026-11-18T15:35:44.239394"}

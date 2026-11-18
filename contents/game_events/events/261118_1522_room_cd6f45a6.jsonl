@@ -1,0 +1,2 @@
+{"type": "answer_evaluated", "data": {"player_name": "Player 2", "evaluator": "P1", "category": "القرآن_الكريم", "points": 400, "is_correct": false, "message": "The Host evaluated Player 2's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-18T15:22:08.241776"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:22:11.623232"}

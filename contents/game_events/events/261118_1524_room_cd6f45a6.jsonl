@@ -1,0 +1,6 @@
+{"type": "answer_submitted", "data": {"player_name": "P1", "category": "أعلام_الدول", "points": 500, "is_correct": false, "message": "P1 answered incorrect and earned 0 points"}, "timestamp": "2026-11-18T15:24:08.415615"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "Player 2", "message": "Turn switched from P1 to Player 2"}, "timestamp": "2026-11-18T15:24:12.319572"}
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "القرآن_الكريم", "points": 200, "message": "Player 2 selected a 200-point question from القرآن_الكريم"}, "timestamp": "2026-11-18T15:24:22.246619"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 2", "evaluator": "P1", "category": "القرآن_الكريم", "points": 200, "is_correct": true, "message": "The Host evaluated Player 2's answer as correct and earned 200 points"}, "timestamp": "2026-11-18T15:24:30.534563"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:24:33.925182"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "القرآن_الكريم", "points": 100, "message": "Player 3 selected a 100-point question from القرآن_الكريم"}, "timestamp": "2026-11-18T15:24:53.169890"}

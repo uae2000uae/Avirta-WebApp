@@ -1,0 +1,2 @@
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "jurassic_park", "points": 400, "message": "Player 2 selected a 400-point question from jurassic_park"}, "timestamp": "2026-11-18T15:38:05.176285"}
+{"type": "tool_used", "data": {"player_name": "P1", "tool_name": "change_question", "category": "jurassic_park", "points": 400, "target_player": "Player 2", "message": "P1 used Change Question for Player 2"}, "timestamp": "2026-11-18T15:38:32.581725"}

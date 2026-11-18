@@ -1,0 +1,3 @@
+{"type": "answer_evaluated", "data": {"player_name": "P1", "evaluator": "P1", "category": "القرآن_الكريم", "points": 500, "is_correct": true, "message": "The Host evaluated P1's answer as correct and earned 500 points"}, "timestamp": "2026-11-18T15:19:11.877642"}
+{"type": "turn_switch", "data": {"previous_player": "P1", "new_player": "Player 2", "message": "Turn switched from P1 to Player 2"}, "timestamp": "2026-11-18T15:19:22.929761"}
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "أعلام_الدول", "points": 400, "message": "Player 2 selected a 400-point question from أعلام_الدول"}, "timestamp": "2026-11-18T15:19:40.682877"}

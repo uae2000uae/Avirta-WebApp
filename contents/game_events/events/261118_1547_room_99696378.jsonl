@@ -1,0 +1,6 @@
+{"type": "answer_evaluated", "data": {"player_name": "Player 2", "evaluator": "Player 1", "category": "القرآن_الكريم", "points": 200, "is_correct": true, "message": "The Host evaluated Player 2's answer as correct and earned 200 points"}, "timestamp": "2026-11-18T15:47:05.597458"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:47:09.191741"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "رياضيات", "points": 300, "message": "Player 3 selected a 300-point question from رياضيات"}, "timestamp": "2026-11-18T15:47:18.399717"}
+{"type": "answer_submitted", "data": {"player_name": "Player 3", "category": "رياضيات", "points": 300, "is_correct": true, "message": "Player 3 answered correct and earned 300 points"}, "timestamp": "2026-11-18T15:47:25.881910"}
+{"type": "turn_switch", "data": {"previous_player": "Player 3", "new_player": "Player 1", "message": "Turn switched from Player 3 to Player 1"}, "timestamp": "2026-11-18T15:47:30.506816"}
+{"type": "question_selected", "data": {"player_name": "Player 1", "category": "رياضيات", "points": 500, "message": "Player 1 selected a 500-point question from رياضيات"}, "timestamp": "2026-11-18T15:47:39.295080"}

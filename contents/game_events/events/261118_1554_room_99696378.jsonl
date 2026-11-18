@@ -1,0 +1,6 @@
+{"type": "answer_evaluated", "data": {"player_name": "Player 1", "evaluator": "Player 1", "category": "النحو", "points": 400, "is_correct": true, "message": "The Host evaluated Player 1's answer as correct and earned 400 points"}, "timestamp": "2026-11-18T15:54:21.252568"}
+{"type": "turn_switch", "data": {"previous_player": "Player 1", "new_player": "Player 2", "message": "Turn switched from Player 1 to Player 2"}, "timestamp": "2026-11-18T15:54:24.690408"}
+{"type": "question_selected", "data": {"player_name": "Player 2", "category": "رياضة", "points": 500, "message": "Player 2 selected a 500-point question from رياضة"}, "timestamp": "2026-11-18T15:54:34.636603"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 2", "evaluator": "Player 1", "category": "رياضة", "points": 500, "is_correct": false, "message": "The Host evaluated Player 2's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-18T15:54:48.235081"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:54:51.934904"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "تاريخ_كوارث_طبيعية", "points": 200, "message": "Player 3 selected a 200-point question from تاريخ_كوارث_طبيعية"}, "timestamp": "2026-11-18T15:54:59.395741"}

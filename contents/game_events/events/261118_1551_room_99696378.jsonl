@@ -1,0 +1,4 @@
+{"type": "answer_evaluated", "data": {"player_name": "Player 2", "evaluator": "Player 1", "category": "مشاهير_عرب", "points": 500, "is_correct": false, "message": "The Host evaluated Player 2's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-18T15:51:18.746113"}
+{"type": "turn_switch", "data": {"previous_player": "Player 2", "new_player": "Player 3", "message": "Turn switched from Player 2 to Player 3"}, "timestamp": "2026-11-18T15:51:26.723734"}
+{"type": "question_selected", "data": {"player_name": "Player 3", "category": "رياضيات", "points": 200, "message": "Player 3 selected a 200-point question from رياضيات"}, "timestamp": "2026-11-18T15:51:46.368054"}
+{"type": "answer_evaluated", "data": {"player_name": "Player 3", "evaluator": "Player 1", "category": "رياضيات", "points": 200, "is_correct": true, "message": "The Host evaluated Player 3's answer as correct and earned 200 points"}, "timestamp": "2026-11-18T15:51:59.172985"}
