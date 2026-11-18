@@ -1,5 +1,5 @@
 {% extends "gamebase.html" %}
-{% from "_bi.html" import bi %}
+{% from "_bi.html" import bi, bi_stack %}
 
 {% block title %}Avirta - Question{% endblock %}
 
@@ -14,7 +14,11 @@
             <li class="q-chip q-chip-points"><span class="visually-hidden">Points: </span>{{ question.points }}</li>
             {% if question.doubled %}<li class="q-chip q-chip-double" title="Double points">&times;2<span class="visually-hidden"> double points</span></li>{% endif %}
         </ul>
-        {% if acting_player %}
+        {% if pulled_by %}
+            <div>
+                <p class="green-box pulled-note"><i class="fas fa-hand" aria-hidden="true"></i> <strong dir="auto">{{ pulled_by }}</strong> {{ bi('pulled the question from', 'سحب السؤال من') }} <strong dir="auto">{{ current_player }}</strong></p>
+            </div>
+        {% elif acting_player %}
             <div> 
                 <p class="green-box">You are answering on behalf of: <strong>{{ acting_player }}</strong></p>
             </div>
@@ -58,13 +62,50 @@
                 {% endif %}
             </form>
 	{% endif %}
-			<br>
-            <form id= "change-question-form" action="{{ url_for('use_tool') }}" method="post" class="form-actions clear">
-                <input type="hidden" name="tool_name" value="change_question">
-                <input type="hidden" name="acting_player" value="{{ current_player }}">
-				{% set cq_used = not player_tools or not player_tools.change_question %}
-				<button type="submit" id="change-question-btn" class="button{% if cq_used %} is-used{% endif %}" {% if cq_used %}disabled="disabled" title="Already used this game"{% endif %}>{{ bi('Change Question', 'غيّر السؤال') }}{% if cq_used %}<span class="visually-hidden"> (already used)</span>{% endif %}</button>
-            </form>
+            {# Helping tools: icon buttons, each named by a caption beneath it. #}
+            {% set cq_used = not player_tools or not player_tools.change_question %}
+            {% set et_used = not player_tools or not player_tools.extend_time %}
+            {% if not pulled_by %}
+            <div id="tools-tray" class="tools-tray">
+                <form id="change-question-form" action="{{ url_for('use_tool') }}" method="post" class="tool-group" aria-label="Tools">
+                    <input type="hidden" name="tool_name" value="change_question">
+                    <input type="hidden" name="acting_player" value="{{ current_player }}">
+                    <p class="tool-group-label">{{ bi('Tools', 'الأدوات') }}</p>
+                    <div class="tool-row">
+                        <div class="tool">
+                            <button type="submit" id="change-question-btn" class="tool-icon{% if cq_used %} is-used{% endif %}" aria-label="Change Question{% if cq_used %} (already used){% endif %}" title="{% if cq_used %}Already used this game{% else %}Change to a different question{% endif %}" {% if cq_used %}disabled="disabled"{% endif %}>
+                                <i class="fas fa-shuffle" aria-hidden="true"></i>
+                            </button>
+                            <span class="tool-caption" aria-hidden="true">{{ bi_stack('Change question', 'غيّر السؤال') }}</span>
+                        </div>
+                        <div class="tool">
+                            <button type="button" id="extend-time-btn" class="tool-icon{% if et_used %} is-used{% endif %}" aria-label="Extend Time by 15 seconds{% if et_used %} (already used){% endif %}" title="{% if et_used %}Already used this game{% else %}Add 15 seconds to the timer{% endif %}" {% if et_used %}disabled="disabled"{% endif %}>
+                                <i class="fas fa-stopwatch" aria-hidden="true"></i>
+                                <i class="fas fa-plus tool-icon-badge" aria-hidden="true"></i>
+                            </button>
+                            <span class="tool-caption" aria-hidden="true">{{ bi_stack('+15 seconds', 'وقت إضافي') }}</span>
+                        </div>
+                    </div>
+                </form>
+
+                {% if pull_players %}
+                <form id="pull-question-form" action="{{ url_for('use_tool') }}" method="post" class="tool-group" aria-label="Pull the question">
+                    <input type="hidden" name="tool_name" value="pull_question">
+                    <p class="tool-group-label">{{ bi('Pull the question', 'اسحب السؤال') }}</p>
+                    <div class="tool-row">
+                    {% for p in pull_players %}
+                        <div class="tool">
+                            <button type="submit" name="puller" value="{{ p.name }}" class="tool-icon pull-question-btn{% if not p.available %} is-used{% endif %}" aria-label="{{ p.name }} pulls the question{% if not p.available %} (already used){% endif %}" title="{% if not p.available %}{{ p.name }} already used this game{% else %}{{ p.name }} takes this question{% endif %}" {% if not p.available %}disabled="disabled"{% endif %}>
+                                <i class="fas fa-hand" aria-hidden="true"></i>
+                            </button>
+                            <span class="tool-caption" dir="auto" aria-hidden="true">{{ p.name }}</span>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+            {% endif %}
 
     </div>
 </div>
@@ -85,7 +126,9 @@
                       : k === 'w' ? document.querySelector('button[value="incorrect"]') : null;
             if (btn) { e.preventDefault(); document.removeEventListener('keydown', onKey); btn.click(); }
         });
-        document.getElementById('change-question-form').style.display = 'none';
+        // No tools once the answer is out.
+        const tray = document.getElementById('tools-tray');
+        if (tray) tray.hidden = true;
     }
 </script>
 

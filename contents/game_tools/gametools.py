@@ -4,6 +4,8 @@ Game Tools Module for Avirta
 This module handles the game tools functionality for Avirta games, including:
 - Double Points: Doubles the points for the next question
 - Change Question: Changes the current question to a new one
+- Extend Time: Adds 15 seconds to the current question's timer
+- Pull Question: Lets another player take over the current question
 
 These tools can be used by players during the game to enhance their gameplay experience.
 """
@@ -26,8 +28,65 @@ class GameTools:
         """
         return {
             "double_points": {"has": True, "available": True, "active": False},
-            "change_question": {"has": True, "available": True, "active": False}
+            "change_question": {"has": True, "available": True, "active": False},
+            "extend_time": {"has": True, "available": True, "active": False},
+            "pull_question": {"has": True, "available": True, "active": False}
         }
+
+    # Seconds added to the question timer by the Extend Time tool.
+    EXTEND_TIME_SECONDS = 15
+
+    @staticmethod
+    def _tool(player_tools, player, tool_name):
+        """Return a player's state for one tool, adding it (available) if the
+        player's tools predate that tool, e.g. a room restored from disk."""
+        tools = player_tools.setdefault(player, {})
+        if tool_name not in tools:
+            tools[tool_name] = {"has": True, "available": True, "active": False}
+        return tools[tool_name]
+
+    @staticmethod
+    def use_extend_time(player_tools, effective_player, current_player, question_active):
+        """
+        Use the "Extend Time" tool: the player whose turn it is gets
+        EXTEND_TIME_SECONDS more on the current question. Once per game.
+
+        Returns:
+            dict: {"success": True, "seconds": n} or {"success": False, ...}
+        """
+        tool = GameTools._tool(player_tools, effective_player, "extend_time")
+        if not tool.get("available", False):
+            return {"success": False, "error": "tool_not_available", "message": "Extend Time has already been used."}
+        if not question_active:
+            return {"success": False, "error": "question_not_active", "message": "No question is currently active."}
+        if effective_player != current_player:
+            return {"success": False, "error": "not_player_turn", "message": "Only the player whose turn it is can extend the time."}
+        tool["available"] = False
+        return {"success": True, "seconds": GameTools.EXTEND_TIME_SECONDS}
+
+    @staticmethod
+    def use_pull_question(player_tools, puller, current_player, players, question_active, already_pulled_by=None):
+        """
+        Use the "Pull the Question" tool: a player other than the one whose
+        turn it is takes over the current question (and its points).
+        Once per player per game; a question can only be pulled once.
+
+        Returns:
+            dict: {"success": True} or {"success": False, ...}
+        """
+        if puller not in players:
+            return {"success": False, "error": "player_not_found", "message": "Player not found in this room."}
+        if puller == current_player:
+            return {"success": False, "error": "own_question", "message": "You can't pull your own question."}
+        if not question_active:
+            return {"success": False, "error": "question_not_active", "message": "No question is currently active."}
+        if already_pulled_by:
+            return {"success": False, "error": "already_pulled", "message": f"{already_pulled_by} already pulled this question."}
+        tool = GameTools._tool(player_tools, puller, "pull_question")
+        if not tool.get("available", False):
+            return {"success": False, "error": "tool_not_available", "message": f"{puller} has already used Pull the Question."}
+        tool["available"] = False
+        return {"success": True}
 
     @staticmethod
     def use_double_points(player_tools, effective_player, question_active):
@@ -216,8 +275,9 @@ class GameTools:
             dict: Dictionary of tool names and their availability status
         """
         tools = player_tools.get(player_name, {})
-        # Return a simplified version for backward compatibility
-        simplified_tools = {}
+        # Return a simplified version for backward compatibility.
+        # Tools the player's state predates count as unused.
+        simplified_tools = {name: True for name in GameTools.initialize_tools()} if player_name in player_tools else {}
         for tool_name, status in tools.items():
             simplified_tools[tool_name] = status.get("available", False)
         return simplified_tools

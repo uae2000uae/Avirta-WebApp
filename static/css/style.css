@@ -1740,6 +1740,75 @@ details.ai-advanced > .ai-advanced-body { display: flex; flex-direction: column;
 .timer { color: var(--muted); }
 .timer #time-left { font-weight: bold; color: var(--accent-ink); }
 
+/* Extend Time: a "+15" badge floats up from the timer, the count flashes. */
+.timer { position: relative; }
+.timer-bonus {
+    position: absolute; left: 50%; top: 0;
+    font-size: 1.6em; font-weight: bold; color: var(--accent-ink);
+    pointer-events: none;
+    animation: timer-bonus-rise 1.4s var(--ease) forwards;
+}
+@keyframes timer-bonus-rise {
+    0%   { opacity: 0; transform: translate(-50%, 0) scale(.6); }
+    20%  { opacity: 1; transform: translate(-50%, -.6em) scale(1.25); }
+    100% { opacity: 0; transform: translate(-50%, -2.2em) scale(1); }
+}
+.timer-extended #time-left { display: inline-block; animation: timer-extend-flash .8s var(--ease); }
+@keyframes timer-extend-flash {
+    0%, 100% { transform: scale(1); }
+    40% { transform: scale(1.5); color: var(--accent); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .timer-bonus { animation-duration: 1.4s; animation-name: timer-bonus-fade; }
+    .timer-extended #time-left { animation: none; }
+}
+@keyframes timer-bonus-fade { 0%, 70% { opacity: 1; transform: translate(-50%, -1em); } 100% { opacity: 0; transform: translate(-50%, -1em); } }
+
+/* Helping tools (Double points, Change question, +15s, Pull): square icon
+   buttons, each named by a small caption beneath it. */
+.tools-tray { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-3); margin-top: var(--s-4); }
+.tools-tray[hidden] { display: none; }
+.tool-group {
+    display: flex; flex-direction: column; align-items: center; gap: var(--s-2);
+    margin: 0; padding: var(--s-3) var(--s-4);
+    border-radius: var(--r-6); background: var(--raised);
+    outline: 1px solid var(--line); outline-offset: -1px;
+}
+.tool-group-label { margin: 0; font-size: var(--fs-1); letter-spacing: .04em; color: var(--muted); }
+.tool-row { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-3); }
+.tool { display: inline-flex; flex-direction: column; align-items: center; gap: 3px; min-width: 52px; }
+.tool-icon {
+    position: relative;
+    display: inline-grid; place-items: center;
+    width: 28px; height: 28px; min-height: 0; margin: 0; padding: 0;
+    border-radius: var(--r-4);
+    font-size: .75rem;
+    color: var(--on-accent); background: var(--accent);
+    outline: 1px solid transparent; outline-offset: -1px;
+    transition: transform var(--t-1) var(--ease), outline-color var(--t-1) var(--ease);
+}
+.tool-icon:hover:not(:disabled) { transform: translateY(-1px); color: var(--on-accent); background: var(--veil-2), var(--accent); outline-color: var(--accent-1); }
+.tool-icon:active:not(:disabled) { transform: translateY(0); }
+.tool-icon:focus-visible { outline: 2px solid var(--accent-1); outline-offset: 3px; }
+/* Small "+" on the stopwatch. */
+.tool-icon-badge {
+    position: absolute; right: 2px; bottom: 2px;
+    display: grid; place-items: center; width: 9px; height: 9px;
+    border-radius: 50%; font-size: 6px;
+    color: var(--accent-ink); background: var(--on-accent);
+}
+.tool-caption { font-size: .68rem; line-height: 1.25; text-align: center; color: var(--text); }
+.tool-caption .bi-stack { line-height: 1.4; }
+.tool-caption .bi-ar { font-size: 1em; color: var(--muted); }
+/* Used: dimmed, no lift, a diagonal slash across the icon, caption struck. */
+.tool-icon.is-used, .tool-icon.is-used:disabled { text-decoration: none; filter: grayscale(.6); }
+.tool-icon.is-used::after {
+    content: ""; position: absolute; left: 5px; right: 5px; top: 50%; height: 2px;
+    border-radius: 2px; background: currentColor; transform: rotate(-35deg);
+}
+.tool-icon.is-used + .tool-caption { opacity: .5; text-decoration: line-through; }
+@media (prefers-reduced-motion: reduce) { .tool-icon, .tool-icon:hover:not(:disabled) { transition: none; transform: none; } }
+
 /* Report flag */
 .report-button {
     margin-top: 10px;
