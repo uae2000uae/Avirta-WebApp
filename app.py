@@ -766,6 +766,40 @@ def leave_game(room_id):
     flash('You have left the game room.', 'success')
     return redirect(url_for('index'))
 
+def finish_answer(room_id, game_room, player, is_correct):
+    """After an answer: pass the turn on and send everyone back to the board,
+    where the answering screen shows the result in a popup (once)."""
+    previous_player = game_room.current_player
+    game_room.advance_turn()
+    add_game_event(room_id, 'turn_switch', {
+        'previous_player': previous_player,
+        'new_player': game_room.current_player,
+        'message': f'Turn switched from {previous_player} to {game_room.current_player}'
+    })
+    session['answer_result'] = {'room_id': room_id, 'is_correct': bool(is_correct), 'player': player}
+    return redirect(url_for('game_room', room_id=room_id))
+
+
+def pop_answer_result(room_id, game_room):
+    """The result popup's content, or None. Shown once: a reload won't repeat it."""
+    pending = session.pop('answer_result', None)
+    if not pending or pending.get('room_id') != room_id:
+        return None
+    qm = getattr(game_room, 'question_manager', None)
+    question = None
+    if qm and qm.questions and qm.current_question_index >= 0:
+        question = qm.questions[qm.current_question_index]
+    question = question or {}
+    return {
+        'is_correct': pending.get('is_correct', False),
+        'player': pending.get('player', ''),
+        'question_id': question.get('id', ''),
+        'question': question.get('question', ''),
+        'answer': question.get('correct_answer', ''),
+        'explanation': question.get('explanation', ''),
+    }
+
+
 @app.route('/game_room/<room_id>')
 def game_room(room_id):
     """View a game room."""
@@ -787,25 +821,6 @@ def game_room(room_id):
     if player_name not in game_room.players:
         flash('You are not in this game room.', 'error')
         return redirect(url_for('join_room'))
-
-    # Check if the user is coming from the result page
-    referrer = request.referrer
-    if referrer and 'result' in referrer:
-        # Get the current player before advancing the turn
-        previous_player = game_room.current_player
-
-        # Advance to the next player's turn
-        game_room.advance_turn()
-
-        # Get the new current player
-        new_player = game_room.current_player
-
-        # Add a game event for the turn switch
-        add_game_event(room_id, 'turn_switch', {
-            'previous_player': previous_player,
-            'new_player': new_player,
-            'message': f'Turn switched from {previous_player} to {new_player}'
-        })
 
     # Get the available questions
     available_questions = game_room.get_available_questions()
@@ -839,7 +854,8 @@ def game_room(room_id):
         player_tools=player_tools,
         current_player=current_player,
         is_current_player_turn=is_current_player_turn,
-        is_host=is_host
+        is_host=is_host,
+        answer_result=pop_answer_result(room_id, game_room)
     )
 
 @app.route('/select_question', methods=['POST'])
@@ -1037,8 +1053,8 @@ def answer_question():
     # Set the question_active property to False
     game_room.question_active = False
 
-    # Redirect to the result page
-    return redirect(url_for('result', room_id=room_id, is_correct=is_correct))
+    # Back to the board, which shows the result in a popup.
+    return finish_answer(room_id, game_room, effective_player, is_correct)
 
 @app.route('/evaluate_answer', methods=['POST'])
 def evaluate_answer():
@@ -1112,53 +1128,16 @@ def evaluate_answer():
     # Set the question_active property to False
     game_room.question_active = False
 
-    # Redirect to the result page
-    return redirect(url_for('result', room_id=room_id, is_correct=is_correct))
+    # Back to the board, which shows the result in a popup.
+    return finish_answer(room_id, game_room, effective_player, is_correct)
 
 @app.route('/result/<room_id>')
 def result(room_id):
-    """View the result of answering a question."""
+    """Old result page: results now show as a popup on the board."""
     if room_id not in game_rooms:
         flash('Game room not found.', 'error')
         return redirect(url_for('index'))
-
-    is_correct = request.args.get('is_correct') == 'True'
-    player_name = session.get('player_name')
-
-    game_room = game_rooms[room_id]
-
-    # Get the player's score
-    score = 0
-    leaderboard = []
-    correct_answer = ""
-    question_text = ""
-    current_question = None
-
-    if hasattr(game_room, 'question_manager'):
-        score = game_room.question_manager.get_player_score(player_name)
-        leaderboard = game_room.question_manager.get_leaderboard(all_players=game_room.players)
-
-        # Get the correct answer from the most recent question
-        if game_room.question_manager.questions and game_room.question_manager.current_question_index >= 0:
-            current_question = game_room.question_manager.questions[game_room.question_manager.current_question_index]
-            correct_answer = current_question.get('correct_answer', '')
-            question_text = current_question.get('question', '')
-
-    # Determine which template to use based on the room_id
-    template = 'result.html'
-
-    return render_template(
-        template,
-        room_id=room_id,
-        is_correct=is_correct,
-        player_name=player_name,
-        score=score,
-        leaderboard=leaderboard,
-        correct_answer=correct_answer,
-        question_text=question_text,
-        current_player=game_room.current_player,
-        current_question=current_question
-    )
+    return redirect(url_for('game_room', room_id=room_id))
 
 
 @app.route('/report_question', methods=['POST'])

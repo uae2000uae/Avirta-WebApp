@@ -1,0 +1,110 @@
+{# The answer result, shown once over the board after a question.
+   Compact: it always fits one screen; a long explanation scrolls inside. #}
+{% from "_bi.html" import bi %}
+{% set r = answer_result %}
+<div class="answer-popup" id="answer-popup" role="dialog" aria-modal="true" aria-labelledby="answer-popup-title">
+  <div class="answer-card">
+    <div class="result {{ 'correct' if r.is_correct else 'incorrect' }}" role="status">
+      {% if r.is_correct %}
+      <h2 class="result-icon" id="answer-popup-title"><svg class="result-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.8l4.6 4.6L19.5 7" style="--len: 22"/></svg> {{ bi('Correct', 'صح') }}</h2>
+      <p>Great job, {{ r.player }}!</p>
+      {% else %}
+      <h2 class="result-icon" id="answer-popup-title"><svg class="result-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12" style="--len: 17"/><path d="M18 6L6 18" style="--len: 17"/></svg> {{ bi('Wrong', 'خطأ') }}</h2>
+      <p>Sorry, {{ r.player }}.</p>
+      {% endif %}
+    </div>
+    {% if r.question %}
+    <p class="answer-question" dir="{% if r.question|is_arabic %}rtl{% else %}ltr{% endif %}">{{ r.question }}</p>
+    {% endif %}
+    {% if r.answer %}
+    <p class="answer-correct" dir="{% if r.answer|is_arabic %}rtl{% else %}ltr{% endif %}">{{ r.answer }}</p>
+    {% endif %}
+    {% if r.explanation %}
+    <p class="answer-why" dir="{% if r.explanation|is_arabic %}rtl{% else %}ltr{% endif %}">{{ r.explanation }}</p>
+    {% endif %}
+    <div class="answer-actions">
+      {% if r.question_id %}
+      <button type="button" id="report-btn" class="report-button" aria-label="Report this question" title="Report question | الإبلاغ عن السؤال"><i class="fas fa-flag" aria-hidden="true"></i></button>
+      {% endif %}
+      <button type="button" class="button primary" data-close-answer>{{ bi('Continue', 'متابعة') }}</button>
+    </div>
+  </div>
+</div>
+
+{% if r.question_id %}
+<div id="report-modal" class="modal" role="dialog" aria-modal="true" aria-label="Report question">
+  <div class="modal-content">
+    <button type="button" class="close-modal" aria-label="Close">&times;</button>
+    <p>Would you like to report this question for review?</p><p lang="ar" dir="rtl">هل تريد الإبلاغ عن هذا السؤال للمراجعة؟</p>
+    <form action="{{ url_for('report_question') }}" method="post" class="form-actions">
+      <input type="hidden" name="question_id" value="{{ r.question_id }}">
+      <input type="hidden" name="room_id" value="{{ room.room_id }}">
+      <input type="hidden" name="is_correct" value="{{ r.is_correct }}">
+      <button type="submit" class="button confirm-report">{{ bi('Yes', 'نعم') }}</button>
+      <button type="button" class="button cancel-report">{{ bi('No', 'إلغاء') }}</button>
+    </form>
+  </div>
+</div>
+{% endif %}
+
+<script>
+(function () {
+  const popup = document.getElementById('answer-popup');
+  const modal = document.getElementById('report-modal');
+  const boardDone = document.querySelector('.page-section')?.dataset.boardCompleted === 'true';
+  let lastFocus = null;
+
+  function closePopup() {
+    if (!popup.isConnected) return;
+    popup.remove();
+    document.removeEventListener('keydown', onKey);
+    if (boardDone && typeof showGameOverModal === 'function') setTimeout(showGameOverModal, 400);
+  }
+  function reportOpen() { return modal && modal.style.display === 'block'; }
+  function openReport() { lastFocus = document.activeElement; modal.style.display = 'block'; modal.querySelector('.confirm-report')?.focus(); }
+  function closeReport() { modal.style.display = 'none'; lastFocus?.focus(); }
+  function onKey(e) {
+    if (e.key !== 'Escape') return;
+    if (reportOpen()) closeReport(); else closePopup();
+  }
+
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup || e.target.closest('[data-close-answer]')) closePopup();
+  });
+  document.addEventListener('keydown', onKey);
+  document.addEventListener('DOMContentLoaded', () => popup.querySelector('[data-close-answer]')?.focus());
+
+  if (!modal) return;
+  document.getElementById('report-btn')?.addEventListener('click', openReport);
+  modal.querySelector('.close-modal').addEventListener('click', closeReport);
+  modal.querySelector('.cancel-report').addEventListener('click', closeReport);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeReport(); });
+
+  // Report without leaving the board.
+  const form = modal.querySelector('form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const content = modal.querySelector('.modal-content');
+    let msg = 'Network error. Please try again.', ok = false;
+    try {
+      const resp = await fetch(form.action, { method: 'POST', body: new FormData(form),
+        headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' } });
+      const data = await resp.json().catch(() => ({}));
+      ok = resp.ok && data.success !== false;
+      msg = data.message || (ok ? 'Question reported successfully. Thank you!' : 'Failed to report question. Please try again.');
+    } catch (err) {}
+    content.querySelectorAll('.report-note').forEach(n => n.remove());
+    const note = document.createElement('p');
+    note.className = 'report-note' + (ok ? '' : ' error-text');
+    note.setAttribute('role', 'status');
+    note.textContent = msg;
+    content.appendChild(note);
+    if (ok) {
+      form.hidden = true;
+      const btn = document.getElementById('report-btn');
+      if (btn) { btn.disabled = true; btn.title = 'Reported | تم الإبلاغ'; }
+      setTimeout(closeReport, 1800);
+    }
+  });
+})();
+</script>

@@ -97,6 +97,7 @@
     </div>
   {% endif %}
 </div> <!-- End of game-room-section -->
+{% if answer_result %}{% include "Columns/_answer_popup.html" %}{% endif %}
 {% endblock %}
 
 {% block scripts %}
@@ -116,23 +117,6 @@
 
     // Setup scroll position saving
     setupScrollPositionSaving();
-
-    // Check if returning from result page and if the board is completed
-    if (localStorage.getItem('returning_from_result') === 'true') {
-      // Clear the flag
-      localStorage.removeItem('returning_from_result');
-
-      // Get the board completion status
-      const isBoardCompleted = document.querySelector('.page-section').getAttribute('data-board-completed') === 'true';
-
-      // Only show the game over modal if the board is completed
-      if (isBoardCompleted) {
-        // Add a 1-second delay before showing the modal
-        setTimeout(() => {
-          showGameOverModal();
-        }, 1000);
-      }
-    }
   });
 
 document.addEventListener('DOMContentLoaded', function() {
