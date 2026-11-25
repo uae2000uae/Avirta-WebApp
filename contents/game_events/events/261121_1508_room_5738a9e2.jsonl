@@ -1,0 +1,6 @@
+{"type": "answer_evaluated", "data": {"player_name": "Asma", "evaluator": "Shihab", "category": "براندات_عالمية", "points": 300, "is_correct": true, "message": "The Host evaluated Asma's answer as correct and earned 300 points"}, "timestamp": "2026-11-21T15:08:11.556852"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:08:11.557098"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "معلومات_عامة", "points": 200, "message": "Shihab selected a 200-point question from معلومات_عامة"}, "timestamp": "2026-11-21T15:08:21.281650"}
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "معلومات_عامة", "points": 200, "is_correct": true, "message": "Shihab answered correct and earned 200 points"}, "timestamp": "2026-11-21T15:08:27.736722"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:08:27.737852"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "دول_العالم", "points": 200, "message": "Asma selected a 200-point question from دول_العالم"}, "timestamp": "2026-11-21T15:08:44.429904"}

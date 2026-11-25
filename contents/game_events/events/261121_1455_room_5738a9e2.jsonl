@@ -1,0 +1,5 @@
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "القرآن_الكريم", "points": 300, "is_correct": false, "message": "Shihab answered incorrect and earned 0 points"}, "timestamp": "2026-11-21T14:55:01.646221"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T14:55:01.647589"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "القرآن_الكريم", "points": 500, "message": "Asma selected a 500-point question from القرآن_الكريم"}, "timestamp": "2026-11-21T14:55:16.388229"}
+{"type": "answer_evaluated", "data": {"player_name": "Asma", "evaluator": "Shihab", "category": "القرآن_الكريم", "points": 500, "is_correct": true, "message": "The Host evaluated Asma's answer as correct and earned 500 points"}, "timestamp": "2026-11-21T14:55:33.499657"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T14:55:33.499908"}

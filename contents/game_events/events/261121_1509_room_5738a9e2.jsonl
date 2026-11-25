@@ -1,0 +1,6 @@
+{"type": "tool_used", "data": {"player_name": "Shihab", "tool_name": "change_question", "category": "دول_العالم", "points": 200, "target_player": "Asma", "message": "Shihab used Change Question for Asma"}, "timestamp": "2026-11-21T15:09:15.795413"}
+{"type": "answer_submitted", "data": {"player_name": "Asma", "category": "دول_العالم", "points": 200, "is_correct": true, "message": "Asma answered correct and earned 200 points"}, "timestamp": "2026-11-21T15:09:23.147780"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:09:23.148519"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "علم_الفلك", "points": 200, "message": "Shihab selected a 200-point question from علم_الفلك"}, "timestamp": "2026-11-21T15:09:36.026228"}
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "علم_الفلك", "points": 200, "is_correct": false, "message": "Shihab answered incorrect and earned 0 points"}, "timestamp": "2026-11-21T15:09:48.933755"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:09:48.934506"}

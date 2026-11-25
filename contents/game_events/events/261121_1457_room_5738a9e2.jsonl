@@ -1,0 +1,7 @@
+{"type": "tool_used", "data": {"player_name": "Shihab", "tool_name": "pull_question", "target_player": "Asma", "category": "القرآن_الكريم", "points": 400, "message": "Shihab pulled the question from Asma"}, "timestamp": "2026-11-21T14:57:04.046179"}
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "القرآن_الكريم", "points": 400, "is_correct": false, "message": "Shihab answered incorrect and earned 0 points"}, "timestamp": "2026-11-21T14:57:08.209014"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T14:57:08.211546"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "علم_الفلك", "points": 500, "message": "Shihab selected a 500-point question from علم_الفلك"}, "timestamp": "2026-11-21T14:57:21.641443"}
+{"type": "tool_used", "data": {"player_name": "Asma", "tool_name": "pull_question", "target_player": "Shihab", "category": "علم_الفلك", "points": 500, "message": "Asma pulled the question from Shihab"}, "timestamp": "2026-11-21T14:57:38.351884"}
+{"type": "answer_evaluated", "data": {"player_name": "Asma", "evaluator": "Shihab", "category": "علم_الفلك", "points": 500, "is_correct": true, "message": "The Host evaluated Asma's answer as correct and earned 500 points"}, "timestamp": "2026-11-21T14:57:55.663173"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T14:57:55.663404"}

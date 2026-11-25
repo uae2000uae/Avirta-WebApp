@@ -1,0 +1,2 @@
+{"type": "game_started", "data": {"message": "The Hive game started: Gm vs Gn", "teams": ["Gm", "Gn"], "point_values": [100, 200, 300, 400, 500], "tags": ["english", "places", "nature", "movies", "cars"], "categories": ["cars", "jurassic_park", "superhero_movies"]}, "timestamp": "2026-11-25T06:07:09.412998"}
+{"type": "game_ended", "data": {"player_name": "Gm", "message": "The game has been ended by the host (Gm)"}, "timestamp": "2026-11-25T06:07:49.945057"}

@@ -1,0 +1,4 @@
+{"type": "answer_evaluated", "data": {"player_name": "Asma", "evaluator": "Shihab", "category": "دول_العالم", "points": 1000, "is_correct": false, "message": "The Host evaluated Asma's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-21T15:01:03.938873"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:01:03.939142"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "مخترعون_ومكتشفون", "points": 500, "message": "Shihab selected a 500-point question from مخترعون_ومكتشفون"}, "timestamp": "2026-11-21T15:01:33.060549"}
+{"type": "tool_used", "data": {"player_name": "Shihab", "tool_name": "change_question", "category": "مخترعون_ومكتشفون", "points": 500, "target_player": null, "message": "Shihab used Change Question to get a new question"}, "timestamp": "2026-11-21T15:01:51.757180"}

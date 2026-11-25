@@ -1,0 +1,3 @@
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "علم_الفلك", "points": 400, "message": "Asma selected a 400-point question from علم_الفلك"}, "timestamp": "2026-11-21T14:58:21.326057"}
+{"type": "answer_submitted", "data": {"player_name": "Asma", "category": "علم_الفلك", "points": 400, "is_correct": false, "message": "Asma answered incorrect and earned 0 points"}, "timestamp": "2026-11-21T14:58:50.098308"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T14:58:50.099006"}

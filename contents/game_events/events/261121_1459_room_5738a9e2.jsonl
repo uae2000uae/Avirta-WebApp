@@ -1,0 +1,6 @@
+{"type": "tool_used", "data": {"player_name": "Shihab", "tool_name": "double_points", "target_player": "Shihab", "message": "Shihab activated Double Points"}, "timestamp": "2026-11-21T14:59:00.371627"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "معلومات_عامة", "points": 1000, "message": "Shihab selected a 1000-point question from معلومات_عامة"}, "timestamp": "2026-11-21T14:59:02.441324"}
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "معلومات_عامة", "points": 1000, "is_correct": true, "message": "Shihab answered correct and earned 1000 points"}, "timestamp": "2026-11-21T14:59:32.202769"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T14:59:32.203550"}
+{"type": "tool_used", "data": {"player_name": "Shihab", "tool_name": "double_points", "target_player": "Asma", "message": "Shihab activated Double Points for Asma"}, "timestamp": "2026-11-21T14:59:46.758476"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "دول_العالم", "points": 1000, "message": "Asma selected a 1000-point question from دول_العالم"}, "timestamp": "2026-11-21T14:59:52.472122"}

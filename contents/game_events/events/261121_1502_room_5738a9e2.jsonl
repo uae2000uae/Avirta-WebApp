@@ -1,0 +1,3 @@
+{"type": "answer_evaluated", "data": {"player_name": "Shihab", "evaluator": "Shihab", "category": "مخترعون_ومكتشفون", "points": 500, "is_correct": false, "message": "The Host evaluated Shihab's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-21T15:02:23.900566"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:02:23.900826"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "براندات_عالمية", "points": 500, "message": "Asma selected a 500-point question from براندات_عالمية"}, "timestamp": "2026-11-21T15:02:40.305924"}

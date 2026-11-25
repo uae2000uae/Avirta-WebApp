@@ -1,0 +1,2 @@
+{"type": "answer_evaluated", "data": {"player_name": "Asma", "evaluator": "Shihab", "category": "مخترعون_ومكتشفون", "points": 100, "is_correct": true, "message": "The Host evaluated Asma's answer as correct and earned 100 points"}, "timestamp": "2026-11-21T15:13:17.351310"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:13:17.351550"}

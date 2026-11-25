@@ -1,0 +1,10 @@
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "القرآن_الكريم", "points": 100, "is_correct": true, "message": "Shihab answered correct and earned 100 points"}, "timestamp": "2026-11-21T15:12:02.566081"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:12:02.566830"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "علم_الفلك", "points": 100, "message": "Asma selected a 100-point question from علم_الفلك"}, "timestamp": "2026-11-21T15:12:10.751432"}
+{"type": "tool_used", "data": {"player_name": "Shihab", "tool_name": "extend_time", "target_player": "Asma", "seconds": 15, "message": "Asma used Extend Time (+15s)"}, "timestamp": "2026-11-21T15:12:27.771150"}
+{"type": "answer_submitted", "data": {"player_name": "Asma", "category": "علم_الفلك", "points": 100, "is_correct": true, "message": "Asma answered correct and earned 100 points"}, "timestamp": "2026-11-21T15:12:31.362785"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:12:31.363526"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "براندات_عالمية", "points": 100, "message": "Shihab selected a 100-point question from براندات_عالمية"}, "timestamp": "2026-11-21T15:12:36.790466"}
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "براندات_عالمية", "points": 100, "is_correct": true, "message": "Shihab answered correct and earned 100 points"}, "timestamp": "2026-11-21T15:12:41.310681"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:12:41.311436"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "مخترعون_ومكتشفون", "points": 100, "message": "Asma selected a 100-point question from مخترعون_ومكتشفون"}, "timestamp": "2026-11-21T15:12:46.392162"}

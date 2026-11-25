@@ -1,0 +1,7 @@
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "براندات_عالمية", "points": 200, "message": "Asma selected a 200-point question from براندات_عالمية"}, "timestamp": "2026-11-21T15:10:06.744134"}
+{"type": "answer_submitted", "data": {"player_name": "Asma", "category": "براندات_عالمية", "points": 200, "is_correct": true, "message": "Asma answered correct and earned 200 points"}, "timestamp": "2026-11-21T15:10:16.705615"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:10:16.706367"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "مخترعون_ومكتشفون", "points": 200, "message": "Shihab selected a 200-point question from مخترعون_ومكتشفون"}, "timestamp": "2026-11-21T15:10:23.025301"}
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "مخترعون_ومكتشفون", "points": 200, "is_correct": true, "message": "Shihab answered correct and earned 200 points"}, "timestamp": "2026-11-21T15:10:30.195562"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:10:30.196268"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "مخترعون_ومكتشفون", "points": 400, "message": "Asma selected a 400-point question from مخترعون_ومكتشفون"}, "timestamp": "2026-11-21T15:10:38.384627"}

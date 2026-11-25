@@ -1,0 +1,3 @@
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "براندات_عالمية", "points": 400, "message": "Shihab selected a 400-point question from براندات_عالمية"}, "timestamp": "2026-11-21T15:05:24.134385"}
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "براندات_عالمية", "points": 400, "is_correct": false, "message": "Shihab answered incorrect and earned 0 points"}, "timestamp": "2026-11-21T15:05:43.792734"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:05:43.793607"}

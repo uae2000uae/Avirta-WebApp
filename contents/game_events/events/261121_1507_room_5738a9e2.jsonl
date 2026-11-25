@@ -1,0 +1,4 @@
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "مخترعون_ومكتشفون", "points": 300, "message": "Shihab selected a 300-point question from مخترعون_ومكتشفون"}, "timestamp": "2026-11-21T15:07:16.479616"}
+{"type": "answer_evaluated", "data": {"player_name": "Shihab", "evaluator": "Shihab", "category": "مخترعون_ومكتشفون", "points": 300, "is_correct": true, "message": "The Host evaluated Shihab's answer as correct and earned 300 points"}, "timestamp": "2026-11-21T15:07:34.712362"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:07:34.712586"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "براندات_عالمية", "points": 300, "message": "Asma selected a 300-point question from براندات_عالمية"}, "timestamp": "2026-11-21T15:07:54.967912"}

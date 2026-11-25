@@ -1,0 +1,5 @@
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "دول_العالم", "points": 400, "is_correct": true, "message": "Shihab answered correct and earned 400 points"}, "timestamp": "2026-11-21T15:04:04.285647"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:04:04.286438"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "معلومات_عامة", "points": 400, "message": "Asma selected a 400-point question from معلومات_عامة"}, "timestamp": "2026-11-21T15:04:19.200577"}
+{"type": "answer_evaluated", "data": {"player_name": "Asma", "evaluator": "Shihab", "category": "معلومات_عامة", "points": 400, "is_correct": false, "message": "The Host evaluated Asma's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-21T15:04:56.796994"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:04:56.797261"}

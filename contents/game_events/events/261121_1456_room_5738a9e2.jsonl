@@ -1,0 +1,4 @@
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "القرآن_الكريم", "points": 200, "message": "Shihab selected a 200-point question from القرآن_الكريم"}, "timestamp": "2026-11-21T14:56:12.614393"}
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "القرآن_الكريم", "points": 200, "is_correct": true, "message": "Shihab answered correct and earned 200 points"}, "timestamp": "2026-11-21T14:56:35.370479"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T14:56:35.371295"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "القرآن_الكريم", "points": 400, "message": "Asma selected a 400-point question from القرآن_الكريم"}, "timestamp": "2026-11-21T14:56:54.691670"}

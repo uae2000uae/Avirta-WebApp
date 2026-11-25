@@ -1,0 +1,10 @@
+{"type": "answer_evaluated", "data": {"player_name": "Asma", "evaluator": "Shihab", "category": "مخترعون_ومكتشفون", "points": 400, "is_correct": false, "message": "The Host evaluated Asma's answer as incorrect and earned 0 points"}, "timestamp": "2026-11-21T15:11:04.325343"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:11:04.325619"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "معلومات_عامة", "points": 100, "message": "Shihab selected a 100-point question from معلومات_عامة"}, "timestamp": "2026-11-21T15:11:13.931464"}
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "معلومات_عامة", "points": 100, "is_correct": true, "message": "Shihab answered correct and earned 100 points"}, "timestamp": "2026-11-21T15:11:18.734543"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:11:18.735245"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "دول_العالم", "points": 100, "message": "Asma selected a 100-point question from دول_العالم"}, "timestamp": "2026-11-21T15:11:25.199420"}
+{"type": "answer_submitted", "data": {"player_name": "Asma", "category": "دول_العالم", "points": 100, "is_correct": true, "message": "Asma answered correct and earned 100 points"}, "timestamp": "2026-11-21T15:11:32.869768"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:11:32.870641"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "القرآن_الكريم", "points": 100, "message": "Shihab selected a 100-point question from القرآن_الكريم"}, "timestamp": "2026-11-21T15:11:40.345565"}
+{"type": "tool_used", "data": {"player_name": "Shihab", "tool_name": "extend_time", "target_player": null, "seconds": 15, "message": "Shihab used Extend Time (+15s)"}, "timestamp": "2026-11-21T15:11:49.762345"}

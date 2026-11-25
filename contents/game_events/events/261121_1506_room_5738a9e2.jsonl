@@ -1,0 +1,9 @@
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "معلومات_عامة", "points": 300, "message": "Asma selected a 300-point question from معلومات_عامة"}, "timestamp": "2026-11-21T15:06:02.073363"}
+{"type": "answer_submitted", "data": {"player_name": "Asma", "category": "معلومات_عامة", "points": 300, "is_correct": true, "message": "Asma answered correct and earned 300 points"}, "timestamp": "2026-11-21T15:06:09.859021"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:06:09.860412"}
+{"type": "question_selected", "data": {"player_name": "Shihab", "category": "علم_الفلك", "points": 300, "message": "Shihab selected a 300-point question from علم_الفلك"}, "timestamp": "2026-11-21T15:06:20.861640"}
+{"type": "answer_submitted", "data": {"player_name": "Shihab", "category": "علم_الفلك", "points": 300, "is_correct": true, "message": "Shihab answered correct and earned 300 points"}, "timestamp": "2026-11-21T15:06:27.929726"}
+{"type": "turn_switch", "data": {"previous_player": "Shihab", "new_player": "Asma", "message": "Turn switched from Shihab to Asma"}, "timestamp": "2026-11-21T15:06:27.930501"}
+{"type": "question_selected", "data": {"player_name": "Asma", "category": "دول_العالم", "points": 300, "message": "Asma selected a 300-point question from دول_العالم"}, "timestamp": "2026-11-21T15:06:50.252448"}
+{"type": "answer_submitted", "data": {"player_name": "Asma", "category": "دول_العالم", "points": 300, "is_correct": true, "message": "Asma answered correct and earned 300 points"}, "timestamp": "2026-11-21T15:06:58.543985"}
+{"type": "turn_switch", "data": {"previous_player": "Asma", "new_player": "Shihab", "message": "Turn switched from Asma to Shihab"}, "timestamp": "2026-11-21T15:06:58.544665"}
